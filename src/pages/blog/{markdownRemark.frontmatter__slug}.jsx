@@ -1,32 +1,61 @@
-import * as React from "react"
-import { graphql } from "gatsby"
 
-export default function BlogPostTemplate({
-  data, // this prop will be injected by the GraphQL query below.
-}) {
-  const { markdownRemark } = data // data.markdownRemark holds your post data
-  const { frontmatter, html } = markdownRemark
+import React from "react"
+import { graphql } from "gatsby"
+import { css } from "@emotion/core"
+import { rhythm } from "../utils/typography"
+import Layout from "../components/layout"
+
+export default ({ data }) => {
+  console.log(data)
   return (
-    <div>
+    <Layout>
       <div>
-        <h1>{frontmatter.title}</h1>
-        <h2>{frontmatter.date}</h2>
-        <div
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
+        <h1
+          css={css`
+            display: inline-block;
+            border-bottom: 1px solid;
+          `}
+        >
+          Amazing Pandas Eating Things
+        </h1>
+        <h4>{data.allMarkdownRemark.totalCount} Posts</h4>
+        {data.allMarkdownRemark.edges.map(({ node }) => (
+          <div key={node.id}>
+            <h3
+              css={css`
+                margin-bottom: ${rhythm(1 / 4)};
+              `}
+            >
+              {node.frontmatter.title}{" "}
+              <span
+                css={css`
+                  color: #bbb;
+                `}
+              >
+                — {node.frontmatter.date}
+              </span>
+            </h3>
+            <p>{node.excerpt}</p>
+          </div>
+        ))}
       </div>
-    </div>
+    </Layout>
   )
 }
 
-export const pageQuery = graphql`
-  query($id: String!) {
-    markdownRemark(id: { eq: $id }) {
-      html
-      frontmatter {
-        date(formatString: "MMMM DD, YYYY")
-        slug
-        title
+export const query = graphql`
+  query {
+    allMarkdownRemark {
+      totalCount
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            date(formatString: "DD MMMM, YYYY")
+          }
+          excerpt
+        }
       }
     }
   }
