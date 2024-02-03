@@ -15,13 +15,13 @@ const BlogIndex = ({ data, location }) => {
         return (
           <li key={post.fields.slug}>
             <div>
-              <div>
                 <h1>
-                    <span itemProp="headline">{title}</span>
+                    <Link to = {post.fields.slug}>
+                        <span itemProp="headline">{title}</span>
+                    </Link>
                 </h1>
-              </div>
-              <p>{description}</p>
-              <p>{date}</p>
+                <p>{date}</p>
+                <p>{description}</p>
             </div>
           </li>
         )
