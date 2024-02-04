@@ -1,14 +1,19 @@
-/* import React from "react"
-import PageHeader from "../page-header"
 
-const PageLayout = ({childern}) => {
-    return (
-        <div className = "page-wrapper">
-            <PageHeader/>
-            <PageContent/>
-            <PageFooter/>
-        </div>
-    )
-}
 
-export default PageLayout */
+const Layout = ({childern}) => {
+    const data = userStateQuery(graphql`
+      query SiteTitleQuery {
+        site {
+            siteMetaData {
+                title
+                author {
+                    name 
+                    social {
+                        github
+                    }
+                }
+            }
+        }
+      }
+    `);
+};
