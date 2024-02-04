@@ -1,32 +1,35 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import PageLayout from "../components/layout"
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const posts = data.allMarkdownRemark.nodes
 
   return (
-    <ol style={{ listStyle: `none` }}>
-      {posts.map(post => {
-        const title = post.frontmatter.title || post.fields.slug
-        const description = post.frontmatter.description
-        const date = post.frontmatter.date;
+    <PageLayout>
+        <ol style={{ listStyle: `none` }}>
+        {posts.map(post => {
+            const title = post.frontmatter.title || post.fields.slug
+            const description = post.frontmatter.description
+            const date = post.frontmatter.date;
 
-        return (
-          <li key={post.fields.slug}>
-            <div>
-                <h1>
-                    <Link to = {post.fields.slug}>
-                        <span itemProp="headline">{title}</span>
-                    </Link>
-                </h1>
-                <p>{date}</p>
-                <p>{description}</p>
-            </div>
-          </li>
-        )
-      })}
-    </ol>
+            return (
+            <li key={post.fields.slug}>
+                <div>
+                    <h1>
+                        <Link to = {post.fields.slug}>
+                            <span itemProp="headline">{title}</span>
+                        </Link>
+                    </h1>
+                    <p>{date}</p>
+                    <p>{description}</p>
+                </div>
+            </li>
+            )
+        })}
+        </ol>
+    </PageLayout>
   )
 }
 

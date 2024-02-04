@@ -1,27 +1,30 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import PageLayout from "../components/layout"
 
 export default ({ data, location }) => {
   const post = data.markdownRemark
   const { previous, next } = data
 
   return (
-    <div>
-      <h1> {post.frontmatter.title} </h1>
-      <h3> {post.frontmatter.description} </h3>
-      <section
-        dangerouslySetInnerHTML={{ __html: post.html }}
-        itemProp="articleBody"
-      />
-      {previous && (
-        <Link to={previous.fields.slug}>
-          previous post ({previous.frontmatter.title})
-        </Link>
-      )}{" "}
-      {next && (
-        <Link to={next.fields.slug}>next post ({next.frontmatter.title})</Link>
-      )}
-    </div>
+    <PageLayout>
+       <div>
+          <h1> {post.frontmatter.title} </h1>
+          <h3> {post.frontmatter.description} </h3>
+          <section
+            dangerouslySetInnerHTML={{ __html: post.html }}
+            itemProp="articleBody"
+          />
+          {previous && (
+            <Link to={previous.fields.slug}>
+              previous post ({previous.frontmatter.title})
+            </Link>
+          )}{" "}
+          {next && (
+            <Link to={next.fields.slug}>next post ({next.frontmatter.title})</Link>
+          )}
+         </div>
+    </PageLayout>
   )
 }
 
