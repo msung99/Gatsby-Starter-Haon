@@ -1,13 +1,15 @@
 import React from "react";
 
-const PageHeader = ({title, description, date }) => {
+const PostHeader = ({title, description, date }) => {
     return (
         <div>
-            {title}
-            {description}
-            {date}
+            <h1>{title}</h1>
+            <h2>{description}</h2>
+            <div>
+                {date}
+            </div>
         </div>
     )
 }
 
-export default PageHeader
+export default PostHeader

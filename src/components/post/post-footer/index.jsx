@@ -1,6 +1,6 @@
 import React from "react"
 
-const PageFooter = ({}) => {
+const PostFooter = ({}) => {
     return (
         <div>
             This is Footer!
@@ -8,4 +8,4 @@ const PageFooter = ({}) => {
     )
 }
 
-export default PageFooter
+export default PostFooter

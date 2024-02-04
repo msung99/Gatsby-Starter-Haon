@@ -1,6 +1,6 @@
 import React from "react";
 
-const PageContent = ({}) => {
+const PostContent = ({}) => {
     return (
         <div>
             This is Content!
@@ -8,4 +8,4 @@ const PageContent = ({}) => {
     )
 }
 
-export default PageContent
+export default PostContent

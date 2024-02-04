@@ -1,7 +1,5 @@
-import React from "react"
+/* import React from "react"
 import PageHeader from "../page-header"
-import PageContent from "../page-content"
-import PageFooter from "../page-footer"
 
 const PageLayout = ({childern}) => {
     return (
@@ -13,4 +11,4 @@ const PageLayout = ({childern}) => {
     )
 }
 
-export default PageLayout
+export default PageLayout */
