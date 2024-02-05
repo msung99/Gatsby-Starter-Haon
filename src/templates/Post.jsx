@@ -1,25 +1,27 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import Post from "../components/post/post-component"
+import Layout from "../components/layout";
 
 export default ({ data, location }) => {
   const post = data.markdownRemark
-  const { previous, next } = data
-
-  const {title, description, date} = post.frontmatter;
+  const {title, date} = post.frontmatter;
+  const author = data.site.siteMetadata.author;
 
   return (
-    <Post>
-      <Post.Header
-        title={title}
-        description={description}
-        date={date}
-      />
-      <section
-            dangerouslySetInnerHTML={{ __html: post.html }}
-            itemProp="postBody"
-      />
-    </Post>
+    <Layout>
+      <Post>
+        <Post.Header
+          title={title}
+          date={date}
+          author={author}
+        />
+        <Post.Content>
+          <section dangerouslySetInnerHTML={{ __html: post.html }} itemProp="postBody"/>
+        </Post.Content>
+        <Post.Footer/>
+      </Post>
+    </Layout>
   )
 }
 
@@ -33,6 +35,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        author
       }
     }
     markdownRemark(id: { eq: $id }) {
@@ -42,7 +45,6 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
-        description
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {

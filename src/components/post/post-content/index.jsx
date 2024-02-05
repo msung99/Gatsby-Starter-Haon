@@ -1,13 +1,15 @@
 import React from "react";
+import styled from "styled-components"
 
 const PostContent = styled.div`
   & > section > h2 {
-    font-size: 1.8rem;
-    color: #343a40;
+    font-size: 2rem;
+    color: white;
   }
+
   & > section > p {
-    font-size: 1rem;
-    color: #212529;
+    font-size: 18px;
+    color: white;
   }
 `
 

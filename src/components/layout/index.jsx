@@ -1,19 +1,7 @@
+import styled from "styled-components";
 
+const Layout = styled.div`
+  background-color: #232326;
+`
 
-const Layout = ({childern}) => {
-    const data = userStateQuery(graphql`
-      query SiteTitleQuery {
-        site {
-            siteMetaData {
-                title
-                author {
-                    name 
-                    social {
-                        github
-                    }
-                }
-            }
-        }
-      }
-    `);
-};
+export default Layout

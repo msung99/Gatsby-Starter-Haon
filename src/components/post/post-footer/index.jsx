@@ -1,9 +1,9 @@
 import React from "react"
 
-const PostFooter = ({}) => {
+const PostFooter = () => {
     return (
         <div>
-            This is Footer!
+            @2024 <strong>Lee Min Sung</strong>, powered by <strong>Gatsby Haon Blog</strong>
         </div>
     )
 }
