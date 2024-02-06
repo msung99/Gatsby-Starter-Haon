@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import PageHeader from "../page-header";
 import PageContent from "../page-content";
 import PageFooter from "../page-footer";
+import PageNavigator from "../page-navigator";
 
 const PageLayoutStyle = styled.div`
   background-color: black;
@@ -11,7 +11,7 @@ const PageLayoutStyle = styled.div`
 const PageLayout = ({innerObject}) => {
   return (
     <PageLayoutStyle>
-      <PageHeader/>
+      <PageNavigator/>
       <PageContent>{innerObject}</PageContent>
       <PageFooter/>
     </PageLayoutStyle>

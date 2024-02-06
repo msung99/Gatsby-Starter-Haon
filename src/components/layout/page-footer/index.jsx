@@ -3,9 +3,10 @@ import styled from "styled-components";
 
 const PageFooterStyle = styled.footer` 
   margin-top: 3rem;
-  padding: 1.5rem;
-  border-top: 5px solid gray;
+  padding: 2rem;
+  border-top: 1px solid gray;
   text-align: center;
+  color: gray;
 `
 
 const PageFooter = () => {
