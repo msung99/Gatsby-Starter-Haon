@@ -1,8 +1,8 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import PageLayout from "../components/layout"
+import PageLayout from  "../components/layout/page-component"
 
-const BlogIndex = ({ data, location }) => {
+const PostListTemplate = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const posts = data.allMarkdownRemark.nodes
 
@@ -33,7 +33,7 @@ const BlogIndex = ({ data, location }) => {
   )
 }
 
-export default BlogIndex
+export default PostListTemplate
 
 export const pageQuery = graphql`
   query {

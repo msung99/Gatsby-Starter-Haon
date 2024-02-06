@@ -1,15 +1,15 @@
 import * as React from "react"
 import { Link } from "gatsby"
 
-import Layout from "../components/layout"
+import PageLayout from "../components/layout/page-component"
 import Seo from "../components/seo"
 
 const SecondPage = () => (
-  <Layout>
+  <PageLayout>
     <h1>Hi from the second page</h1>
     <p>Welcome to page 2</p>
     <Link to="/">Go back to the homepage</Link>
-  </Layout>
+  </PageLayout>
 )
 
 export const Head = () => <Seo title="Page two" />

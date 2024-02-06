@@ -1,27 +1,25 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import Post from "../components/post/post-component"
-import Layout from "../components/layout";
+import PageLayout from "../components/layout/page-component";
 
 export default ({ data, location }) => {
+  const {previous, next} = data; 
   const post = data.markdownRemark
   const {title, date} = post.frontmatter;
   const author = data.site.siteMetadata.author;
 
   return (
-    <Layout>
+    <PageLayout>
       <Post>
         <Post.Header
           title={title}
           date={date}
           author={author}
         />
-        <Post.Content>
-          <section dangerouslySetInnerHTML={{ __html: post.html }} itemProp="postBody"/>
-        </Post.Content>
-        <Post.Footer/>
+        <section dangerouslySetInnerHTML={{ __html: post.html }} itemProp="postContent"/>
       </Post>
-    </Layout>
+    </PageLayout>
   )
 }
 
