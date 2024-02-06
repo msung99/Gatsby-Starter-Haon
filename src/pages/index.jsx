@@ -25,6 +25,13 @@ const PostListTemplate = ({ data, location }) => {
                     <p>{date}</p>
                     <p>{description}</p>
                 </div>
+                <section>
+                  <p dangerouslySetInnerHTML={{
+                    __html: post.frontmatter.description || post.excerpt 
+                  }}
+                  itemProp="description"
+                  />
+                </section>
             </li>
             )
         })}

@@ -6,6 +6,8 @@ import PageNavigator from "../page-navigator";
 
 const PageLayoutStyle = styled.div`
   background-color: black;
+  width: 100%;
+  height: 0%;
 `
 
 const PageLayout = ({innerObject}) => {

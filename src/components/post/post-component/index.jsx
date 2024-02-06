@@ -1,9 +1,9 @@
 
 import styled from "styled-components"
+import PostHeader from "../post-header"
 import PostContent from "../post-content"
-import PostHeader from "../post-header";
 
-const Post = styled.div`
+const Post = styled.section`
 `
 
 Post.Header = PostHeader

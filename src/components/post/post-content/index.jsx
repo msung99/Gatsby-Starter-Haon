@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components"
 
 const PostContent = styled.div`
@@ -7,7 +6,7 @@ const PostContent = styled.div`
     color: white;
   }
 
-  & > section > p {
+  section > p {
     font-size: 18px;
     color: white;
   }
