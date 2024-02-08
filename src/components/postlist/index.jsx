@@ -17,24 +17,47 @@ const PostList = ({posts}) => {
                const date = post.frontmatter.date;
                
                return (
-                 <>
+                 <PostStyle>
+                    <PostTitle>{title}</PostTitle>
                     <Excerpt>{description}</Excerpt>
-                </>
+                    <PostDate>{date}</PostDate>
+                </PostStyle>
             )
         })}
         </PostListStyle>
     )
 }
 
+const PostStyle = styled.div`
+  border-top: 1px solid gray;
+  cursor: pointer;
+  padding-bottom: 100px;
+  &:hover {
+    opacity: 0.8;
+  }
+`
+
+const PostTitle = styled.h1`
+  color: white;
+  font-size: 2rem;
+  margin-top: 40px;
+  margin-bottom: 30px;
+`
+
 const Excerpt = styled.p`
   margin-bottom: 32px;
-  line-height: 3.0;
   font-size: 18px;
   color: white;
 `
 
+const PostDate = styled.p`
+  font-size 18px;
+  color: gray;
+`
 
 const PostListStyle = styled.div`
+  width: 50%;
+  margin: 0 auto;
 `
 
 export default PostList

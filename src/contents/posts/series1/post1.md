@@ -1,256 +1,482 @@
 ---
-title: OAuth 2.0 프로토콜 기반 소셜 로그인에 대해 알아보자!
-description: description1
-date: "2024-02-01"
+title: 레거시 DAO 를 리팩토링하며 JDBC 라이브러리 구현하기
+description: JDBC 라이브러리 구현하기 를 진행해보면서, 학습한 내용을 정리했다.과거 HTTP 웹 서버가 가지고 있었던 문제는 사용자가 입력한 데이터가 서버를 재시작하면 사라진다는 점이다. 따라서 DB 서버를 도입해야 하는것은 당연시 되었다. 자바 진영에서 JDBC 표준 인터페이...
+
+date: "2024-01-01"
 ---
 
-## 시작에 앞서 : 왜 OAuth를 학습하게 되었는가?
-
-지난 포스팅 [[Spring Security] Refresh token, Access token란? 기존 JWT 보다 탈취 위험성을 낮춰보자!](https://velog.io/@msung99/Spring-Security-Refresh-token-Access-token-%EB%9E%80-%EA%B5%AC%ED%98%84%EB%B0%A9%EB%B2%95%EC%9D%80) 에서는 JWT 기반의 인증, 인가를 서비스에서 어떻게 구축하는가에 대해 알아봤습니다. 이를 활용해 현재 진행중인 사이드 프로젝트에서도 인증,인가 시스템을 구축했으나 소셜 로그인 기능이 빠지게되어 다소 밋밋한 경험이 될 것 같다는 생각이 들었습니다. 정말 아쉬울 것 같더라구요.
-따라서 0Auth 2.0 에 대해 학습을 진행하게 되었고, 공부했던 내용을 쉽게 풀어쓰면서 많은 사람들과 함께 공유하고자 이렇게 적게 되었습니다.
-
----
-
-## 잘못된 접근방식 : 서비스에게 우리 소셜 계정정보를 맡겨볼까?
-
-![](https://velog.velcdn.com/images/msung99/post/58ebc0b2-53c7-422a-95f9-70df654e012b/image.png)
-
-보통 서비스에서 회원가입, 로그인, 로그아웃등을 JWT 를 사용해서 구현합니다. 그런데 저희가 편리하게 사용중인 소셜로그인(카카오, 페이스북, 구글) 은 어떻게 구현할 수 있을까요?
-
-이 기능은 내가 사용하고싶은 서비스의 로그인을 중개해주는 카카오, 구글과 같은 소셜이 관여합니다. 그런데 우리의 서비스가 사용자를 대신해 페이스북에 댓글을 달거나, 유저 목록을 가져오는등의 기능을 만들 수 있지 않을까요?
-
-즉, 페이스북, 구글등의 소셜 계정정보를 사용자로부터 직접 제공받고 저희의 서비스에서 대신 댓글을 달아주거나, 소셜 팔로잉 정보를 조회해주는등의 기능을 개발할 수 있을것입니다.
-
-그러나 내 소셜 아이디 계정을 여러 서비스에서 돌려쓴다고요? 만약 해당 서비스가 해킹당해서 내 소셜 계정정보가 모두 유출되면 어떻게할까요? 이는 서비스 개발자, 사용자 모두에게 큰 부담인 방식일겁니다. **즉, 서비스에서 유저의 소셜 계정 정보를 저장하고 있는 방식은 개발자와 유저 양측에게 큰 부담입니다.**
-
-만일 해킹 당한다면 해커는 해당 소셜 계정으로 페이스북, 구글등 모든 소셜에 접근하여 가능한 모든 악의적인 행위를 할수 있습니다. 또한 페이스북, 구글 입장에서도 본인들의 계정 정보가 모두 털리는 방식이라면 큰 불안감만 남을것입니다.
-
-이를 해결하기 위해 등장한 것이 바로 OAuth 입니다. 이를 이용하면 서비스와 로그인을 중개해주는 페이스북, 구글등의 소셜간의 서비스를 안전하게 상호작용하며 사용 가능합니다.
+> [JDBC 라이브러리 구현하기]() 를 진행해보면서, 학습한 내용을 정리했다.
 
 ---
 
-## OAuth가 그래서 뭘까?
+## JDBC
 
-> 현재 사용중인 서비스가, 서비스를 이용하는 사용자의 타 소셜 정보에 접근하기위해 권한을 타 소셜로 부터 위임받는 것입니다.
+과거 HTTP 웹 서버가 가지고 있었던 문제는 사용자가 입력한 데이터가 서버를 재시작하면 사라진다는 점이다. 따라서 DB 서버를 도입해야 하는것은 당연시 되었다. 자바 진영에서 JDBC 표준 인터페이스를 정의하고 있으며, 우리는 이를 활용하여 데이터베이스와의 통신을 할 수 있게된다.
 
-구글, 페이스북, 카카오와 같은 다양한 소셜 플랫폼에 접근하도록 제 3자 클라이언트(우리의 서비스) 가 접근 권한을 위임받을 수 있는 표준 프로토콜입니다.
+그런데 이떄, JDBC 는 `인터페이스 정의` 만을 제공하고 있다. 즉, JDBC 는 데이터베이스 통신을 위한 규악만 정하고, 이에대한 구현체는 데이터베이스를 만들어 서비스하는 회사가 직접 구현하고 제공하도록 하고있다. 서블릿도 마찬가지다. 서블릿 또한 인터페이스만 정의하고 서블릿 컨테이너를 만들어 제공하는 회사 또는 단체가 이 인터페이스에 대한 구현체를 제공하도록 하고 있다.
 
-### 타 플랫폼은 어떤 방식으로 사용자 소셜정보를 제공해주는가?
+정리하면, 이처럼 표준만 정의함으로써 DB 에 대한 연결설정만 변경해 다른 DB 를 지원함으로써 소스코드의 변경을 최소화하고 있다.
 
-이때 페이스북, 구글등의 소셜이 서비스에게 "내 아이디와 비밀번호 계정정보를 그대로 제공하는 것이 아니라, accessToken 의 형태로 발급해줍니다. 그대로 발급하면 당연히 보안상의 큰 문제가 발생하겠죠?
+### JDBC API
 
-본격적인 내용을 살펴보기전에, 핵심적인 내용을 먼저 요약해보자면 다음과 같습니다.
+JDBC API 를 통해 데이터베이스에 접근할 때, API 내부 코드에선 정말 많은 중복 코드가 발생한다. 그래서 이 중복 코드를 제거한 라이브러리가 바로 JdbcTemplate 이다. 즉 JdbcTemplate 이란 JDBC API 의 중복 코드를 제거한 SQLMapper 라고 볼 수 있다.
 
-> - 타 소셜 플랫폼(ex.구글)은 제 3자 클라이언트(서비스)에게 쌩판 동일한 아이디, 비밀번호를 제공해주지 않습니다.
-
-- 대신 서비스는 AccessToken을 발급받고 타 소셜 플랫폼의 일부 기능을 사용 가능해집니다.
-- 타 소셜은 플랫폼은 모든 기능을 제공해주지는 않습니다. 그 중 서비스에서 사용하고자 하는 필요한 일부기능만을 부분적으로 접근 허용할 수 있게 해줍니다.
-
-다 이해되지 않으셔도 괜찮습니다. 지금부터 상세하게 설명드릴 예정이니까요!
+이 라이브러리가 어떻게 등장했는지를 다루어보겠다. 우선 중복 코드가 많은 순수 JDBC API 레거시 코드를 점진적으로 중복 코드를 제거하면서, JdbcTemplate 를 모방한 코드를 직접 구현해보겠다.
 
 ---
 
-## OAuth 와 관련한 역할 및 용어
+## 레거시 UserDao
 
-본격적으로 소셜 로그인의 메커니즘을 살퍄보기전에, 우선 아래 용어들을 이해하셔야 설명이 가능해집니다.
+UserDao 의 초기 레거시코드다. DAO 오브젝트를 통해 데이터베이스에 대한 접근 로직 처리를 담당하도록 되어있다.
 
-### Resource Owner
-
-**내 서비스를 사용할 서비스의 사용자**입니다. 이 서비스 사용자들은 카카오, 구글등의 소셜 플랫폼에서의 리소스를 소유하고 있는 사용자입니다.
-
-### Resource Server
-
-**리소스 제공자(페이스북, 구글 등)** 으로, 데이터를 보유하고 있는 서버를 의미합니다.
-
-### Authorization Server
-
-Resource Owner를 인증하고, **내 서비스(클라이언트)에게 토큰을 발급해주는 서버**입니다.
-
-### Client(= 내 서비스)
-
-내 서비스, 즉 내가 구현할 애플리케이션을 의미합니다.
-Resource Server 의 리소스를 이용하고자 하는 서비스가 되겠죠? 저희가 개발하고자 하는 서비스를 클라이언트라고 말하는 것입니다.
-
----
-
-## OAuth 프로토콜의 다양한 권한부여 방식
-
-OAuth 프로토콜은 다양한 종류로 다양한 클라이언트 환경에 적합한 권한 부여 방식을 제공하고 있습니다. 그 중 보편적이고 널리 쓰이는 한가지 방식에 대해서만 자세하게 다룰 예정이지만, 그래도 나머지 방식들도 간단히나마 알아보고 넘어가 보겠습니다.
-
-### 1. Authorization Code Grant
-
-> Authorization Code 를 발급받고 안전하게 AccessToken 을 발급받는 방식
-
-- 권한부여 승인코드를 발급받고, 이를 활용해서 AccessToken을 발급받는 방식입니다. 가장 널리 쓰이는 방법으로, 아래에서 따로 자세히 설명드리겠습니다.
-
-- **클라이언트(서비스)가 사용자를 대신해 특정 리소스에 접근을 요청할 때** 사용되는 방식입니다.
-- 보통 타사의 클라이언트에게 보호된 자원을 제공하기 위한 인증에 사용됩니다. Refresh Token의 사용이 가능한 방식입니다.
-
-### 2. Implicit Grant
-
-![](https://velog.velcdn.com/images/msung99/post/4fe41375-667d-4a53-a272-da063ee3940f/image.png)
-
-> AccessToken 을 URL에 담아서 바로 발급받는 방식. 탍취 위험성이 큽니다!
-
-- **자격증명을 안전하게 저장하기 힘든 클라이언트**(ex: JavaScript등의 스크립트 언어를 사용한 브라우저)에게 최적화된 방식입니다.
-
-- **권한 부여 승인 코드 없이 바로 Access Token이 발급 됩니다.** Access Token이 바로 전달되므로 만료기간을 짧게 설정함으로써 그토큰 탈취의 위험성을 줄여야합니다.
-
-- Refresh Token 사용이 불가능한 방식이며, Access Token을 획득하기 위한 절차가 간소화되기에 효율성은 높아지지만 **Access Token이 URL에 담겨서 전달된다는 취약점이 있습니다.**
-
-### 3. Resource Owner Password Credentials Grant
-
-![](https://velog.velcdn.com/images/msung99/post/1e117431-5015-4c0f-a659-a1afcfc09e71/image.png)
-
-- **간단하게 username, password로 Access Token을 받는 방식**입니다.
-
-- 자신의 서비스에서 제공하는 어플리케이션일 경우에만 사용되는 인증 방식입니다. Refresh Token의 사용도 가능합니다.
-
----
-
-## OAuth 흐름을 이해하기전에 이건 알고가자!
-
-또 아셔야할 용어를 정리해보면 다음와 같습니다. 모든 용어를 한번에 기억하실 필요는 없습니다. 메커니즘을 이해하시다보면 자연스럽게 각 용어가 무엇을 뜻하는것인지 이해가 되실겁니다.
-
-- **Authorization Code** : AccessToken 을 발급하기 위한 임시 인증코드. 생명주기가 매우 짧다(10분이내)
-
-- **Client ID** : 클라이언트(애플리케이션)의 고유한 ID
-  ex) goodapp-541106
-
-- **Client Secret** : 클라이언트(애플리케이션)를 위한 비밀키이며, 서비스 제공자에게 요청을 보낼 때 애플리케이션의 신원을 알려주는 값 입니다.
-- **Authorized Redirect URL(리다이렉션 엔드포인트)** : 서비스를 생성할 떄 등록한 Redirect URL.
-  즉, Authorization Server가 권한을 부여하는 과정에서 Authorized Code를 전달해줄 경로 (Authorized redirect URl로 Authorized Code 를 전달해줘!)
-
-- **scope** : 내 서비스(클라이언트)가 부여받은 리소스 접근 권한
-
-- **인가 엔드포인트** : 클라이언트 애플리케이션이 인가 플로우를 시작할 때 사용하는 엔드포인트입니다. ex) 페이스북 로그인 페이지 URL
-
-- **토큰 엔드포인트** : 클라이언트 애플리케이션이 토큰 플로우를 시작할 때 사용하는 엔드포인트입니다.
-
----
-
-## OAuth 메커니즘 : Authorization Code Grant
-
-이제 가장 보편적으로 사용되는 Authorization Code Grant 방식을 알아보겠습니다. 절차는 아래와 같습니다.
-![](https://velog.velcdn.com/images/msung99/post/ec070ca4-2685-4d8a-83d0-5babc89ebb09/image.png)
-
-### 1~2. 로그인 요청 및 Authorizaion Code 요청
-
-서비스 사용자가 "페이스북 로그인 하기" 버튼을 눌러서 로그인을 요청하는 경우입니다. Client(서비스)는 Authorization Code 를 요청할 수 있도록 사용자의 브라우저를 Authorization Server로 보내야합니다. ( Authorization URL을 통해 이동시키기!)
-
-#### Authorization URL 요청에 포함되는 파라미터
-
-위 그림에도 적어놓았듯이, 클라이언트는 Authorization Server 가 제공하는 Authorization URL 에 다음 파라미터들을 쿼리스트링으로 포함해서 보내야합니다.
-
-- redirect_uri, client_id, response_type, scope
-
-예시
+현재 초기 Dao 는 JDBC API 를 직접 사용하여 DataSource 생성하고, 커넥션을 획득 및 해제하며, 예외처리 작업을 모두 담당하고 있다. 그래서 가독성 및 생산성이 저하된다. 무엇보다 아까 언급했던 중복 코드가 여러 메소드에서 발생하고 있다. 따라서 이를 제거해야 함을 신경쓰면서 라이브러리를 구현해야했다. 구현한 세부 단계들을 천천히 살펴보자.
 
 ```java
-https://google.com/authoirzation?rediect_uri=https://maestro.com/main
-&client_id=1298381293123873
-&response_type=code
-&scope=create+read
+public class UserDao {
+    public void insert(User user) throws SQLException {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+            con = ConnectionManager.getConnection();
+            String sql = "INSERT INTO USERS VALUES (?, ?, ?, ?)";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, user.getUserId());
+            pstmt.setString(2, user.getPassword());
+            pstmt.setString(3, user.getName());
+            pstmt.setString(4, user.getEmail());
+
+            pstmt.executeUpdate();
+        } finally {
+            if (pstmt != null) {
+                pstmt.close();
+            }
+
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
+
+    public void update(User user) throws SQLException {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+            con = ConnectionManager.getConnection();
+            String sql = "UPDATE USERS SET password = ?, name = ?, email = ?, WHERE userId = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, user.getUserId());
+            pstmt.setString(2, user.getPassword());
+            pstmt.setString(3, user.getName());
+            pstmt.setString(4, user.getEmail());
+
+            pstmt.executeUpdate();
+        } finally {
+            if (pstmt != null) {
+                pstmt.close();
+            }
+
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
+
+    public List<User> findAll() throws SQLException {
+    	// ...
+    }
+
+    public User findByUserId(String userId) throws SQLException {
+    	// ...
+    }
+    // ...
+}
 ```
 
-- **이러한 인증 URL은 백엔드에서 생성하고, 프론트엔드는 백엔드로부터 URL 을 가져오는 것이 통상적입니다.**
-
 ---
 
-### 3~4. 로그인 시도
+## 1단계. 중복 로직을 처리할 클래스를 분리
 
-![](https://velog.velcdn.com/images/msung99/post/806d6552-1e7b-4f03-aa60-c0030996ba6a/image.png)
+### JdbcTemplate
 
-사용자의 브라우저가 소셜 로그인 페이지(ex. 페이스북 로그인 브라우저 화면) 로 이동되었다면, 소셜 로그인을 시도하면 됩니다.
+중복 코드를 제거하기 위해 앞서 말한 JdbcTemplate 모방 클래스를 구현했다. 반복적으로 발생하는 중복 로직을 상위 클래스가 구현하고 변화가 발생하는 부분만 추상 메소드로 만들어 구현하도록 하는 `템플릿 메소드 패턴` 을 적용했다. `createQuery()` 는 UserDao 로 부터 동적으로 SQL 쿼리문을 전달받으며, `setValues()` 는 PreparedStatement 를 활용하여 UserDao 에서 동적으로 쿼리문에 전달된 파라미터를 전달받는다.
 
----
+```java
+public abstract class JdbcTemplate {
+  public void update() throws Exception {
+    Connection con = null;
+    PreparedStatement pstmt = null;
+    try {
+      con = ConnectionManager.getConnection();
+      String sql = createQuery();
+      pstmt = con.preparedStatement(sql);
+      setValues(pstmt);
+      pstmt.executeUpdate();
+    } finally {
+      if(pstmt != null) {
+        pstmt.close();
+      }
 
-### 5~6. Authorization Code 발급 + Redirect URl 로 리다이렉트
+      if(con != null) {
+        con.close();
+      }
+    }
+  }
 
-사용자가 앞서 올바른 소셜 계정을 입력하고 인증을 마쳤다면, Authorization Server 는 Authorization Code 를 발급해주고 지정한 Redirect URI 로 사용자를 리다이렉션 시켜줍니다.
-
-**이때 Redirect URI 는 백엔드가 아닌, 프론트엔드의 URI 로 리다이렉션 시켜줘야합니다.**
-
-#### Authorization Code 는 어떻게 발급해줄까?
-
-=> **Redirect URI에 Authorization Code 를 포함하여 사용자를 리다이렉션 시켜주는 방식입니다.** 구글의 경우 Authorization Code 를 QueryString에 포함하는 방식입니다.
-
----
-
-### 7~8. Authorization Code 로 AccessToken 발급후 저장하기
-
-발급받은 Authorization Code 는 Access Token 을 발급받기위한 임시 코드입니다.
-
-- 클라이언트(Client) 는 Authorization Server 에 Authorization Code 를 전송하고, Access Token 을 발급받으면 됩니다.
-
-- 클라이언트는 발급받은 Resource Owner(사용자)의 Access Token 을 DB 에도 저장해두고, 로컬 스토리지에도 저장해두는 처리가 필요합니다.
-
-- 이후 Resource Server(ex.구글, 페이스북) 에서 Resource Owner(사용자)의 리소스에 접근하기 위해서 Access Token 을 사용합니다.
-
-#### Authorization Code 와 Access Token 의 교환은 어디서 이루어질까? : OAuth 엔드포인트
-
-이들의 교환은 OAuth 토큰 엔드포인트에서 이루어집니다.
-더 자세한 내용은 [Google Cloud Docs : OAuth 엔드포인트 이해](https://cloud.google.com/apigee/docs/api-platform/security/oauth/configuring-oauth-endpoints-and-policies?hl=ko) 를 참고하시면 좋을듯합니다.
-
-아래 예시는 토큰 엔드포인트에서 Access Token 을 발급받기 위한 HTTP 요청의 예시입니다.
-
-- **지정된 프론트앤드 URI 로 리다이렉트가 되었다면, 함께 전달된 Authorization Code 를 백엔드 API를 통해 백엔드로 전달해야합니다. Authrorization Code 를 전달받은 백엔드는 Authorization Code, Client ID, CLient Secret 등으로 Authorization Code 로 부터 Access Token 을 발급받으면 됩니다.**
-
-- 이때 grant_type은 항상 authorization_code 로 설정되어 있어야합니다. 또 code 에는 발급받은 Authorization Code 를 할당하시면 됩니다.
-
-```
-POST /auth/getSocialToken HTTP/1.1
-Host:https://google.com
-
-grant_type=authorization_code
-&redirect_uri=https://maestro:com/main
-&code=12123125123
-&client_id=221399881
-&client_secret=2131231235
+  abstract String createQuery():
+  abstract void setValues(PreparedStatement pstmt) throws SQLException;
+}
 ```
 
+### UserDao
+
+실제로 이에 상응하는 UserDao 구현부는 아래와 같이 구현해줬다. 2개의 추상 메소드를 Dao 에서 구현하여 동적으로 쿼리문을 JdbcTemplate 오브젝트에게 전달한다.
+
+```java
+public class UserDao {
+  public void insert() throws SQLException {
+    JdbcTemplate jdbcTemplate = new JdbcTemplate() {
+      @Override
+      void setValues(PreparedStatement pstmt) throws SQLException {
+        pstmt.setString(1, user.getUserId());
+        pstmt.setString(2, user.getPassword());
+        pstmt.setString(3, user.getName());
+        pstmt.setString(4, user.getEmail());
+      }
+
+      @Override
+      String createQuery() {
+        return "INSERT INTO USERS VALUES (?, ?, ?, ?)";
+      }
+    };
+    jdbcTemplate.update();
+  }
+
+  // ... (추가 메소드 구현)
+}
+```
+
 ---
 
-### 9~11. 인증이 필요한 API 요청시, Access Token 을 활용해 요청하기
+## 2단계. SELECT 절을 고려한 리팩토링
 
-AccessToken 을 발급받은 Resource Owner 는 이제 로그인에 성공한 것입니다.
+### mapRow 구현, createQuery 제거
 
-앞으로 클라이언트는 저장해둔 Resource Owner 의 Access Token 을 활용해 Resource Server 에 필요한 자원을 요청하면 됩니다. 그리고 Resource Owner 에게 서버스를 제공해주면 되겠죠?
+위 JdbcTemplate 코드만으론 SELECT 쿼리문에 대한 처리가 불가능하다. SELECT 절의 경우 INSERT, UPDATE 를 할때와 달리 **조회한 데이터를 자바 객체로 변환하는 부분이 추가적으로 필요하다.** 그래서 새롭게 추가한 메소드가 `mapRow()` 이다.
+
+또한 기존의 `createQuery()` 는 제거했다. 쿼리문은 생각해보면 굳이 추상 메소드로 구현하지 않고도 UserDao 에서 insert(), update() 등의 메소드를 호출할 때 파라미터로 넘겨줄 수 있기 때문이다.
+
+```java
+public void abstract class JdbcTemplate {
+  public void update(String sql) throws SQLException {
+  	// ...
+  }
+
+  abstract Object mapRow(ResltSet rs) throws SQLException;
+  abstract void setValues(PreparedStatement pstmt) throws SQLException;
+}
+```
+
+### query, queryForObject 구현
+
+UserDao 의 `findUserById()`, `findAll()` 메소드가 활용할 `query()`, `queryForObject()` 를 구현했다. 둘 다 조회를 위해 사용될 것이다.
+
+```java
+public void abstract class JdbcTemplate {
+  public void update(String sql) throws SQLException {
+  	// ...
+  }
+
+   // 여러건의 데이터 조회
+   public List query(String sql) throws SQLException {
+     Connection con = null;
+     PreparedStatement pstmt = null;
+     ResultSet rs = null;
+
+     try {
+       con = ConnectionManager.getConnection();
+       pstmt = con.prepareStatement(sql);
+       setValues(pstmt);
+
+        rs = pstmt.executeQuery();
+
+        List<Object> result = new ArrayList<Object>();
+        while(rs.next()) {
+          result.add(mapRow(rs)); // SELECT 쿼리를 실행하여 조회된 데이터를 하나씩 리스트에 Add
+        }
+        return result;
+     } finally {
+       // ...
+     }
+   }
+
+   // 한건의 데이터 조회
+  public Object queryForObject(String sql) throws SQLException {
+    List result = query(sql);
+    if(result.isEmpty()) {
+      return null;
+    }
+    return result.get(0);
+  }
+
+  abstract Object mapRow(ResltSet rs) throws SQLException;
+  abstract void setValues(PreparedStatement pstmt) throws SQLException;
+}
+```
+
+### UserDao
+
+`mapRow()` 를 구현한 Dao 코드의 findAll() 구현부는 아래와 같다. 데이터베이스로부터 조회한 데이터는 ResultSet 파라미터에 담기고, 이를 자바 Object 타입으로 (정확히는 User 타입으로) 변환한다.
+
+```java
+public List<User> findAll() throws SQLExcpetion {
+  @SuperWarnings("unchecked")
+  JdbcTemplate jdbcTemplate = new JdbcTemplate() {
+    @Override
+    void setValues(PreparedStatement pstmt) throws SQLException {
+    }
+
+    @Override
+    Object mapRow(ResultSet rs) throws SQLException {
+      return new User(
+        rs.getString("userId"),
+        rs.getString("password"),
+        rs.getString("name"),
+        rs.getString("email"));
+      )
+    }
+  };
+
+  String sql = "SELECT userId, password, name, email FROM USERS";
+  return (List<User>)jdbcTemplate.query(sql);
+}
+```
 
 ---
 
-## Authorization Code 을 왜 써야할까? 필요성에 대해..
+## 3단계. RowMapper, PreparedStatementSetter 인터페이스를 활용
 
-> 한줄요약 : URL에 직접 Access Token 을 전송받는 방식은 위험하니, 대신에 임시코드(Authorization Code) 를 발급받고 추후에 안전하게 발급받자!
+### 문제점 : 불필요한 mapRow( ) 구현
 
-앞선 Authorization Code Grant 방식을 보며 느낀점은, 왜 Authorization Code 를 굳이 써야할까라는 의문이 들었습니다. 그냥 바로Access Token 을 발급해줘도 되지 않을까요?
+하지만 여기서 또 문제가 생긴다. UserDao 는 SELECT 절 외에 INSET, DELETE, UPDATE 문을 실행할 땐 굳이 mapRow() 메소드를 구현할 필요가 없음에도, SELECT 절을 위해서 mapRow() 를 구현하는 불편함을 가지고 있다. 실제로 UserDaot 의 insert() 메소드를 살펴보자면 아래와 같다.
 
-앞선 과정(5~6번)을 잘 떠올려봅시다. Redirect URI 를 통해서만 Authorization Code 를 발급받을 수 있다고했죠? 그런데 Access Token 을 발급받을때도 마찬가지로, **Redriect URI 를 통해서만 URL 안에 데이터를 실어서 전달받는 방법밖에 존재하지 않습니다**
+```java
+public void insert(User user) throws SQLException {
+ JdbcTemplate jdbcTemplate = new JdbcTemplate() {
+    @Override
+    void setValues(PreparedStatement pstmt) throws SQLException {
+      pstmt.setString(1, user.getUserId());
+      pstmt.setString(2, user.getPassword());
+      pstmt.setString(3, user.getName());
+      pstmt.setString(4, user.getEmail());
+    }
 
-이렇게 민감한 정보는 URL에 실려서 오면 정말 위험하겠죠? 따라서 Authorization Code 를 통해 우선 덜 민감한 정보를 URL로 발급받고, 추후 안전한 방법으로 Access Token 을 발급받는 것입니다.
+    @Override
+    Object mapRow(Resultset rs) throws SQLExcpetion {
+      return null;
+    }
+  };
+  String sql = "INSERT INTO USERS VALUES (?, ?, ?, ?)";
+  jdbcTemplate.update(sql);
+}
+```
+
+이를 해결할 필요가 있다. 이 해결안은 바로 인터페이스에 있다.
+
+### 인터페이스 추가를 통해 해결하기
+
+mapRow() 를 쓸모없이 구현할 수 밖에 없었던 이유는 JdbcTemplate 와 UserDao 간의 의존관계가 생겨버렸기 때문이다. `setValues()` 메소드와 `mapRow()` 메소드를 별도로 분리해 서로 간의 의존관계를 끊어버릴 수만 있다면 더 유연한 개발이 가능해진다. 즉, Dao 의 각 메소드에선 본인에게 필요한 기능만 구현할 수 있게 만들면 된다.
+
+정리하자면, 위 2개의 추상 메소드를 같은 클래스가 가지도록 하지말고, 각 추상 메소드를 인터페이스로 따로 분리시키는 것이다. 아래와 같이 인터페이스를 구현한다.
+
+```java
+public interface PreparedStatementSetter {
+  void setValues(PreparedStatement pstmt) throws SQLException;
+}
+
+public interface RowMapper {
+  Object mapRow(ResultSet rs) throws SQLException;
+}
+```
+
+또 이를 활용한 리팩토링 코드는 아래와 같다. update, query 메소드만을 가져왔는데, 보듯이 인터페이스 오브젝트를 외부로 부터 필요한 것들만을 선택적으로 주입받고 활용한다.
+
+```java
+public class JdbcTemplate {
+
+  // PreparedStatementSetter 를 주입
+  public void update(String sql, PreparedStatementSetter pss) throws SQLException {
+    Connection con = null;
+    PreparedStatement pstmt = null;
+    try {
+      con = ConnectionManager.getConnection();
+      pstmt = con.preparedStatement(sql);
+      pss.setValues(pstmt);
+      pstmt.executeUpdate();
+    } finally {
+      if(pstmt != null) {
+        pstmt.close();
+      }
+      if(con != null) {
+        con.close();
+      }
+    }
+  }
+
+  // PreparedStatementSetter, RowMapper 를 주입
+  public List query(String sql, PreparedStatementSetter pss, RowMapper rowMapper) throws SQLException {
+    Connection con = null;
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+    try {
+      con = ConnectionManager.getConnection();
+      pstmt = con.prepareStatement(null);
+      pss.setValues(pstmt);
+      rs = pstmt.executeQuery();
+
+      // ...
+    }
+  }
+}
+```
+
+---
+
+## 4단계. 최종 리팩토링
+
+최종적으로 리팩토링한 전체 코드는 아래와 같다. 특별한것은 없고, 컴파일타임 Exception 인 SQLException 대신 RunTimException 을 상속한 커스터마이징 DataAccessException 을 활용헀다. 제네릭 문법을 활용해 User 타입 외에도 모든 타입에 범용성을 맞추도록 개선했으며, 가변인자를 활용하여 쿼리에 파라미터를 전달하도록 했다.
+
+### JdbcTemplate
+
+```java
+public class JdbcTemplate {
+    public void update(String sql, Object... parameters) throws DataAccessException {
+        try (Connection con = ConnectionManager.getConnection();
+             PreparedStatement pstmt = con.prepareStatement(sql)) {
+                for(int i=0; i< parameters.length; i++) {
+                    pstmt.setObject(i+1, parameters[i]);
+                }
+            /* pss.setValues(pstmt);
+            pstmt.executeUpdate(); */
+        } catch (SQLException e) {
+            throw new DataAccessException(e);
+        }
+    }
+
+    @SuppressWarnings("rawtypes")
+    public <T> List<T> query(String sql, PreparedStatementSetter pss, RowMapper<T> rowMapper) throws DataAccessException {
+        ResultSet rs = null;
+        try (Connection con = ConnectionManager.getConnection();
+             PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+            pss.setValues(pstmt);
+            rs = pstmt.executeQuery();
+
+            List<T> result = new ArrayList<T>();
+            while(rs.next()) {
+                result.add(rowMapper.mapRow(rs, 1)); // SELECT 문으로 조회한 데이터를 자바 객체로 변환
+            }
+            return result;
+        } catch (SQLException e) {
+            throw new DataAccessException(e);
+        } finally {
+            // ...
+        }
+    }
+
+    @SuppressWarnings("rawtypes")
+    public <T> T queryForObject(String sql, PreparedStatementSetter pss, RowMapper<T> rowMapper) throws DataAccessException {
+        List<T> result = query(sql, pss, rowMapper);
+        if(result.isEmpty()) {
+            return null;
+        }
+        return result.get(0);
+    }
+}
+```
+
+### UserDao
+
+```java
+public class UserDao {
+    public void insert(User user) throws SQLException {
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate();
+
+        PreparedStatementSetter pss = new PreparedStatementSetter() {
+            @Override
+            public void setValues(PreparedStatement pstmt) throws SQLException {
+                pstmt.setString(1, user.getUserId());
+                pstmt.setString(2, user.getPassword());
+                pstmt.setString(3, user.getName());
+                pstmt.setString(4, user.getEmail());
+            }
+        };
+        String sql = "INSERT INTO USERS VALUES (?, ?, ?, ?)";
+        // jdbcTemplate.update(sql, pss);
+        jdbcTemplate.update(sql, user.getPassword(), user.getName(), user.getEmail(), user.getUserId());
+    }
+
+    public void update(User user) throws SQLException {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate();
+
+        PreparedStatementSetter pss = new PreparedStatementSetter() {
+            @Override
+            public void setValues(PreparedStatement pstmt) throws SQLException {
+                pstmt.setString(1, user.getUserId());
+                pstmt.setString(2, user.getPassword());
+                pstmt.setString(3, user.getName());
+                pstmt.setString(4, user.getEmail());
+            }
+        };
+        String sql = "UPDATE USERS SET password = ?, name = ?, email = ?, WHERE userId = ?";
+       //  jdbcTemplate.update(sql, pss);
+        jdbcTemplate.update(sql, user.getPassword(), user.getName(), user.getEmail(), user.getUserId());
+    }
+
+    public List<User> findAll() throws SQLException {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate();
+        PreparedStatementSetter pss = new PreparedStatementSetter() {
+            @Override
+            public void setValues(PreparedStatement pstmt) throws SQLException {
+            }
+        };
+
+        RowMapper rowMapper = new RowMapper() {
+            @Override
+            public Object mapRow(ResultSet rs, int count) throws SQLException {
+                return new User(
+                        rs.getString("userId"),
+                        rs.getString("password"),
+                        rs.getString("name"),
+                        rs.getString("email"));
+            }
+        };
+        String sql = "SELECT userId, password, name, email FROM USERS";
+        return (List<User>) jdbcTemplate.query(sql, pss, rowMapper);
+    }
+
+    public User findByUserId(String userId) throws SQLException {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate();
+        String sql = "SELECT userId, password, name, email FROM USERS WHERE userId = ?";
+        return jdbcTemplate.queryForObject(sql, (ResultSet rs) -> {
+            return new User(
+                    rs.getString("userId"),
+                    rs.getString("password"),
+                    rs.getString("name"),
+                    rs.getString("email"));
+        }, userId);
+    }
+}
+```
 
 ---
 
 ## 마치며
 
-지금까지 0AUth2.0 이란 무엇인지 이론적인 부분을 중점으로 설명드려봤습니다. 이것저것 여러 타 블로깅을 많이 참고헀었는데, 명확하게 설명해주는 블로깅은 거의 없어서 많이 애먹었던 것 같네요.
-
-그래서 어떻게 0Auth 의 메커니즘 유기적으로 설명하는데 집중한 포스팅이였던 것 같습니다! 😁 제 포스팅을 보시는 분들이 저처럼 해매지 않았으면 하는 바람이기 때문입니다 ㅎㅎ
-
-이번 포스팅이 0Auth 를 처음 학습하시는 분들에게 도움이 되었으면 하네요. 다음 포스팅으로는 구글 소셜 로그인을 어떻게 SpringBoot 에서 구현 가능한지를 다루어볼까 예정중입니다.
+JDBC 가 아직 다소 낮선 것 같다. ORM 에 최대한 의존하지 않겠다고 했지만, 역시 근본부터 시작해야 이 기술이 왜 등장했고, 왜 써야하는지를 알 수 있는것 같다. 이번 미션에서도 단순 JDBC API 를 넘어 JdbcTemplate 를 모방하여 구현해보며, SQLMapper 가 얼마나 중복 코드, 레거시 코드를 지양하기 위해 노력했는지 알 수 있었다 🙂
 
 ---
 
-## 참고
+## 더 학습해볼 키워드
 
-[auth0 docuement](https://auth0.com/docs/)
-[위키피디아 OAuth](https://ko.wikipedia.org/wiki/OAuth)
-[[OAuth2.0] 애플리케이션 등록하기 by 페이스북
-](https://minholee93.tistory.com/entry/OAuth20-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%EB%93%B1%EB%A1%9D%ED%95%98%EA%B8%B0)https://blog.naver.com/mds_datasecurity/222182943542
-https://benohead.com/
-[0Auth - 구글 소셜로그인 기능 구현
-](https://velog.io/@usreon/google-%EC%86%8C%EC%85%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%82%BD%EC%A7%88-%EA%B3%BC%EC%A0%95)[Grace's Tech Blog : Authentication - OAuth2.0](https://libertegrace.tistory.com/entry/40-Authentication-OAuth-20?category=869766)
-
-```
-
-```
+- HikariCP
