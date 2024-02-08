@@ -17,11 +17,13 @@ const PostList = ({posts}) => {
                const date = post.frontmatter.date;
                
                return (
-                 <PostStyle>
-                    <PostTitle>{title}</PostTitle>
-                    <Excerpt>{description}</Excerpt>
-                    <PostDate>{date}</PostDate>
-                </PostStyle>
+                <Link style={{ textDecoration: "none"}} to = {post.fields.slug}>
+                  <PostStyle>
+                      <PostTitle>{title}</PostTitle>
+                      <Excerpt>{description}</Excerpt>
+                      <PostDate>{date}</PostDate>
+                  </PostStyle>
+                </Link>
             )
         })}
         </PostListStyle>
