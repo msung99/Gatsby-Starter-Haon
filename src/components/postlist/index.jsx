@@ -31,9 +31,9 @@ const PostList = ({posts}) => {
 }
 
 const PostStyle = styled.div`
-  border-top: 1px solid gray;
+  border-bottom: 1px solid #282828;
   cursor: pointer;
-  padding-bottom: 100px;
+  padding-bottom: 50px;
   &:hover {
     opacity: 0.8;
   }
@@ -43,13 +43,13 @@ const PostTitle = styled.h1`
   color: white;
   font-size: 2rem;
   margin-top: 40px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 `
 
 const Excerpt = styled.p`
   margin-bottom: 32px;
   font-size: 18px;
-  color: white;
+  color: #f8f8ff;
 `
 
 const PostDate = styled.p`
