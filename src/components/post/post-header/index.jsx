@@ -8,9 +8,9 @@ const PostHeader = ({title, date, author}) => {
                 {title}
             </PostTitle>
             <PostInformation>
-                Posted by{' '} 
+                Posted by{' '}
                 <PostAuthor>@{author}</PostAuthor>,
-                {'   '}{date}
+                {'   '}{date} 
             </PostInformation>
         </PostMargin>
     )

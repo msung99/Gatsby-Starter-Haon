@@ -1,27 +1,11 @@
 import React from "react"
 import styled from "styled-components"
 import { useState, useEffect } from "react";
-import { Link } from "gatsby";
 
-const PageNavigator = () => {
-  const [position, setPosition] = useState(window.pageYOffset);
-  const [visible, setVisible] = useState(true);
-  
-    useEffect(() => {
-    const handleScroll = () => {
-      const moving = window.pageYOffset;
-      setVisible(position > moving);
-      setPosition(moving);
-  	}
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [position]);
-  
+const PageNavigator = () => {  
   return (
-    <PageNavigatorStyle visible={visible}>
-        <Link to = {"/"}>Haon.blog</Link>
+    <PageNavigatorStyle>
+      Haon.blog
   	</PageNavigatorStyle>
   )
 }

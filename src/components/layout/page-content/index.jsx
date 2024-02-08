@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-const PageContent = ({innerObject}) => {
-    return <PageContentStyle>{innerObject}</PageContentStyle>
+const PageContent = ({contents}) => {
+    return <PageContentStyle>{contents}</PageContentStyle>
 }
 
 const PageContentStyle = styled.div`
   margin: 0 auto;
-  padding-top: 5rem;
-  max-width: 680px;
+  padding-top: 80px;
+  color: white;
 `
 
 export default PageContent
