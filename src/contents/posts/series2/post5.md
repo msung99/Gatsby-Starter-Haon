@@ -1,261 +1,111 @@
 ---
-title: OAuth 2.0 프로토콜 기반 소셜 로그인에 대해 알아보자!
-description: JDBC 라이브러리 구현하기 를 진행해보면서, 학습한 내용을 정리했다.과거 HTTP 웹 서버가 가지고 있었던 문제는 사용자가 입력한 데이터가 서버를 재시작하면 사라진다는 점이다. 따라서 DB 서버를 도입해야 하는것은 당연시 되었다. 자바 진영에서 JDBC 표준 인터페이...
-
+title: DTO 개념
+description: DTO(Data Transfer Object) 는 계층 간 데이터를 전송을 위해 도메인 모델 대신에 사용하는 객체입니다. Tecoble 기술블로그 에 따르면, DTO 는 순수하게 데이터를 저장하고, 데이터에 대한 getter 와 setter 만을 가져야한다고 합니다. 그 어떠한 비즈니스 로직을 가져서도 안되면, 오로지 저장, 검색등의 로직만...
 date: "2024-01-05"
 ---
 
-> 이것은 인용문이다.
+## DTO
 
-# Big Title
+![](https://velog.velcdn.com/images/msung99/post/91e3f0c6-60e1-4e9a-b9bd-c2574176c0fc/image.png)
 
-## 시작에 앞서 : 왜 OAuth를 학습하게 되었는가?
-
-지난 포스팅 [[Spring Security] Refresh token, Access token란? 기존 JWT 보다 탈취 위험성을 낮춰보자!](https://velog.io/@msung99/Spring-Security-Refresh-token-Access-token-%EB%9E%80-%EA%B5%AC%ED%98%84%EB%B0%A9%EB%B2%95%EC%9D%80) 에서는 JWT 기반의 인증, 인가를 서비스에서 어떻게 구축하는가에 대해 알아봤습니다. 이를 활용해 현재 진행중인 사이드 프로젝트에서도 인증,인가 시스템을 구축했으나 소셜 로그인 기능이 빠지게되어 다소 밋밋한 경험이 될 것 같다는 생각이 들었습니다. 정말 아쉬울 것 같더라구요.
-따라서 0Auth 2.0 에 대해 학습을 진행하게 되었고, 공부했던 내용을 쉽게 풀어쓰면서 많은 사람들과 함께 공유하고자 이렇게 적게 되었습니다.
-
----
-
-## 잘못된 접근방식 : 서비스에게 우리 소셜 계정정보를 맡겨볼까?
-
-![](https://velog.velcdn.com/images/msung99/post/58ebc0b2-53c7-422a-95f9-70df654e012b/image.png)
-
-보통 서비스에서 회원가입, 로그인, 로그아웃등을 JWT 를 사용해서 구현합니다. 그런데 저희가 편리하게 사용중인 소셜로그인(카카오, 페이스북, 구글) 은 어떻게 구현할 수 있을까요?
-
-이 기능은 내가 사용하고싶은 서비스의 로그인을 중개해주는 카카오, 구글과 같은 소셜이 관여합니다. 그런데 우리의 서비스가 사용자를 대신해 페이스북에 댓글을 달거나, 유저 목록을 가져오는등의 기능을 만들 수 있지 않을까요?
-
-즉, 페이스북, 구글등의 소셜 계정정보를 사용자로부터 직접 제공받고 저희의 서비스에서 대신 댓글을 달아주거나, 소셜 팔로잉 정보를 조회해주는등의 기능을 개발할 수 있을것입니다.
-
-그러나 내 소셜 아이디 계정을 여러 서비스에서 돌려쓴다고요? 만약 해당 서비스가 해킹당해서 내 소셜 계정정보가 모두 유출되면 어떻게할까요? 이는 서비스 개발자, 사용자 모두에게 큰 부담인 방식일겁니다. **즉, 서비스에서 유저의 소셜 계정 정보를 저장하고 있는 방식은 개발자와 유저 양측에게 큰 부담입니다.**
-
-만일 해킹 당한다면 해커는 해당 소셜 계정으로 페이스북, 구글등 모든 소셜에 접근하여 가능한 모든 악의적인 행위를 할수 있습니다. 또한 페이스북, 구글 입장에서도 본인들의 계정 정보가 모두 털리는 방식이라면 큰 불안감만 남을것입니다.
-
-이를 해결하기 위해 등장한 것이 바로 OAuth 입니다. 이를 이용하면 서비스와 로그인을 중개해주는 페이스북, 구글등의 소셜간의 서비스를 안전하게 상호작용하며 사용 가능합니다.
-
----
-
-## OAuth가 그래서 뭘까?
-
-> 현재 사용중인 서비스가, 서비스를 이용하는 사용자의 타 소셜 정보에 접근하기위해 권한을 타 소셜로 부터 위임받는 것입니다.
-
-구글, 페이스북, 카카오와 같은 다양한 소셜 플랫폼에 접근하도록 제 3자 클라이언트(우리의 서비스) 가 접근 권한을 위임받을 수 있는 표준 프로토콜입니다.
-
-### 타 플랫폼은 어떤 방식으로 사용자 소셜정보를 제공해주는가?
-
-이때 페이스북, 구글등의 소셜이 서비스에게 "내 아이디와 비밀번호 계정정보를 그대로 제공하는 것이 아니라, accessToken 의 형태로 발급해줍니다. 그대로 발급하면 당연히 보안상의 큰 문제가 발생하겠죠?
-
-본격적인 내용을 살펴보기전에, 핵심적인 내용을 먼저 요약해보자면 다음과 같습니다.
-
-> - 타 소셜 플랫폼(ex.구글)은 제 3자 클라이언트(서비스)에게 쌩판 동일한 아이디, 비밀번호를 제공해주지 않습니다.
-
-- 대신 서비스는 AccessToken을 발급받고 타 소셜 플랫폼의 일부 기능을 사용 가능해집니다.
-- 타 소셜은 플랫폼은 모든 기능을 제공해주지는 않습니다. 그 중 서비스에서 사용하고자 하는 필요한 일부기능만을 부분적으로 접근 허용할 수 있게 해줍니다.
-
-다 이해되지 않으셔도 괜찮습니다. 지금부터 상세하게 설명드릴 예정이니까요!
-
----
-
-## OAuth 와 관련한 역할 및 용어
-
-본격적으로 소셜 로그인의 메커니즘을 살퍄보기전에, 우선 아래 용어들을 이해하셔야 설명이 가능해집니다.
-
-### Resource Owner
-
-**내 서비스를 사용할 서비스의 사용자**입니다. 이 서비스 사용자들은 카카오, 구글등의 소셜 플랫폼에서의 리소스를 소유하고 있는 사용자입니다.
-
-### Resource Server
-
-**리소스 제공자(페이스북, 구글 등)** 으로, 데이터를 보유하고 있는 서버를 의미합니다.
-
-### Authorization Server
-
-Resource Owner를 인증하고, **내 서비스(클라이언트)에게 토큰을 발급해주는 서버**입니다.
-
-### Client(= 내 서비스)
-
-내 서비스, 즉 내가 구현할 애플리케이션을 의미합니다.
-Resource Server 의 리소스를 이용하고자 하는 서비스가 되겠죠? 저희가 개발하고자 하는 서비스를 클라이언트라고 말하는 것입니다.
-
----
-
-## OAuth 프로토콜의 다양한 권한부여 방식
-
-OAuth 프로토콜은 다양한 종류로 다양한 클라이언트 환경에 적합한 권한 부여 방식을 제공하고 있습니다. 그 중 보편적이고 널리 쓰이는 한가지 방식에 대해서만 자세하게 다룰 예정이지만, 그래도 나머지 방식들도 간단히나마 알아보고 넘어가 보겠습니다.
-
-### 1. Authorization Code Grant
-
-> Authorization Code 를 발급받고 안전하게 AccessToken 을 발급받는 방식
-
-- 권한부여 승인코드를 발급받고, 이를 활용해서 AccessToken을 발급받는 방식입니다. 가장 널리 쓰이는 방법으로, 아래에서 따로 자세히 설명드리겠습니다.
-
-- **클라이언트(서비스)가 사용자를 대신해 특정 리소스에 접근을 요청할 때** 사용되는 방식입니다.
-- 보통 타사의 클라이언트에게 보호된 자원을 제공하기 위한 인증에 사용됩니다. Refresh Token의 사용이 가능한 방식입니다.
-
-### 2. Implicit Grant
-
-![](https://velog.velcdn.com/images/msung99/post/4fe41375-667d-4a53-a272-da063ee3940f/image.png)
-
-> AccessToken 을 URL에 담아서 바로 발급받는 방식. 탍취 위험성이 큽니다!
-
-- **자격증명을 안전하게 저장하기 힘든 클라이언트**(ex: JavaScript등의 스크립트 언어를 사용한 브라우저)에게 최적화된 방식입니다.
-
-- **권한 부여 승인 코드 없이 바로 Access Token이 발급 됩니다.** Access Token이 바로 전달되므로 만료기간을 짧게 설정함으로써 그토큰 탈취의 위험성을 줄여야합니다.
-
-- Refresh Token 사용이 불가능한 방식이며, Access Token을 획득하기 위한 절차가 간소화되기에 효율성은 높아지지만 **Access Token이 URL에 담겨서 전달된다는 취약점이 있습니다.**
-
-### 3. Resource Owner Password Credentials Grant
-
-![](https://velog.velcdn.com/images/msung99/post/1e117431-5015-4c0f-a659-a1afcfc09e71/image.png)
-
-- **간단하게 username, password로 Access Token을 받는 방식**입니다.
-
-- 자신의 서비스에서 제공하는 어플리케이션일 경우에만 사용되는 인증 방식입니다. Refresh Token의 사용도 가능합니다.
-
----
-
-## OAuth 흐름을 이해하기전에 이건 알고가자!
-
-또 아셔야할 용어를 정리해보면 다음와 같습니다. 모든 용어를 한번에 기억하실 필요는 없습니다. 메커니즘을 이해하시다보면 자연스럽게 각 용어가 무엇을 뜻하는것인지 이해가 되실겁니다.
-
-- **Authorization Code** : AccessToken 을 발급하기 위한 임시 인증코드. 생명주기가 매우 짧다(10분이내)
-
-- **Client ID** : 클라이언트(애플리케이션)의 고유한 ID
-  ex) goodapp-541106
-
-- **Client Secret** : 클라이언트(애플리케이션)를 위한 비밀키이며, 서비스 제공자에게 요청을 보낼 때 애플리케이션의 신원을 알려주는 값 입니다.
-- **Authorized Redirect URL(리다이렉션 엔드포인트)** : 서비스를 생성할 떄 등록한 Redirect URL.
-  즉, Authorization Server가 권한을 부여하는 과정에서 Authorized Code를 전달해줄 경로 (Authorized redirect URl로 Authorized Code 를 전달해줘!)
-
-- **scope** : 내 서비스(클라이언트)가 부여받은 리소스 접근 권한
-
-- **인가 엔드포인트** : 클라이언트 애플리케이션이 인가 플로우를 시작할 때 사용하는 엔드포인트입니다. ex) 페이스북 로그인 페이지 URL
-
-- **토큰 엔드포인트** : 클라이언트 애플리케이션이 토큰 플로우를 시작할 때 사용하는 엔드포인트입니다.
-
----
-
-## OAuth 메커니즘 : Authorization Code Grant
-
-이제 가장 보편적으로 사용되는 Authorization Code Grant 방식을 알아보겠습니다. 절차는 아래와 같습니다.
-![](https://velog.velcdn.com/images/msung99/post/ec070ca4-2685-4d8a-83d0-5babc89ebb09/image.png)
-
-### 1~2. 로그인 요청 및 Authorizaion Code 요청
-
-서비스 사용자가 "페이스북 로그인 하기" 버튼을 눌러서 로그인을 요청하는 경우입니다. Client(서비스)는 Authorization Code 를 요청할 수 있도록 사용자의 브라우저를 Authorization Server로 보내야합니다. ( Authorization URL을 통해 이동시키기!)
-
-#### Authorization URL 요청에 포함되는 파라미터
-
-위 그림에도 적어놓았듯이, 클라이언트는 Authorization Server 가 제공하는 Authorization URL 에 다음 파라미터들을 쿼리스트링으로 포함해서 보내야합니다.
-
-- redirect_uri, client_id, response_type, scope
-
-예시
+`DTO(Data Transfer Object)` 는 **계층 간 데이터를 전송을 위해 도메인 모델 대신에 사용하는 객체**입니다. [Tecoble 기술블로그](https://tecoble.techcourse.co.kr/post/2020-08-31-dto-vs-entity/) 에 따르면, DTO 는 순수하게 데이터를 저장하고, 데이터에 대한 getter 와 setter 만을 가져야한다고 합니다. 그 어떠한 비즈니스 로직을 가져서도 안되면, 오로지 저장, 검색등의 로직만을 보유할 수 있다고합니다.
 
 ```java
-https://google.com/authoirzation?rediect_uri=https://maestro.com/main
-&client_id=1298381293123873
-&response_type=code
-&scope=create+read
+public class MoveDto {
+    private final List<String> upResult;
+    private final List<String> downResult;
+
+    private MovedResultDto(List<String> upResult, List<String> downResult) {
+        this.upResult = upResult;
+        this.downResult = downResult;
+    }
+
+    public static MoveDto from(Map<Path, List<MoveResult>> results){
+        return new MoveDto(
+                mapToSignal(results.get(Path.UP)), mapToSignal(results.get(Path.DOWN))
+        );
+    }
+
+    public static List<String> mapToSignal(List<MoveResult> moveResults){
+        return moveResults.stream()
+                .map(moveResult -> moveResult.getSignal())
+                .collect(Collectors.toList());
+    }
+
+    public List<String> getUpResult() {
+        return upResult;
+    }
+
+    public List<String> getDownResult() {
+        return downResult;
+    }
+}
 ```
 
-- **이러한 인증 URL은 백엔드에서 생성하고, 프론트엔드는 백엔드로부터 URL 을 가져오는 것이 통상적입니다.**
+위처럼 보듯이 DTO 는 아무런 로직을 포함하고 있지 않으며, `final` 로 불변의 특성을 지니고 있고, `getter` 만을 포함하고 있습니다. 지금보니 `setter` 는 별도로 보유하고 있지않은데, 필요에 따라선 setter 를 추가하는것은 자유롭게 해도 됩니다. 다만 위 경우는 setter 를 활용해야하는 상황과 이유가 발생하지 않았기 떄문에 별도의 코드가 존재하지 않는것입니다.
 
 ---
 
-### 3~4. 로그인 시도
+## 왜 DTO 를 사용하는가?
 
-![](https://velog.velcdn.com/images/msung99/post/806d6552-1e7b-4f03-aa60-c0030996ba6a/image.png)
+### 1. 도메인 모델을 캡슐화하여 보호할 수 있다.
 
-사용자의 브라우저가 소셜 로그인 페이지(ex. 페이스북 로그인 브라우저 화면) 로 이동되었다면, 소셜 로그인을 시도하면 됩니다.
+DTO 는 어쩌면 도메인 모델을 보호하는 것이 주 목적이라고 볼 수 있겠습니다. **활용용도는 순수히 계층간에 값을 전송하는데에만 초점이 맞춰져있습니다.** DTO 가 아닌 도메인 모델을 계층간의 데이터 송수신에 직접 활용한다면, 도메인과 뷰 계층간의 강한 결합 및 의존성이 발생하게 됩니다. 추후 요구사항으로 인한 뷰 계층에 전송해야하는 세부 데이터가 변경된다면, 매번 도메인 코드를 변경해야하는 상황이 발생할 수 있습니다 **즉, DTO 를 활용하면 도메인 모델을 계층간의 전송에 직접 활용하지 않으므로 보호할 수 있게됩니다.**
 
----
+### 2. 도메인 설계를 외부에 직접 유출시키지 않는다.
 
-### 5~6. Authorization Code 발급 + Redirect URl 로 리다이렉트
+또, **도메인 모델 대신 DTO 를 활용함으로써 보안 문제를 한층 해결할 수 있게됩니다.** 만약 DTO 이 아니라 도메인 모델을 계층간 전달에 사용하면, UI 계층에서 도메인 모델의 메소드를 호출하거나 상태를 변경시킬 수 있습니다. 불필요하게 도메인 속성을 모두 외부에 유출시키면 보안 문제가 발생할 수 있게됩니다. 곧 도메인 모델을 캡슐화하여 보호할 수 있게 됩니다.
 
-사용자가 앞서 올바른 소셜 계정을 입력하고 인증을 마쳤다면, Authorization Server 는 Authorization Code 를 발급해주고 지정한 Redirect URI 로 사용자를 리다이렉션 시켜줍니다.
+### 3. 검증(Validation) 코드를 도메인 코드와 분리 가능하다.
 
-**이때 Redirect URI 는 백엔드가 아닌, 프론트엔드의 URI 로 리다이렉션 시켜줘야합니다.**
+도메인 코드는 비즈니스 로직과 정책, 그리고 각 테이블간의 매핑관계와 같은 유즈케이스 핵심 코드가 흐르고 있는 코드입니다. 만약 도메인 모델에서 Empty 인지, Null 한지등의 모든 검증코드를 포함한다면 불필요하게 가독성이 떨어지고 클래스가 더욱이 복잡해집니다.
 
-#### Authorization Code 는 어떻게 발급해줄까?
-
-=> **Redirect URI에 Authorization Code 를 포함하여 사용자를 리다이렉션 시켜주는 방식입니다.** 구글의 경우 Authorization Code 를 QueryString에 포함하는 방식입니다.
+따라서 각 요청에대한 Validation 을 DTO 에서 정의한다면, 도메인 및 엔티티 클래스를 핵심 비즈니스 로직 및 정책에만 집중할 수 있게됩니다.
 
 ---
 
-### 7~8. Authorization Code 로 AccessToken 발급후 저장하기
+## DTO 를 어떤 계층에서 변환하는 것이 좋은가?
 
-발급받은 Authorization Code 는 Access Token 을 발급받기위한 임시 코드입니다.
+> A Service Layer defines an application’s boundary [Cockburn PloP] and its set of available operations from the perspective of interfacing client layers. It encapsulates the application’s business logic, controlling transactions and coor-dinating responses in the implementation of its operations.
 
-- 클라이언트(Client) 는 Authorization Server 에 Authorization Code 를 전송하고, Access Token 을 발급받으면 됩니다.
+- 마틴 파울러 - [Service Layer](https://martinfowler.com/eaaCatalog/serviceLayer.html)
 
-- 클라이언트는 발급받은 Resource Owner(사용자)의 Access Token 을 DB 에도 저장해두고, 로컬 스토리지에도 저장해두는 처리가 필요합니다.
+많은 의견들을 찾아보니, DTO 가 영속성 계층까지 도달하는 것은 지양하는 것으로 보입니다. 마틴파울러는 Service 계층이란 도메인을 보호하는 계층이라고 말합니다. 따라서 이 사항을 준수하려면 프레젠테이션(Presentation) 계층까지 도메인 유출되선 안되며, **도메인 서비스 계층에서 도메인 모델이 DTO 로 변환되어 컨트롤러로 전달되는것이 맞는 것 같습니다.** 반대로 컨트롤러에서 서비스 계층으로 전달될때도 요청 모델이 DTO 로 변환되는 것이 좋다고봅니다.
 
-- 이후 Resource Server(ex.구글, 페이스북) 에서 Resource Owner(사용자)의 리소스에 접근하기 위해서 Access Token 을 사용합니다.
+### 계층간 DTO 전송의 일반적인 구조
 
-#### Authorization Code 와 Access Token 의 교환은 어디서 이루어질까? : OAuth 엔드포인트
+![](https://velog.velcdn.com/images/msung99/post/b31845e6-1f3c-4b6c-855e-bd5de310b94b/image.png)
 
-이들의 교환은 OAuth 토큰 엔드포인트에서 이루어집니다.
-더 자세한 내용은 [Google Cloud Docs : OAuth 엔드포인트 이해](https://cloud.google.com/apigee/docs/api-platform/security/oauth/configuring-oauth-endpoints-and-policies?hl=ko) 를 참고하시면 좋을듯합니다.
+일반적인 상황에선, 대부분 위처럼 컨트롤러는 DTO 형태의 데이터로 요청을 서비스 계층에 넘기고, 서비스는 DTO 를 엔티티(도메인 모델) 로 변환하는 구조를 지닙니다. 만약 View 계층으로 부터 전달받은 데이터가 DTO 타입이 아니라면, DTO 로 변환후 서비스 계층에 전달해야합니다.
 
-아래 예시는 토큰 엔드포인트에서 Access Token 을 발급받기 위한 HTTP 요청의 예시입니다.
+![](https://velog.velcdn.com/images/msung99/post/7983661b-a6f9-46d3-8c9f-acc28b3006b7/image.png)
 
-- **지정된 프론트앤드 URI 로 리다이렉트가 되었다면, 함께 전달된 Authorization Code 를 백엔드 API를 통해 백엔드로 전달해야합니다. Authrorization Code 를 전달받은 백엔드는 Authorization Code, Client ID, CLient Secret 등으로 Authorization Code 로 부터 Access Token 을 발급받으면 됩니다.**
-
-- 이때 grant_type은 항상 authorization_code 로 설정되어 있어야합니다. 또 code 에는 발급받은 Authorization Code 를 할당하시면 됩니다.
-
-```
-POST /auth/getSocialToken HTTP/1.1
-Host:https://google.com
-
-grant_type=authorization_code
-&redirect_uri=https://maestro:com/main
-&code=12123125123
-&client_id=221399881
-&client_secret=2131231235
-```
+반면 서비스 요청/응답시 서비스 계층의 메소드가 사용하는 서비스 DTO 를 별도로 만들고, DTO 와 서비스 DTO 를 매핑하는 `Mapper(매퍼)` 를 중간에 끼워넣는 방식도 있다고합니다. Mapper 를 사용하면 컨트롤러와 서비스 계층이 완전히 분리됨으로써 결함도가 낮아지는 효과를 볼 수 있다고 합니다. 아직은 실제로 경험해보지 않았기떄문에 공감대가 없어서, 추후 매퍼를 직접 배치해보는 학습이 필요한 것 같습니다.
 
 ---
 
-### 9~11. 인증이 필요한 API 요청시, Access Token 을 활용해 요청하기
+## 검증(Validation) 은 도대체 누가 수행하는거야!?
 
-AccessToken 을 발급받은 Resource Owner 는 이제 로그인에 성공한 것입니다.
+DTO 를 공부하면서 가장 혼동스러웠던 점은, 검증(Validation) 을 정확히 어디서 수행하는 것이 좋은지에 대한 것이였습니다. 많은 분들의 견해를 찾아보니 검증은 DTO 또는 컨트롤러에서 검증코드를 따로 구성하는 것에 대한 의견이 분분했습니다. 사실 앞서 제가 언급했기를 검증을 항상 DTO 에서 구성해야한다는 식으로 말했지만, 이에 대한 정답은 없는 것 같습니다.
 
-앞으로 클라이언트는 저장해둔 Resource Owner 의 Access Token 을 활용해 Resource Server 에 필요한 자원을 요청하면 됩니다. 그리고 Resource Owner 에게 서버스를 제공해주면 되겠죠?
+다만 제 견해를 정리해보자면, **검증(Validation) 처리는 DTO 가 아닌 컨트롤러단에서 별도의 Validation 메소드를 추출하고 검증처리를 수행**하는 것이 더 좋을것이라는 판단이 듭니다. DTO 의 정의에 대해 다시 돌아가보면, DTO 는 마치 택배 상자와 같습니다. 값을 순수히 전달하는 목적이기 때문이죠. 그런데 이런 택배상자가 본인이 스스로 "내가 불량 상품을 포함하고 있는데?" 라는 검증을 수행하는것은 역할에 부적합하지 않나라는 생각이 듭니다.
 
----
+따라서 컨트롤러 내에서도 충분히 검증이 처리 가능한경우 검증 처리 메소드를 따로 추출하여 검증 후 DTO 를 생성하는 것이 올바르지 않나라는 생각입니다. 다만 컨트롤러 내에서 처리하는게 부적합한 특별한 상황인 경우에만 DTO 내에서 처리하는게 좋다라는 견해입니다.
 
-## Authorization Code 을 왜 써야할까? 필요성에 대해..
-
-> 한줄요약 : URL에 직접 Access Token 을 전송받는 방식은 위험하니, 대신에 임시코드(Authorization Code) 를 발급받고 추후에 안전하게 발급받자!
-
-앞선 Authorization Code Grant 방식을 보며 느낀점은, 왜 Authorization Code 를 굳이 써야할까라는 의문이 들었습니다. 그냥 바로Access Token 을 발급해줘도 되지 않을까요?
-
-앞선 과정(5~6번)을 잘 떠올려봅시다. Redirect URI 를 통해서만 Authorization Code 를 발급받을 수 있다고했죠? 그런데 Access Token 을 발급받을때도 마찬가지로, **Redriect URI 를 통해서만 URL 안에 데이터를 실어서 전달받는 방법밖에 존재하지 않습니다**
-
-이렇게 민감한 정보는 URL에 실려서 오면 정말 위험하겠죠? 따라서 Authorization Code 를 통해 우선 덜 민감한 정보를 URL로 발급받고, 추후 안전한 방법으로 Access Token 을 발급받는 것입니다.
+무엇보다 가장 중요한 것은, 검증 처리가 도메인 계층에서 수행되는 상황을 방지하는것입니다. 이를 준수한다면 도메인이 추후 요구사항이 있더라도 큰 변화가 없는 좋은 클린코드라고 생각합니다.
 
 ---
 
-## 마치며
+## 더 학습해볼 키워드
 
-지금까지 0AUth2.0 이란 무엇인지 이론적인 부분을 중점으로 설명드려봤습니다. 이것저것 여러 타 블로깅을 많이 참고헀었는데, 명확하게 설명해주는 블로깅은 거의 없어서 많이 애먹었던 것 같네요.
-
-그래서 어떻게 0Auth 의 메커니즘 유기적으로 설명하는데 집중한 포스팅이였던 것 같습니다! 😁 제 포스팅을 보시는 분들이 저처럼 해매지 않았으면 하는 바람이기 때문입니다 ㅎㅎ
-
-이번 포스팅이 0Auth 를 처음 학습하시는 분들에게 도움이 되었으면 하네요. 다음 포스팅으로는 구글 소셜 로그인을 어떻게 SpringBoot 에서 구현 가능한지를 다루어볼까 예정중입니다.
+- VO 와 DTO
 
 ---
 
 ## 참고
 
-[auth0 docuement](https://auth0.com/docs/)
-[위키피디아 OAuth](https://ko.wikipedia.org/wiki/OAuth)
-[[OAuth2.0] 애플리케이션 등록하기 by 페이스북
-](https://minholee93.tistory.com/entry/OAuth20-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%EB%93%B1%EB%A1%9D%ED%95%98%EA%B8%B0)https://blog.naver.com/mds_datasecurity/222182943542
-https://benohead.com/
-[0Auth - 구글 소셜로그인 기능 구현
-](https://velog.io/@usreon/google-%EC%86%8C%EC%85%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%82%BD%EC%A7%88-%EA%B3%BC%EC%A0%95)[Grace's Tech Blog : Authentication - OAuth2.0](https://libertegrace.tistory.com/entry/40-Authentication-OAuth-20?category=869766)
-
-```
-
-```
+- https://tecoble.techcourse.co.kr/post/2020-08-31-dto-vs-entity/
+- https://tecoble.techcourse.co.kr/post/2021-04-25-dto-layer-scope/
+- https://www.baeldung.com/java-dto-pattern
+- https://creampuffy.tistory.com/188
+- https://sedangdang.tistory.com/296

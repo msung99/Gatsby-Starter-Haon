@@ -1,261 +1,264 @@
 ---
-title: OAuth 2.0 프로토콜 기반 소셜 로그인에 대해 알아보자!
-description: JDBC 라이브러리 구현하기 를 진행해보면서, 학습한 내용을 정리했다.과거 HTTP 웹 서버가 가지고 있었던 문제는 사용자가 입력한 데이터가 서버를 재시작하면 사라진다는 점이다. 따라서 DB 서버를 도입해야 하는것은 당연시 되었다. 자바 진영에서 JDBC 표준 인터페이...
-
+title: 소트웍스 엔솔로지의 객체치향 생활체조 원칙 전반부
+description: 객체지향 생활체조 원칙의 전반부를 알아보자!
 date: "2024-01-04"
 ---
 
-> 이것은 인용문이다.
+## 학습배경
 
-# Big Title
+마틴 파울러의 소트웍스 엔솔러지에는 객제치향을 위한 9가지 원칙을 정의해 놓았습니다. 우아한테크코스 프리코스 풀이하면서 객제치향에 대한 설계법을 혼자서 깊게 고민할 때 계속 등장했던 키워드인데, 우선 자바에 대한 깊은 이해가 부족하다고 생각이 들었기 때문에 우선순위에서 밀려났습니다.
 
-## 시작에 앞서 : 왜 OAuth를 학습하게 되었는가?
-
-지난 포스팅 [[Spring Security] Refresh token, Access token란? 기존 JWT 보다 탈취 위험성을 낮춰보자!](https://velog.io/@msung99/Spring-Security-Refresh-token-Access-token-%EB%9E%80-%EA%B5%AC%ED%98%84%EB%B0%A9%EB%B2%95%EC%9D%80) 에서는 JWT 기반의 인증, 인가를 서비스에서 어떻게 구축하는가에 대해 알아봤습니다. 이를 활용해 현재 진행중인 사이드 프로젝트에서도 인증,인가 시스템을 구축했으나 소셜 로그인 기능이 빠지게되어 다소 밋밋한 경험이 될 것 같다는 생각이 들었습니다. 정말 아쉬울 것 같더라구요.
-따라서 0Auth 2.0 에 대해 학습을 진행하게 되었고, 공부했던 내용을 쉽게 풀어쓰면서 많은 사람들과 함께 공유하고자 이렇게 적게 되었습니다.
+지금부터 객제치향 원칙에 대해 공부해보고자 합니다 아직 객제치향에 대한 "깊은" 이해는 부족하기 때문에, 일단 최대한 기초를 이해하는데만 집중해보고 추후 제대로 이해한 내용을 기반으로 깊은 것들을 다루어보겠습니다. 또한 이번에는 9가지 원칙중 전반부에 대해서만 다루도록 합니다.
 
 ---
 
-## 잘못된 접근방식 : 서비스에게 우리 소셜 계정정보를 맡겨볼까?
+## 원칙1. 한 메소드에 오직 한 단계의 들여쓰기만 한다
 
-![](https://velog.velcdn.com/images/msung99/post/58ebc0b2-53c7-422a-95f9-70df654e012b/image.png)
+> "함수는 한 가지 일을 수행해야한다. 그 한가지만을 잘 해야한다. - Clean Code
 
-보통 서비스에서 회원가입, 로그인, 로그아웃등을 JWT 를 사용해서 구현합니다. 그런데 저희가 편리하게 사용중인 소셜로그인(카카오, 페이스북, 구글) 은 어떻게 구현할 수 있을까요?
-
-이 기능은 내가 사용하고싶은 서비스의 로그인을 중개해주는 카카오, 구글과 같은 소셜이 관여합니다. 그런데 우리의 서비스가 사용자를 대신해 페이스북에 댓글을 달거나, 유저 목록을 가져오는등의 기능을 만들 수 있지 않을까요?
-
-즉, 페이스북, 구글등의 소셜 계정정보를 사용자로부터 직접 제공받고 저희의 서비스에서 대신 댓글을 달아주거나, 소셜 팔로잉 정보를 조회해주는등의 기능을 개발할 수 있을것입니다.
-
-그러나 내 소셜 아이디 계정을 여러 서비스에서 돌려쓴다고요? 만약 해당 서비스가 해킹당해서 내 소셜 계정정보가 모두 유출되면 어떻게할까요? 이는 서비스 개발자, 사용자 모두에게 큰 부담인 방식일겁니다. **즉, 서비스에서 유저의 소셜 계정 정보를 저장하고 있는 방식은 개발자와 유저 양측에게 큰 부담입니다.**
-
-만일 해킹 당한다면 해커는 해당 소셜 계정으로 페이스북, 구글등 모든 소셜에 접근하여 가능한 모든 악의적인 행위를 할수 있습니다. 또한 페이스북, 구글 입장에서도 본인들의 계정 정보가 모두 털리는 방식이라면 큰 불안감만 남을것입니다.
-
-이를 해결하기 위해 등장한 것이 바로 OAuth 입니다. 이를 이용하면 서비스와 로그인을 중개해주는 페이스북, 구글등의 소셜간의 서비스를 안전하게 상호작용하며 사용 가능합니다.
-
----
-
-## OAuth가 그래서 뭘까?
-
-> 현재 사용중인 서비스가, 서비스를 이용하는 사용자의 타 소셜 정보에 접근하기위해 권한을 타 소셜로 부터 위임받는 것입니다.
-
-구글, 페이스북, 카카오와 같은 다양한 소셜 플랫폼에 접근하도록 제 3자 클라이언트(우리의 서비스) 가 접근 권한을 위임받을 수 있는 표준 프로토콜입니다.
-
-### 타 플랫폼은 어떤 방식으로 사용자 소셜정보를 제공해주는가?
-
-이때 페이스북, 구글등의 소셜이 서비스에게 "내 아이디와 비밀번호 계정정보를 그대로 제공하는 것이 아니라, accessToken 의 형태로 발급해줍니다. 그대로 발급하면 당연히 보안상의 큰 문제가 발생하겠죠?
-
-본격적인 내용을 살펴보기전에, 핵심적인 내용을 먼저 요약해보자면 다음과 같습니다.
-
-> - 타 소셜 플랫폼(ex.구글)은 제 3자 클라이언트(서비스)에게 쌩판 동일한 아이디, 비밀번호를 제공해주지 않습니다.
-
-- 대신 서비스는 AccessToken을 발급받고 타 소셜 플랫폼의 일부 기능을 사용 가능해집니다.
-- 타 소셜은 플랫폼은 모든 기능을 제공해주지는 않습니다. 그 중 서비스에서 사용하고자 하는 필요한 일부기능만을 부분적으로 접근 허용할 수 있게 해줍니다.
-
-다 이해되지 않으셔도 괜찮습니다. 지금부터 상세하게 설명드릴 예정이니까요!
-
----
-
-## OAuth 와 관련한 역할 및 용어
-
-본격적으로 소셜 로그인의 메커니즘을 살퍄보기전에, 우선 아래 용어들을 이해하셔야 설명이 가능해집니다.
-
-### Resource Owner
-
-**내 서비스를 사용할 서비스의 사용자**입니다. 이 서비스 사용자들은 카카오, 구글등의 소셜 플랫폼에서의 리소스를 소유하고 있는 사용자입니다.
-
-### Resource Server
-
-**리소스 제공자(페이스북, 구글 등)** 으로, 데이터를 보유하고 있는 서버를 의미합니다.
-
-### Authorization Server
-
-Resource Owner를 인증하고, **내 서비스(클라이언트)에게 토큰을 발급해주는 서버**입니다.
-
-### Client(= 내 서비스)
-
-내 서비스, 즉 내가 구현할 애플리케이션을 의미합니다.
-Resource Server 의 리소스를 이용하고자 하는 서비스가 되겠죠? 저희가 개발하고자 하는 서비스를 클라이언트라고 말하는 것입니다.
-
----
-
-## OAuth 프로토콜의 다양한 권한부여 방식
-
-OAuth 프로토콜은 다양한 종류로 다양한 클라이언트 환경에 적합한 권한 부여 방식을 제공하고 있습니다. 그 중 보편적이고 널리 쓰이는 한가지 방식에 대해서만 자세하게 다룰 예정이지만, 그래도 나머지 방식들도 간단히나마 알아보고 넘어가 보겠습니다.
-
-### 1. Authorization Code Grant
-
-> Authorization Code 를 발급받고 안전하게 AccessToken 을 발급받는 방식
-
-- 권한부여 승인코드를 발급받고, 이를 활용해서 AccessToken을 발급받는 방식입니다. 가장 널리 쓰이는 방법으로, 아래에서 따로 자세히 설명드리겠습니다.
-
-- **클라이언트(서비스)가 사용자를 대신해 특정 리소스에 접근을 요청할 때** 사용되는 방식입니다.
-- 보통 타사의 클라이언트에게 보호된 자원을 제공하기 위한 인증에 사용됩니다. Refresh Token의 사용이 가능한 방식입니다.
-
-### 2. Implicit Grant
-
-![](https://velog.velcdn.com/images/msung99/post/4fe41375-667d-4a53-a272-da063ee3940f/image.png)
-
-> AccessToken 을 URL에 담아서 바로 발급받는 방식. 탍취 위험성이 큽니다!
-
-- **자격증명을 안전하게 저장하기 힘든 클라이언트**(ex: JavaScript등의 스크립트 언어를 사용한 브라우저)에게 최적화된 방식입니다.
-
-- **권한 부여 승인 코드 없이 바로 Access Token이 발급 됩니다.** Access Token이 바로 전달되므로 만료기간을 짧게 설정함으로써 그토큰 탈취의 위험성을 줄여야합니다.
-
-- Refresh Token 사용이 불가능한 방식이며, Access Token을 획득하기 위한 절차가 간소화되기에 효율성은 높아지지만 **Access Token이 URL에 담겨서 전달된다는 취약점이 있습니다.**
-
-### 3. Resource Owner Password Credentials Grant
-
-![](https://velog.velcdn.com/images/msung99/post/1e117431-5015-4c0f-a659-a1afcfc09e71/image.png)
-
-- **간단하게 username, password로 Access Token을 받는 방식**입니다.
-
-- 자신의 서비스에서 제공하는 어플리케이션일 경우에만 사용되는 인증 방식입니다. Refresh Token의 사용도 가능합니다.
-
----
-
-## OAuth 흐름을 이해하기전에 이건 알고가자!
-
-또 아셔야할 용어를 정리해보면 다음와 같습니다. 모든 용어를 한번에 기억하실 필요는 없습니다. 메커니즘을 이해하시다보면 자연스럽게 각 용어가 무엇을 뜻하는것인지 이해가 되실겁니다.
-
-- **Authorization Code** : AccessToken 을 발급하기 위한 임시 인증코드. 생명주기가 매우 짧다(10분이내)
-
-- **Client ID** : 클라이언트(애플리케이션)의 고유한 ID
-  ex) goodapp-541106
-
-- **Client Secret** : 클라이언트(애플리케이션)를 위한 비밀키이며, 서비스 제공자에게 요청을 보낼 때 애플리케이션의 신원을 알려주는 값 입니다.
-- **Authorized Redirect URL(리다이렉션 엔드포인트)** : 서비스를 생성할 떄 등록한 Redirect URL.
-  즉, Authorization Server가 권한을 부여하는 과정에서 Authorized Code를 전달해줄 경로 (Authorized redirect URl로 Authorized Code 를 전달해줘!)
-
-- **scope** : 내 서비스(클라이언트)가 부여받은 리소스 접근 권한
-
-- **인가 엔드포인트** : 클라이언트 애플리케이션이 인가 플로우를 시작할 때 사용하는 엔드포인트입니다. ex) 페이스북 로그인 페이지 URL
-
-- **토큰 엔드포인트** : 클라이언트 애플리케이션이 토큰 플로우를 시작할 때 사용하는 엔드포인트입니다.
-
----
-
-## OAuth 메커니즘 : Authorization Code Grant
-
-이제 가장 보편적으로 사용되는 Authorization Code Grant 방식을 알아보겠습니다. 절차는 아래와 같습니다.
-![](https://velog.velcdn.com/images/msung99/post/ec070ca4-2685-4d8a-83d0-5babc89ebb09/image.png)
-
-### 1~2. 로그인 요청 및 Authorizaion Code 요청
-
-서비스 사용자가 "페이스북 로그인 하기" 버튼을 눌러서 로그인을 요청하는 경우입니다. Client(서비스)는 Authorization Code 를 요청할 수 있도록 사용자의 브라우저를 Authorization Server로 보내야합니다. ( Authorization URL을 통해 이동시키기!)
-
-#### Authorization URL 요청에 포함되는 파라미터
-
-위 그림에도 적어놓았듯이, 클라이언트는 Authorization Server 가 제공하는 Authorization URL 에 다음 파라미터들을 쿼리스트링으로 포함해서 보내야합니다.
-
-- redirect_uri, client_id, response_type, scope
-
-예시
+한 메소드에 들여쓰기가 여러개 존재한다면, 해당 메소드는 여러가지 일을 수행한다고 봐도 무방합니다. 메소드는 본인이 맡은 일이 적을수록(잘개 쪼갤수록) 재사용성이 높고 디버깅도 유용합니다. **즉, 코드의 들여쓰기와 중첩 구조가 깊어질수록 가독성이 떨어지므로, 들여쓰기는 최소화하는 것이 좋습니다.**
 
 ```java
-https://google.com/authoirzation?rediect_uri=https://maestro.com/main
-&client_id=1298381293123873
-&response_type=code
-&scope=create+read
+public String getLines(){
+  StringBuilder stringBuilder = new StringBuilder();
+  for(int i=0; i<10; i++){
+    for(int j=0; j<5; J++){
+      stringBuilder.append("one");
+    }
+    stringBuilder.append("two");
+  }
+  return stringBuilder.toString();
+}
 ```
 
-- **이러한 인증 URL은 백엔드에서 생성하고, 프론트엔드는 백엔드로부터 URL 을 가져오는 것이 통상적입니다.**
+### 메소드 추출기법(Extract Method)
 
----
+위와 같은 함수의 구조는 아래와 같이 개선해볼 수 있습니다. 마틴 파울러의 책에서 소개한 **"메소드 추출(Extract Method)"** 기법을 활용하면 가독성이 올라갑니다. 메소드 추출은 코드으 일부분을 메소드로 분리하여, 코드의 복잡도를 낮추는 기법입니다.
 
-### 3~4. 로그인 시도
+```java
+public String getLines(){
+  StringBuilder stringBuilder = new StringBuilder();
+  repeatPrint(stringBuilder);
+  return stringBuilder.toString();
+}
 
-![](https://velog.velcdn.com/images/msung99/post/806d6552-1e7b-4f03-aa60-c0030996ba6a/image.png)
+private void repeatRows(StringBuilder stringBuilder){
+  for(int i=0; i<10; i++){
+    repeatRow(stringBuilder);
+    stringBuilder.append("two");
+  }
+}
 
-사용자의 브라우저가 소셜 로그인 페이지(ex. 페이스북 로그인 브라우저 화면) 로 이동되었다면, 소셜 로그인을 시도하면 됩니다.
-
----
-
-### 5~6. Authorization Code 발급 + Redirect URl 로 리다이렉트
-
-사용자가 앞서 올바른 소셜 계정을 입력하고 인증을 마쳤다면, Authorization Server 는 Authorization Code 를 발급해주고 지정한 Redirect URI 로 사용자를 리다이렉션 시켜줍니다.
-
-**이때 Redirect URI 는 백엔드가 아닌, 프론트엔드의 URI 로 리다이렉션 시켜줘야합니다.**
-
-#### Authorization Code 는 어떻게 발급해줄까?
-
-=> **Redirect URI에 Authorization Code 를 포함하여 사용자를 리다이렉션 시켜주는 방식입니다.** 구글의 경우 Authorization Code 를 QueryString에 포함하는 방식입니다.
-
----
-
-### 7~8. Authorization Code 로 AccessToken 발급후 저장하기
-
-발급받은 Authorization Code 는 Access Token 을 발급받기위한 임시 코드입니다.
-
-- 클라이언트(Client) 는 Authorization Server 에 Authorization Code 를 전송하고, Access Token 을 발급받으면 됩니다.
-
-- 클라이언트는 발급받은 Resource Owner(사용자)의 Access Token 을 DB 에도 저장해두고, 로컬 스토리지에도 저장해두는 처리가 필요합니다.
-
-- 이후 Resource Server(ex.구글, 페이스북) 에서 Resource Owner(사용자)의 리소스에 접근하기 위해서 Access Token 을 사용합니다.
-
-#### Authorization Code 와 Access Token 의 교환은 어디서 이루어질까? : OAuth 엔드포인트
-
-이들의 교환은 OAuth 토큰 엔드포인트에서 이루어집니다.
-더 자세한 내용은 [Google Cloud Docs : OAuth 엔드포인트 이해](https://cloud.google.com/apigee/docs/api-platform/security/oauth/configuring-oauth-endpoints-and-policies?hl=ko) 를 참고하시면 좋을듯합니다.
-
-아래 예시는 토큰 엔드포인트에서 Access Token 을 발급받기 위한 HTTP 요청의 예시입니다.
-
-- **지정된 프론트앤드 URI 로 리다이렉트가 되었다면, 함께 전달된 Authorization Code 를 백엔드 API를 통해 백엔드로 전달해야합니다. Authrorization Code 를 전달받은 백엔드는 Authorization Code, Client ID, CLient Secret 등으로 Authorization Code 로 부터 Access Token 을 발급받으면 됩니다.**
-
-- 이때 grant_type은 항상 authorization_code 로 설정되어 있어야합니다. 또 code 에는 발급받은 Authorization Code 를 할당하시면 됩니다.
-
-```
-POST /auth/getSocialToken HTTP/1.1
-Host:https://google.com
-
-grant_type=authorization_code
-&redirect_uri=https://maestro:com/main
-&code=12123125123
-&client_id=221399881
-&client_secret=2131231235
+private void repeatRow(StringBuilder stringBuilder){
+  for(int i=0; i<5; i++){
+    stringBuilder.append("one");
+  }
+}
 ```
 
 ---
 
-### 9~11. 인증이 필요한 API 요청시, Access Token 을 활용해 요청하기
+## 원칙2. else 키워드를 쓰지 않는다.
 
-AccessToken 을 발급받은 Resource Owner 는 이제 로그인에 성공한 것입니다.
+프로그래밍을 처음 접할 때 else 문을 많이 사용해봤을 것이지만, 저희는 else 키워드를 사용하지 않고도 분기처리 코드를 원활히 작성할 수 있습니다. 이 원칙은 `원칙1. 한 메소드에 오직 한 단계의 들여쓰기만 한다` 내용과도 밀접하게 연관된 내용입니다. **else 문을 남용하면 자칫 중첩된 여러 조건문이 작성되고, 인덴트(들여쓰기)의 깊이가 늘어날 수 있기 때문입니다.**
 
-앞으로 클라이언트는 저장해둔 Resource Owner 의 Access Token 을 활용해 Resource Server 에 필요한 자원을 요청하면 됩니다. 그리고 Resource Owner 에게 서버스를 제공해주면 되겠죠?
+```java
+public void printPriceStatus(int price){
+  if(price < 1000){
+    System.out.println("저렴합니다");
+  } else {
+    if(price < 5000) {
+      System.out.println("무난합니다");
+    } else {
+      if(price < 10000) {
+        System.out.println("비쌉니다");
+      } else {
+        System.out.println("논외적으로 너무 비쌉니다");
+      }.
+    }
+  }
+}
+```
+
+위 코드는 중복되는 조건문이 많이 겹쳐있으니 읽기 힘든 코드가 되었습니다. 정확히는, if 절이 중첩되면서 동작흐름 파악이 힘든 `Arrow Anti Pattern` 이 전형적인 사례입니다.
+
+### Early Pattern
+
+이렇듯 else 키워드를 사용하면 자칫 else 문 안에서 또 else 문을 작성하게 될 가능성이 있으니, 사용을 지양합시다. 위 코드는 아래처럼 `Early Pattern` 을 적용하여 개선할 수 있습니다.`Early Pattern` 이란, 조건문내의 조건이 일치하면 그 즉시 반환하는 디자인 패턴이니다.
+
+```java
+public void printPriceStatus(int price){
+  if(price < 1000){
+    System.out.println("저렴합니다");
+  }
+  if(price < 5000){
+    System.out.println("무난합니다");
+  }
+  if(price < 10000){
+    System.out.println("비쌉니다");
+  }
+  System.out.println("논외적으로 너무 비쌉니다"); // 보호절(Guard Clause)
+}
+```
+
+위 코드에서 유의할 부분은 `보호 구문(Guard Clause)` 로 일반 케이스를 벗어난 부분에 대한 예외처리를 감싸주고 있습니다. 보호 구문이란, 실제 처리할 일반적으로 처리되는 if 분기문에 케이스가 잡히지않고 유효하지 않은 상황으로 분기되는 기타 특이사항에 대하여 처리하는 것을 뜻합니다. 위 경우는 "논외적으로 너무 비쌉니다" 부분이 보호절입니다.
+
+### 다형성(polymorphism) 기반의 디자인패턴
+
+위처럼 간단한 경우는 `보호 구문` 을 사용하면 충분하나, 객체지향의 특성상 주요 특징인 다형성을 활용하는 방법도 있습니다. 다형성의 대표 사례로 `전략 패턴(Strategy Pattern)` 이나 `널 객체 패턴(Null Object Pattern)` 을 사용할 수도 있습니다.
+
+> 전략패턴에 대한 자세한 이론은 [전략 패턴이란 무엇일까?](https://velog.io/@msung99/전략-패턴이란-무엇일까) 를 참고하자.
+
+널 객체 패턴에 대한 이론은 추후 자세히 학습하도록 하겠습니다.
 
 ---
 
-## Authorization Code 을 왜 써야할까? 필요성에 대해..
+## 원칙3. 모든 원시값과 문자열을 포장(Wrap) 한다.
 
-> 한줄요약 : URL에 직접 Access Token 을 전송받는 방식은 위험하니, 대신에 임시코드(Authorization Code) 를 발급받고 추후에 안전하게 발급받자!
+원시타입 데이터는 그 자체만으로 아무런 의미를 가지고 있지 않습니다. 원시값에 대한 의미를 변수명으로 추론하는 것도 한계가 있으므로, 실수를 범할 가능성이 커집니다.
 
-앞선 Authorization Code Grant 방식을 보며 느낀점은, 왜 Authorization Code 를 굳이 써야할까라는 의문이 들었습니다. 그냥 바로Access Token 을 발급해줘도 되지 않을까요?
+예를들어 아래와 같은 주문 도메인 클래스가 있다고 해봅시다. money 는 주문 가격정보를 뜻하며, distance 는 주문 배달거리를 뜻합니다.
 
-앞선 과정(5~6번)을 잘 떠올려봅시다. Redirect URI 를 통해서만 Authorization Code 를 발급받을 수 있다고했죠? 그런데 Access Token 을 발급받을때도 마찬가지로, **Redriect URI 를 통해서만 URL 안에 데이터를 실어서 전달받는 방법밖에 존재하지 않습니다**
+```java
+public class Order {
+  private int money;
+  private int distance;
 
-이렇게 민감한 정보는 URL에 실려서 오면 정말 위험하겠죠? 따라서 Authorization Code 를 통해 우선 덜 민감한 정보를 URL로 발급받고, 추후 안전한 방법으로 Access Token 을 발급받는 것입니다.
+  public Order(int money, int distance){
+    this.money = money;
+    this.distance = distance;
+  }
+  // ...
+}
+```
+
+그리고 아래와 같이 주문정보 객체가 생성된다고 해봅시다. 주문가격은 30만원이며, 배달거리는 1km 를 뜻합니다.
+
+```java
+Order order = new Order(300000, 1);
+```
+
+하지만 개발자가 실수로 로직을 잘못 설계하여 파라미터의 순서를 잘못 고려하여 값을 주입헀다고 해봅시다. 아래 객체가 뜻하는것은 가격이 1원이며, 배달거리는무려 300,000km 를 뜻하게됩니다.
+
+```java
+Order order = new Order(1, 300000);
+```
+
+### 원시타입에 대한 집착
+
+위와 같은 실수를 범하게되는 주 원인은 무엇일까요? 우선 money 와 distance 는 int 라는 동일한 원시타입으로 표현됩니다. 따라서 이 필드들을 구분할 수 있는것은 오로지 변수명에만 의존하게 됩니다. 비슷한 이유로, 생성자의 파라미터 순서에만 의존하여 필드주입을 시도합니다. 이렇게 **도메인을 표현시 원시타입만을 사용하여 표현하는 것을 "원시 타입에 대한 집착(Primitive Obession) 안티패턴"** 이라고 합니다.
+
+### 원사타입을 레핑하기
+
+![](https://velog.velcdn.com/images/msung99/post/03fc0315-df39-4f4e-9661-a2dfde148b2f/image.png)
+
+위 코드를 개선하면 아래와 같습니다. 원시값을 도메인 클래스로 감싸서 `VO(Value Object)` 로써 표현했고, 이로써 원시값에 정확한 의미가 부여되었습니다. 기존의 Money, Distance 와 관련된 비즈니스 검증 및 간단한 로직을 모두 Order 에서 도맡에 수행했겠지만, 이 무거운 역할과 책임을 Money, Distance 에게 적절히 분배했습니다.
+
+```java
+public class Order {
+  private final Money money;
+  private final Distance distance;
+
+  public Order(final Money money, final Distance distance){
+    this.money = money;
+    this.distance = distance;
+  }
+  // ...
+}
+
+public class Money {
+  private int money;
+
+  public Money(int money){
+    validator(money);
+    this.money = money;
+  }
+  // ...
+}
+
+public class Distance {
+  private int distance;
+
+  public Distance(int distance){
+    validator(distance);
+    this.distance = distance;
+  }
+  // ...
+}
+```
+
+이 원칙3 은 추후 설명할 `원칙8. 일급 컬렉션을 사용하기` 와도 매우 유사한 원리와 규칙입니다.
+
+---
+
+## 원칙4. 한 줄에 점을 하나만 찍는다.
+
+저도 자주 실수를 범했던 문제로, `getter` 메소드에 점을 2개이상 사용하여 객체 멤버에 접근했었습니다. 앞선 Order 클래스에 대한 금액 Money 를 조회하고 싶을때, 아래와 같이 조회할 수 있을겁니다.
+
+```java
+if(order.getMoney().getValue() > 1000000){
+  throw new IllegalArgumentException("백만원 이상의 주문가격은 허용되지 않습니다.");
+}
+```
+
+위 코드의 문제점은 무엇일까요? 바로 **한줄에 점이 2개이상 찍이면서 결함도가 높아졌다는 것입니다.** 위 Order 클래스에 대한 로직은 Order 뿐 아니라 Money 에 대한 의존성도 동시에 갖게 되었습니다.
+
+### 디미터 법칙(Demeter Law)
+
+> 디미터 법칙(Demeter Law) : "낯선 이와 대화하지 말고, 친구하고만 대화하라"
+
+이 원칙4 는 디미터 법칙은 쉽게 풀어썼다고 보면 됩니다. **즉, 자신 소유의 객체, 자신이 생성한 객체, 그리고 누군가 준(파라미터로) 객체에만 메시지를 보내야함을 의미합니다.** 그렇지 않을경우, 다른 객체에 너무 깊숙하게 관여하게 되는것이며(과한 의존성) 이는 캡슐화를 어기는것이기도 합니다.
+
+쉽게 말하자면 **객체간의 의존성이 그래프 형태를 띄고있을때, 한 객체에서 객체 그래프를 따라가서 멀리 떨어진 객체에게 메세지를 보내는 설계를 피하라는 것입니다.** 이는 객체간의 결함도를 높이는 행위이기 때문이죠.
+
+위 코드는 아래와 같이 개선할 수 있습니다.
+
+```java
+if(order.isOverFlowMoney()){
+  throw new IllegalArgumentException("백만원 이상의 주문가격은 허용되지 않습니다.");
+}
+
+class Order {
+  private Money money;
+  // ...
+  public boolean isOverFlowMoney(){
+     return money.getValue() > 1000000;
+  }
+}
+```
+
+점을 하나만 사용하여 코드를 개선했습니다. Order 의 Money 의 메소드를 호출하는 것이 아니라, Order 에게 직접 질문을 던지는 방식으로 개선되었습니다. 이로써 Order 는 자신이 가지고 있는 객체를 적절히 활용하여 더 능동적으로 행위를 수행하게 되었습니다.
+
+### 디미터 법칙을 적용하지 않는 경우
+
+여기서 `스트림(stream)` 처럼 메소드 체이닝(chaining) 하는 경우는 점을 여러번 사용해도 이미 디미터 법칙을 위반하지 않습니다. 또 `DTO` 의 경우 내부 구조를 외부에 유출하는 것을 목적으로 설계되기 떄문에 디미터 법칙을 특별히 적용하지 않습니다.
+
+---
+
+## 원칙5. 줄여쓰지 않는다.
+
+메소드, 클래스등에 대한 이름을 과도하게 줄인다면 되려 코드의 가독성을 저해합니다. 무조건 짧다고 좋은것이 아니죠.
+
+축약하고 싶은 욕구가 생기는 이유는 이름이 길기 때문입니다. 이름이 긴 이유는 해당 클래스, 메소드가 혼자 너무 많은 일을 수행하기 때문입니다. 만약 그게 클래스라면 `SRP(단일 책임 원칙)` 을 위반하고 있을 가능성이 큽니다.
+
+1~2단어 정도로 구성된 경우엔 축약하는 것이 권장되며, 문맥이 중복되는 경우 과감히 이름을 축약합시다. 예를들어 Order 클래스의 orderInfo 라는 메소드가 있다면, info 로 이름을 개선할 수 있을겁니다.
 
 ---
 
 ## 마치며
 
-지금까지 0AUth2.0 이란 무엇인지 이론적인 부분을 중점으로 설명드려봤습니다. 이것저것 여러 타 블로깅을 많이 참고헀었는데, 명확하게 설명해주는 블로깅은 거의 없어서 많이 애먹었던 것 같네요.
+지금껏 9가지의 원칙중에 5가지에 대해 살펴봤습니다. 다음번엔 나머지 4가지 원칙에 대하여 학습해보고자 합니다.
 
-그래서 어떻게 0Auth 의 메커니즘 유기적으로 설명하는데 집중한 포스팅이였던 것 같습니다! 😁 제 포스팅을 보시는 분들이 저처럼 해매지 않았으면 하는 바람이기 때문입니다 ㅎㅎ
+---
 
-이번 포스팅이 0Auth 를 처음 학습하시는 분들에게 도움이 되었으면 하네요. 다음 포스팅으로는 구글 소셜 로그인을 어떻게 SpringBoot 에서 구현 가능한지를 다루어볼까 예정중입니다.
+## 더 학습해볼 키워드
+
+- 널 객체 패턴(Null Object Pattern)
 
 ---
 
 ## 참고
 
-[auth0 docuement](https://auth0.com/docs/)
-[위키피디아 OAuth](https://ko.wikipedia.org/wiki/OAuth)
-[[OAuth2.0] 애플리케이션 등록하기 by 페이스북
-](https://minholee93.tistory.com/entry/OAuth20-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%EB%93%B1%EB%A1%9D%ED%95%98%EA%B8%B0)https://blog.naver.com/mds_datasecurity/222182943542
-https://benohead.com/
-[0Auth - 구글 소셜로그인 기능 구현
-](https://velog.io/@usreon/google-%EC%86%8C%EC%85%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%82%BD%EC%A7%88-%EA%B3%BC%EC%A0%95)[Grace's Tech Blog : Authentication - OAuth2.0](https://libertegrace.tistory.com/entry/40-Authentication-OAuth-20?category=869766)
-
-```
-
-```
+- https://hudi.blog/thoughtworks-anthology-object-calisthenics/
+- https://jamie95.tistory.com/99
+- https://blogshine.tistory.com/241
