@@ -20,10 +20,11 @@ const PageNavigatorStyle = styled.header`
   width: 100%;
   font-size: 2rem;
   font-weight: bold;
-  opacity: 0.9;
   margin-top: 0.8rem;
   padding-bottom: 10px;
   border-bottom: 1px solid #282828;
+  background-color: 282828;
+  opacity: 0.9;
 `
 //   border-bottom: 1px solid gray;
 

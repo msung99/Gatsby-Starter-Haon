@@ -46,9 +46,11 @@ const PostContent = styled.div`
   }
 
   hr {
-    height: 0.25px;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    height: 1px;
+    border: 0;
+    margin-top: 70px;
+    margin-bottom: 70px;
+    background-color: gray;
   }
 
   a {
