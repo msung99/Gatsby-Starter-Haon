@@ -40,7 +40,8 @@ const PostContent = styled.div`
     padding-left: 20px;
     padding-right: 20px;
     margin-bottom: 40px;
-    border-left: 10px solid #484848;
+    margin-top: 40px;
+    border-left: 6px solid #484848;
     font-size: 1.15rem;
   }
 
@@ -55,15 +56,28 @@ const PostContent = styled.div`
   }
 
   img {
+    width: 100%;
+    height: 100%;
     object-fit: fill;
   }
-}
+
+  li {
+    line-height: 180%; 
+  }
 
   .gatsby-highlight {
     font-size: 14px;
   }
-
-  .
+  
+  .language-text {
+    background-color: #686868;
+    padding: -10px;
+    font-size: 14px;
+    color: white;
+    width: 100%;
+    height: 100%;
+  }
+}
 `
 
 export default PostContent
