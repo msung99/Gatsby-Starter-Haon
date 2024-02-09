@@ -26,6 +26,10 @@ const PostContent = styled.div`
     font-size: 17px;
     color: white;
   }
+
+  .gatsby-highlight {
+    font-size: 14px;
+  }
 `
 
 export default PostContent
