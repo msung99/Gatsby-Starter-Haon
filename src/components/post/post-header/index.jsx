@@ -17,28 +17,23 @@ const PostHeader = ({title, date, author}) => {
 }
 
 const PostMargin = styled.div`
+  color: #fff;
 `
-//   color: #fff;
 
 const PostTitle = styled.h1`
+  font-size: 38px;
 `
-//   font-size: 40px;
 
 const PostInformation = styled.div`
-`
-/*
   font-size: 18px;
   font-weight: 250;
   color: gray;
   padding-bottom: 50px;
   border-bottom: 1px solid #626262; 
-*/
+`
 
 const PostAuthor = styled.span`
-`
-/*
   font-weight: 800;
   color: #fff;
-*/
-
+`
 export default PostHeader

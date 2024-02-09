@@ -2,6 +2,7 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import Post from "../components/post/post-component"
 import PageLayout from "../components/layout/page-component";
+import PostContent from "../components/post/post-content";
 
 export default ({ data, location }) => {
   const {previous, next} = data; 
@@ -17,7 +18,9 @@ export default ({ data, location }) => {
           date={date}
           author={author}
         />
-        <section dangerouslySetInnerHTML={{ __html: post.html }} itemProp="postContent"/>
+        <PostContent>
+          <section dangerouslySetInnerHTML={{ __html: post.html }} itemProp="postContent"/>
+        </PostContent>
       </Post>
     </PageLayout>
   )

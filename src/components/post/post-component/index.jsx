@@ -9,6 +9,4 @@ const Post = styled.section`
 Post.Header = PostHeader
 Post.Content = PostContent
 
-
-
 export default Post
