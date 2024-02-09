@@ -5,7 +5,8 @@ import PageFooter from "../page-footer";
 import PageNavigator from "../page-navigator";
 
 const PageLayoutStyle = styled.div`
-  background-color: black;
+  background-color: #1d1d1d;
+  width: 100%;
 `
 
 const PageLayout = ({ children }) => {
