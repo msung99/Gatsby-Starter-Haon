@@ -48,8 +48,9 @@ const PostTitle = styled.h1`
 
 const Excerpt = styled.p`
   margin-bottom: 32px;
-  font-size: 18px;
+  font-size: 17px;
   color: #f8f8ff;
+  line-height: 130%;
 `
 
 const PostDate = styled.p`
