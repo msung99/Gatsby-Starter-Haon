@@ -1,4 +1,5 @@
 const { createFilePath } = require(`gatsby-source-filesystem`)
+const kebabCase = require(`lodash.kebabcase`)
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
@@ -15,6 +16,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           id
           fields {
             slug
+          }
+          frontmatter {
+            tags
           }
         }
       }
@@ -45,8 +49,28 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           nextPostId,
         },
       })
+
+      let tags = new Set()
+      // get tags from post
+      if (post.frontmatter.tags) {
+           post.frontmatter.tags.forEach((tag) => {
+             tags.add(tag)
+           })
+         }
     })
   }
+
+   // 5. create tag pages
+   const tagTemplate = path.resolve("src/templates/tags.js")
+   tags.forEach(tag => {
+     createPage({
+       path: `/tags/${(tag)}/`,
+       component: tagTemplate,
+       context: {
+         tag,
+       },
+     })
+   })
 }
 
 exports.onCreateNode = ({ node, actions, getNode }) => {

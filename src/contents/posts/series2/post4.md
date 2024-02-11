@@ -2,6 +2,11 @@
 title: 소트웍스 엔솔로지의 객체치향 생활체조 원칙 전반부
 description: 객체지향 생활체조 원칙의 전반부를 알아보자!
 date: "2024-01-04"
+tags:
+  - Dao
+  - Legacy
+  - JDBC
+  - Tag Example
 ---
 
 ## 학습배경

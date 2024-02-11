@@ -2,6 +2,11 @@
 title: MySQL 8.0 데이터베이스 파티셔닝(Partitioning) 과 샤딩(Sharding)
 description: 파티셔닝(Partitioning) 과 샤딩(Sharding) 을 활용한 고가용성(High Availability) 를 어떻게 확보하는가?
 date: "2024-01-06"
+tags:
+  - Dao
+  - Legacy
+  - JDBC
+  - Tag Example
 ---
 
 # 가장 큰 타이틀이다.

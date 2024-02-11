@@ -2,13 +2,16 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import PageLayout from  "../components/layout/page-component"
 import PostList from "../components/postlist"
+import TagList from "../components/taglist"
 
 const PostListTemplate = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const posts = data.allMarkdownRemark.nodes
+  const tags = data.allMarkdownRemark.group
   
   return (
     <PageLayout>
+      <TagList tags={tags}/>
       <PostList posts={posts}></PostList>      
     </PageLayout>
   )
@@ -33,7 +36,11 @@ export const pageQuery = graphql`
           title
           description
           date
+          tags
         }
+      }
+      group(field: frontmatter___tags) {
+        fieldValue
       }
     }
   }
