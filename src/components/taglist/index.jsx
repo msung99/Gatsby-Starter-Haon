@@ -1,10 +1,11 @@
 import React from "react"
 import kebabCase from "lodash.kebabcase"
 import { Link } from "gatsby";
+import styled from "styled-components";
 
 const TagList = ({ tags }) => {
     return (
-        <div className="tags">
+        <TagListStyle>
             <ul>
                 {tags.map(tag => (
                     <li key={kebabCase(tag.fieldValue)}>
@@ -14,9 +15,14 @@ const TagList = ({ tags }) => {
                     </li>
                 ))}
             </ul>
-        </div>
+        </TagListStyle>
     )
 }
+
+const TagListStyle = styled.aside`
+  float: left;
+  position: fixed;
+`
 
 export default TagList;
 
