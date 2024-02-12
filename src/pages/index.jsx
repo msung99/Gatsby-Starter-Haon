@@ -2,7 +2,7 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import PageLayout from  "../components/layout/page-component"
 import PostList from "../components/postlist"
-import TagList from "../components/taglist"
+import TagList from "../components/side-taglist"
 
 const PostListTemplate = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
@@ -41,6 +41,7 @@ export const pageQuery = graphql`
       }
       group(field: frontmatter___tags) {
         fieldValue
+        totalCount
       }
     }
   }

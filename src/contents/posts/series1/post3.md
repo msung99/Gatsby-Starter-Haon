@@ -7,6 +7,8 @@ tags:
   - Legacy
   - JDBC
   - Tag Example
+  - connection
+  - interface
 ---
 
 > 이것은 인용문이다.

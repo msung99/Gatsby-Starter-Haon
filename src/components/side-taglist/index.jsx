@@ -7,12 +7,13 @@ const TagList = ({ tags }) => {
     return (
         <TagListStyle>
             <TagListTitle>Tag List</TagListTitle>
+            <SplitLine/>
             <div>
                 {tags.map(tag => (
                     <TagStyle>
                         <span key={kebabCase(tag.fieldValue)}>
                             <Link style={{ textDecoration: "none", color: "white"}} to={`/tags/${kebabCase(tag.fieldValue)} `}>
-                                {kebabCase(tag.fieldValue)}
+                                {kebabCase(tag.fieldValue)} <TagCountStyle>({tag.totalCount})</TagCountStyle>
                             </Link>
                         </span>
                     </TagStyle>
@@ -27,14 +28,19 @@ const TagListStyle = styled.aside`
   font-size: 16px;
   margin-left: 50px;
   line-height: 30px;
-  width: 15%;
+  width: 20%;
 
   @media(max-width: 900px) {
     display: none;
   }
 `
 
+const SplitLine = styled.div`
+  
+`
+
 const TagListTitle = styled.h3`
+  font-size: 20px;
   color: gray;
 `
 
@@ -48,12 +54,10 @@ const TagStyle = styled.div`
   border-radius: 20px;
   border: 2px solid gray;
   margin-right: 5px;
-  max-width: 150px;
-  max-height: 30px;
-  
-  text-overflow: ellipsis;
-  overflow:hidden;
-  white-space: nowrap;
+`
+
+const TagCountStyle = styled.span`
+  color: gray;
 `
 
 // border-radius: 20px;
