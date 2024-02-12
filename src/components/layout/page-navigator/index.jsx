@@ -31,7 +31,7 @@ const PageNavigatorStyle = styled.header`
 const PageNavigatorTitle = styled.div`
   font-size: 28px;
   margin-left: 30px;
-  color: white;
+  color: white; 
 `
 
 export default PageNavigator

@@ -8,6 +8,7 @@ tags:
   - JDBC
   - Tag Example
   - hi
+  - this is so longtest test test test tags~tags
 ---
 
 > [JDBC 라이브러리 구현하기]() 를 진행해보면서, 학습한 내용을 정리했다.
