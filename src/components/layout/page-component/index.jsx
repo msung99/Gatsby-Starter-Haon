@@ -9,6 +9,8 @@ const PageLayoutStyle = styled.div`
   width: 100%;
 `
 
+
+
 const PageLayout = ({ children }) => {
   return (
     <PageLayoutStyle>

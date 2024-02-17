@@ -3,6 +3,7 @@ import { Link, graphql } from "gatsby"
 import PageLayout from  "../components/layout/page-component"
 import PostList from "../components/postlist"
 import TagList from "../components/side-taglist"
+import Seo from "../components/seo"
 
 const PostListTemplate = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
@@ -11,6 +12,7 @@ const PostListTemplate = ({ data, location }) => {
   
   return (
     <PageLayout>
+      <Seo></Seo>
       <TagList tags={tags}/>
       <PostList posts={posts}></PostList>      
     </PageLayout>

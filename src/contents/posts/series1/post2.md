@@ -9,6 +9,26 @@ tags:
   - Tag Example
   - hi2
   - connection
+  - connection1
+  - connection2
+  - connection3
+  - connection4
+  - connection5
+  - connection6
+  - connection7
+  - connection8
+  - connection9
+  - connection-1
+  - connection-2
+  - connection-3
+  - connection-4
+  - connection-5
+  - connection-6
+  - connection-
+  - connection-
+  - connection-
+  - connection-
+  - connection-
 ---
 
 지난 프론트 컨트롤러 구현에 이어서, 스프링부트 애플리케이션을 실행하기 까지의 전 과정에 대해 다루어보고자 한다. 또한 한 단계씩 거쳐가며 애플리케이션 로직을 리팩토링 해보겠다.
