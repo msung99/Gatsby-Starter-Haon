@@ -43,6 +43,7 @@ const PostContent = styled.div`
     margin-top: 40px;
     border-left: 6px solid #484848;
     font-size: 1.15rem;
+    color: white;
   }
 
   hr {
@@ -65,6 +66,7 @@ const PostContent = styled.div`
 
   li {
     line-height: 180%; 
+    color: white;
   }
 
   .gatsby-highlight {
