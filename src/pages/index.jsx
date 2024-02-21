@@ -4,6 +4,7 @@ import PageLayout from  "../components/layout/page-component"
 import PostList from "../components/postlist"
 import TagList from "../components/side-taglist"
 import Seo from "../components/seo"
+import SideMenuBar from "../components/side-menu-bar"
 
 const PostListTemplate = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
@@ -12,7 +13,7 @@ const PostListTemplate = ({ data, location }) => {
   
   return (
     <PageLayout>
-      <
+      <SideMenuBar/>
       <PostList posts={posts}></PostList>
     </PageLayout>
   )
