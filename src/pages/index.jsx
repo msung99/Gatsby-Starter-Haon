@@ -12,8 +12,6 @@ const PostListTemplate = ({ data, location }) => {
   
   return (
     <PageLayout>
-      <Seo></Seo>
-      <TagList tags={tags}/>
       <PostList posts={posts}></PostList>      
     </PageLayout>
   )
