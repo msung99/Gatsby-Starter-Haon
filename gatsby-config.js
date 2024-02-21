@@ -9,10 +9,11 @@
  */
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Haon Blog`,
+    title: `Haon Blog`,
     description: `게츠비를 활용한 기술 블로그입니다.`,
     author: `Haon`,
-    siteUrl: `https://github.com/msung99/Gatsby-Starter-Haon`,
+    siteUrl: `http://localhost:8000`,
+    onImage: `/og-image.png`
   },
   plugins: [
     `gatsby-plugin-image`,

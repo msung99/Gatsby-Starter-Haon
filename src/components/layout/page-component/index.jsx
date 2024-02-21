@@ -5,10 +5,10 @@ import PageFooter from "../page-footer";
 import PageNavigator from "../page-navigator";
 
 const PageLayoutStyle = styled.div`
-  background-color: #1d1d1d;
+  background-color: #191919;
   width: 100%;
 `
-
+// #1d1d1d
 
 
 const PageLayout = ({ children }) => {
