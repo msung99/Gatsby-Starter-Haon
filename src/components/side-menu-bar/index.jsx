@@ -7,39 +7,53 @@ import { GoComment } from "react-icons/go";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { MdOutlineBookmarks } from "react-icons/md";
 import { GiBlackBook } from "react-icons/gi";
-
+import { Link } from "gatsby";
 
 const SideMenuBar = () => {
     return (
         <SideMenuBarStyle>
-            <SideMenu>
-                <IoHomeOutline className = "icon" size = "30"/>
-                <MenuText>Home</MenuText>
-            </SideMenu>
-            <SideMenu>
-                <IoIosSearch className = "icon" size = "30"/>
-                <MenuText>Search</MenuText>
-            </SideMenu>
-            <SideMenu>
-                <MdOutlineDarkMode className = "icon" size = "30"/>
-                <MenuText>Dark/Light Mode</MenuText>
-            </SideMenu>
-            <SideMenu>
-                <MdOutlineBookmarks className = "icon" size = "30"/>
-                <MenuText>Tags</MenuText>
-            </SideMenu>
-            <SideMenu>
-                <GiBlackBook className = "icon" size = "30"/>
-                <MenuText>Series</MenuText>
-            </SideMenu>
-            <SideMenu>
-                <GoPeople className = "icon" size = "30"/>
-                <MenuText>About</MenuText>
-            </SideMenu>
-            <SideMenu>
-                <GoComment className = "icon" size = "30"/>
-                <MenuText>Community</MenuText>
-            </SideMenu>
+            <Link style={{ textDecoration: "none"}} to = "/">
+                <SideMenu>
+                    <IoHomeOutline className = "icon" size = "30"/>
+                    <MenuText>Home</MenuText>
+                </SideMenu>
+            </Link>
+            <Link style={{ textDecoration: "none"}} to = "/search">
+                <SideMenu>
+                    <IoIosSearch className = "icon" size = "30"/>
+                    <MenuText>Search</MenuText>
+                </SideMenu>
+            </Link>
+            <Link style={{ textDecoration: "none"}} to = "/bright-mode">
+                <SideMenu>
+                    <MdOutlineDarkMode className = "icon" size = "30"/>
+                    <MenuText>Dark/Light Mode</MenuText>
+                </SideMenu>
+            </Link>
+            <Link style={{ textDecoration: "none"}} to = "/tags">
+                <SideMenu>
+                    <MdOutlineBookmarks className = "icon" size = "30"/>
+                    <MenuText>Tags</MenuText>
+                </SideMenu>
+            </Link>
+            <Link style={{ textDecoration: "none"}} to = "/series">
+                <SideMenu>
+                    <GiBlackBook className = "icon" size = "30"/>
+                    <MenuText>Series</MenuText>
+                </SideMenu>
+            </Link>
+            <Link style={{ textDecoration: "none"}} to = "/about">
+                <SideMenu>
+                    <GoPeople className = "icon" size = "30"/>
+                    <MenuText>About</MenuText>
+                </SideMenu>
+            </Link>
+            <Link style={{ textDecoration: "none"}} to = "/community">
+                <SideMenu>
+                    <GoComment className = "icon" size = "30"/>
+                    <MenuText>Community</MenuText>
+                </SideMenu>
+            </Link>
         </SideMenuBarStyle>
     );
 }
@@ -50,7 +64,6 @@ const SideMenuBarStyle = styled.div`
   flex-direction: column;
   margin-left: 20px;
   margin-top: 40px;
-  padding-right: 10px;
   border-right: 1px solid gray;
   height: 100%;
 
@@ -62,7 +75,7 @@ const SideMenuBarStyle = styled.div`
 
 const SideMenu = styled.div`
   margin-top: 8px;
-  padding-right: 50px;
+  padding-right: 40px;
   color: white;
   font-size: 16px;
   display: flex;
@@ -76,8 +89,8 @@ const SideMenu = styled.div`
 `;
 
 const MenuText = styled.p`
-  margin-left: 15px;
-  font-size: 18px;
+  margin-left: 10px;
+  font-size: 17px;
 `
 
 export default SideMenuBar
