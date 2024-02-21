@@ -12,7 +12,8 @@ const PostListTemplate = ({ data, location }) => {
   
   return (
     <PageLayout>
-      <PostList posts={posts}></PostList>      
+      <
+      <PostList posts={posts}></PostList>
     </PageLayout>
   )
 }
