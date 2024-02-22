@@ -28,16 +28,17 @@ const ProfileStyle = styled.div`
   align-items: center;
   padding-bottom: 80px;
   border-bottom: 1px solid #282828; 
+  width: 70%;
 `
 
 const Text = styled.div`
-  margin-left: 20px;
+  margin-left: 30px;
 `
 
 const Author = styled.div`
   font-size: 30px;
   color: white;
-  padding-bottom: 6px;
+  padding-bottom: 8px;
 `
 
 const Description = styled.div`
@@ -46,7 +47,7 @@ const Description = styled.div`
 `
 
 const Image = styled.div`
-  background-image: url(http://localhost:8000/profile.png);
+  background-image: url(http://localhost:8000/profile2.jpeg);
   background-size: cover;
   background-position: center;
   width: 140px;

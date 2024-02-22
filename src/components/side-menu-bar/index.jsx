@@ -30,7 +30,9 @@ const MenuItem = ({ to, icon, text }) => (
   
 const SideMenuBar = () => (
   <SideMenuBarStyle>
-    <Title>Haon Blog</Title>
+    <Link to={"/"} style={{ textDecoration:'none'}}>
+      <Title>Haon Blog</Title>
+    </Link>
     <div>
       {menuItems.map((item, index) => (
         <MenuItem key={index} {...item} />
