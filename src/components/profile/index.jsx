@@ -26,6 +26,8 @@ const Profile = ({author, description, title, siteUrl}) => {
 const ProfileStyle = styled.div`
   display: flex;
   align-items: center;
+  padding-bottom: 80px;
+  border-bottom: 1px solid #282828; 
 `
 
 const Text = styled.div`
@@ -40,7 +42,7 @@ const Author = styled.div`
 
 const Description = styled.div`
   font-size: 16px;
-  color: gray;
+  color: #bababa;
 `
 
 const Image = styled.div`

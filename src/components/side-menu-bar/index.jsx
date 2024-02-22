@@ -44,6 +44,7 @@ const Title = styled.div`
   color: white;
   margin-top: 30px;
   margin-bottom: 50px;
+  font-family: GmarketSansTTFLight, sans-serif, Arial;
 `
 
 const SideMenuBarStyle = styled.div`
