@@ -15,11 +15,12 @@ const PostListTemplate = ({ data, location }) => {
 
   const posts = data.allMarkdownRemark.nodes
   const tags = data.allMarkdownRemark.group
+  const tagsCount = tags.length
   
   return (
     <PageLayout>
       <Profile author={author} description={description} title={title} siteUrl={siteUrl}/>
-      <TagList tags={tags}/>
+      <TagList tags={tags} allCount={tagsCount}/>
       <PostList posts={posts}></PostList>
     </PageLayout>
   )

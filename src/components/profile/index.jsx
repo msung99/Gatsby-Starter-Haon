@@ -26,7 +26,7 @@ const Profile = ({author, description, title, siteUrl}) => {
 const ProfileStyle = styled.div`
   display: flex;
   align-items: center;
-  padding-bottom: 80px;
+  padding-bottom: 40px;
   width: 70%;
 `
 
