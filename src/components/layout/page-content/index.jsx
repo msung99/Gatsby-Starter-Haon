@@ -6,8 +6,8 @@ const PageContent = ({contents}) => {
 }
 
 const PageContentStyle = styled.div`
-  margin: 0 auto;
   padding-top: 80px;
+  padding-left: 370px;
 `
 
 export default PageContent

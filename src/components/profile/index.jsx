@@ -15,10 +15,10 @@ const Profile = ({author, description, title, siteUrl}) => {
     return (
       <ProfileStyle>
           <Image siteUrl={siteUrl}/>
-          <div>
+          <Text>
               <Author>{author}</Author>
               <Description>{description}</Description>
-          </div>
+          </Text>
         </ProfileStyle>
     );
 }
@@ -28,24 +28,27 @@ const ProfileStyle = styled.div`
   align-items: center;
 `
 
+const Text = styled.div`
+  margin-left: 20px;
+`
+
 const Author = styled.div`
+  font-size: 30px;
+  color: white;
+  padding-bottom: 6px;
 `
 
 const Description = styled.div`
+  font-size: 16px;
+  color: gray;
 `
 
 const Image = styled.div`
-  background-image: ${siteUrl => {
-    if (siteUrl === null || siteUrl === '' || siteUrl === undefined) {
-      return `url(http://localhost:8000/profile.png)`;
-    } else {
-      return `url({${siteUrl}/profile.png)`;
-    }
-  }};
+  background-image: url(http://localhost:8000/profile.png);
   background-size: cover;
   background-position: center;
-  width: 160px;
-  height: 160px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   border-style: solid;
   border-width: 1px;

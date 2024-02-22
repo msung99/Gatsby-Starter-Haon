@@ -19,7 +19,6 @@ const PostListTemplate = ({ data, location }) => {
   return (
     <PageLayout>
       <Profile author={author} description={description} title={title} siteUrl={siteUrl}/>
-      <SideMenuBar/>
       <PostList posts={posts}></PostList>
     </PageLayout>
   )

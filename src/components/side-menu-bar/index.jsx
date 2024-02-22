@@ -10,41 +10,47 @@ import { GiBlackBook } from "react-icons/gi";
 import { Link } from "gatsby";
 
 const menuItems = [
-    { to: '/', icon: <IoHomeOutline className="icon" size="30" />, text: 'Home' },
-    { to: '/search', icon: <IoIosSearch className="icon" size="30" />, text: 'Search' },
-    { to: '/bright-mode', icon: <MdOutlineDarkMode className="icon" size="30" />, text: 'Dark/Light Mode' },
-    { to: '/tags', icon: <MdOutlineBookmarks className="icon" size="30" />, text: 'Tags' },
-    { to: '/series', icon: <GiBlackBook className="icon" size="30" />, text: 'Series' },
-    { to: '/about', icon: <GoPeople className="icon" size="30" />, text: 'About' },
-    { to: '/community', icon: <GoComment className="icon" size="30" />, text: 'Community' },
-  ];
+  { to: '/', icon: <IoHomeOutline className="icon" size="30" />, text: 'Home' },
+  { to: '/search', icon: <IoIosSearch className="icon" size="30" />, text: 'Search' },
+  { to: '/bright-mode', icon: <MdOutlineDarkMode className="icon" size="30" />, text: 'Dark/Light Mode' },
+  { to: '/tags', icon: <MdOutlineBookmarks className="icon" size="30" />, text: 'Tags' },
+  { to: '/series', icon: <GiBlackBook className="icon" size="30" />, text: 'Series' },
+  { to: '/about', icon: <GoPeople className="icon" size="30" />, text: 'About' },
+  { to: '/community', icon: <GoComment className="icon" size="30" />, text: 'Community' },
+];
   
-  const MenuItem = ({ to, icon, text }) => (
-    <Link to={to} style={{ textDecoration: 'none' }}>
-      <SideMenu>
-        {icon}
-        <MenuText>{text}</MenuText>
-      </SideMenu>
+const MenuItem = ({ to, icon, text }) => (
+  <Link to={to} style={{ textDecoration: 'none' }}>
+    <SideMenu>
+      {icon}
+      <MenuText>{text}</MenuText>
+    </SideMenu>
     </Link>
-  );
+);
   
-  const SideMenuBar = () => (
-    <SideMenuBarStyle>
+const SideMenuBar = () => (
+  <SideMenuBarStyle>
+    <Title>Haon Blog</Title>
+    <div>
       {menuItems.map((item, index) => (
         <MenuItem key={index} {...item} />
       ))}
-    </SideMenuBarStyle>
-  );
+    </div>
+  </SideMenuBarStyle>
+);
   
+const Title = styled.div`
+  font-size: 30px;
+  color: white;
+  margin-top: 30px;
+  margin-bottom: 50px;
+`
 
 const SideMenuBarStyle = styled.div`
   position: fixed;
-  display: flex;
-  flex-direction: column;  
-  margin-left: 20px;
-  margin-top: 40px;
-  border-right: 1px solid gray;
   height: 100%;
+  margin-left: 20px;
+  border-right: 1px solid gray;
   padding-right: 10px;
 
   @media (max-width: 1100px) {

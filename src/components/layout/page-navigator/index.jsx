@@ -2,8 +2,20 @@ import React from "react"
 import styled from "styled-components"
 import { useState, useEffect } from "react";
 import { Link } from "gatsby";
+import SideMenuBar from "../../side-menu-bar";
 
 const PageNavigator = () => {  
+  return (
+    <PageNavigatorStyle>
+     <SideMenuBar/>
+  	</PageNavigatorStyle>
+  )
+}
+
+const PageNavigatorStyle = styled.div`
+`
+
+/* const PageNavigator = () => {  
   return (
     <PageNavigatorStyle>
       <Link style={{ textDecoration: "none"}} to = "/">
@@ -13,8 +25,9 @@ const PageNavigator = () => {
       </Link>
   	</PageNavigatorStyle>
   )
-}
+} */
 
+/*
 const PageNavigatorStyle = styled.header`
   position: fixed;
   width: 100%;
@@ -32,6 +45,6 @@ const PageNavigatorTitle = styled.div`
   font-size: 28px;
   margin-left: 30px;
   color: white; 
-`
+*/
 
 export default PageNavigator
