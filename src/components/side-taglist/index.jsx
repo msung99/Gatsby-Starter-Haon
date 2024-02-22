@@ -24,10 +24,9 @@ const TagList = ({ tags }) => {
 }
 
 const TagListStyle = styled.aside`
-  position: fixed;
   font-size: 16px;
   margin-left: 50px;
-  line-height: 30px;
+  line-height: 35px;
   width: 20%;
 
   @media(max-width: 900px) {

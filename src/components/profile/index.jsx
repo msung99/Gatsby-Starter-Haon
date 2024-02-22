@@ -27,7 +27,6 @@ const ProfileStyle = styled.div`
   display: flex;
   align-items: center;
   padding-bottom: 80px;
-  border-bottom: 1px solid #282828; 
   width: 70%;
 `
 
@@ -48,14 +47,13 @@ const Description = styled.div`
 
 const Image = styled.div`
   background-image: url(http://localhost:8000/profile2.jpeg);
-  background-size: cover;
-  background-position: center;
   width: 140px;
   height: 140px;
-  border-radius: 50%;
-  border-style: solid;
-  border-width: 1px;
+  border: 1px solid transparent;
   border-color: white;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
 `;
 
 

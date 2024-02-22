@@ -19,6 +19,7 @@ const PostListTemplate = ({ data, location }) => {
   return (
     <PageLayout>
       <Profile author={author} description={description} title={title} siteUrl={siteUrl}/>
+      <TagList tags={tags}/>
       <PostList posts={posts}></PostList>
     </PageLayout>
   )
