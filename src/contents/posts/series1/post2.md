@@ -29,6 +29,7 @@ tags:
   - connection-
   - connection-
   - connection-
+series: My Series1
 ---
 
 지난 프론트 컨트롤러 구현에 이어서, 스프링부트 애플리케이션을 실행하기 까지의 전 과정에 대해 다루어보고자 한다. 또한 한 단계씩 거쳐가며 애플리케이션 로직을 리팩토링 해보겠다.

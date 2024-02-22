@@ -11,6 +11,7 @@ tags:
   - connection
   - 블로그 분석
   - 컴퓨터 공학
+series: My Series1
 ---
 
 > [JDBC 라이브러리 구현하기]() 를 진행해보면서, 학습한 내용을 정리했다.

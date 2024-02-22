@@ -9,6 +9,7 @@ tags:
   - Tag Example
   - connection
   - interface
+series: My Series1
 ---
 
 > 이것은 인용문이다.

@@ -10,6 +10,7 @@ tags:
   - OOP
   - grafana
   - prometheus
+series: 시리즈2 모음집
 ---
 
 ## 학습배경
