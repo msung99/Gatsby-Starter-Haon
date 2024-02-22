@@ -12,6 +12,7 @@ const PostListTemplate = ({ data, location }) => {
   const description = data.site.siteMetadata.description
   const author = data.site.siteMetadata.author
   const siteUrl = data.site.siteMetadata.siteUrl
+  const keywords = data.site.siteMetadata.keywords
 
   const posts = data.allMarkdownRemark.nodes
   const tags = data.allMarkdownRemark.group
@@ -19,7 +20,7 @@ const PostListTemplate = ({ data, location }) => {
   
   return (
     <PageLayout>
-      <Profile author={author} description={description} title={title} siteUrl={siteUrl}/>
+      <Profile author={author} description={description} siteUrl={siteUrl} keywords = {keywords}/>
       <TagList tags={tags} allCount={tagsCount}/>
       <PostList posts={posts}></PostList>
     </PageLayout>
@@ -36,6 +37,7 @@ export const pageQuery = graphql`
         description
         author
         siteUrl
+        keywords
       }
     }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {

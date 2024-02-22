@@ -1,3 +1,5 @@
+import { Link } from "gatsby";
+import kebabCase from "lodash.kebabcase";
 import React from "react";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
@@ -11,17 +13,24 @@ import styled from "styled-components";
     onImage: `/og-image.png`
   },
 */
-const Profile = ({author, description, title, siteUrl}) => {
-    return (
-      <ProfileStyle>
-          <Image siteUrl={siteUrl}/>
-          <Text>
-              <Author>{author}</Author>
-              <Description>{description}</Description>
-          </Text>
-        </ProfileStyle>
-    );
-}
+const Profile = ({ author, description, siteUrl, keywords }) => {
+  return (
+    <ProfileStyle>
+      <Image siteUrl={siteUrl} />
+      <Text>
+        <Author>{author}</Author>
+        <Description>{description}</Description>
+        <KeyWordsStyle>
+          {keywords.map(keyword => (
+                      <KeyWordStyle key={kebabCase(keyword)}>
+                        {kebabCase(keyword)}
+                      </KeyWordStyle>
+          ))}
+      </KeyWordsStyle>
+      </Text>
+    </ProfileStyle>
+  );
+};
 
 const ProfileStyle = styled.div`
   display: flex;
@@ -43,6 +52,20 @@ const Author = styled.div`
 const Description = styled.div`
   font-size: 16px;
   color: #bababa;
+`
+
+const KeyWordsStyle = styled.div`
+  margin-top: 20px;
+`
+
+const KeyWordStyle = styled.span`
+  font-size: 17px;
+  color: white;
+  margin-right: 13px;
+  border-radius: 25px;
+  border: 1px solid white;
+  padding: 5px;
+  background-color: #2A2A28;
 `
 
 const Image = styled.div`

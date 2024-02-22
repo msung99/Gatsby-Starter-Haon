@@ -1,6 +1,7 @@
 import { Link } from "gatsby"
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
+import kebabCase from "lodash.kebabcase";
 
 const PostList = ({posts}) => { 
     const [postCount, setPostCount] = useState(10)
@@ -15,6 +16,7 @@ const PostList = ({posts}) => {
                const title = post.frontmatter.title || post.fields.slug
                const description = post.frontmatter.description
                const date = post.frontmatter.date;
+               const tags = post.frontmatter.tags;
                
                return (
                 <Link style={{ textDecoration: "none"}} to = {post.fields.slug}>
@@ -22,6 +24,11 @@ const PostList = ({posts}) => {
                       <PostTitle>{title}</PostTitle>
                       <Excerpt>{description}</Excerpt>
                       <PostDate>{date}</PostDate>
+                      {tags.map(tag => (
+                        <PostTag key={kebabCase(tag)}>
+                          {kebabCase(tag)}
+                        </PostTag>
+                      ))}
                   </PostStyle>
                 </Link>
             )
@@ -60,6 +67,9 @@ const PostDate = styled.p`
 
 const PostListStyle = styled.div`
   width: 70%;
+`
+
+const PostTag = styled.span`
 `
 
 export default PostList
