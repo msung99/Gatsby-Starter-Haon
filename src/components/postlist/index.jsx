@@ -2,6 +2,7 @@ import { Link } from "gatsby"
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import kebabCase from "lodash.kebabcase";
+import { FaTags } from "react-icons/fa";
 
 const PostList = ({posts}) => { 
     const [postCount, setPostCount] = useState(10)
@@ -24,11 +25,14 @@ const PostList = ({posts}) => {
                       <PostTitle>{title}</PostTitle>
                       <Excerpt>{description}</Excerpt>
                       <PostDate>{date}</PostDate>
-                      {tags.map(tag => (
-                        <PostTag key={kebabCase(tag)}>
-                          {kebabCase(tag)}
-                        </PostTag>
-                      ))}
+                      <PostTags>
+                        <FaTags className="icon" size="20" color = "white" margin-right = "20px"/>
+                        {tags.map(tag => (
+                          <PostTag key={kebabCase(tag)}>
+                            {kebabCase(tag)}
+                          </PostTag>
+                        ))}
+                      </PostTags>
                   </PostStyle>
                 </Link>
             )
@@ -69,7 +73,15 @@ const PostListStyle = styled.div`
   width: 70%;
 `
 
+const PostTags = styled.div`
+
+`
+
 const PostTag = styled.span`
+  color: white;
+  font-size: 18px;
+  margin: 10px;
+  padding: 10px;
 `
 
 export default PostList
