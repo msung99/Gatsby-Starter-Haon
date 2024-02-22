@@ -2,7 +2,6 @@ import React from "react"
 import styled from "styled-components";
 
 const PageFooterStyle = styled.footer` 
-  display: flex;
   position: fixed;
   margin-top: 3rem;
   padding: 2rem;

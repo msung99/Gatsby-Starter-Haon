@@ -59,8 +59,7 @@ const PostDate = styled.p`
 `
 
 const PostListStyle = styled.div`
-  width: 50%;
-  margin: 0 auto;
+  width: 70%;
 `
 
 export default PostList
