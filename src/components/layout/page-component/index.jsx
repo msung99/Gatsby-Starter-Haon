@@ -6,7 +6,9 @@ import PageNavigator from "../page-navigator";
 
 const PageLayoutStyle = styled.div`
   background-color: #191919;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 // #1d1d1d
 

@@ -28,7 +28,6 @@ const TagListStyle = styled.div`
   margin-left: 50px;
   line-height: 30px;
   display: flex;
-  width: 70%;
   margin-left: 0px;
   padding-bottom: 40px;
   border-bottom: 1px solid #282828;

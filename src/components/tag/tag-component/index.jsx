@@ -3,7 +3,6 @@ import TagsContent from "../tag-content"
 import TagsHeader from "../tag-header"
 
 const Tags = styled.section`
-  width: 65%;
 `
 
 Tags.Header = TagsHeader

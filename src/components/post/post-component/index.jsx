@@ -4,7 +4,7 @@ import PostHeader from "../post-header"
 import PostContent from "../post-content"
 
 const Post = styled.section`
-  width: 65%;
+  width: 700px;
 `
 
 Post.Header = PostHeader
