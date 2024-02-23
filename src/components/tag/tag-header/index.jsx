@@ -2,12 +2,18 @@ import styled from "styled-components";
 import React from "react";
 import kebabCase from "lodash.kebabcase";
 import { Link } from "gatsby";
+import { FaTags } from "react-icons/fa";
 
 const TagsHeader = ({tagName, tags }) => {
     return (
       <TagsHeaderStyle>
         <Title>#{tagName}</Title>
-        <RelatedDescription>Related Tags ({tags.length})</RelatedDescription>
+        <div style={{ display: "flex", alignItems: "center", marginBottom: "10px"}}>
+            <span style={{marginBottom: "2px"}}>
+                <FaTags className="icon" size="23" color="white"/>
+            </span>
+            <RelatedDescription>Related Tags ({tags.length})</RelatedDescription>
+        </div>
         <div>
             {tags.map((relatedTag) => (
             <Link style={{ textDecoration: "none" }} to={`/tags/${kebabCase(relatedTag)}`} key={relatedTag}>
@@ -40,6 +46,7 @@ const RelatedDescription = styled.h2`
   color: white;
   font-size: 20px;
   margin-bottom: 20px;
+  margin-left: 10px;
 `
 
 const Name = styled.span`
