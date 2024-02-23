@@ -4,9 +4,8 @@ import kebabCase from "lodash.kebabcase";
 import { Link } from "gatsby";
 
 const TagsHeader = ({tagName, tags }) => {
-  
     return (
-      <div>
+      <TagsHeaderStyle>
         <Title>#{tagName}</Title>
         <RelatedDescription>Related Tags ({tags.length})</RelatedDescription>
         <div>
@@ -18,10 +17,15 @@ const TagsHeader = ({tagName, tags }) => {
             </Link>
             ))}
         </div>
-      </div>
+      </TagsHeaderStyle>
     );
 };
 
+const TagsHeaderStyle = styled.div`
+  margin-bottom: 50px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid #282828;
+`
 
 const Title = styled.h1`
   color: white;
@@ -35,12 +39,6 @@ const Title = styled.h1`
 const RelatedDescription = styled.h2`
   color: white;
   font-size: 20px;
-  margin-bottom: 20px;
-`
-
-const PostDescription = styled.span`
-  color: white;
-  font-size: 18px;
   margin-bottom: 20px;
 `
 

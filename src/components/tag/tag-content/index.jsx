@@ -3,19 +3,21 @@ import PostList from "../../postlist";
 import styled from "styled-components";
 
 const TagsContent = ({posts, totalCount}) => {
-    const description = `${totalCount} post${totalCount === 1 ? "" : "s"} found`;
+    const tagDescription = `${totalCount} post${
+        totalCount === 1 ? "" : "s"} found.`
+
     return (
         <div>
-            <PostDescription>{description}</PostDescription>
+            <Title>{tagDescription}</Title>
             <PostList posts={posts}/>
         </div>
     )
 }
 
-const PostDescription = styled.span`
+const Title = styled.h1`
   color: white;
-  font-size: 18px;
-  margin-bottom: 20px;
+  font-size: 22px;
+  margin-bottom: 50px;
 `
 
 export default TagsContent
