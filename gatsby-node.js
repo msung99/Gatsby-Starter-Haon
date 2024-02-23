@@ -34,6 +34,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 
   const posts = result.data.allMarkdownRemark.nodes
+  let tags = new Set()
 
   if (posts.length > 0) {
     posts.forEach((post, index) => {
@@ -49,8 +50,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           nextPostId,
         },
       })
-
-      let tags = new Set()
       // get tags from post
       if (post.frontmatter.tags) {
            post.frontmatter.tags.forEach((tag) => {
@@ -61,10 +60,10 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 
    // 5. create tag pages
-   const tagTemplate = path.resolve("src/templates/tags.js")
+   const tagTemplate = require.resolve(`./src/templates/tags.jsx`)
    tags.forEach(tag => {
      createPage({
-       path: `/tags/${(tag)}/`,
+       path: `/tags/${kebabCase(tag)}/`,
        component: tagTemplate,
        context: {
          tag,
