@@ -5,7 +5,7 @@ import Tags from "../components/tag/tag-component"
 import PostList from "../components/postlist"
 
 const TagListTemplate = ({ pageContext, data, location }) => {
-  const tag = pageContext
+  const {tag} = pageContext
   const posts = data.allMarkdownRemark.nodes
   const totalCount = data.allMarkdownRemark.totalCount
 
