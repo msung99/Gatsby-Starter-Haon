@@ -19,6 +19,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           }
           frontmatter {
             tags
+            series
           }
         }
       }
@@ -35,6 +36,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const posts = result.data.allMarkdownRemark.nodes
   let tags = new Set()
+  let seriesList = new Set() // 3. set to store tags
 
   if (posts.length > 0) {
     posts.forEach((post, index) => {
@@ -55,7 +57,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
            post.frontmatter.tags.forEach((tag) => {
              tags.add(tag)
            })
-         }
+      }
+
+      if (post.frontmatter.series) {
+        const series = post.frontmatter.series;
+        seriesList.add(series);
+      }      
     })
   }
 
@@ -67,6 +74,17 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
        component: tagTemplate,
        context: {
          tag,
+       },
+     })
+   })
+
+   const seriesTemplate = require.resolve(`./src/templates/series.jsx`)
+   seriesList.forEach(series => {
+     createPage({
+       path: `/series/${kebabCase(series)}/`,
+       component: seriesTemplate,
+       context: {
+        series,
        },
      })
    })

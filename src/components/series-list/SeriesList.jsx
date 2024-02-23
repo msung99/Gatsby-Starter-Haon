@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-const SeriesList = ({series}) => {
+const SeriesList = ({seriesList, totalCount}) => {
     <div>
-        {series}
+        <div>
+            <h1>{seriesList}</h1>
+        </div>
     </div>
 }
 
