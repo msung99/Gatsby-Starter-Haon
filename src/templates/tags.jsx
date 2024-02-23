@@ -1,60 +1,61 @@
 import React from "react"
-
 import { Link, graphql } from "gatsby"
 import PageLayout from "../components/layout/page-component"
-import Seo from "../components/seo"
+import Tags from "../components/tag/tag-component"
+import PostList from "../components/postlist"
 
-const Tags = ({ pageContext, data, location }) => {
-  const { tag } = pageContext
-  const { edges, totalCount } = data.allMarkdownRemark
-  const siteTitle = data.site.siteMetadata.title
-  const tagHeader = `${totalCount} post${
-    totalCount === 1 ? "" : "s"
-  } tagged with "${tag}"`
+const TagListTemplate = ({ pageContext, data, location }) => {
+  const tag = pageContext
+  const posts = data.allMarkdownRemark.nodes
+  const totalCount = data.allMarkdownRemark.totalCount
 
   return (
-    <PageLayout location={location} title={siteTitle}>
-      <Seo title={tagHeader} />
-      <h1>{tagHeader}</h1>
-      <ul>
-        {edges.map(({ node }) => {
-          const { slug } = node.fields
-          const { title } = node.frontmatter
-          return (
-            <li key={slug}>
-              <Link to={slug}>{title}</Link>
-            </li>
-          )
-        })}
-      </ul>
-      <Link to="/tags">All tags</Link>
+    <PageLayout>
+      <Tags>
+        <Tags.Header
+          totalCount={totalCount}
+          tagName={tag}
+        />
+        <PostList posts={posts}/>
+        <Link to="/tags">All tags</Link>
+      </Tags>
     </PageLayout>
   )
 }
+/*
+<ul>
+            {posts.map(({ node }) => {
+            const { slug } = node.fields
+            const { title } = node.frontmatter
+            return (
+                <li key={slug}>
+                <Link to={slug}>{title}</Link>
+                </li>
+            )
+            })}
+        </ul>
+*/
 
-export default Tags
+export default TagListTemplate
 
 export const pageQuery = graphql`
   query($tag: String) {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     allMarkdownRemark(
       limit: 2000
-      sort: { fields: [frontmatter___date], order: ASC }
+      sort: { fields: [frontmatter___date], order: DESC }
       filter: { frontmatter: { tags: { in: [$tag] } } }
     ) {
       totalCount
-      edges {
-        node {
-          fields {
-            slug
-          }
-          frontmatter {
-            title
-          }
+      nodes {
+        excerpt(pruneLength: 500, truncate: true)
+        fields {
+          slug
+        }
+        frontmatter {
+          title
+          description
+          date
+          tags
         }
       }
     }
