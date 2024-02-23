@@ -22,19 +22,6 @@ const TagListTemplate = ({ pageContext, data, location }) => {
     </PageLayout>
   )
 }
-/*
-<ul>
-            {posts.map(({ node }) => {
-            const { slug } = node.fields
-            const { title } = node.frontmatter
-            return (
-                <li key={slug}>
-                <Link to={slug}>{title}</Link>
-                </li>
-            )
-            })}
-        </ul>
-*/
 
 export default TagListTemplate
 

@@ -70,7 +70,7 @@ const PostDate = styled.p`
 `
 
 const PostListStyle = styled.div`
-  width: 70%;
+  width: 700px;
 `
 
 const PostTags = styled.div`
