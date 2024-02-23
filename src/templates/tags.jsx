@@ -3,6 +3,7 @@ import { Link, graphql } from "gatsby"
 import PageLayout from "../components/layout/page-component"
 import Tags from "../components/tag/tag-component"
 import PostList from "../components/postlist"
+import TagsContent from "../components/tag/tag-content"
 
 const TagListTemplate = ({ pageContext, data, location }) => {
   const { tag } = pageContext;
@@ -17,11 +18,10 @@ const TagListTemplate = ({ pageContext, data, location }) => {
     <PageLayout>
       <Tags>
         <Tags.Header
-          totalCount={totalCount}
           tagName={currentTag}
           tags={tags}
         />
-        <PostList posts={posts}/>
+        <TagsContent totalCount={totalCount} posts={posts}/>
       </Tags>
     </PageLayout>
   );

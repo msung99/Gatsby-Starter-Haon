@@ -3,44 +3,45 @@ import React from "react";
 import kebabCase from "lodash.kebabcase";
 import { Link } from "gatsby";
 
-const TagsHeader = ({totalCount, tagName, tags}) => {
-    const tagDescription = `There are ${totalCount} post${
-        totalCount === 1 ? "" : "s"
-    } tagged with`
-
+const TagsHeader = ({tagName, tags }) => {
+  
     return (
+      <div>
+        <Title>#{tagName}</Title>
+        <RelatedDescription>Related Tags ({tags.length})</RelatedDescription>
         <div>
-            <Title>#{tagName}</Title>
-            <Description>
-                {tagDescription} <Name>#{tagName}</Name>
-            </Description>
-            <RelatedTags>
-                <Description>
-                    Related Tags
-                </Description>
-                {tags.map((relatedTag) => (
-                      <RelatedTag key={relatedTag}>
-                        {relatedTag}
-                      </RelatedTag>
-                ))}
-            </RelatedTags>
+            {tags.map((relatedTag) => (
+            <Link style={{ textDecoration: "none" }} to={`/tags/${kebabCase(relatedTag)}`} key={relatedTag}>
+                <RelatedTag>
+                    # {relatedTag}
+                </RelatedTag>
+            </Link>
+            ))}
         </div>
-    )
-}
+      </div>
+    );
+};
 
-const Title = styled.h2`
+
+const Title = styled.h1`
   color: white;
   background-color: #3C3A39;
   display: inline-block;
   padding: 5px;
   font-size: 30px;
-  margin-bottom: 1px;
+  margin-bottom: 10px;
 `
 
-const Description = styled.h3`
+const RelatedDescription = styled.h2`
+  color: white;
+  font-size: 20px;
+  margin-bottom: 20px;
+`
+
+const PostDescription = styled.span`
   color: white;
   font-size: 18px;
-  margin-bottom: 1px;
+  margin-bottom: 20px;
 `
 
 const Name = styled.span`
@@ -49,19 +50,20 @@ const Name = styled.span`
   text-decoration: underline;
 `
 
-const RelatedTags = styled.div`
-  color; white;
-  font-size: 20px;
-`
-
 const RelatedTag = styled.span`
   color: white;
-`
+  font-size: 16px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  background-color: #3C3A39;
+  border-radius: 20px;
+  display: inline-block;
+  transition: background-color 0.3s ease-in-out;
 
-const TagStyle = styled.span`
-  color: white;
-  font-size: 20px;
-  margin-left: 10px;
-`
+  &:hover {
+    background-color: #555;
+  }
+`;
 
 export default TagsHeader
