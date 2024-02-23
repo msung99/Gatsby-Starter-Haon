@@ -11,7 +11,7 @@ const TagList = ({ tags, allCount }) => {
               {tags.map(tag => (
                   <TagStyle key={kebabCase(tag.fieldValue)}>
                       <span>
-                          <Link style={{ textDecoration: "none", color: "#cdd4d9"}} to={`/tags/${kebabCase(tag.fieldValue)} `}>
+                          <Link style={{ textDecoration: "none", color: "#cdd4d9"}} to={`/tags/${kebabCase(tag.fieldValue)}/`}>
                               {kebabCase(tag.fieldValue)} <TagCountStyle>({tag.totalCount})</TagCountStyle>
                           </Link>
                       </span>
@@ -52,6 +52,7 @@ const TagStyle = styled.div`
   float: left;
   padding-left: 10px;
   font-size: 17px;
+
 `
 
 const TagCountStyle = styled.span`
