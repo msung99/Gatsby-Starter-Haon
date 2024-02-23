@@ -5,23 +5,22 @@ import styled from "styled-components";
 
 const TagList = ({ tags, allCount }) => {
   return (
-      <TagListStyle>
-          <div>
-              <TagTitle>Tags ({allCount})</TagTitle>
-              {tags.map(tag => (
-                  <TagStyle key={kebabCase(tag.fieldValue)}>
-                      <span>
-                          <Link style={{ textDecoration: "none", color: "#cdd4d9"}} to={`/tags/${kebabCase(tag.fieldValue)}/`}>
-                              {kebabCase(tag.fieldValue)} <TagCountStyle>({tag.totalCount})</TagCountStyle>
-                          </Link>
-                      </span>
-                  </TagStyle>
-              ))}
-          </div>
-      </TagListStyle>
+    <TagListStyle>
+      <div>
+        <TagTitle>Tags ({allCount})</TagTitle>
+        {tags.map(tag => (
+          <TagStyle key={kebabCase(tag.fieldValue)}>
+            <span>
+              <Link style={{ textDecoration: "none", color: "#cdd4d9" }} to={`/tags/${kebabCase(tag.fieldValue)}/`}>
+                {kebabCase(tag.fieldValue)} <TagCountStyle>({tag.totalCount})</TagCountStyle>
+              </Link>
+            </span>
+          </TagStyle>
+        ))}
+      </div>
+    </TagListStyle>
   )
 }
-
 
 const TagListStyle = styled.div`
   font-size: 16px;
@@ -40,26 +39,30 @@ const TagListStyle = styled.div`
 const TagTitle = styled.div`
   font-size: 18px;
   margin-left: 7px;
-  maring-bottom: 2px;
+  margin-bottom: 2px;
   color: gray;
 `
 
 const TagStyle = styled.div`
-  &:hover {
-    opacity: 0.8;
-  }
   float: left;
   padding-left: 10px;
   font-size: 17px;
+  transition: color 1s;
 
+  &:hover {
+    color: #f0f0f0; 
+  }
 `
 
 const TagCountStyle = styled.span`
   color: gray;
   font-size: 14px;
-`
+  transition: color 1s;
 
-// border-radius: 20px;
+  &:hover {
+    color: #999; 
+  }
+`
 
 
 export default TagList;
