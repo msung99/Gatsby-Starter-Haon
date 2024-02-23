@@ -5,22 +5,26 @@ import Tags from "../components/tag/tag-component"
 import PostList from "../components/postlist"
 
 const TagListTemplate = ({ pageContext, data, location }) => {
-  const {tag} = pageContext
-  const posts = data.allMarkdownRemark.nodes
-  const totalCount = data.allMarkdownRemark.totalCount
+  const { tag } = pageContext;
+  const posts = data.allMarkdownRemark.nodes;
+  const totalCount = data.allMarkdownRemark.totalCount;
+  const currentTag = tag; // Save the current tag
+  const tags = Array.from(
+    new Set(posts.flatMap(post => post.frontmatter.tags))
+  ).filter(tag => tag !== currentTag); // Collect all tags excluding the current tag
 
   return (
     <PageLayout>
       <Tags>
         <Tags.Header
           totalCount={totalCount}
-          tagName={tag}
+          tagName={currentTag}
+          tags={tags}
         />
         <PostList posts={posts}/>
-        <Link to="/tags">All tags</Link>
       </Tags>
     </PageLayout>
-  )
+  );
 }
 
 export default TagListTemplate
