@@ -14,7 +14,7 @@ const menuItems = [
   { to: '/search', icon: <IoIosSearch className="icon" size="30" />, text: 'Search' },
   { to: '/bright-mode', icon: <MdOutlineDarkMode className="icon" size="30" />, text: 'Dark/Light Mode' },
   { to: '/tags', icon: <MdOutlineBookmarks className="icon" size="30" />, text: 'Tags' },
-  { to: '/series', icon: <GiBlackBook className="icon" size="30" />, text: 'Series' },
+  { to: '/Series', icon: <GiBlackBook className="icon" size="30" />, text: 'Series' },
   { to: '/about', icon: <GoPeople className="icon" size="30" />, text: 'About' },
   { to: '/community', icon: <GoComment className="icon" size="30" />, text: 'Community' },
 ];

@@ -1,17 +1,25 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import PageLayout from "../components/layout/page-component"
+import PostList from "../components/postlist"
 
-const Series = ({pageContext, data}) => {
+const SeriesTemplate = ({pageContext, data}) => {
     const seriesName = pageContext.series
     const posts = data.posts.nodes
+    const totalCount = posts.length
 
     return (
         <PageLayout>
-
+            <Series>
+                <Series.Header
+                  seriesName={seriesName}
+                />
+                <Series.SeriesContent totalCount={totalCount} posts={posts}/>
+            </Series>
         </PageLayout>
     )
 }
+
 
 export default Series
 
