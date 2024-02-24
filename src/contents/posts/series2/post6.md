@@ -8,7 +8,7 @@ tags:
   - JDBC
   - Tag Example
   - wooteco
-series: 시리즈2 모음집
+series: MySQL 8.0 InnoDB
 ---
 
 # 가장 큰 타이틀이다.
