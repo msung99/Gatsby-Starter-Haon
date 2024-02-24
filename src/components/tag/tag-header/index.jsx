@@ -8,21 +8,23 @@ const TagsHeader = ({tagName, tags }) => {
     return (
       <TagsHeaderStyle>
         <Title>#{tagName}</Title>
-        <div style={{ display: "flex", alignItems: "center", marginBottom: "10px"}}>
-            <span style={{marginBottom: "2px"}}>
-                <FaTags className="icon" size="23" color="white"/>
-            </span>
-            <RelatedDescription>Related Tags ({tags.length})</RelatedDescription>
-        </div>
-        <div>
-            {tags.map((relatedTag) => (
-            <Link style={{ textDecoration: "none" }} to={`/tags/${kebabCase(relatedTag)}`} key={relatedTag}>
-                <RelatedTag>
-                    {relatedTag}
-                </RelatedTag>
-            </Link>
-            ))}
-        </div>
+        <OtherTags>
+          <div style={{ display: "flex", alignItems: "center", marginBottom: "10px"}}>
+              <span style={{marginBottom: "2px"}}>
+                  <FaTags className="icon" size="23" color="white"/>
+              </span>
+              <RelatedDescription>Related Tags ({tags.length})</RelatedDescription>
+          </div>
+          <div>
+              {tags.map((relatedTag) => (
+              <Link style={{ textDecoration: "none" }} to={`/tags/${kebabCase(relatedTag)}`} key={relatedTag}>
+                  <RelatedTag>
+                      {relatedTag}
+                  </RelatedTag>
+              </Link>
+              ))}
+          </div>
+        </OtherTags>
       </TagsHeaderStyle>
     );
 };
@@ -31,6 +33,12 @@ const TagsHeaderStyle = styled.div`
   margin-bottom: 50px;
   padding-bottom: 50px;
   border-bottom: 1px solid #282828;
+`
+
+const OtherTags = styled.div`
+  @media(max-width: 768px) {
+    display: none;
+  }
 `
 
 const Title = styled.h1`

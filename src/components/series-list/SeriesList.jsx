@@ -50,16 +50,17 @@ const SeriesStyle = styled(Link)`
   margin-bottom: 0;
   text-decoration: none;
   color: #cdd4d9;
+  transition: background 0.5s ease-in-out;
   width: 360px;
   height: 230px;
 `;
 
 
 const TitleSection = styled.h1`
-  font-size: 27px;
+  font-size: 26px;
   margin-bottom: 10px;
   margin-left: 20px;
-  margin-right: 15px;
+  margin-right: 25px;
 `;
 
 const DescriptionSection = styled.div`
