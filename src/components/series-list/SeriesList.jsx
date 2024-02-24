@@ -9,18 +9,33 @@ const SeriesList = ({ seriesList, totalCount }) => {
       <Title>Series.</Title>
       <Description>{totalCount} series found.</Description>
       <SeriesListContainer>
-        {seriesList.map((series) => (
-        <Link style={{ textDecoration: "none", color: "#cdd4d9" }} to={`/series/${kebabCase(series.fieldValue)}/`}>
-          <SeriesStyle key={kebabCase(series.fieldValue)}>
-            <TitleSection>{series.fieldValue}</TitleSection>
-            <DescriptionSection>Created At / Last Updated / post amount</DescriptionSection>
-          </SeriesStyle>
-        </Link>
-        ))}
+        {seriesList.map((series) => {
+          const oldestDate = series.nodes.reduce((minDate, node) => {
+            const postDate = new Date(node.frontmatter.date);
+            return postDate < minDate ? postDate : minDate;
+          }, new Date());
+
+          const mostRecentDate = series.nodes.reduce((maxDate, node) => {
+            const postDate = new Date(node.frontmatter.date);
+            return postDate > maxDate ? postDate : maxDate;
+          }, new Date(0));
+
+          return (
+            <Link style={{ textDecoration: "none", color: "#cdd4d9" }} to={`/series/${kebabCase(series.fieldValue)}/`} key={kebabCase(series.fieldValue)}>
+              <SeriesStyle>
+                <TitleSection>{series.fieldValue}</TitleSection>
+                <DescriptionSection>
+                  Created At: {oldestDate.toDateString()} / Last Updated: {mostRecentDate.toDateString()} / {series.totalCount} post{series.totalCount !== 1 ? 's' : ''}
+                </DescriptionSection>
+              </SeriesStyle>
+            </Link>
+          );
+        })}
       </SeriesListContainer>
     </PageContent>
   );
 };
+
 
 const PageContent = styled.div`
   position: relative;
