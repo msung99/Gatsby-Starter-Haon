@@ -6,11 +6,10 @@ import SeriesList from "../components/series-list/SeriesList"
 const SeriesListTemplate = ({ data, location }) => {
     const seriesList = data.allMarkdownRemark.group
     const totalCount = seriesList.length
-    const posts = data.allMarkdownRemark.nodes
 
     return (
         <PageLayout>
-            <SeriesList seriesList={seriesList} totalCount={totalCount}></SeriesList>
+            <SeriesList seriesList={seriesList} totalCount={totalCount}/>
         </PageLayout>
     )
 }
