@@ -25,7 +25,9 @@ const SeriesList = ({ seriesList, totalCount }) => {
               <SeriesStyle>
                 <TitleSection>{series.fieldValue}</TitleSection>
                 <DescriptionSection>
-                  Created At: {oldestDate.toDateString()} / Last Updated: {mostRecentDate.toDateString()} / {series.totalCount} post{series.totalCount !== 1 ? 's' : ''}
+                  <SeriesDate>Created At: {oldestDate.toDateString()}</SeriesDate>
+                  <SeriesDate>Last Updated: {mostRecentDate.toDateString()}</SeriesDate> 
+                  <PostCount>{series.totalCount} post{series.totalCount !== 1 ? 's' : ''}</PostCount>
                 </DescriptionSection>
               </SeriesStyle>
             </Link>
@@ -53,6 +55,19 @@ const SeriesListContainer = styled.div`
   @media (max-width: 600px) {
     grid-template-columns: 1fr;
   }
+`;
+
+const SeriesDate = styled.div`
+  margin: 8px 8px;
+  font-size: 14px;
+  color: #98a6ad; 
+`;
+
+const PostCount = styled.div`
+  margin: 12px 12px;
+  font-size: 13px;
+  font-weight: bold;
+  color: #f0f0f0; 
 `;
 
 const SeriesStyle = styled(Link)`
