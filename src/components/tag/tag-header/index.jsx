@@ -74,6 +74,7 @@ const RelatedTag = styled.span`
     border-width: 17.5px 0 18px 17.5px; 
     border-style: solid;
     border-color: transparent transparent transparent #3C3A39;
+    transition: border-color 0.3s ease-in-out; /* Add transition property for border color */
   }
 
   &::after {
@@ -90,6 +91,10 @@ const RelatedTag = styled.span`
 
   &:hover {
     background-color: #555;
+
+    &::before {
+      border-color: transparent transparent transparent #555;
+    }
   }
 `;
 
