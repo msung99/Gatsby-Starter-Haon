@@ -1,11 +1,11 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import PageLayout from "../components/layout/page-component"
-import PostList from "../components/postlist"
+import Series from "../components/series/series-component"
 
-const SeriesTemplate = ({pageContext, data}) => {
+const SeriesTemplate = ({pageContext, data, location}) => {
     const seriesName = pageContext.series
-    const posts = data.posts.nodes
+    const posts = data.allMarkdownRemark.nodes;
     const totalCount = posts.length
 
     return (
@@ -14,30 +14,34 @@ const SeriesTemplate = ({pageContext, data}) => {
                 <Series.Header
                   seriesName={seriesName}
                 />
-                <Series.SeriesContent totalCount={totalCount} posts={posts}/>
+                <Series.Content totalCount={totalCount} posts={posts}/>
             </Series>
         </PageLayout>
     )
 }
 
 
-export default Series
+export default SeriesTemplate
 
 export const pageQuery = graphql`
-  query BlogSeriesBySeriesName($series: String) {
-    posts: allMarkdownRemark(
-      sort: { order: DESC, fields: [frontmatter___date] }
-      filter: { frontmatter: { series: { eq: $series } } }
+  query($series: String) {
+    allMarkdownRemark(
+      limit: 2000
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: { frontmatter: { series: { in: [$series] } } }
     ) {
+      totalCount
       nodes {
-        excerpt(pruneLength: 200, truncate: true)
+        excerpt(pruneLength: 500, truncate: true)
         fields {
           slug
         }
         frontmatter {
-          date(formatString: "MMMM DD, YYYY")
           title
+          description
+          date
           tags
+          series
         }
       }
     }

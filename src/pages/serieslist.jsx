@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import PageLayout from  "../components/layout/page-component"
 import SeriesList from "../components/series-list/SeriesList"
 
-const SeriesTemplate = ({ data, location }) => {
+const SeriesListTemplate = ({ data, location }) => {
     const seriesList = data.allMarkdownRemark.group
     const totalCount = seriesList.length
     const posts = data.allMarkdownRemark.nodes
@@ -15,7 +15,7 @@ const SeriesTemplate = ({ data, location }) => {
     )
 }
 
-export default SeriesTemplate
+export default SeriesListTemplate
 
 export const pageQuery = graphql`
   query {
