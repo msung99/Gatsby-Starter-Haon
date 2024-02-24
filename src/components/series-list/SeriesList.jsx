@@ -40,7 +40,6 @@ const SeriesListContainer = styled.div`
   }
 `;
 
-
 const SeriesStyle = styled(Link)`
   display: flex;
   flex-direction: column;
@@ -51,16 +50,13 @@ const SeriesStyle = styled(Link)`
   margin-bottom: 0;
   text-decoration: none;
   color: #cdd4d9;
-  transition: background 2s; /* Set transition duration to 0.3 seconds */
   width: 360px;
   height: 230px;
-
-  &:hover {
-    background: linear-gradient(45deg, #3a3a3a, #2a2a2a);
-  }
 `;
+
+
 const TitleSection = styled.h1`
-  font-size: 25px;
+  font-size: 27px;
   margin-bottom: 10px;
   margin-left: 20px;
   margin-right: 15px;

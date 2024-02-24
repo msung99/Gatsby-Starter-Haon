@@ -76,7 +76,6 @@ const SideMenu = styled.div`
 
   &:hover {
     background-color: #282828;
-    transform: scale(1.01);
   }
 `;
 
