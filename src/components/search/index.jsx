@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import styled from 'styled-components';
+import { IoIosSearch } from "react-icons/io";
 
 const Search = ({ onChange, placeholder, count }) => {
   const [isFocused, setIsFocused] = useState(false);
 
   return (
     <SearchContainer>
+      <InputLeftElement>
+        <IoIosSearch size={20} style={{ marginRight: 10, color: '#888' }} />
+      </InputLeftElement>
       <Input
         type="text"
         onChange={onChange}
@@ -37,8 +41,7 @@ const Input = styled.input`
   height: 50px;
   border: none;
   border-bottom: solid #888888 2px;
-  padding-bottom: 10px;
-  padding-left: 10px;
+  padding-left: 40px; 
   background-color: #333;
   z-index: 5;
   border-radius: 5px; 
@@ -54,15 +57,23 @@ const Input = styled.input`
   }
 `;
 
+const InputLeftElement = styled.div`
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+`;
+
 const Underline = styled.span`
   position: absolute;
   bottom: 0;
   left: 0;
   width: ${({ isFocused }) => (isFocused ? '100%' : '0')};
-  height: 3px; 
+  height: 2px; 
   background-color: #fff;
   opacity: ${({ isFocused }) => (isFocused ? 1 : 0)};
-  transition: width 1.5s ease, opacity 1.5s ease;
+  transition: width 1.5s ease, opacity 1.5s ease; 
 `;
 
 const ResultCount = styled.div`

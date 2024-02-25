@@ -23,7 +23,7 @@ const SearchTemplate = ({ data }) => {
 
     return (
         <PageLayout>
-          <Search onChange={e => setQuery(e.target.value)} placeholder="Input keyword to find" count={query ? filteredPosts.length : 0}/>  
+          <Search onChange={e => setQuery(e.target.value)} placeholder="Enter your search keyword" count={query ? filteredPosts.length : 0}/>  
           {query && filteredPosts.length > 0 && <PostList posts={filteredPosts}/>}
         </PageLayout>
     )
