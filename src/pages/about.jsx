@@ -70,7 +70,7 @@ h4 {
 
 p {
   font-size: 17px;
-  line-height: 170%; 
+  line-height: 160%; 
   color: #e8e8e8;
   margin-bottom: 45px;
 }

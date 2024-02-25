@@ -5,36 +5,36 @@ const PostContent = styled.div`
   section > h1 {
     font-size: 2rem;
     color: #e8e8e8;
-    margin-top: 20px;
+    margin-top: 70px;
     margin-bottom: 40px;
   }
 
   section > h2 {
     font-size: 1.7rem;
     color: #e8e8e8;
-    margin-top: 20px;
+    margin-top: 70px;
     margin-bottom: 40px;
   }
 
   section > h3 {
     font-size: 1.4rem;
     color: #e8e8e8;
-    margin-top: 20px;
+    margin-top: 70px;
     margin-bottom: 40px;
   }
 
   section > h4 {
     font-size: 1.1rem;
     color: #e6e6e6;
-    margin-top: 20px;
+    margin-top: 40px;
     margin-bottom: 40px;
   }
 
   section > p {
     font-size: 17px;
-    line-height: 170%; 
+    line-height: 160%; 
     color: #e8e8e8;
-    margin-bottom: 45px;
+    margin-bottom: 35px;
   }
 
   blockquote {
