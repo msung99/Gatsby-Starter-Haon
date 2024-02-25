@@ -4,7 +4,7 @@ import { repo } from "../../../gatsby-config"
 
 const Utterances = () => {
   return (
-    <CommenWrapper>
+    <CommentWrapper>
       ref={(elem) => {
         if (!elem) {
           return;
@@ -19,7 +19,7 @@ const Utterances = () => {
         scriptElem.crossOrigin = 'anonymous';
         elem.replaceChildren(scriptElem);
       }}
-    </CommenWrapper>
+    </CommentWrapper>
   );
 };
 
