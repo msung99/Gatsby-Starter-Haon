@@ -14,7 +14,15 @@ module.exports = {
     author: `Haon`,
     siteUrl: `http://localhost:8000`,
     keywords: [`server`, `backend`, `gatsby`], 
-    onImage: `/og-image.png`
+    onImage: `/og-image.png`,
+    socialLinks: { 
+      github: 'https://github.com/',
+      instagram: 'https://www.instagram.com/', 
+      facebook: 'https://www.facebook.com/', 
+      linkedin: 'https://www.linkedin.com/',
+      velog: 'https://velog.io/',
+      email: `https://naver.com`
+  },
   },
   plugins: [
     `gatsby-plugin-image`,
