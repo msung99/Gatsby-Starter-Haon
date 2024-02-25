@@ -1,37 +1,26 @@
-import React from 'react'
+import React from 'react';
 
-class Utterances extends React.Component {
-  constructor(props) {
-    super(props)
+const Utterances = () => {
+  // const utterances_theme = theme === 'dark' ? 'github-dark' : 'github-light';
 
-    this.commentsEl = React.createRef()
-    this.state = { status: 'pending' }
-  }
+  return (
+    <section
+      ref={(elem) => {
+        if (!elem) {
+          return;
+        }
+        const scriptElem = document.createElement('script');
+        scriptElem.src = 'https://utteranc.es/client.js';
+        scriptElem.async = true;
+        scriptElem.setAttribute('repo', 'msung99/comment');
+        scriptElem.setAttribute('issue-term', 'pathname');
+        scriptElem.setAttribute('theme', 'github-dark');
+        scriptElem.setAttribute('label', 'blog-comment');
+        scriptElem.crossOrigin = 'anonymous';
+        elem.replaceChildren(scriptElem);
+      }}
+    />
+  );
+};
 
-  componentDidMount() {
-    const scriptEl = document.createElement('script')
-    scriptEl.onload = () => this.setState({ status: 'success' })
-    scriptEl.onerror = () => this.setState({ status: 'failed' })
-    scriptEl.async = true
-    scriptEl.src = 'https://utteranc.es/client.js'
-    scriptEl.setAttribute('repo', 'msung99/comment')
-    scriptEl.setAttribute('issue-term', 'title')
-    scriptEl.setAttribute('theme', 'github-dark')
-    scriptEl.setAttribute('crossorigin', 'anonymous')
-    this.commentsEl.current.appendChild(scriptEl)
-  }
-
-  render() {
-    const { status } = this.state
-
-    return (
-      <div className="comments-wrapper">
-        {status === 'failed' && <div>Error. Please try again.</div>}
-        {status === 'pending' && <div>Loading script...</div>}
-        <div ref={this.commentsEl} />
-      </div>
-    )
-  }
-}
-
-export default Utterances
+export default Utterances;
