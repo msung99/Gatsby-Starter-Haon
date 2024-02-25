@@ -40,86 +40,92 @@ const EmojiLink = styled.span`
 `;
 
 const MarkdownContent = styled.div`
-  h1 {
-    font-size: 2rem;
-    color: white;
-    margin-bottom: 50px;
-  }
+ h1 {
+  font-size: 2rem;
+  color: #e8e8e8;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
 
-  h2 {
-    font-size: 1.7rem;
-    color: white;
-    margin-top: 40px;
-    margin-bottom: 40px;
-  }
+h2 {
+  font-size: 1.7rem;
+  color: #e8e8e8;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
 
-  h3 {
-    font-size: 1.4rem;
-    color: white;
-    margin-top: 40px;
-    margin-bottom: 50px;
-  }
+h3 {
+  font-size: 1.4rem;
+  color: #e8e8e8;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
 
-  h4 {
-    font-size: 1.1rem;
-    color: white;
-    margin-bottom: 50px;
-  }
+h4 {
+  font-size: 1.1rem;
+  color: #e6e6e6;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
 
-  p {
-    font-size: 17px;
-    line-height: 160%; 
-    color: white;
-  }
+p {
+  font-size: 17px;
+  line-height: 170%; 
+  color: #e8e8e8;
+  margin-bottom: 45px;
+}
 
-  blockquote {
-    margin-left: 0px;
-    margin-right: 0px;
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-bottom: 40px;
-    margin-top: 40px;
-    border-left: 6px solid #484848;
-    font-size: 1.15rem;
-    color: white;
-  }
+blockquote {
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 30px; 
+  margin-top: 40px;
+  border-left: 6px solid #484848;
+  font-size: 1.15rem;
+  color: #e6e6e6;
+}
 
-  hr {
-    height: 1px;
-    border: 0;
-    margin-top: 70px;
-    margin-bottom: 70px;
-    background-color: gray;
-  }
+hr {
+  height: 1px;
+  border: 0;
+  color: white;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
 
-  a {
-    color: white;
-  }
+a {
+  color: #c9c9ca;
+}
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
-  }
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  margin-bottom: 30px;
+}
 
-  li {
-    line-height: 180%; 
-    color: white;
-  }
+li {
+  line-height: 180%; 
+  color: #e6e6e6;
+}
 
-  .gatsby-highlight {
-    font-size: 14px;
-  }
-  
-  .language-text {
-    background-color: #686868;
-    padding: -10px;
-    font-size: 14px;
-    color: white;
-    width: 100%;
-    height: 100%;
-  }
-`;
+.gatsby-highlight {
+  font-size: 14px;
+  margin-bottom: 60px;
+}
+
+.language-text {
+  background-color: #606060;
+  padding: -10px;
+  font-size: 15px;
+  color: #e6e6e6;
+  width: 100%;
+  height: 100%;
+}
+}
+`
 
 const socialEmojis = {
   github: <FaGithub className="icon" size="30" />,

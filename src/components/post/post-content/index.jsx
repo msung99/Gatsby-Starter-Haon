@@ -4,34 +4,37 @@ import styled from "styled-components"
 const PostContent = styled.div`
   section > h1 {
     font-size: 2rem;
-    color: white;
-    margin-bottom: 50px;
+    color: #e8e8e8;
+    margin-top: 20px;
+    margin-bottom: 40px;
   }
 
   section > h2 {
     font-size: 1.7rem;
-    color: white;
-    margin-top: 40px;
+    color: #e8e8e8;
+    margin-top: 20px;
     margin-bottom: 40px;
   }
 
   section > h3 {
     font-size: 1.4rem;
-    color: white;
-    margin-top: 40px;
-    margin-bottom: 50px;
+    color: #e8e8e8;
+    margin-top: 20px;
+    margin-bottom: 40px;
   }
 
   section > h4 {
     font-size: 1.1rem;
-    color: white;
-    margin-bottom: 50px;
+    color: #e6e6e6;
+    margin-top: 20px;
+    margin-bottom: 40px;
   }
 
   section > p {
     font-size: 17px;
-    line-height: 160%; 
-    color: white;
+    line-height: 170%; 
+    color: #e8e8e8;
+    margin-bottom: 45px;
   }
 
   blockquote {
@@ -39,45 +42,47 @@ const PostContent = styled.div`
     margin-right: 0px;
     padding-left: 20px;
     padding-right: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 30px; 
     margin-top: 40px;
     border-left: 6px solid #484848;
     font-size: 1.15rem;
-    color: white;
+    color: #e6e6e6;
   }
 
   hr {
     height: 1px;
     border: 0;
-    margin-top: 70px;
-    margin-bottom: 70px;
-    background-color: gray;
+    color: white;
+    margin-top: 40px;
+    margin-bottom: 40px;
   }
 
   a {
-    color: white;
+    color: #c9c9ca;
   }
 
   img {
     width: 100%;
     height: 100%;
     object-fit: fill;
+    margin-bottom: 30px;
   }
 
   li {
     line-height: 180%; 
-    color: white;
+    color: #e6e6e6;
   }
 
   .gatsby-highlight {
     font-size: 14px;
+    margin-bottom: 60px;
   }
   
   .language-text {
-    background-color: #686868;
+    background-color: #606060;
     padding: -10px;
-    font-size: 14px;
-    color: white;
+    font-size: 15px;
+    color: #e6e6e6;
     width: 100%;
     height: 100%;
   }

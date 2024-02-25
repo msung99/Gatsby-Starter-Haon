@@ -17,7 +17,7 @@ const NotFoundTitle = styled.h1`
 
 const NotFoundIcon = styled(TbError404)`
   margin: 20px 0;
-  color: #333;
+  color: #fff;
 `;
 
 const NotFoundText = styled.p`

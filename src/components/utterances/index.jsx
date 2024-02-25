@@ -17,7 +17,6 @@ const Utterances = () => {
 
   return (
     <CommentWrapper>
-      <h1>{repo}</h1>
       <div
         ref={(elem) => {
           if (!elem) {
@@ -39,6 +38,7 @@ const Utterances = () => {
 };
 
 const CommentWrapper = styled.section`
+  margin-top: 70px;
 `;
 
 export default Utterances;
