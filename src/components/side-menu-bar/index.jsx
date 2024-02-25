@@ -73,12 +73,13 @@ const SideMenu = styled.div`
   align-items: center;
   transition: background-color 0.2s ease-in-out;
   border-radius: 8px;
-  background-color: ${(props) => (props.active ? "#282828" : "transparent")};
+  background-color: ${(props) => (props.active ? "#1e1e1e" : "transparent")};
 
   &:hover {
-    background-color: #282828;
+    background-color: ${(props) => (props.active ?  "#1e1e1e" : "#282828")};
   }
 `;
+
 
 const MenuText = styled.p`
   margin-left: 10px;
