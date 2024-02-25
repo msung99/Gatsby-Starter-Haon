@@ -7,13 +7,19 @@ import { Link } from "gatsby";
 import { FaInstagram, FaFacebook, FaLinkedin, FaGithub } from "react-icons/fa";
 import { SiVelog } from "react-icons/si";
 import { MdOutlineEmail } from "react-icons/md";
+import Profile from "../components/profile/index.jsx";
 
-const AboutTemplate = ({ data }) => {
+const AboutTemplate = ({ data, location}) => {
   const { frontmatter, html } = data.markdownRemark;
   const socialLinks = data.site.siteMetadata.socialLinks;
+  const description = data.site.siteMetadata.description
+  const author = data.site.siteMetadata.author
+  const siteUrl = data.site.siteMetadata.siteUrl
+  const keywords = data.site.siteMetadata.keywords
 
   return (
     <PageLayout>
+      <Profile author={author} description={description} siteUrl={siteUrl} keywords = {keywords}/>
       <SocialLinks>
         {Object.entries(socialLinks).map(([key, value]) => (
           <Link key={key} to={value}>
@@ -21,11 +27,17 @@ const AboutTemplate = ({ data }) => {
           </Link>
         ))}
       </SocialLinks>
+      <Line/>
       <MarkdownContent dangerouslySetInnerHTML={{ __html: html || '' }} />
       <Utterances repo="msung99/Gatsby-Starter-Haon" theme="github-dark" />
     </PageLayout>
   );
 };
+
+const Line = styled.div`
+  margin-bottom: 80px;
+  border-bottom: 2px solid #282828;
+`
 
 const SocialLinks = styled.div`
   display: flex;
@@ -138,10 +150,16 @@ const socialEmojis = {
 
 export default AboutTemplate;
 
+
 export const pageQuery = graphql`
   query {
     site {
       siteMetadata {
+        title
+        description
+        author
+        siteUrl
+        keywords
         socialLinks {
           github
           instagram
