@@ -13,6 +13,7 @@ module.exports = {
     description: `게츠비를 활용한 기술 블로그입니다.`,
     author: `Haon`,
     siteUrl: `http://localhost:8000`,
+    repo: 'msung99/Gatsby-Starter-Haon',
     keywords: [`server`, `backend`, `gatsby`], 
     onImage: `/og-image.png`,
     socialLinks: { 
