@@ -1,76 +1,82 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from 'styled-components';
 
-const SearchContainer = styled.div`
-  position: relative;
-  width: 300px;
-  margin-left: 50px;
-  margin-top: 20px; /* Adjusted margin for better visibility */
-`;
-
-const Input = styled.input`
-  font-size: 15px;
-  color: #222222;
-  width: 300px;
-  border: none;
-  border-bottom: solid #aaaaaa 1px;
-  padding-bottom: 10px;
-  padding-left: 10px;
-  position: relative;
-  background: none;
-  z-index: 5;
-
-  &::placeholder {
-    color: #aaaaaa;
-  }
-
-  &:focus {
-    outline: none;
-  }
-
-  &:focus ~ span {
-    width: 100%;
-  }
-`;
-
-const Underline = styled.span`
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 0%;
-  background-color: #666;
-  width: 0;
-  height: 2px;
-  border-radius: 2px;
-  transition: 0.5s;
-`;
-
-const Label = styled.label`
-  position: absolute;
-  color: #aaa;
-  left: 10px;
-  font-size: 20px;
-  bottom: 8px;
-  transition: all 0.2s;
-`;
-
-const ResultCount = styled.div`
-  position: absolute;
-  bottom: -20px;
-  left: 10px;
-  font-size: 14px;
-  color: #666;
-`;
-
 const Search = ({ onChange, placeholder, count }) => {
+  const [isFocused, setIsFocused] = useState(false);
+
   return (
     <SearchContainer>
-      <Input type="text" onChange={onChange} placeholder={placeholder} />
-      <Label>Name</Label>
-      <Underline />
-      <ResultCount>{count} posts found</ResultCount>
+      <Input
+        type="text"
+        onChange={onChange}
+        placeholder={placeholder}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        isFocused={isFocused}
+      />
+      <Underline isFocused={isFocused} />
+      <ResultCount count={count}/>
     </SearchContainer>
   );
 };
 
 export default Search;
+
+const SearchContainer = styled.div`
+  position: relative;
+  margin-top: 20px;
+  width: 100%;
+  margin-bottom: 100px;
+  cursor: text;
+`;
+
+const Input = styled.input`
+  font-size: 18px;
+  color: #fff;
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-bottom: solid #888888 2px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  background-color: #333;
+  z-index: 5;
+  border-radius: 5px; 
+  transition: border-bottom 1.5s ease;
+
+  &::placeholder {
+    color: #888;
+  }
+
+  &:focus {
+    outline: none;
+    border-bottom: solid #ffffff 2px;
+  }
+`;
+
+const Underline = styled.span`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: ${({ isFocused }) => (isFocused ? '100%' : '0')};
+  height: 3px; 
+  background-color: #fff;
+  opacity: ${({ isFocused }) => (isFocused ? 1 : 0)};
+  transition: width 1.5s ease, opacity 1.5s ease;
+`;
+
+const ResultCount = styled.div`
+  position: absolute;
+  left: 10px;
+  top: 80px;
+  font-size: 22px;
+  color: #fff;
+  font-family: 'Helvetica Neue', sans-serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  opacity: ${({ count }) => (count === 0 ? 0 : 1)};
+  transition: opacity 0.3s ease;
+
+  &:before {
+    content: '${props => (props.count === 0 ? 'No matching posts were found.' : (props.count === 1 ? 'There is 1 post found.' : `There are ${props.count} posts found.`))}';
+  }
+`;

@@ -23,10 +23,8 @@ const SearchTemplate = ({ data }) => {
 
     return (
         <PageLayout>
-          <Search onChange={e => setQuery(e.target.value)} placeholder="Search" count={query ? filteredPosts.length : 0}/>  
+          <Search onChange={e => setQuery(e.target.value)} placeholder="Input keyword to find" count={query ? filteredPosts.length : 0}/>  
           {query && filteredPosts.length > 0 && <PostList posts={filteredPosts}/>}
-          {!query && <p>Please enter a search query</p>}
-          {query && filteredPosts.length === 0 && <p>No matching posts found</p>}
         </PageLayout>
     )
 }
@@ -44,6 +42,7 @@ export const pageQuery = graphql`
         frontmatter {
           date(formatString: "MMMM DD, YYYY")
           title
+          description
           tags
         }
         rawMarkdownBody
