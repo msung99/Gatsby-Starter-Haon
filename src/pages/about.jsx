@@ -1,28 +1,19 @@
 import React from "react";
 import { graphql } from "gatsby";
 import PageLayout from "../components/layout/page-component";
-import Profile from "../components/profile";
 import Utterances from "../components/utterances/index.jsx";
 import styled from "styled-components";
 import { Link } from "gatsby";
-import { FaInstagram } from "react-icons/fa6";
-import { FaFacebook } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
+import { FaInstagram, FaFacebook, FaLinkedin, FaGithub } from "react-icons/fa";
 import { SiVelog } from "react-icons/si";
-import { FaGithub } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 
 const AboutTemplate = ({ data }) => {
-  const title = data.site.siteMetadata?.title || `Title`;
-  const description = data.site.siteMetadata.description;
-  const author = data.site.siteMetadata.author;
-  const siteUrl = data.site.siteMetadata.siteUrl;
-  const keywords = data.site.siteMetadata.keywords;
+  const { frontmatter, html } = data.markdownRemark;
   const socialLinks = data.site.siteMetadata.socialLinks;
 
   return (
     <PageLayout>
-      <Profile author={author} description={description} siteUrl={siteUrl} keywords={keywords} />
       <SocialLinks>
         {Object.entries(socialLinks).map(([key, value]) => (
           <Link key={key} to={value}>
@@ -30,21 +21,11 @@ const AboutTemplate = ({ data }) => {
           </Link>
         ))}
       </SocialLinks>
+      <MarkdownContent dangerouslySetInnerHTML={{ __html: html || '' }} />
       <Utterances repo="msung99/Gatsby-Starter-Haon" theme="github-dark" />
     </PageLayout>
   );
 };
-
-const Title = styled.h1`
-  font-size: px;
-  color: white;
-`;
-
-const Description = styled.p`
-  font-size: 18px;
-  color: white;
-  margin-left: 20px;
-`;
 
 const SocialLinks = styled.div`
   display: flex;
@@ -56,6 +37,88 @@ const SocialLinks = styled.div`
 const EmojiLink = styled.span`
   cursor: pointer;
   color: #E2E2E2;
+`;
+
+const MarkdownContent = styled.div`
+  h1 {
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 50px;
+  }
+
+  h2 {
+    font-size: 1.7rem;
+    color: white;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+    color: white;
+    margin-top: 40px;
+    margin-bottom: 50px;
+  }
+
+  h4 {
+    font-size: 1.1rem;
+    color: white;
+    margin-bottom: 50px;
+  }
+
+  p {
+    font-size: 17px;
+    line-height: 160%; 
+    color: white;
+  }
+
+  blockquote {
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    border-left: 6px solid #484848;
+    font-size: 1.15rem;
+    color: white;
+  }
+
+  hr {
+    height: 1px;
+    border: 0;
+    margin-top: 70px;
+    margin-bottom: 70px;
+    background-color: gray;
+  }
+
+  a {
+    color: white;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+  }
+
+  li {
+    line-height: 180%; 
+    color: white;
+  }
+
+  .gatsby-highlight {
+    font-size: 14px;
+  }
+  
+  .language-text {
+    background-color: #686868;
+    padding: -10px;
+    font-size: 14px;
+    color: white;
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const socialEmojis = {
@@ -73,11 +136,6 @@ export const pageQuery = graphql`
   query {
     site {
       siteMetadata {
-        title
-        description
-        author
-        siteUrl
-        keywords
         socialLinks {
           github
           instagram
@@ -87,6 +145,16 @@ export const pageQuery = graphql`
           email
         }
       }
+    }
+    markdownRemark(fields: { slug: { eq: "/about/introduce/" } }) {
+      frontmatter {
+        title
+        description
+        date
+        tags
+        series
+      }
+      html
     }
   }
 `;
