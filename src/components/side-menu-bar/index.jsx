@@ -1,53 +1,54 @@
 import React from "react";
 import styled from "styled-components";
+import { useLocation } from "@reach/router";
 import { IoHomeOutline } from "react-icons/io5";
 import { IoIosSearch } from "react-icons/io";
 import { GoPeople } from "react-icons/go";
 import { GoComment } from "react-icons/go";
-import { MdOutlineDarkMode } from "react-icons/md";
-import { MdOutlineBookmarks } from "react-icons/md";
+import { MdOutlineDarkMode, MdOutlineBookmarks } from "react-icons/md";
 import { GiBlackBook } from "react-icons/gi";
 import { Link } from "gatsby";
 
 const menuItems = [
   { to: '/', icon: <IoHomeOutline className="icon" size="30" />, text: 'Home' },
   { to: '/search', icon: <IoIosSearch className="icon" size="30" />, text: 'Search' },
-  { to: '/bright-mode', icon: <MdOutlineDarkMode className="icon" size="30" />, text: 'Dark/Light Mode' },
+  { to: '/bright-mode', icon: <MdOutlineDarkMode className="icon" size="40" />, text: 'Dark/Light Mode' },
   { to: '/tags', icon: <MdOutlineBookmarks className="icon" size="30" />, text: 'Tags' },
   { to: '/series', icon: <GiBlackBook className="icon" size="30" />, text: 'Series' },
   { to: '/about', icon: <GoPeople className="icon" size="30" />, text: 'About' },
   { to: '/community', icon: <GoComment className="icon" size="30" />, text: 'Community' },
 ];
-  
-const MenuItem = ({ to, icon, text }) => (
-  <Link to={to} style={{ textDecoration: 'none' }}>
-    <SideMenu>
-      {icon}
-      <MenuText>{text}</MenuText>
-    </SideMenu>
+
+const SideMenuBar = () => {
+  const location = useLocation();
+
+  return (
+    <SideMenuBarStyle>
+      <Link to={"/"} style={{ textDecoration: 'none' }}>
+        <Title>Haon Blog</Title>
+      </Link>
+      <div>
+        {menuItems.map((item, index) => (
+          <MenuItem key={index} {...item} active={location.pathname === item.to} />
+        ))}
+      </div>
+    </SideMenuBarStyle>
+  );
+};
+
+const MenuItem = ({ to, icon, text }) => {
+  const location = useLocation();
+  const isActive = to === '/' ? location.pathname === to : location.pathname.startsWith(to);
+
+  return (
+    <Link to={to} style={{ textDecoration: 'none' }}>
+      <SideMenu active={isActive}>
+        {icon}
+        <MenuText>{text}</MenuText>
+      </SideMenu>
     </Link>
-);
-  
-const SideMenuBar = () => (
-  <SideMenuBarStyle>
-    <Link to={"/"} style={{ textDecoration:'none'}}>
-      <Title>Haon Blog</Title>
-    </Link>
-    <div>
-      {menuItems.map((item, index) => (
-        <MenuItem key={index} {...item} />
-      ))}
-    </div>
-  </SideMenuBarStyle>
-);
-  
-const Title = styled.div`
-  font-size: 30px;
-  color: white;
-  margin-top: 30px;
-  margin-bottom: 50px;
-  font-family: GmarketSansTTFLight, sans-serif, Arial;
-`
+  );
+};
 
 const SideMenuBarStyle = styled.div`
   position: fixed;
@@ -61,8 +62,7 @@ const SideMenuBarStyle = styled.div`
   @media (max-width: 1300px) {
     display: none;
   }
-`
-  
+`;
 
 const SideMenu = styled.div`
   margin-top: 8px;
@@ -73,6 +73,7 @@ const SideMenu = styled.div`
   align-items: center;
   transition: background-color 0.2s ease-in-out;
   border-radius: 8px;
+  background-color: ${(props) => (props.active ? "#282828" : "transparent")};
 
   &:hover {
     background-color: #282828;
@@ -83,6 +84,14 @@ const MenuText = styled.p`
   margin-left: 10px;
   margin-right: 30px;
   font-size: 17px;
-`
+`;
 
-export default SideMenuBar
+const Title = styled.div`
+  font-size: 30px;
+  color: white;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  font-family: GmarketSansTTFLight, sans-serif, Arial;
+`;
+
+export default SideMenuBar;
