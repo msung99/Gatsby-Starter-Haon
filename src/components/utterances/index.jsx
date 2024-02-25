@@ -23,7 +23,7 @@ const Utterances = () => {
   );
 };
 
-const UtterancesSection = styled.section`
+const CommentWrapper = styled.section`
 `;
 
 export default Utterances;
