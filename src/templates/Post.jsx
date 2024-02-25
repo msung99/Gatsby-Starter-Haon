@@ -3,6 +3,7 @@ import { Link, graphql } from "gatsby"
 import Post from "../components/post/post-component"
 import PageLayout from "../components/layout/page-component";
 import PostContent from "../components/post/post-content";
+import Utterances from "../components/utterances";
 
 export default ({ data, location }) => {
   const {previous, next} = data; 
@@ -22,6 +23,7 @@ export default ({ data, location }) => {
           <section dangerouslySetInnerHTML={{ __html: post.html }} itemProp="postContent"/>
         </PostContent>
       </Post>
+      <Utterances/>
     </PageLayout>
   )
 }

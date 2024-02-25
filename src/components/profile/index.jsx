@@ -60,12 +60,11 @@ const KeyWordsStyle = styled.div`
 
 const KeyWordStyle = styled.span`
   font-size: 17px;
-  color: white;
+  color: #e6edf4;
   margin-right: 13px;
   border-radius: 25px;
-  border: 1px solid white;
   padding: 5px;
-  background-color: #2A2A28;
+  background-color: #333A41;
 `
 
 const Image = styled.div`

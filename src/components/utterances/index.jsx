@@ -1,34 +1,37 @@
+import React from 'react'
 
-import React, { useRef, useLayoutEffect } from 'react';
+class Utterances extends React.Component {
+  constructor(props) {
+    super(props)
 
-const src = 'https://utteranc.es/client.js';
+    this.commentsEl = React.createRef()
+    this.state = { status: 'pending' }
+  }
 
-const Utterances = React.memo(({ repo, theme }) => {
-  const containerRef = useRef(null);
+  componentDidMount() {
+    const scriptEl = document.createElement('script')
+    scriptEl.onload = () => this.setState({ status: 'success' })
+    scriptEl.onerror = () => this.setState({ status: 'failed' })
+    scriptEl.async = true
+    scriptEl.src = 'https://utteranc.es/client.js'
+    scriptEl.setAttribute('repo', 'msung99/Gatsby-Starter-Haon')
+    scriptEl.setAttribute('issue-term', 'title')
+    scriptEl.setAttribute('theme', 'github-dark')
+    scriptEl.setAttribute('crossorigin', 'anonymous')
+    this.commentsEl.current.appendChild(scriptEl)
+  }
 
-  useLayoutEffect(() => {
-    const utterances = document.createElement('script');
+  render() {
+    const { status } = this.state
 
-    const attributes = {
-      src,
-      repo,
-      theme,
-      'issue-term': 'pathname',
-      label: '✨💬 comments ✨',
-      crossOrigin: 'anonymous',
-      async: 'true',
-    };
+    return (
+      <div className="comments-wrapper">
+        {status === 'failed' && <div>Error. Please try again.</div>}
+        {status === 'pending' && <div>Loading script...</div>}
+        <div ref={this.commentsEl} />
+      </div>
+    )
+  }
+}
 
-    Object.entries(attributes).forEach(([key, value]) => {
-      utterances.setAttribute(key, value);
-    });
-
-    containerRef.current.appendChild(utterances);
-  }, [repo]);
-
-  return <div ref={containerRef} />;
-});
-
-Utterances.displayName = 'Utterances';
-
-export default Utterances;
+export default Utterances
