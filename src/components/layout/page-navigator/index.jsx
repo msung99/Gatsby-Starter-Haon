@@ -1,35 +1,59 @@
 import React, { useState, useEffect } from "react";
+import styled, { keyframes } from "styled-components";
 import { Link } from "gatsby";
-import styled from "styled-components";
-import { SideMenuBar } from "../../side-menu-bar";
+import SideMenuBar from "../../side-menu-bar";
+
+const slideIn = keyframes`
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+`;
+
+const slideOut = keyframes`
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+`;
 
 const PageNavigator = () => {
-  const [showSideMenuBar, setShowSideMenuBar] = useState(false);
+  const [showHaonBlog, setShowHaonBlog] = useState(true);
 
   useEffect(() => {
-    // Function to handle route changes
-    const handleRouteChange = () => {
-      // Set showSideMenuBar to true when navigating to a new page
-      setShowSideMenuBar(true);
+    const handleResize = () => {
+      setShowHaonBlog(window.innerWidth < 1200);
     };
 
-    // Add event listener for route changes
-    document.addEventListener("gatsbyRouteUpdate", handleRouteChange);
+    // Set initial state based on window width
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
 
     // Remove event listener on component unmount
-    return () => {
-      document.removeEventListener("gatsbyRouteUpdate", handleRouteChange);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
     <>
-      <PageNavigatorStyle show={showSideMenuBar}>
-        <Link style={{ textDecoration: "none" }} to="/">
-          <PageNavigatorTitle>Haon Blog</PageNavigatorTitle>
-        </Link>
-      </PageNavigatorStyle>
-      <SideMenuBar show={showSideMenuBar} />
+      {showHaonBlog ? (
+        <PageNavigatorStyle>
+          <Link style={{ textDecoration: "none" }} to="/">
+            <PageNavigatorTitle>
+              Haon Blog
+            </PageNavigatorTitle>
+          </Link>
+        </PageNavigatorStyle>
+      ) : (
+        <SideMenuBarWrapper show={!showHaonBlog}>
+          <SideMenuBar />
+        </SideMenuBarWrapper>
+      )}
     </>
   );
 };
@@ -45,18 +69,28 @@ const PageNavigatorStyle = styled.header`
   background-color: #1d1d1d;
   padding-top: 10px;
   padding-bottom: 10px;
-  opacity: 0.9;
-  transition: opacity 0.5s ease; /* Add a fade-in transition */
-
-  ${({ show }) => !show && `
-    opacity: 0; /* Hide when showSideMenuBar is false */
-  `}
 `;
 
 const PageNavigatorTitle = styled.div`
   font-size: 28px;
   margin-left: 30px;
   color: white;
+`;
+
+const SideMenuBarWrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: ${({ show }) => (show ? "0" : "-100%")};
+  width: 300px;
+  height: 100%;
+  background-color: #1d1d1d;
+  padding-top: 60px;
+  animation: ${({ show }) => (show ? slideIn : slideOut)} 0.5s ease;
+  z-index: 999; /* Ensure it's above other content */
+
+  @media (max-width: 1200px) {
+    display: none;
+  }
 `;
 
 export default PageNavigator;
