@@ -75,7 +75,7 @@ module.exports = {
             maintainCase: true,
             removeAccents: true,
             isIconAfterHeader: true,
-            elements: [`h1`, `h4`],
+            elements: [`h1`, `h2`, `h3`, `h4`],
           },
         ],
       },
