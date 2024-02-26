@@ -37,6 +37,7 @@ const Toc = styled.div`
   margin-left: 70px;
   margin-top: 30px;
   position: relative;
+  width: 230px;
   top: 50px;
   left: 100%;
   font-size: 15px;

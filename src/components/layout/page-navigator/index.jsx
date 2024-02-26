@@ -1,35 +1,43 @@
-import React from "react"
-import styled from "styled-components"
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "gatsby";
-import SideMenuBar from "../../side-menu-bar";
+import styled from "styled-components";
+import { SideMenuBar } from "../../side-menu-bar";
 
-const PageNavigator = () => {  
+const PageNavigator = () => {
+  const [showSideMenuBar, setShowSideMenuBar] = useState(false);
+
+  useEffect(() => {
+    // Function to handle route changes
+    const handleRouteChange = () => {
+      // Set showSideMenuBar to true when navigating to a new page
+      setShowSideMenuBar(true);
+    };
+
+    // Add event listener for route changes
+    document.addEventListener("gatsbyRouteUpdate", handleRouteChange);
+
+    // Remove event listener on component unmount
+    return () => {
+      document.removeEventListener("gatsbyRouteUpdate", handleRouteChange);
+    };
+  }, []);
+
   return (
-    <PageNavigatorStyle>
-     <SideMenuBar/>
-  	</PageNavigatorStyle>
-  )
-}
+    <>
+      <PageNavigatorStyle show={showSideMenuBar}>
+        <Link style={{ textDecoration: "none" }} to="/">
+          <PageNavigatorTitle>Haon Blog</PageNavigatorTitle>
+        </Link>
+      </PageNavigatorStyle>
+      <SideMenuBar show={showSideMenuBar} />
+    </>
+  );
+};
 
-const PageNavigatorStyle = styled.div`
-`
-
-/* const PageNavigator = () => {  
-  return (
-    <PageNavigatorStyle>
-      <Link style={{ textDecoration: "none"}} to = "/">
-        <PageNavigatorTitle>
-          Haon Blog
-        </PageNavigatorTitle>
-      </Link>
-  	</PageNavigatorStyle>
-  )
-} */
-
-/*
 const PageNavigatorStyle = styled.header`
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   font-size: 2rem;
   font-weight: bold;
@@ -38,13 +46,17 @@ const PageNavigatorStyle = styled.header`
   padding-top: 10px;
   padding-bottom: 10px;
   opacity: 0.9;
-`
-//   border-bottom: 1px solid gray;
+  transition: opacity 0.5s ease; /* Add a fade-in transition */
+
+  ${({ show }) => !show && `
+    opacity: 0; /* Hide when showSideMenuBar is false */
+  `}
+`;
 
 const PageNavigatorTitle = styled.div`
   font-size: 28px;
   margin-left: 30px;
-  color: white; 
-*/
+  color: white;
+`;
 
-export default PageNavigator
+export default PageNavigator;
