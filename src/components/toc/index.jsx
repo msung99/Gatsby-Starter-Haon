@@ -8,15 +8,30 @@ const TableOfContents = ({ content }) => {
 }
 
 const Toc = styled.div`
+  position: sticky;
+  top: 0;
+  flex-grow: 0;
+  max-width: calc(100% / 3);
+  flex-basis: calc(100% / 3);
+  margin-left: 1rem;
+  max-width: 18rem;
+  max-height: calc(100vh - 200px);
+  overflow: auto;
+
   ul {
-    margin-left: 0;
-    li {
-      color: blue;
-      a {
-        text-decoration: none;
-      }
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    color: white;
+    margin-bottom: 0.5rem;
+
+    a {
+      text-decoration: none;
+      color: inherit;
     }
   }
 `;
-
 export default TableOfContents;

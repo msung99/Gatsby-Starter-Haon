@@ -60,10 +60,6 @@ module.exports = {
     {
       resolve: `gatsby-transformer-remark`,
       options: {
-        commonmark: true,
-        footnotes: true,
-        pedantic: true,
-        gfm: true,
         plugins: [
           {
             resolve: 'gatsby-remark-prismjs',
@@ -71,10 +67,10 @@ module.exports = {
               classPrefix: 'language-',
             },
           },
+          `gatsby-remark-autolink-headers`,
         ],
       },
     },
     `gatsby-plugin-styled-components`,
-    `gatsby-remark-autolink-headers`
   ],
 }
