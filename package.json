@@ -24,6 +24,7 @@
     "react-helmet": "^6.1.0",
     "react-icons": "^5.0.1",
     "react-utterances": "^0.6.4",
+    "rehype-slug": "^6.0.0",
     "styled-components": "^6.1.8"
   },
   "devDependencies": {
