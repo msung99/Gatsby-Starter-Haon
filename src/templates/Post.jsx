@@ -1,15 +1,17 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
-import Post from "../components/post/post-component"
+import React from "react";
+import { Link, graphql } from "gatsby";
+import Post from "../components/post/post-component";
 import PageLayout from "../components/layout/page-component";
 import PostContent from "../components/post/post-content";
 import Utterances from "../components/utterances";
+import TableOfContents from "../components/toc";
 
 export default ({ data, location }) => {
-  const {previous, next} = data; 
-  const post = data.markdownRemark
-  const {title, date} = post.frontmatter;
+  const { previous, next } = data;
+  const post = data.markdownRemark;
+  const { title, date } = post.frontmatter;
   const author = data.site.siteMetadata.author;
+  const toc = post.tableOfContents;
 
   return (
     <PageLayout>
@@ -20,14 +22,14 @@ export default ({ data, location }) => {
           author={author}
         />
         <PostContent>
-          <section dangerouslySetInnerHTML={{ __html: post.html }} itemProp="postContent"/>
+          {toc && <TableOfContents content={toc} />}
+          <section dangerouslySetInnerHTML={{ __html: post.html }} itemProp="postContent" />
         </PostContent>
       </Post>
-      <Utterances/>
+      <Utterances />
     </PageLayout>
-  )
-}
-
+  );
+};
 
 export const pageQuery = graphql`
   query BlogPostBySlug(
@@ -45,6 +47,7 @@ export const pageQuery = graphql`
       id
       excerpt(pruneLength: 160)
       html
+      tableOfContents(maxDepth: 3)
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
@@ -68,67 +71,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
-
-
-/*
-<PageLayout>
-       <div>
-          <h1> {post.frontmatter.title} </h1>
-          <h3> {post.frontmatter.description} </h3>
-          <section
-            dangerouslySetInnerHTML={{ __html: post.html }}
-            itemProp="articleBody"
-          />
-          {previous && (
-            <Link to={previous.fields.slug}>
-              previous post ({previous.frontmatter.title})
-            </Link>
-          )}{" "}
-          {next && (
-            <Link to={next.fields.slug}>next post ({next.frontmatter.title})</Link>
-          )}
-         </div>
-    </PageLayout>
-
-
-export const pageQuery = graphql`
-  query BlogPostBySlug(
-    $id: String!
-    $previousPostId: String
-    $nextPostId: String
-  ) {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-    markdownRemark(id: { eq: $id }) {
-      id
-      excerpt(pruneLength: 160)
-      html
-      frontmatter {
-        title
-        date(formatString: "MMMM DD, YYYY")
-        description
-      }
-    }
-    previous: markdownRemark(id: { eq: $previousPostId }) {
-      fields {
-        slug
-      }
-      frontmatter {
-        title
-      }
-    }
-    next: markdownRemark(id: { eq: $nextPostId }) {
-      fields {
-        slug
-      }
-      frontmatter {
-        title
-      }
-    }
-  }
-`
-*/
+`;
