@@ -21,17 +21,21 @@ const Toc = styled.div`
   ul {
     list-style: none;
     padding: 0;
-    margin: 0;
   }
 
   li {
     color: white;
-    margin-bottom: 0.5rem;
 
     a {
       text-decoration: none;
       color: inherit;
     }
+  }
+
+  li h1,
+  li h2,
+  li h3 {
+    margin-bottom: 5rem; // Add margin between each heading
   }
 `;
 export default TableOfContents;

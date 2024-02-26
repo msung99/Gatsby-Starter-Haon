@@ -26,7 +26,7 @@ export default ({ data, location }) => {
           <section dangerouslySetInnerHTML={{ __html: post.html }} itemProp="postContent" />
         </PostContent>
       </Post>
-      <Utterances />
+      <Utterances/>
     </PageLayout>
   );
 };
