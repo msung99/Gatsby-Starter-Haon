@@ -83,14 +83,15 @@ const SideMenuBarWrapper = styled.div`
   left: ${({ show }) => (show ? "0" : "-100%")};
   width: 300px;
   height: 100%;
-  background-color: #1d1d1d;
+  background: linear-gradient(to bottom, #1e1e1e, #171717); /* Slightly lighter gradient */
   padding-top: 60px;
-  animation: ${({ show }) => (show ? slideIn : slideOut)} 0.5s ease;
-  z-index: 999; /* Ensure it's above other content */
+  animation: ${({ show }) => (show ? slideIn : slideOut)} 0.7s ease-in-out;
+  z-index: 999;
 
   @media (max-width: 1200px) {
     display: none;
   }
 `;
+
 
 export default PageNavigator;
