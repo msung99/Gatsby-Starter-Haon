@@ -33,15 +33,12 @@ const CommunityTemplate = ({ data }) => {
         ))}
       </SocialLinks>
       <Description>Leave a comment to connect with this author 👋</Description>
+      <Line/>
       <Utterances repo="msung99/Gatsby-Starter-Haon" theme="github-dark" />
     </PageLayout>
   );
 };
 
-const Title = styled.h1`
-  font-size: px;
-  color: white;
-`;
 
 const Description = styled.p`
   font-size: 18px;
@@ -69,6 +66,11 @@ const socialEmojis = {
   velog: <SiVelog className="icon" size="30"/>,
   email: <MdOutlineEmail className="icon" size="30"/>
 };
+
+const Line = styled.div`
+  padding-bottom: 40px;
+  border-bottom: 2px solid #282828;
+`
 
 export default CommunityTemplate;
 

@@ -1,5 +1,5 @@
 ---
-title: TomcatServletWebServerFactory, DispatcherServlet 기반 스프링부트 애플리케이션 구현하기
+title: TomcatServletWebServerFactory, DispatcherServlet 기반 스프링부트 애플리케이션 구현하기11
 description: TomcatServletWebServerFactory, DispatherServlet 에 기반하여 애플리케이션 서버를 직접 구동해본다.
 date: "2024-01-02"
 tags:
@@ -30,8 +30,10 @@ tags:
   - connection-
   - connection-
 series: Computer Science 분석 과정 시리즈 리뉴얼판임
-profile: post1.png
+thumbnail: post1.png
 ---
+
+![내부 이미지](./profile.png)
 
 지난 프론트 컨트롤러 구현에 이어서, 스프링부트 애플리케이션을 실행하기 까지의 전 과정에 대해 다루어보고자 한다. 또한 한 단계씩 거쳐가며 애플리케이션 로직을 리팩토링 해보겠다.
 

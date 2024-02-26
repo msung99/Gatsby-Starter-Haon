@@ -42,7 +42,7 @@ const PostList = ({posts}) => {
 }
 
 const PostStyle = styled.div`
-  border-bottom: 1px solid #282828;
+  border-bottom: 2px solid #282828; 
   cursor: pointer;
   padding-bottom: 50px;
   &:hover {
