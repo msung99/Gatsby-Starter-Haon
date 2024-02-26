@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const PostHeader = ({title, date, author}) => {
     return (
-        <PostWrapper>
+        <HeaderWrapper>
             <PostTitle>
                 {title}
             </PostTitle>
@@ -12,17 +12,23 @@ const PostHeader = ({title, date, author}) => {
                 <PostAuthor>@{author}</PostAuthor>,
                 {'   '}{date} 
             </PostInformation>
-        </PostWrapper>
+        </HeaderWrapper>
     )
 }
 
-const PostWrapper = styled.div`
+const HeaderWrapper = styled.div`
   color: #fff;
   margin-bottom: 80px;
+  @media (max-width: 768px) {
+    padding: 0 15px;
+  }
 `
 
 const PostTitle = styled.h1`
   font-size: 38px;
+  margin-bottom: 25px;
+  line-height: 1.2;
+  font-weight: 800;
 `
 
 const PostInformation = styled.div`

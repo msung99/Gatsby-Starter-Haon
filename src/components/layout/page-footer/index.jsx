@@ -2,8 +2,8 @@ import React from "react"
 import styled from "styled-components";
 
 const PageFooterStyle = styled.footer` 
-  margin-top: 3rem;
-  padding: 2rem;
+  margin-top: 20px;
+  padding: 10px 0;
   text-align: center;
   color: gray;
 `

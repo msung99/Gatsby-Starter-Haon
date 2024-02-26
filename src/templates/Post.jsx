@@ -5,6 +5,7 @@ import PageLayout from "../components/layout/page-component";
 import PostContent from "../components/post/post-content";
 import Utterances from "../components/utterances";
 import TableOfContents from "../components/toc";
+import styled from "styled-components";
 
 export default ({ data, location }) => {
   const { previous, next } = data;
@@ -21,15 +22,13 @@ export default ({ data, location }) => {
           date={date}
           author={author}
         />
-        <PostContent>
-          {toc && <TableOfContents content={toc} />}
-          <section dangerouslySetInnerHTML={{ __html: post.html }} itemProp="postContent" />
-        </PostContent>
+        <PostContent html={post.html} toc={toc}/>
       </Post>
       <Utterances/>
     </PageLayout>
   );
 };
+
 
 export const pageQuery = graphql`
   query BlogPostBySlug(

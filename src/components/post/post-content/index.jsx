@@ -1,7 +1,26 @@
 import React from "react";
 import styled from "styled-components"
+import TableOfContents from "../../toc";
 
-const PostContent = styled.div`
+const PostContent = ({html, toc}) => {
+  return (
+    <ContentWrapper>
+      <TableOfContents content={toc}/>
+      <HtmlWrapper>
+        <section dangerouslySetInnerHTML={{ __html: html}} itemProp="postContent" />
+      </HtmlWrapper>
+    </ContentWrapper>
+  )
+}
+
+const ContentWrapper = styled.div`
+  position: relative;
+  @media(max-width: 768px) {
+    padding: 0 20px;
+  }
+`;
+
+const HtmlWrapper = styled.div`
   section > h1 {
     font-size: 2rem;
     color: #e8e8e8;

@@ -29,30 +29,24 @@ const TableOfContents = ({ content }) => {
   };
 
   return (
-    <div>
-      <Title>Contents</Title>
-      <Toc dangerouslySetInnerHTML={{ __html: content }} onClick={(e) => scrollToLink(e.target.getAttribute("data-link"))} />
-    </div>
+    <Toc dangerouslySetInnerHTML={{ __html: content }} onClick={(e) => scrollToLink(e.target.getAttribute("data-link"))} />
   );
 };
 
-const Title = styled.div`
-  font-size: 18px;
-  color: #9fa8b1;
-  margin-bottom: 8px;
-`;
-
 const Toc = styled.div`
-  position: sticky;
-  top: 80px;
-  width: 300px;
-  flex-shrink: 0;
+  margin-left: 70px;
+  margin-top: 30px;
+  position: relative;
+  top: 50px;
+  left: 100%;
   font-size: 15px;
-  text-align: left;
-  max-width: 18rem;
   max-height: calc(100vh - 200px);
   overflow: auto;
   border-left: 1px solid #9fa8b1;
+
+  @media (max-width: 1200px) {
+    display: None;
+  }
 
   ul {
     list-style: none;
@@ -62,12 +56,10 @@ const Toc = styled.div`
 
   li {
     color: #9fa8b1;
-    margin-top: 3px;
+    margin-top: 7px;
     margin-left: 15px;
 
     p {
-      margin-top: 5px;
-      margin-bottom: -5px;
       white-space: normal;
     }
 
