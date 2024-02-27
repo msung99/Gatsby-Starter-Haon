@@ -58,7 +58,7 @@ const SideMenuBarStyle = styled.div`
   margin-left: 30px;
   padding-right: 10px;
 
-  @media(max-width: 1200px) {
+  @media(max-width: 1300px) {
     display: none;
   }
 `;

@@ -26,7 +26,7 @@ const PageNavigator = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setShowHaonBlog(window.innerWidth < 1200);
+      setShowHaonBlog(window.innerWidth < 1300);
     };
 
     // Set initial state based on window width
@@ -83,15 +83,14 @@ const SideMenuBarWrapper = styled.div`
   left: ${({ show }) => (show ? "0" : "-100%")};
   width: 300px;
   height: 100%;
-  background: linear-gradient(to bottom, #1e1e1e, #171717); /* Slightly lighter gradient */
+  background: linear-gradient(to bottom, #1a1a1a, #131313); 
   padding-top: 60px;
   animation: ${({ show }) => (show ? slideIn : slideOut)} 0.7s ease-in-out;
   z-index: 999;
 
-  @media (max-width: 1200px) {
+  @media (max-width: 1300px) {
     display: none;
   }
 `;
-
 
 export default PageNavigator;
