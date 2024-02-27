@@ -36,16 +36,17 @@ const TableOfContents = ({ content }) => {
 const Toc = styled.div`
   margin-left: 70px;
   margin-top: 30px;
-  position: relative;
-  width: 230px;
+  position: absolute;
+  width: 220px;
   top: 50px;
   left: 100%;
   font-size: 15px;
   max-height: calc(100vh - 200px);
   overflow: auto;
-  border-left: 1px solid #9fa8b1;
+  padding-right: 15px;
+  border-right: 1px solid #9fa8b1;
 
-  @media (max-width: 1200px) {
+  @media (max-width: 1300px) {
     display: None;
   }
 

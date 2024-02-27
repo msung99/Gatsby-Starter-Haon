@@ -19,10 +19,6 @@ const ContentWrapper = styled.div`
 
 
 const HtmlWrapper = styled.div`
-  @media (max-width: 1200px) {
-    margin-top 0;
-  }
-
   section > h1 {
     font-size: 2rem;
     color: #e8e8e8;
