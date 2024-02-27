@@ -27,9 +27,9 @@ export default Search;
 const SearchContainer = styled.div`
   position: relative;
   margin-top: 20px;
-  width: 100%;
   margin-bottom: 100px;
   cursor: text;
+  max-width: 95%;
 `;
 
 const Title = styled.h1`
@@ -41,11 +41,11 @@ const Title = styled.h1`
 const Input = styled.input`
   font-size: 18px;
   color: #fff;
-  width: 100%;
+  width: 95%;
   height: 60px;
   border: none;
   border-bottom: solid #888888 2px;
-  padding-left: 30px;
+  padding-left: 40px;
   background-color: #333;
   z-index: 5;
   border-radius: 5px;

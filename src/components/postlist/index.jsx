@@ -5,7 +5,6 @@ import kebabCase from "lodash.kebabcase";
 import { GoBookmarkFill } from "react-icons/go";
 import { MdOutlineDateRange } from "react-icons/md";
 
-
 const PostList = ({ posts }) => {
   const [postCount, setPostCount] = useState(10);
 
@@ -15,39 +14,43 @@ const PostList = ({ posts }) => {
 
   return (
     <PostListContainer>
-      {posts.slice(0, postCount).map((post, index) => {
-        const { title, description, date, tags, series } = post.frontmatter;
-        const slug = post.fields.slug;
+      {posts.length === 0 ? (
+        <EmptySpace />
+      ) : (
+        posts.slice(0, postCount).map((post, index) => {
+          const { title, description, date, tags, series } = post.frontmatter;
+          const slug = post.fields.slug;
 
-        return (
-          <PostLink to={slug} key={index}>
-            <PostCard>
-              <PostTitle>{title || slug}</PostTitle>
-              <PostTags>
-                {tags.map((tag) => (
-                  <PostTag key={kebabCase(tag)}>
-                    #{tag}
-                  </PostTag>
-                ))}
-              </PostTags>
-              <PostDescription>{description}</PostDescription>
-              <PostMeta>
-                {series && (
+          return (
+            <PostLink to={slug} key={index}>
+              <PostCard>
+                <PostTitle>{title || slug}</PostTitle>
+                <PostTags>
+                  {tags.map((tag) => (
+                    <PostTag key={kebabCase(tag)}>
+                      #{tag}
+                    </PostTag>
+                  ))}
+                </PostTags>
+                <PostDescription>{description}</PostDescription>
+                <PostMeta>
+                  {series && (
+                    <MetaWrapper>
+                      <GoBookmarkFill style={{ marginRight: "8px" }} />
+                      {series}
+                    </MetaWrapper>
+                  )}
+                  <Separator />
                   <MetaWrapper>
-                    <GoBookmarkFill style={{ marginRight: "8px" }} />
-                    {series}
-                  </MetaWrapper>
-                )}
-                <Separator />
-                <MetaWrapper>
                     <MdOutlineDateRange style={{ marginRight: "8px" }} />
                     Created at {date}
                   </MetaWrapper>
-              </PostMeta>
-            </PostCard>
-          </PostLink>
-        );
-      })}
+                </PostMeta>
+              </PostCard>
+            </PostLink>
+          );
+        })
+      )}
     </PostListContainer>
   );
 };
@@ -130,5 +133,10 @@ const PostDate = styled.p`
   color: #e9e9e9;
   margin-top: 16px;
 `;
+
+const EmptySpace = styled.div`
+  height: 80vh;
+`;
+
 
 export default PostList;
