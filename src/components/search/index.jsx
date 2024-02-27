@@ -75,7 +75,7 @@ const Underline = styled.span`
 
 const ResultCount = styled.div`
   position: absolute;
-  top: 120px;
+  top: 140px;
   font-size: 22px;
   margin-top: 30px;
   color: #fff;

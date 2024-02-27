@@ -23,7 +23,6 @@ const TagList = ({ tags, allCount }) => {
 }
 
 const TagListStyle = styled.div`
-  font-size: 16px;
   margin-left: 50px;
   line-height: 30px;
   display: flex;
@@ -42,7 +41,7 @@ const TagTitle = styled.div`
 const TagStyle = styled.div`
   float: left;
   padding-left: 10px;
-  font-size: 17px;
+  font-size: 16px;
   transition: color 1s;
 
   &:hover {
@@ -52,7 +51,7 @@ const TagStyle = styled.div`
 
 const TagCountStyle = styled.span`
   color: gray;
-  font-size: 14px;
+  font-size: 13px;
   transition: color 1s;
 
   &:hover {

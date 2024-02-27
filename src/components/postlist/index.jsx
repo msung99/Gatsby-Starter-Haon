@@ -88,14 +88,15 @@ const PostTag = styled.span`
   opacity: 0.8;
   font-size: 15px;
   margin-right: 25px;
+  margin-bottom: 1.5px;
 `;
 
 const PostDescription = styled.p`
   margin-top: 40px;
-  margin-bottom: 16px;
-  font-size: 15px;
+  margin-bottom: 20px;
+  font-size: 16px;
   color: #e9e9e9;
-  line-height: 1.5;
+  line-height: 160%;
 `;
 
 const PostMeta = styled.div`

@@ -32,8 +32,7 @@ const PostTitle = styled.h1`
 `
 
 const PostInformation = styled.div`
-  font-size: 18px;
-  font-weight: 250;
+  font-size: 16px;
   color: gray;
   padding-bottom: 50px;
   border-bottom: 1px solid #626262; 
