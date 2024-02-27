@@ -1,29 +1,28 @@
-import { Link } from "gatsby"
-import React, { useEffect, useState } from "react"
-import styled from "styled-components"
-import kebabCase from "lodash.kebabcase"
-import { FaTags } from "react-icons/fa"
+import React, { useEffect, useState } from "react";
+import { Link } from "gatsby";
+import styled from "styled-components";
+import kebabCase from "lodash.kebabcase";
+import { GoBookmarkFill } from "react-icons/go";
+import { MdOutlineDateRange } from "react-icons/md";
+
 
 const PostList = ({ posts }) => {
-  const [postCount, setPostCount] = useState(10)
+  const [postCount, setPostCount] = useState(10);
 
   useEffect(() => {
-    setPostCount(10)
-  }, [posts])
+    setPostCount(10);
+  }, [posts]);
 
   return (
-    <PostListStyle>
-      {posts.slice(0, postCount).map((post, i) => {
-        const title = post.frontmatter.title || post.fields.slug
-        const description = post.frontmatter.description
-        const date = post.frontmatter.date
-        const tags = post.frontmatter.tags
-        const series = post.frontmatter.series
+    <PostListContainer>
+      {posts.slice(0, postCount).map((post, index) => {
+        const { title, description, date, tags, series } = post.frontmatter;
+        const slug = post.fields.slug;
 
         return (
-          <Link style={{ textDecoration: "none" }} to={post.fields.slug} key={i}>
-            <PostStyle>
-              <PostTitle>{title}</PostTitle>
+          <PostLink to={slug} key={index}>
+            <PostCard>
+              <PostTitle>{title || slug}</PostTitle>
               <PostTags>
                 {tags.map((tag) => (
                   <PostTag key={kebabCase(tag)}>
@@ -31,76 +30,104 @@ const PostList = ({ posts }) => {
                   </PostTag>
                 ))}
               </PostTags>
-              <Excerpt>{description}</Excerpt>
-              <EtcWrapper>
-                <PostDate>{date} | </PostDate>
-                <Horizontalspace />
-                <PostSeries>Series: {series}</PostSeries>
-              </EtcWrapper>
-            </PostStyle>
-          </Link>
-        )
+              <PostDescription>{description}</PostDescription>
+              <PostMeta>
+                {series && (
+                  <MetaWrapper>
+                    <GoBookmarkFill style={{ marginRight: "8px" }} />
+                    {series}
+                  </MetaWrapper>
+                )}
+                <Separator />
+                <MetaWrapper>
+                    <MdOutlineDateRange style={{ marginRight: "8px" }} />
+                    Created at {date}
+                  </MetaWrapper>
+              </PostMeta>
+            </PostCard>
+          </PostLink>
+        );
       })}
-    </PostListStyle>
-  )
-}
+    </PostListContainer>
+  );
+};
 
-const PostStyle = styled.div`
+const PostListContainer = styled.div``;
+
+const PostLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`;
+
+const PostCard = styled.div`
   border-bottom: 2px solid #282828;
   margin-top: 40px;
   cursor: pointer;
   padding-bottom: 50px;
+  transition: opacity 0.3s ease;
+
   &:hover {
     opacity: 0.8;
   }
-`
+`;
 
 const PostTitle = styled.h1`
   color: white;
   font-size: 2rem;
   margin-bottom: 20px;
-`
-
-const Excerpt = styled.p`
-  margin-top: 50px;
-  margin-bottom: 32px;
-  font-size: 16px;
-  color: #e9e9e9;
-  line-height: 150%;
-`
-
-const EtcWrapper = styled.div`
-  display: flex;
-  align-items: center;
-`
-
-const Horizontalspace = styled.div`
-  margin-right: 5px;
-`
-
-const PostDate = styled.p`
-  font-size: 16px;
-  color: gray;
-  margin: 0;
-`
-
-const PostListStyle = styled.div``
-
-const PostSeries = styled.p`
-  font-size: 16px;
-  color: gray;
-  margin: 0;
-`
+`;
 
 const PostTags = styled.div`
-  width: 100%;
-`
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+`;
 
 const PostTag = styled.span`
   color: #cdd4d9;
   opacity: 0.8;
-  font-size: 16px;
-  margin-right: 35px;
-`
+  font-size: 15px;
+  margin-right: 25px;
+`;
 
-export default PostList
+const PostDescription = styled.p`
+  margin-top: 40px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #e9e9e9;
+  line-height: 1.5;
+`;
+
+const PostMeta = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const Separator = styled.div`
+  background-color: #282828;
+  margin-right: 15px;
+`;
+
+const MetaWrapper = styled.span`
+  display: flex;
+  align-items: center;
+  color: white;
+  background-color: #3c3a39;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #4c4a49;
+  }
+`;
+
+const PostDate = styled.p`
+  font-size: 14px;
+  color: #e9e9e9;
+  margin-top: 16px;
+`;
+
+export default PostList;
