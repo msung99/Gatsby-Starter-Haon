@@ -6,10 +6,9 @@ import PageNavigator from "../page-navigator";
 
 const PageLayoutStyle = styled.div`
   @media(max-width: 768px) {
-    padding: 0 30px;
+    padding: 0 10px;
   }
 `
-// #1d1d1d
 
 
 const PageLayout = ({ children }) => {

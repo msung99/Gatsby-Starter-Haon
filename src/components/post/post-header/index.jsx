@@ -19,9 +19,6 @@ const PostHeader = ({title, date, author}) => {
 const HeaderWrapper = styled.div`
   color: #fff;
   margin-bottom: 80px;
-  @media (max-width: 768px) {
-    padding: 0 15px;
-  }
 `
 
 const PostTitle = styled.h1`
