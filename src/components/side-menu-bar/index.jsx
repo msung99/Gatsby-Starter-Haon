@@ -87,11 +87,12 @@ const MenuText = styled.p`
 `;
 
 const Title = styled.div`
-  font-size: 30px;
+  font-size: 35px;
   color: white;
   margin-top: 30px;
   margin-bottom: 50px;
-  font-family: GmarketSansTTFLight, sans-serif, Arial;
+  font-family: "Oswald";
+  font-weight: 600;
 `;
 
 export default SideMenuBar;

@@ -84,6 +84,9 @@ const PageNavigatorTitle = styled.div`
   font-size: 28px;
   margin-left: 30px;
   color: white;
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  font-style: normal;
   animation: ${fadeIn} 0.7s ease-in-out;
 `;
 
