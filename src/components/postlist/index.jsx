@@ -92,8 +92,8 @@ const PostTag = styled.span`
 
 const PostDescription = styled.p`
   margin-top: 40px;
-  margin-bottom: 15px;
-  font-size: 16px;
+  margin-bottom: 16px;
+  font-size: 15px;
   color: #e9e9e9;
   line-height: 1.5;
 `;
