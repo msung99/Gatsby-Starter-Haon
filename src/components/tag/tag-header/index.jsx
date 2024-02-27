@@ -8,7 +8,6 @@ const TagsHeader = ({tagName, tags }) => {
     return (
       <TagsHeaderStyle>
         <Title>#{tagName}</Title>
-        <OtherTags>
           <div style={{ display: "flex", alignItems: "center", marginBottom: "10px"}}>
               <span style={{marginBottom: "2px"}}>
                   <FaTags className="icon" size="23" color="white"/>
@@ -24,7 +23,6 @@ const TagsHeader = ({tagName, tags }) => {
               </Link>
               ))}
           </div>
-        </OtherTags>
       </TagsHeaderStyle>
     );
 };
@@ -35,11 +33,7 @@ const TagsHeaderStyle = styled.div`
   border-bottom: 1px solid #282828;
 `
 
-const OtherTags = styled.div`
-  @media(max-width: 768px) {
-    display: none;
-  }
-`
+
 
 const Title = styled.h1`
   color: white;

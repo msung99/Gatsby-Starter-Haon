@@ -30,10 +30,6 @@ const TagListStyle = styled.div`
   margin-left: 0px;
   padding-bottom: 40px;
   border-bottom: 1px solid #282828;
-
-  @media(max-width: 768px) {
-    display: none;
-  }
 `
 
 const TagTitle = styled.div`

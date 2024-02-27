@@ -2,6 +2,7 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import PageLayout from  "../components/layout/page-component"
 import TagList from "../components/side-taglist"
+import styled from "styled-components"
 
 const TagListTemplate = ({ data, location }) => {
   const tags = data.allMarkdownRemark.group
@@ -9,10 +10,18 @@ const TagListTemplate = ({ data, location }) => {
   
   return (
     <PageLayout>
-        <TagList tags={tags}></TagList>
+        <TagListWrapper>
+          <TagList tags={tags}></TagList>
+        </TagListWrapper>
     </PageLayout>
   )
 }
+
+const TagListWrapper = styled.div`
+  @media(max-width: 768px) {
+    padding: 0 30px;
+  }
+`
 
 export default TagListTemplate
 
