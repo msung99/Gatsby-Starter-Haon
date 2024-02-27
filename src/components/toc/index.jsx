@@ -63,12 +63,12 @@ const TableOfContents = ({ content }) => {
 };
 
 const Toc = styled.div`
-  position: fixed;
+  position: sticky;
   top: 80px;
-  left: calc(96% - 250px);
+  left: 100%;
   width: 220px;
   font-size: 15px;
-  max-height: calc(100vh - 200px);
+  max-height: calc(100vh - 220px);
   overflow: auto;
   padding-top: 10px;
   padding-right: 15px;
