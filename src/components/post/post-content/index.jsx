@@ -15,9 +15,6 @@ const PostContent = ({html, toc}) => {
 
 const ContentWrapper = styled.div`
   position: relative;
-  @media(max-width: 768px) {
-    padding: 0 20px;
-  }
 `;
 
 
