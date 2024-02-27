@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import { Link } from "gatsby";
-import SideMenuBar from "../../side-menu-bar";
+import AsideMenuBar from "../../menu-bar/aside";
+import HeaderMenuBar from "../../menu-bar/header";
 
 const slideIn = keyframes`
   from {
@@ -51,44 +52,15 @@ const PageNavigator = () => {
   return (
     <>
       {showHaonBlog ? (
-        <PageNavigatorStyle>
-          <Link style={{ textDecoration: "none" }} to="/">
-            <PageNavigatorTitle>
-              Haon Blog
-            </PageNavigatorTitle>
-          </Link>
-        </PageNavigatorStyle>
+        <HeaderMenuBar/>
       ) : (
         <SideMenuBarWrapper show={!showHaonBlog}>
-          <SideMenuBar />
+          <AsideMenuBar/>
         </SideMenuBarWrapper>
       )}
     </>
   );
 };
-
-const PageNavigatorStyle = styled.header`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  font-size: 2rem;
-  font-weight: bold;
-  border-bottom: 3px solid #282828;
-  background-color: #1d1d1d;
-  padding-top: 10px;
-  padding-bottom: 10px;
-`;
-
-const PageNavigatorTitle = styled.div`
-  font-size: 28px;
-  margin-left: 30px;
-  color: white;
-  font-family: "Pacifico", cursive;
-  font-weight: 400;
-  font-style: normal;
-  animation: ${fadeIn} 0.7s ease-in-out;
-`;
 
 const SideMenuBarWrapper = styled.div`
   position: fixed;
@@ -105,9 +77,6 @@ const SideMenuBarWrapper = styled.div`
     display: none;
   }
 `;
-
-
-
 
 
 export default PageNavigator;
