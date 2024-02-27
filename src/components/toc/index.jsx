@@ -34,20 +34,19 @@ const TableOfContents = ({ content }) => {
 };
 
 const Toc = styled.div`
-  margin-left: 70px;
-  margin-top: 30px;
-  position: absolute;
-  width: 220px;
+  position: fixed;
   top: 50px;
-  left: 100%;
+  left: calc(96% - 250px);
+  width: 220px;
   font-size: 15px;
   max-height: calc(100vh - 200px);
   overflow: auto;
   padding-right: 15px;
   border-right: 1px solid #9fa8b1;
+  transition: left 0.3s ease-in-out;
 
   @media (max-width: 1300px) {
-    display: None;
+    display: none;
   }
 
   ul {
@@ -77,5 +76,7 @@ const Toc = styled.div`
     }
   }
 `;
+
+
 
 export default TableOfContents;
