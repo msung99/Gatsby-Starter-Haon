@@ -1,17 +1,17 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import PageLayout from  "../components/layout/page-component"
-import TagList from "../components/side-taglist"
 import styled from "styled-components"
+import AllTagList from "../components/tags"
 
 const TagListTemplate = ({ data, location }) => {
   const tags = data.allMarkdownRemark.group
-  const tagsCount = tags.length
+  const allCount = tags.length
   
   return (
     <PageLayout>
         <TagListWrapper>
-          <TagList tags={tags}></TagList>
+          <AllTagList tags={tags} allCount={allCount}></AllTagList>
         </TagListWrapper>
     </PageLayout>
   )

@@ -58,46 +58,46 @@ const Name = styled.span`
 `
 
 const RelatedTag = styled.span`
-  position: relative;
-  color: white;
-  font-size: 16px;
-  margin-right: 25px;
-  margin-bottom: 10px;
-  padding: 8px 12px;
-  background-color: #3C3A39;
-  display: inline-block;
-  transition: background-color 0.3s ease-in-out;
+position: relative;
+color: white;
+font-size: 15px;
+margin-right: 30px;
+margin-bottom: 10px;
+padding: 5px 20px 8px 20px;
+background-color: #3C3A39;
+display: inline-block;
+transition: background-color 0.3s ease-in-out;
+
+&::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -18px;
+  border-width: 17.9px 0 17.9px 17.9px; 
+  border-style: solid;
+  border-color: transparent transparent transparent #3C3A39;
+  transition: border-color 0.3s ease-in-out; 
+}
+
+&::after {
+  content: '';
+  position: absolute;
+  top: 48%;
+  right: -4px;
+  width: 7px;
+  height: 7px;
+  background-color: white;
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+&:hover {
+  background-color: #555;
 
   &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: -16.5px;
-    border-width: 17.5px 0 18px 17.5px; 
-    border-style: solid;
-    border-color: transparent transparent transparent #3C3A39;
-    transition: border-color 0.3s ease-in-out; /* Add transition property for border color */
+    border-color: transparent transparent transparent #555;
   }
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 48%;
-    right: -4px;
-    width: 7px;
-    height: 7px;
-    background-color: white;
-    border-radius: 50%;
-    transform: translateY(-50%);
-  }
-
-  &:hover {
-    background-color: #555;
-
-    &::before {
-      border-color: transparent transparent transparent #555;
-    }
-  }
+}
 `;
 
 

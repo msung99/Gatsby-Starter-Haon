@@ -1,11 +1,9 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import PageLayout from  "../components/layout/page-component"
 import PostList from "../components/postlist"
-import TagList from "../components/side-taglist"
-import Seo from "../components/seo"
-import SideMenuBar from "../components/side-menu-bar"
 import Profile from "../components/profile"
+import SimpleTagList from "../components/simple-taglist"
 
 const PostListTemplate = ({ data, location }) => {
   const title = data.site.siteMetadata?.title || `Title`
@@ -21,7 +19,7 @@ const PostListTemplate = ({ data, location }) => {
   return (
     <PageLayout>
       <Profile author={author} description={description} siteUrl={siteUrl} keywords = {keywords}/>
-      <TagList tags={tags} allCount={tagsCount}/>
+      <SimpleTagList tags={tags} allCount={tagsCount}/>
       <PostList posts={posts}></PostList>
     </PageLayout>
   )
