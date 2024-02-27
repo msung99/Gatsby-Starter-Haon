@@ -1,7 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const TableOfContents = ({ content }) => {
+  const [activeLink, setActiveLink] = useState(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 120; // Adjust as needed
+      const headings = document.querySelectorAll("h1, h2, h3, h4");
+
+      let activeHeading = null;
+
+      headings.forEach((heading) => {
+        const top = heading.offsetTop;
+        const bottom = top + heading.offsetHeight;
+
+        if (scrollPosition >= top && scrollPosition <= bottom) {
+          activeHeading = heading.id;
+        }
+      });
+
+      setActiveLink(activeHeading);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const scrollToLink = (id) => {
     const targetElement = document.getElementById(id);
 
@@ -12,35 +40,37 @@ const TableOfContents = ({ content }) => {
 
       const targetOffset = targetElement.offsetTop - offset;
 
-      // 브라우저의 기본 스크롤 이벤트 막기
       document.body.style.overflow = "hidden";
 
-      // 스크롤 애니메이션 적용
       window.scrollTo({
         top: targetOffset,
         behavior: "smooth",
       });
 
-      // 애니메이션이 끝나면 다시 스크롤 이벤트 허용
       setTimeout(() => {
         document.body.style.overflow = "auto";
-      }, 500); // 애니메이션 기간과 맞춰 조절
+      }, 500);
     }
   };
 
   return (
-    <Toc dangerouslySetInnerHTML={{ __html: content }} onClick={(e) => scrollToLink(e.target.getAttribute("data-link"))} />
+    <Toc
+      dangerouslySetInnerHTML={{ __html: content }}
+      onClick={(e) => scrollToLink(e.target.getAttribute("data-link"))}
+      activeLink={activeLink}
+    />
   );
 };
 
 const Toc = styled.div`
   position: fixed;
-  top: 50px;
+  top: 80px;
   left: calc(96% - 250px);
   width: 220px;
   font-size: 15px;
   max-height: calc(100vh - 200px);
   overflow: auto;
+  padding-top: 10px;
   padding-right: 15px;
   border-right: 1px solid #9fa8b1;
   transition: left 0.3s ease-in-out;
@@ -65,7 +95,7 @@ const Toc = styled.div`
     }
 
     a {
-      color: inherit;
+      color: ${(props) => (props.activeLink === props["data-link"] ? "#e8e8e8" : "inherit")};
       text-decoration: none;
       cursor: pointer;
 
@@ -76,7 +106,5 @@ const Toc = styled.div`
     }
   }
 `;
-
-
 
 export default TableOfContents;

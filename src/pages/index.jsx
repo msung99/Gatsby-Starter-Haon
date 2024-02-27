@@ -51,6 +51,7 @@ export const pageQuery = graphql`
           description
           date
           tags
+          series
         }
       }
       group(field: frontmatter___tags) {
