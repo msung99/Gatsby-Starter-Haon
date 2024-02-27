@@ -6,6 +6,7 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "babel-plugin-styled-components": "^2.1.4",
+    "fontsource-noto-sans-kr": "^4.0.0",
     "gatsby": "^5.13.2",
     "gatsby-plugin-fusejs": "^2.0.2",
     "gatsby-plugin-image": "^3.13.1",
