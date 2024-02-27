@@ -8,3 +8,4 @@
 import 'prismjs/themes/prism-tomorrow.css';
 import './src/styles/gatsby-global.css';
 import "fontsource-noto-sans-kr";
+import "fontsource-noto-sans-kr/700.css";
