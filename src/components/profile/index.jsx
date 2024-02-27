@@ -36,7 +36,6 @@ const ProfileStyle = styled.div`
   display: flex;
   align-items: center;
   padding-bottom: 40px;
-  width: 70%;
 `
 
 const Text = styled.div`
@@ -67,6 +66,7 @@ const KeyWordStyle = styled.span`
   background-color: #333A41;
 `
 
+
 const Image = styled.div`
   background-image: url(http://localhost:8000/profile2.jpeg);
   width: 140px;
@@ -77,6 +77,7 @@ const Image = styled.div`
   background-position: center;
   border-radius: 50%;
 `;
+
 
 
 export default Profile;
