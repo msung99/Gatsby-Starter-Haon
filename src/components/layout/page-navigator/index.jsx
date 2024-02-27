@@ -21,6 +21,15 @@ const slideOut = keyframes`
   }
 `;
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
 const PageNavigator = () => {
   const [showHaonBlog, setShowHaonBlog] = useState(true);
 
@@ -75,6 +84,7 @@ const PageNavigatorTitle = styled.div`
   font-size: 28px;
   margin-left: 30px;
   color: white;
+  animation: ${fadeIn} 0.7s ease-in-out;
 `;
 
 const SideMenuBarWrapper = styled.div`
