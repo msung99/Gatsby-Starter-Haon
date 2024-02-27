@@ -71,11 +71,6 @@ const SideMenuBarWrapper = styled.div`
   background: linear-gradient(to bottom, #1e1e1e, #121212);
   padding-top: 60px;
   animation: ${({ show }) => (show ? slideIn : slideOut)} 0.7s ease-in-out;
-  z-index: 999;
-
-  @media (max-width: 1300px) {
-    display: none;
-  }
 `;
 
 

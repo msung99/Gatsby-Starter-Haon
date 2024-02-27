@@ -67,6 +67,7 @@ const NavigatoWrapper = styled.div`
   border-bottom: 2.5px solid #282828;
   width: 100%;
   background-color: #1d1d1d;
+  z-index: 1000;
 `;
 
 const MenuContainer = styled.div`
