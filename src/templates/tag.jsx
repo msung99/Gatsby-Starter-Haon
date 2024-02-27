@@ -56,7 +56,7 @@ export const pageQuery = graphql`
           description
           date
           tags
-          series
+          series  
         }
       }
     }
