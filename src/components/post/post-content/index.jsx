@@ -20,7 +20,12 @@ const ContentWrapper = styled.div`
   }
 `;
 
+
 const HtmlWrapper = styled.div`
+  @media (max-width: 1200px) {
+    margin-top 0;
+  }
+
   section > h1 {
     font-size: 2rem;
     color: #e8e8e8;
@@ -44,6 +49,20 @@ const HtmlWrapper = styled.div`
 
   section > h4 {
     font-size: 1.1rem;
+    color: #e6e6e6;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  section > h5 {
+    font-size: 0.9rem;
+    color: #e6e6e6;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  section > h6 {
+    font-size: 0.7rem;
     color: #e6e6e6;
     margin-top: 40px;
     margin-bottom: 40px;
