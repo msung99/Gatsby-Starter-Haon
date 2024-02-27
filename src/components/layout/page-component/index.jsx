@@ -6,6 +6,9 @@ import PageNavigator from "../page-navigator";
 
 const PageLayoutStyle = styled.div`
   background-color: #191919;
+  @media(max-width: 768px) {
+    padding: 0 30px;
+  }
 `
 // #1d1d1d
 
