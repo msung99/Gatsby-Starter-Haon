@@ -27,15 +27,17 @@ const TagListStyle = styled.div`
   line-height: 30px;
   display: flex;
   margin-left: 0px;
-  padding-bottom: 40px;
+  padding-bottom: 60px;
   border-bottom: 1px solid #282828;
 `
 
 const TagTitle = styled.h1`
-  font-size: 40px;
-  margin-bottom: 30px;
+  font-size: 45px;
   color: #fff;
   font-style: italic;
+  margin-bottom: 40x;
+  padding-bottom: 50px;
+  border-bottom: 1px solid #282828;
 `
 
 const Description = styled.h2`

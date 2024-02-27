@@ -3,7 +3,7 @@ import PostList from "../../postlist";
 import styled from "styled-components";
 
 const TagsContent = ({posts, totalCount}) => {
-    const tagDescription = `${totalCount} post${
+    const tagDescription = `There are ${totalCount} post${
         totalCount === 1 ? "" : "s"} found.`
 
     return (

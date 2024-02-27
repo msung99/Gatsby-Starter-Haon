@@ -110,7 +110,9 @@ const Title = styled.h1`
   font-size: 50px;
   color: white;
   font-style: italic;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #282828;
 `;
 
 const Description = styled.h2`

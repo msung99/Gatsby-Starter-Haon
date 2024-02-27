@@ -8,4 +8,5 @@ const Tags = styled.section`
 Tags.Header = TagsHeader
 Tags.Content = TagsContent
 
+
 export default Tags
