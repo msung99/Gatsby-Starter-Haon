@@ -35,7 +35,7 @@ const AsideMenuBar = () => {
       <Link to={"/community"} style={{ textDecoration: 'none' }}>
         <SocialMenu>
           <SocialImage/>
-          <SocialText>Social</SocialText>
+          <SocialText>Social, Connect</SocialText>
         </SocialMenu>
       </Link>
     </SideMenuBarStyle>
@@ -46,10 +46,10 @@ const SocialMenu = styled.div`
   position: fixed;
   display: flex;
   justify-content: center;
-  bottom: 50px;
+  margin-top: 40px;
 
   padding-top: 10px;
-  padding-right: 110px;
+  padding-right: 30px;
   transition: background-color 0.2s ease-in-out;
   border-radius: 8px;
 
@@ -67,8 +67,8 @@ const SocialText = styled.p`
 
 const SocialImage = styled.div`
   background-image: url(http://localhost:8000/profile2.jpeg);
-  width: 35px;
-  height: 35px;
+  width: 38px;
+  height: 38px;
   border: 1px solid transparent;
   border-color: white;
   background-size: cover;
