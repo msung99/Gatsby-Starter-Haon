@@ -25,6 +25,7 @@ export default ({ data, location }) => {
           tags={tags}
         />
         <PostContent html={post.html} toc={toc}/>
+        <Post.Footer previous={previous} next={next}/>
       </Post>
       <Utterances/>
     </PageLayout>

@@ -60,10 +60,10 @@ const profileImageUrl =
   typeof window !== "undefined" && window.location.host === "localhost:8000"
     ? "http://localhost:8000"
     : siteMetadata.siteUrl
-    
+
 
 const Image = styled.div`
-  background-image: url(${profileImageUrl}/profile.png);
+  background-image: url(${siteMetadata.siteUrl}/profile.png);
   width: 140px;
   height: 140px;
   border: 1px solid transparent;

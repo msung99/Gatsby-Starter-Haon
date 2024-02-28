@@ -66,8 +66,14 @@ const SocialText = styled.p`
   margin-top: 5px;
 `
 
+const profileImageUrl =
+  typeof window !== "undefined" && window.location.host === "localhost:8000"
+    ? "http://localhost:8000"
+    : siteMetadata.siteUrl
+
+
 const SocialImage = styled.div`
-  background-image: url(http://localhost:8000/profile2.jpeg);
+  background-image: url(${profileImageUrl}/profile.png);
   width: 38px;
   height: 38px;
   border: 1px solid transparent;
