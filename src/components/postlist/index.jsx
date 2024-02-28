@@ -120,7 +120,7 @@ const MetaWrapper = styled.span`
   background-color: #3c3a39;
   padding: 8px;
   font-size: 14px;
-  border-radius: 3px;
+  border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease;
 
