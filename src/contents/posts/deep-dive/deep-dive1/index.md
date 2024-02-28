@@ -12,26 +12,21 @@ tags:
   - connection1
   - connection2
   - connection3
-  - connection4
-  - connection5
-  - connection6
-  - connection7
-  - connection8
-  - connection9
-  - connection-1
-  - connection-2
-  - connection-3
-  - connection-4
-  - connection-5
-  - connection-6
-  - connection-
-  - connection-
-  - connection-
-  - connection-
-  - connection-
 series: Computer Science 분석 과정 시리즈 리뉴얼판임
 thumbnail: post1.png
 ---
+
+```python
+import pandas as pd
+
+print("hello!")
+
+this is just contents!
+```
+
+```
+this is just contents!
+```
 
 ![내부 이미지](./profile.png)
 
@@ -444,7 +439,3 @@ public class MySpringBootApplication {
 - ServletWebServerFactory, DispatcherServlet 에 대한 Bean 오브젝트 없이 어떻게 run() 메소드를 동일하게 구현할 수 있는가?
 - Jetty
 - ApplicationContext (아직 더 깊은 이해도가 필요한건 사실이다 🥹)
-
-```
-
-```

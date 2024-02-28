@@ -74,8 +74,8 @@ const HtmlWrapper = styled.div`
     word-break: break-all;
 
     span {
-      margin-top: 50px;
-      margin-bottom: 50px;
+      margin-top: 40px;
+      margin-bottom: 40px;
       font-size: 100px;
     }
   }
@@ -94,11 +94,11 @@ const HtmlWrapper = styled.div`
   }
 
   hr {
-    height: 1px;
+    height: 2px;
     border: 0;
-    color: white;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    background-color: #282828;
+    margin-top: 50px;
+    margin-bottom: 50px;
     word-break: break-all;
   }
 
@@ -111,8 +111,8 @@ const HtmlWrapper = styled.div`
     width: 100%;
     height: 100%;
     object-fit: fill;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 40px;
+    margin-bottom: 40px;
   }
 
   li {
