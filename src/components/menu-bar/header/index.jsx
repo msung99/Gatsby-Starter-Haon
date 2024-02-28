@@ -2,12 +2,12 @@ import { Link } from "gatsby";
 import React from "react"
 import styled from "styled-components";
 import { useLocation } from "@reach/router";
-import { IoHomeOutline } from "react-icons/io5";
 import { IoIosSearch } from "react-icons/io";
 import { GoPeople } from "react-icons/go";
 import { GoComment } from "react-icons/go";
 import { MdOutlineDarkMode, MdOutlineBookmarks } from "react-icons/md";
 import { GiBlackBook } from "react-icons/gi";
+import { siteMetadata } from "../../../../gatsby-config";
 
 const menuItems = [
     { to: '/search', icon: <IoIosSearch className="icon" size="25" />, text: 'Search' },
@@ -25,7 +25,7 @@ const HeaderMenuBar = () => {
     return (
         <NavigatoWrapper>
             <Link style={{ textDecoration: "none" }} to="/">
-                <Title>Haon Blog</Title>
+                <Title>{siteMetadata.title}</Title>
             </Link>
             <MenuContainer>
                 {menuItems.map((item, index) => (

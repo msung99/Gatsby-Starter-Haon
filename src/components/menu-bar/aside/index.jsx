@@ -8,6 +8,7 @@ import { GoComment } from "react-icons/go";
 import { MdOutlineDarkMode, MdOutlineBookmarks } from "react-icons/md";
 import { GiBlackBook } from "react-icons/gi";
 import { Link } from "gatsby";
+import { siteMetadata } from "../../../../gatsby-config";
 
 const menuItems = [
   { to: '/', icon: <IoHomeOutline className="icon" size="30" />, text: 'Home' },
@@ -25,7 +26,7 @@ const AsideMenuBar = () => {
   return (
     <SideMenuBarStyle>
       <Link to={"/"} style={{ textDecoration: 'none' }}>
-        <Title>Haon Blog</Title>
+        <Title>{siteMetadata.title}</Title>
       </Link>
       <div>
         {menuItems.map((item, index) => (
@@ -35,7 +36,7 @@ const AsideMenuBar = () => {
       <Link to={"/community"} style={{ textDecoration: 'none' }}>
         <SocialMenu>
           <SocialImage/>
-          <SocialText>Social, Connect</SocialText>
+          <SocialText>{siteMetadata.author}</SocialText>
         </SocialMenu>
       </Link>
     </SideMenuBarStyle>
@@ -49,7 +50,7 @@ const SocialMenu = styled.div`
   margin-top: 40px;
 
   padding-top: 10px;
-  padding-right: 30px;
+  padding-right: 80px;
   transition: background-color 0.2s ease-in-out;
   border-radius: 8px;
 
