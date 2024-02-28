@@ -3,6 +3,8 @@ import styled, { keyframes } from "styled-components";
 import { FiLink } from "react-icons/fi";
 import { FaFacebook } from "react-icons/fa";
 import { FaTwitterSquare } from "react-icons/fa";
+import { Link } from "gatsby";
+import kebabCase from "lodash.kebabcase";
 
 const fadeInOut = keyframes`
   0% {
@@ -26,7 +28,6 @@ const PostHeader = ({ title, date, author, tags }) => {
 
     setCopyStatus("Copied!");
 
-    // Reset copy status after 3 seconds
     setTimeout(() => {
       setCopyStatus(null);
     }, 3000);
@@ -57,18 +58,24 @@ const PostHeader = ({ title, date, author, tags }) => {
         </Description>
         <ShareLinkContainer>
           <ShareLink onClick={copyToClipboard}>
-            <FiLink size="25" />
+            <FiLink size="23" />
           </ShareLink>
           <ShareLink onClick={shareOnFacebook}>
-            <FaFacebook size="25" />
+            <FaFacebook size="23" />
           </ShareLink>
           <ShareLink onClick={shareOnTwitter}>
-            <FaTwitterSquare size="25" />
+            <FaTwitterSquare size="27" />
           </ShareLink>
           {copyStatus && <CopyStatus>{copyStatus}</CopyStatus>}
         </ShareLinkContainer>
       </Info>
-      <Tags>{tags}</Tags>
+      <div>
+        {tags.map((tag) => (
+          <Link style={{ textDecoration: "none" }} to={`/tags/${kebabCase(tag)}`} key={tag}>
+              <Tag>{tag}</Tag>
+          </Link>
+        ))}
+      </div>
       <HiddenInput
         type="text"
         readOnly
@@ -101,7 +108,7 @@ const Description = styled.div`
 const Info = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Center items vertically */
+  align-items: center;
   padding-bottom: 50px;
 `;
 
@@ -140,5 +147,49 @@ const CopyStatus = styled.div`
   opacity: 0;
   animation: ${fadeInOut} 3s ease-in-out;
 `;
+
+const Tag = styled.span`
+position: relative;
+color: white;
+font-size: 15px;
+margin-right: 30px;
+margin-bottom: 10px;
+padding: 5px 20px 8px 20px;
+background-color: #3C3A39;
+display: inline-block;
+transition: background-color 0.3s ease-in-out;
+
+&::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -18px;
+  border-width: 17.9px 0 17.9px 17.9px; 
+  border-style: solid;
+  border-color: transparent transparent transparent #3C3A39;
+  transition: border-color 0.3s ease-in-out; 
+}
+
+&::after {
+  content: '';
+  position: absolute;
+  top: 48%;
+  right: -4px;
+  width: 7px;
+  height: 7px;
+  background-color: white;
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+&:hover {
+  background-color: #555;
+
+  &::before {
+    border-color: transparent transparent transparent #555;
+  }
+}
+`;
+
 
 export default PostHeader;

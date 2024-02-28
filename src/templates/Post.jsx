@@ -13,6 +13,7 @@ export default ({ data, location }) => {
   const { title, date } = post.frontmatter;
   const author = data.site.siteMetadata.author;
   const toc = post.tableOfContents;
+  const tags = post.frontmatter.tags
 
   return (
     <PageLayout>
@@ -21,6 +22,7 @@ export default ({ data, location }) => {
           title={title}
           date={date}
           author={author}
+          tags={tags}
         />
         <PostContent html={post.html} toc={toc}/>
       </Post>
