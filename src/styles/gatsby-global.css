@@ -9,3 +9,8 @@ body {
     font-family: 'Noto Sans KR', sans-serif;
     background-color: #191919;
 }
+
+#___gatsby,
+#gatsby-focus-wrapper {
+  height: 100%;
+}
