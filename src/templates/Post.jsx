@@ -12,6 +12,7 @@ export default ({ data, location }) => {
   const author = data.site.siteMetadata.author;
   const toc = post.tableOfContents;
   const tags = post.frontmatter.tags
+  const series = post.frontmatter.series
 
   return (
     <PageLayout>
@@ -21,6 +22,7 @@ export default ({ data, location }) => {
           date={date}
           author={author}
           tags={tags}
+          series={series}
         />
         <PostContent html={post.html} toc={toc}/>
         <Post.Footer previous={previous} next={next}/>

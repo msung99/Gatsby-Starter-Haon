@@ -5,20 +5,9 @@ import { FaFacebook } from "react-icons/fa";
 import { FaTwitterSquare } from "react-icons/fa";
 import { Link } from "gatsby";
 import kebabCase from "lodash.kebabcase";
+import { FaStream } from "react-icons/fa";
 
-const fadeInOut = keyframes`
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-`;
-
-const PostHeader = ({ title, date, author, tags }) => {
+const PostHeader = ({ title, date, author, tags, series }) => {
   const urlRef = useRef(null);
   const [copyStatus, setCopyStatus] = useState(null);
 
@@ -96,9 +85,29 @@ const PostHeader = ({ title, date, author, tags }) => {
         readOnly
         ref={urlRef}
       />
+      <SeriesContainer>
+        <SeriesLabel>Series of</SeriesLabel>
+        <Series to={`/series/${kebabCase(series)}/`}>
+          <SeriesIcon size={12} />
+          {series}
+        </Series>
+      </SeriesContainer>
     </HeaderWrapper>
   );
 };
+
+
+const fadeInOut = keyframes`
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+`;
 
 const HeaderWrapper = styled.div`
   color: #fff;
@@ -206,6 +215,39 @@ const Tag = styled.span`
       border-color: transparent transparent transparent #555;
     }
   }
+`;
+
+const SeriesContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+`;
+
+const SeriesLabel = styled.span`
+  font-size: 18px;
+  margin-right: 10px;
+  color: #8e8e8e;
+`;
+
+const Series = styled(Link)`
+  font-size: 15px;
+  font-weight: bold;
+  padding: 5px;
+  background-color: #2c2c2c;
+  border-radius: 6px;
+  border: 1px solid #4a4a4a;
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
+
+  &:hover {
+    background-color: #555;
+  }
+`;
+
+const SeriesIcon = styled(FaStream)`
+  margin-right: 8px;
 `;
 
 export default PostHeader;
