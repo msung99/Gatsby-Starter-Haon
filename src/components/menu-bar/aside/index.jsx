@@ -12,11 +12,11 @@ import { Link } from "gatsby";
 const menuItems = [
   { to: '/', icon: <IoHomeOutline className="icon" size="30" />, text: 'Home' },
   { to: '/search', icon: <IoIosSearch className="icon" size="30" />, text: 'Search' },
-  { to: '/bright-mode', icon: <MdOutlineDarkMode className="icon" size="40" />, text: 'Dark/Light Mode' },
+  { to: '/bright-mode', icon: <MdOutlineDarkMode className="icon" size="33" />, text: 'Theme' },
   { to: '/tags', icon: <MdOutlineBookmarks className="icon" size="30" />, text: 'Tags' },
   { to: '/series', icon: <GiBlackBook className="icon" size="30" />, text: 'Series' },
   { to: '/about', icon: <GoPeople className="icon" size="30" />, text: 'About' },
-  { to: '/community', icon: <GoComment className="icon" size="30" />, text: 'Community' },
+  // { to: '/community', icon: <GoComment className="icon" size="30" />, text: 'Community' },
 ];
 
 const AsideMenuBar = () => {
@@ -32,9 +32,50 @@ const AsideMenuBar = () => {
           <MenuItem key={index} {...item} active={location.pathname === item.to} />
         ))}
       </div>
+      <Link to={"/community"} style={{ textDecoration: 'none' }}>
+        <SocialMenu>
+          <SocialImage/>
+          <SocialText>Social</SocialText>
+        </SocialMenu>
+      </Link>
     </SideMenuBarStyle>
   );
 };
+
+const SocialMenu = styled.div`
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  bottom: 50px;
+
+  padding-top: 10px;
+  padding-right: 110px;
+  transition: background-color 0.2s ease-in-out;
+  border-radius: 8px;
+
+  &:hover {
+    background-color: ${(props) => (props.active ?  "#1e1e1e" : "#282828")};
+  }
+`
+
+const SocialText = styled.p`
+  font-size: 17px;
+  color: white;
+  margin-left: 10px;
+  margin-top: 5px;
+`
+
+const SocialImage = styled.div`
+  background-image: url(http://localhost:8000/profile2.jpeg);
+  width: 35px;
+  height: 35px;
+  border: 1px solid transparent;
+  border-color: white;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+`;
+
 
 const MenuItem = ({ to, icon, text }) => {
   const location = useLocation();
@@ -65,7 +106,7 @@ const SideMenuBarStyle = styled.div`
 
 const SideMenu = styled.div`
   margin-top: 13px;
-  padding-right: 40px;
+  padding-right: 80px;
   color: white;
   font-size: 16px;
   display: flex;
