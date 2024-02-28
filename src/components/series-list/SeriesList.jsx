@@ -8,36 +8,48 @@ const SeriesList = ({ seriesList, totalCount }) => {
     <PageContent>
       <Title>Series.</Title>
       <Description>{totalCount} series found.</Description>
-      <SeriesListContainer>
-        {seriesList.map((series) => {
-          const oldestDate = series.nodes.reduce((minDate, node) => {
-            const postDate = new Date(node.frontmatter.date);
-            return postDate < minDate ? postDate : minDate;
-          }, new Date());
+      <CenteredSeriesListContainer>
+        <SeriesListContainer>
+          {seriesList.map((series) => {
+            const oldestDate = series.nodes.reduce((minDate, node) => {
+              const postDate = new Date(node.frontmatter.date);
+              return postDate < minDate ? postDate : minDate;
+            }, new Date());
 
-          const mostRecentDate = series.nodes.reduce((maxDate, node) => {
-            const postDate = new Date(node.frontmatter.date);
-            return postDate > maxDate ? postDate : maxDate;
-          }, new Date(0));
+            const mostRecentDate = series.nodes.reduce((maxDate, node) => {
+              const postDate = new Date(node.frontmatter.date);
+              return postDate > maxDate ? postDate : maxDate;
+            }, new Date(0));
 
-          return (
-            <Link style={{ textDecoration: "none", color: "#cdd4d9" }} to={`/series/${kebabCase(series.fieldValue)}/`} key={kebabCase(series.fieldValue)}>
-              <SeriesStyle>
-                <TitleSection>{series.fieldValue}</TitleSection>
-                <DescriptionSection>
-                  <SeriesDate>Created at - {oldestDate.toDateString()}</SeriesDate>
-                  <SeriesDate>Last updated on - {mostRecentDate.toDateString()}</SeriesDate> 
-                  <PostCount>{series.totalCount} post{series.totalCount !== 1 ? 's' : ''} found.</PostCount>
-                </DescriptionSection>
-              </SeriesStyle>
-            </Link>
-          );
-        })}
-      </SeriesListContainer>
+            return (
+              <Link style={{ textDecoration: "none", color: "#cdd4d9" }} to={`/series/${kebabCase(series.fieldValue)}/`} key={kebabCase(series.fieldValue)}>
+                <SeriesStyle>
+                  <TitleSection>{series.fieldValue}</TitleSection>
+                  <DescriptionSection>
+                    <SeriesDate>Created at - {oldestDate.toDateString()}</SeriesDate>
+                    <SeriesDate>Last updated on - {mostRecentDate.toDateString()}</SeriesDate> 
+                    <PostCount>{series.totalCount} post{series.totalCount !== 1 ? 's' : ''} found.</PostCount>
+                  </DescriptionSection>
+                </SeriesStyle>
+              </Link>
+            );
+          })}
+        </SeriesListContainer>
+      </CenteredSeriesListContainer>
     </PageContent>
   );
 };
 
+const CenteredSeriesListContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px; 
+
+  @media (max-width: 768px) {
+    justify-content: flex-start;
+  }
+`;
 
 const PageContent = styled.div`
   position: relative;
@@ -52,7 +64,7 @@ const SeriesListContainer = styled.div`
   row-gap: 64px;
   margin: 0 auto;
 
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
 `;
