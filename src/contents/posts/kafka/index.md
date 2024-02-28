@@ -20,7 +20,7 @@ series: Computer Science 분석 과정 시리즈 리뉴얼판
 
 ![](kafka.png)
 
-![](./kafka.png)
+![kafka iamge!](./kafka.png)
 
 ![social login image](https://velog.velcdn.com/images/msung99/post/58ebc0b2-53c7-422a-95f9-70df654e012b/image.png)
 

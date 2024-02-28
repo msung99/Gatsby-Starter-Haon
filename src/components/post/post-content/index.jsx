@@ -72,6 +72,12 @@ const HtmlWrapper = styled.div`
     color: #e8e8e8;
     margin-bottom: 35px;
     word-break: break-all;
+
+    span {
+      margin-top: 50px;
+      margin-bottom: 50px;
+      font-size: 100px;
+    }
   }
 
   blockquote {
@@ -105,8 +111,8 @@ const HtmlWrapper = styled.div`
     width: 100%;
     height: 100%;
     object-fit: fill;
-    margin-bottom: 30px;
-    word-break: break-all;
+    margin-top: 50px;
+    margin-bottom: 50px;
   }
 
   li {
