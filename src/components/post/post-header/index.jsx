@@ -1,25 +1,89 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useRef, useState } from "react";
+import styled, { keyframes } from "styled-components";
+import { FiLink } from "react-icons/fi";
+import { FaFacebook } from "react-icons/fa";
+import { FaTwitterSquare } from "react-icons/fa";
 
-const PostHeader = ({title, date, author}) => {
-    return (
-        <HeaderWrapper>
-            <PostTitle>
-                {title}
-            </PostTitle>
-            <PostInformation>
-                Posted by{' '}
-                <PostAuthor>@{author}</PostAuthor>,
-                {'   '}{date} 
-            </PostInformation>
-        </HeaderWrapper>
-    )
-}
+const fadeInOut = keyframes`
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+`;
+
+const PostHeader = ({ title, date, author, tags }) => {
+  const urlRef = useRef(null);
+  const [copyStatus, setCopyStatus] = useState(null);
+
+  const copyToClipboard = () => {
+    urlRef.current.select();
+    document.execCommand("copy");
+
+    setCopyStatus("Copied!");
+
+    // Reset copy status after 3 seconds
+    setTimeout(() => {
+      setCopyStatus(null);
+    }, 3000);
+  };
+
+  const shareOnFacebook = () => {
+    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+      window.location.href
+    )}`;
+    window.open(shareUrl, "_blank");
+  };
+
+  const shareOnTwitter = () => {
+    const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+      title
+    )}&url=${encodeURIComponent(window.location.href)}`;
+    window.open(shareUrl, "_blank");
+  };
+
+  return (
+    <HeaderWrapper>
+      <PostTitle>{title}</PostTitle>
+      <Info>
+        <Description>
+          Posted by{' '}
+          <PostAuthor>@{author}</PostAuthor>, {'   '}
+          {date}
+        </Description>
+        <ShareLinkContainer>
+          <ShareLink onClick={copyToClipboard}>
+            <FiLink size="25" />
+          </ShareLink>
+          <ShareLink onClick={shareOnFacebook}>
+            <FaFacebook size="25" />
+          </ShareLink>
+          <ShareLink onClick={shareOnTwitter}>
+            <FaTwitterSquare size="25" />
+          </ShareLink>
+          {copyStatus && <CopyStatus>{copyStatus}</CopyStatus>}
+        </ShareLinkContainer>
+      </Info>
+      <Tags>{tags}</Tags>
+      <HiddenInput
+        type="text"
+        readOnly
+        value={window.location.href}
+        ref={urlRef}
+      />
+    </HeaderWrapper>
+  );
+};
 
 const HeaderWrapper = styled.div`
   color: #fff;
   margin-bottom: 80px;
-`
+  border-bottom: 1px solid #626262;
+`;
 
 const PostTitle = styled.h1`
   font-size: 38px;
@@ -27,17 +91,54 @@ const PostTitle = styled.h1`
   line-height: 1.2;
   font-weight: 800;
   word-break: break-all;
-`
+`;
 
-const PostInformation = styled.div`
+const Description = styled.div`
   font-size: 16px;
   color: gray;
+`;
+
+const Info = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Center items vertically */
   padding-bottom: 50px;
-  border-bottom: 1px solid #626262; 
-`
+`;
+
+const ShareLinkContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const ShareLink = styled.div`
+  color: white;
+  cursor: pointer;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+`;
+
+const HiddenInput = styled.input`
+  position: absolute;
+  opacity: 0;
+`;
+
+const Tags = styled.div``;
 
 const PostAuthor = styled.span`
   font-weight: 800;
   color: #fff;
-`
-export default PostHeader
+`;
+
+const CopyStatus = styled.div`
+  color: #fff;
+  font-size: 14px;
+  background-color: gray;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-left: 5px;
+  opacity: 0;
+  animation: ${fadeInOut} 3s ease-in-out;
+`;
+
+export default PostHeader;
