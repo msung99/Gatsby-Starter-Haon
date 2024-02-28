@@ -26,8 +26,8 @@ const SeriesList = ({ seriesList, totalCount }) => {
                 <SeriesStyle>
                   <TitleSection>{series.fieldValue}</TitleSection>
                   <DescriptionSection>
-                    <SeriesDate>Created at - {oldestDate.toDateString()}</SeriesDate>
-                    <SeriesDate>Last updated on - {mostRecentDate.toDateString()}</SeriesDate> 
+                    <SeriesDate>Created at, {oldestDate.toDateString()}</SeriesDate>
+                    <SeriesDate>Last updated on, {mostRecentDate.toDateString()}</SeriesDate> 
                     <PostCount>{series.totalCount} post{series.totalCount !== 1 ? 's' : ''} found.</PostCount>
                   </DescriptionSection>
                 </SeriesStyle>
@@ -86,7 +86,7 @@ const SeriesStyle = styled(Link)`
   display: flex;
   flex-direction: column;
   position: relative;
-  background: linear-gradient(45deg, #2a2a2a, #1a1a1a); 
+  background: linear-gradient(135deg, #1a1a1a, #222222);
   padding: 0;
   border-radius: 20px;
   margin-bottom: 0;
@@ -97,26 +97,28 @@ const SeriesStyle = styled(Link)`
   height: 230px;
 `;
 
-
-const TitleSection = styled.h1`
-  font-size: 23px;
-  margin-bottom: 10px;
-  margin-left: 20px;
-  margin-right: 25px;
-`;
-
 const DescriptionSection = styled.div`
-  background: linear-gradient(45deg, #232526, #414345); 
+  background: linear-gradient(180deg, #1e1e1e, #292929);
   position: absolute;
   bottom: 0;
   color: white;
-  width: 100%; 
+  width: 100%;
   height: 90px;
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 0;
   border-radius: 0 0 20px 20px;
 `;
+
+
+const TitleSection = styled.h1`
+  font-size: 21px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  margin-right: 25px;
+`;
+
+
 
 const Title = styled.h1`
   font-size: 50px;

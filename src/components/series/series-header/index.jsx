@@ -24,8 +24,7 @@ const Title = styled.h1`
 
 const Name = styled.h2`
   color: white;
-  font-size: 40px;
-  font-style: italic;
+  font-size: 38px;
 `
 
 
