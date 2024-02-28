@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
 import kebabCase from "lodash.kebabcase";
-import { GoBookmarkFill } from "react-icons/go";
+import { FaStream } from "react-icons/fa";
 import { MdOutlineDateRange } from "react-icons/md";
 
 const PostList = ({ posts }) => {
@@ -36,7 +36,7 @@ const PostList = ({ posts }) => {
                 <PostMeta>
                   {series && (
                     <MetaWrapper>
-                      <GoBookmarkFill style={{ marginRight: "8px" }} />
+                      <FaStream style={{ marginRight: "8px" }} />
                       {series}
                     </MetaWrapper>
                   )}
@@ -114,20 +114,22 @@ const Separator = styled.div`
 `;
 
 const MetaWrapper = styled.span`
-  display: flex;
-  align-items: center;
-  color: white;
-  background-color: #3c3a39;
-  padding: 8px;
-  font-size: 14px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease;
+font-size: 15px;
+font-weight: bold;
+padding: 5px;
+background-color: #2c2c2c;
+border-radius: 6px;
+border: 1px solid #4a4a4a;
+display: inline-block;
+color: #fff;
+text-decoration: none;
+transition: background-color 0.3s ease-in-out;
 
-  &:hover {
-    background-color: #4c4a49;
-  }
+&:hover {
+  background-color: #555;
+}
 `;
+
 
 const PostDate = styled.p`
   font-size: 14px;
