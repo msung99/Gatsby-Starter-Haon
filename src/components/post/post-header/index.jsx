@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import { FiLink } from "react-icons/fi";
 import { FaFacebook } from "react-icons/fa";
@@ -22,29 +22,44 @@ const PostHeader = ({ title, date, author, tags }) => {
   const urlRef = useRef(null);
   const [copyStatus, setCopyStatus] = useState(null);
 
+  useEffect(() => {
+    // Check if running on the client side before accessing window
+    if (typeof window !== "undefined") {
+      urlRef.current.value = window.location.href;
+    }
+  }, []);
+
   const copyToClipboard = () => {
-    urlRef.current.select();
-    document.execCommand("copy");
+    if (typeof window !== "undefined") {
+      urlRef.current.select();
+      document.execCommand("copy");
 
-    setCopyStatus("Copied!");
+      setCopyStatus("Copied!");
 
-    setTimeout(() => {
-      setCopyStatus(null);
-    }, 3000);
+      setTimeout(() => {
+        setCopyStatus(null);
+      }, 3000);
+    }
   };
 
   const shareOnFacebook = () => {
-    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-      window.location.href
-    )}`;
-    window.open(shareUrl, "_blank");
+    // Same check for the window object
+    if (typeof window !== "undefined") {
+      const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+        window.location.href
+      )}`;
+      window.open(shareUrl, "_blank");
+    }
   };
 
   const shareOnTwitter = () => {
-    const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-      title
-    )}&url=${encodeURIComponent(window.location.href)}`;
-    window.open(shareUrl, "_blank");
+    // Same check for the window object
+    if (typeof window !== "undefined") {
+      const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+        title
+      )}&url=${encodeURIComponent(window.location.href)}`;
+      window.open(shareUrl, "_blank");
+    }
   };
 
   return (
@@ -72,14 +87,13 @@ const PostHeader = ({ title, date, author, tags }) => {
       <div>
         {tags.map((tag) => (
           <Link style={{ textDecoration: "none" }} to={`/tags/${kebabCase(tag)}`} key={tag}>
-              <Tag>{tag}</Tag>
+            <Tag>{tag}</Tag>
           </Link>
         ))}
       </div>
       <HiddenInput
         type="text"
         readOnly
-        value={window.location.href}
         ref={urlRef}
       />
     </HeaderWrapper>
@@ -152,9 +166,9 @@ const CopyStatus = styled.div`
 const Tag = styled.span`
   position: relative;
   color: white;
-  font-size: 14px; 
-  margin-right: 25px; 
-  margin-bottom: 8px; 
+  font-size: 14px;
+  margin-right: 25px;
+  margin-bottom: 8px;
   padding: 8px 15px;
   background-color: #3C3A39;
   display: inline-block;
@@ -167,10 +181,10 @@ const Tag = styled.span`
     position: absolute;
     top: 0;
     right: -15px;
-    border-width: 15.6px 0 15.6px 15.6px; 
+    border-width: 15.6px 0 15.6px 15.6px;
     border-style: solid;
     border-color: transparent transparent transparent #3C3A39;
-    transition: border-color 0.3s ease-in-out; 
+    transition: border-color 0.3s ease-in-out;
   }
 
   &::after {
@@ -193,7 +207,5 @@ const Tag = styled.span`
     }
   }
 `;
-
-
 
 export default PostHeader;
