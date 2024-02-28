@@ -1,18 +1,8 @@
-import { Link } from "gatsby";
 import kebabCase from "lodash.kebabcase";
 import React from "react";
-import { Helmet } from "react-helmet";
 import styled from "styled-components";
+import { siteMetadata } from "../../../gatsby-config";
 
-/*
-  siteMetadata: {
-    title: `Haon Blog`,
-    description: `게츠비를 활용한 기술 블로그입니다.`,
-    author: `Haon`,
-    siteUrl: `https://github.com/msung99/Gatsby-Starter-Haon`,
-    onImage: `/og-image.png`
-  },
-*/
 const Profile = ({ author, description, siteUrl, keywords }) => {
   return (
     <ProfileStyle>
@@ -66,9 +56,14 @@ const KeyWordStyle = styled.span`
   background-color: #333A41;
 `
 
+const profileImageUrl =
+  typeof window !== "undefined" && window.location.host === "localhost:8000"
+    ? "http://localhost:8000"
+    : siteMetadata.siteUrl
+    
 
 const Image = styled.div`
-  background-image: url(http://localhost:8000/profile2.jpeg);
+  background-image: url(${profileImageUrl}/profile.png);
   width: 140px;
   height: 140px;
   border: 1px solid transparent;
