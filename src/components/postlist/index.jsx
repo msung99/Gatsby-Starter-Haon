@@ -78,6 +78,7 @@ const PostTitle = styled.h1`
   color: white;
   font-size: 1.8rem;
   margin-bottom: 20px;
+  word-break: break-all;
 `;
 
 const PostTags = styled.div`

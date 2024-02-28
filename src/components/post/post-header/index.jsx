@@ -26,6 +26,7 @@ const PostTitle = styled.h1`
   margin-bottom: 25px;
   line-height: 1.2;
   font-weight: 800;
+  word-break: break-all;
 `
 
 const PostInformation = styled.div`
