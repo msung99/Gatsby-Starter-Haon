@@ -1,19 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useStaticQuery, graphql } from 'gatsby';
+import { siteMetadata } from '../../../gatsby-config';
 
 const Utterances = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      site {
-        siteMetadata {
-          repo
-        }
-      }
-    }
-  `);
-
-  const repo = data.site.siteMetadata.repo;
 
   return (
     <CommentWrapper>
@@ -25,7 +15,7 @@ const Utterances = () => {
           const scriptElem = document.createElement('script');
           scriptElem.src = 'https://utteranc.es/client.js';
           scriptElem.async = true;
-          scriptElem.setAttribute('repo', repo); // Use the imported repo here
+          scriptElem.setAttribute('repo', siteMetadata.repo);
           scriptElem.setAttribute('issue-term', 'pathname');
           scriptElem.setAttribute('theme', 'github-dark');
           scriptElem.setAttribute('label', 'blog-comment');

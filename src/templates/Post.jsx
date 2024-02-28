@@ -4,8 +4,6 @@ import Post from "../components/post/post-component";
 import PageLayout from "../components/layout/page-component";
 import PostContent from "../components/post/post-content";
 import Utterances from "../components/utterances";
-import TableOfContents from "../components/toc";
-import styled from "styled-components";
 
 export default ({ data, location }) => {
   const { previous, next } = data;
