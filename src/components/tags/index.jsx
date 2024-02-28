@@ -10,26 +10,19 @@ const AllTagList = ({ tags, allCount }) => {
         <TagTitle>Tags.</TagTitle>
         <Description>{allCount} tags are found.</Description>
         {tags.map(tag => (
-          <TagStyle key={kebabCase(tag.fieldValue)}>
+          <Tag key={kebabCase(tag.fieldValue)}>
             <span>
               <Link style={{ textDecoration: "none", color: "#cdd4d9" }} to={`/tags/${kebabCase(tag.fieldValue)}/`}>
                 {kebabCase(tag.fieldValue)} <TagCountStyle>({tag.totalCount})</TagCountStyle>
               </Link>
             </span>
-          </TagStyle>
+          </Tag>
         ))}
       </div>
     </TagListStyle>
   )
 }
 
-const TagListStyle = styled.div`
-  line-height: 30px;
-  display: flex;
-  margin-left: 0px;
-  padding-bottom: 60px;
-  border-bottom: 1px solid #282828;
-`
 
 const TagTitle = styled.h1`
   font-size: 45px;
@@ -57,13 +50,20 @@ const TagCountStyle = styled.span`
   }
 `
 
-const TagStyle = styled.span`
+const TagListStyle = styled.div`
+  line-height: 17px; 
+  display: flex;
+  padding-bottom: 60px;
+  border-bottom: 1px solid #282828;
+`;
+
+const Tag = styled.span`
   position: relative;
   color: white;
-  font-size: 15px;
-  margin-right: 30px;
-  margin-bottom: 10px;
-  padding: 0.1px 10px 4px 8px;
+  font-size: 14px; 
+  margin-right: 25px; 
+  margin-bottom: 12px; 
+  padding: 5px 10px 8px 10px;
   background-color: #3C3A39;
   display: inline-block;
   transition: background-color 0.3s ease-in-out;
@@ -72,20 +72,20 @@ const TagStyle = styled.span`
     content: '';
     position: absolute;
     top: 0;
-    right: -18px;
-    border-width: 17.9px 0 17.9px 17.9px; 
+    right: -15px;
+    border-width: 15.9px 0 15.9px 15.9px; 
     border-style: solid;
     border-color: transparent transparent transparent #3C3A39;
-    transition: border-color 0.3s ease-in-out; /* Add transition property for border color */
+    transition: border-color 0.3s ease-in-out; 
   }
 
   &::after {
     content: '';
     position: absolute;
-    top: 48%;
-    right: -4px;
-    width: 7px;
-    height: 7px;
+    top: 44%;
+    right: -3px;
+    width: 6px;
+    height: 6px;
     background-color: white;
     border-radius: 50%;
     transform: translateY(-50%);

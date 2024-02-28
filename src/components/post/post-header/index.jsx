@@ -89,6 +89,7 @@ const PostHeader = ({ title, date, author, tags }) => {
 const HeaderWrapper = styled.div`
   color: #fff;
   margin-bottom: 80px;
+  padding-bottom: 50px;
   border-bottom: 1px solid #626262;
 `;
 
@@ -109,7 +110,7 @@ const Info = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 50px;
+  padding-bottom: 40px;
 `;
 
 const ShareLinkContainer = styled.div`
@@ -149,47 +150,50 @@ const CopyStatus = styled.div`
 `;
 
 const Tag = styled.span`
-position: relative;
-color: white;
-font-size: 15px;
-margin-right: 30px;
-margin-bottom: 10px;
-padding: 5px 20px 8px 20px;
-background-color: #3C3A39;
-display: inline-block;
-transition: background-color 0.3s ease-in-out;
-
-&::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: -18px;
-  border-width: 17.9px 0 17.9px 17.9px; 
-  border-style: solid;
-  border-color: transparent transparent transparent #3C3A39;
-  transition: border-color 0.3s ease-in-out; 
-}
-
-&::after {
-  content: '';
-  position: absolute;
-  top: 48%;
-  right: -4px;
-  width: 7px;
-  height: 7px;
-  background-color: white;
-  border-radius: 50%;
-  transform: translateY(-50%);
-}
-
-&:hover {
-  background-color: #555;
+  position: relative;
+  color: white;
+  font-size: 14px; 
+  margin-right: 25px; 
+  margin-bottom: 8px; 
+  padding: 8px 15px;
+  background-color: #3C3A39;
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+  transition: background-color 0.3s ease-in-out;
 
   &::before {
-    border-color: transparent transparent transparent #555;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -15px;
+    border-width: 15.6px 0 15.6px 15.6px; 
+    border-style: solid;
+    border-color: transparent transparent transparent #3C3A39;
+    transition: border-color 0.3s ease-in-out; 
   }
-}
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -3px;
+    width: 6px;
+    height: 6px;
+    background-color: white;
+    border-radius: 50%;
+    transform: translateY(-50%);
+  }
+
+  &:hover {
+    background-color: #555;
+
+    &::before {
+      border-color: transparent transparent transparent #555;
+    }
+  }
 `;
+
 
 
 export default PostHeader;
