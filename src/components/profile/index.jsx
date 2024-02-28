@@ -49,11 +49,11 @@ const KeyWordsStyle = styled.div`
 
 const KeyWordStyle = styled.span`
   font-size: 17px;
-  color: #e6edf4;
+  color: #fff;
   margin-right: 13px;
-  border-radius: 25px;
-  padding: 5px;
-  background-color: #333A41;
+  border-radius: 15px;
+  padding: 3px 8px;
+  background-color: #484848;
 `
 
 const profileImageUrl =
