@@ -15,7 +15,7 @@ const PostContent = ({html, toc}) => {
 
 const ContentWrapper = styled.div`
   position: relative;
-`;
+`;  
 
 
 const HtmlWrapper = styled.div`
