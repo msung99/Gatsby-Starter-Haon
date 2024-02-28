@@ -87,7 +87,7 @@ const SeriesStyle = styled(Link)`
 
 
 const TitleSection = styled.h1`
-  font-size: 26px;
+  font-size: 23px;
   margin-bottom: 10px;
   margin-left: 20px;
   margin-right: 25px;
