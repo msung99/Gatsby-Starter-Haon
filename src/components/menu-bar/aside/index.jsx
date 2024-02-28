@@ -36,7 +36,7 @@ const AsideMenuBar = () => {
       <Link to={"/community"} style={{ textDecoration: 'none' }}>
         <SocialMenu>
           <SocialImage/>
-          <SocialText>{siteMetadata.author}</SocialText>
+          <SocialText>{siteMetadata.author} / Social</SocialText>
         </SocialMenu>
       </Link>
     </SideMenuBarStyle>
