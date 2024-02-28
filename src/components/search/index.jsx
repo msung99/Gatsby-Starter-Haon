@@ -66,7 +66,7 @@ const Input = styled.input`
 const Underline = styled.span`
   position: absolute;
   left: 0;  
-  width: ${({ isFocused }) => (isFocused ? '100%' : '0')};
+  width: ${({ isFocused }) => (isFocused ? '100.5%' : '0')};
   height: 2px;
   background-color: #fff;
   opacity: ${({ isFocused }) => (isFocused ? 1 : 0)};
