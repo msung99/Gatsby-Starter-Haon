@@ -11,8 +11,8 @@ export default ({ data, location }) => {
   const { title, date } = post.frontmatter;
   const author = data.site.siteMetadata.author;
   const toc = post.tableOfContents;
-  const tags = post.frontmatter.tags
-  const series = post.frontmatter.series
+  const tags = post.frontmatter.tags || [];
+  const series = post.frontmatter.series;
 
   return (
     <PageLayout>
