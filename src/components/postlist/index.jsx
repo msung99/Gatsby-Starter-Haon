@@ -5,6 +5,7 @@ import kebabCase from "lodash.kebabcase";
 import { FaStream } from "react-icons/fa";
 import { MdOutlineDateRange } from "react-icons/md";
 
+
 const PostList = ({ posts }) => {
   const [postCount, setPostCount] = useState(10);
 
@@ -45,7 +46,7 @@ const PostList = ({ posts }) => {
                       {series}
                     </MetaWrapper>
                   )}
-                  <Separator />
+                  {series && <Separator />}
                   <MetaWrapper>
                     <MdOutlineDateRange style={{ marginRight: "8px" }} />
                     Created at {date}
