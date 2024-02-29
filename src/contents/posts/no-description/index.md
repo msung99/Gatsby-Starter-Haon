@@ -1,15 +1,6 @@
 ---
 title: 설명, 시리즈, 테그 없음
 date: "2024-02-03"
-tags:
-  - Dao
-  - Legacy
-  - JDBC
-  - Tag Example
-  - hi
-  - connection
-  - 블로그 분석
-  - 컴퓨터 공학
 series: Computer Science 분석 과정 시리즈 리뉴얼판
 ---
 

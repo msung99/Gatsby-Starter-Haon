@@ -26,13 +26,15 @@ const PostList = ({ posts }) => {
             <PostLink to={slug} key={index}>
               <PostCard>
                 <PostTitle>{title || slug}</PostTitle>
-                <PostTags>
-                  {tags.map((tag) => (
-                    <PostTag key={kebabCase(tag)}>
-                      #{tag}
-                    </PostTag>
-                  ))}
-                </PostTags>
+                {tags && (
+                  <PostTags>
+                    {tags.map((tag) => (
+                      <PostTag key={kebabCase(tag)}>
+                        #{tag}
+                      </PostTag>
+                    ))}
+                  </PostTags>
+                )}
                 <PostDescription>
                   {description || truncate(body, 80)}
                 </PostDescription>
@@ -57,6 +59,7 @@ const PostList = ({ posts }) => {
     </PostListContainer>
   );
 };
+
 
 const truncate = (text, maxLength) => {
   if (text.length > maxLength) {
