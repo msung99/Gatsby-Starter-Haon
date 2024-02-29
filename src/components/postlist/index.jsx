@@ -20,6 +20,7 @@ const PostList = ({ posts }) => {
         posts.slice(0, postCount).map((post, index) => {
           const { title, description, date, tags, series } = post.frontmatter;
           const slug = post.fields.slug;
+          const body = post.excerpt || (post.rawMarkdownBody && truncate(post.rawMarkdownBody, 80));
 
           return (
             <PostLink to={slug} key={index}>
@@ -32,7 +33,9 @@ const PostList = ({ posts }) => {
                     </PostTag>
                   ))}
                 </PostTags>
-                <PostDescription>{description}</PostDescription>
+                <PostDescription>
+                  {description || truncate(body, 80)}
+                </PostDescription>
                 <PostMeta>
                   {series && (
                     <MetaWrapper>
@@ -53,6 +56,13 @@ const PostList = ({ posts }) => {
       )}
     </PostListContainer>
   );
+};
+
+const truncate = (text, maxLength) => {
+  if (text.length > maxLength) {
+    return text.substring(0, maxLength) + '...';
+  }
+  return text;
 };
 
 const PostListContainer = styled.div``;
