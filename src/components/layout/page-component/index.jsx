@@ -3,6 +3,7 @@ import styled from "styled-components";
 import PageContent from "../page-content";
 import PageFooter from "../page-footer";
 import PageNavigator from "../page-navigator";
+import ThemeSwitch from "../../theme-switch";
 
 const PageLayoutStyle = styled.div`
   @media(max-width: 768px) {
@@ -17,6 +18,7 @@ const PageLayout = ({ children }) => {
       <PageNavigator/>
       <PageContent contents={children}/>
       <PageFooter/>
+      <ThemeSwitch/>
     </PageLayoutStyle>
   )
 }
