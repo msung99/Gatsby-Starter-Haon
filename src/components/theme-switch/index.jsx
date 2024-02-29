@@ -8,24 +8,24 @@ import styled from 'styled-components';
 
 function ThemeSwitch() {
     const [isDarkMode, setIsDarkMode] = useState(getValueFromLocalStorage('isDarkMode'));
-  
+
     useEffect(() => {
-      setValueToLocalStorage('isDarkMode', isDarkMode);
-      document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+        setValueToLocalStorage('isDarkMode', isDarkMode);
+        document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
     }, [isDarkMode]);
-  
+
     return (
-      <DarkModeButtonWrapper>
-        <DarkModeButton onClick={() => setIsDarkMode((isDark) => !isDark)}>
-          {isDarkMode ? (
-            <DarkModeIcon as={MdDarkMode} fontSize="30"/>
-          ) : (
-            <DarkModeIcon as={CiLight} fontSize="30"/>
-          )}
-        </DarkModeButton>
-      </DarkModeButtonWrapper>
+        <DarkModeButtonWrapper>
+            <DarkModeButton onClick={() => setIsDarkMode((isDark) => !isDark)}>
+                {isDarkMode ? (
+                    <DarkModeIcon as={MdDarkMode} fontSize="30" />
+                ) : (
+                    <DarkModeIcon as={CiLight} fontSize="30" />
+                )}
+            </DarkModeButton>
+        </DarkModeButtonWrapper>
     );
-  }
+}
 
 const DarkModeButtonWrapper = styled.div`
     position: fixed;
