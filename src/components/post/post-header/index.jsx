@@ -73,29 +73,32 @@ const PostHeader = ({ title, date, author, tags, series }) => {
           {copyStatus && <CopyStatus>{copyStatus}</CopyStatus>}
         </ShareLinkContainer>
       </Info>
-      <div>
-        {tags.map((tag) => (
-          <Link style={{ textDecoration: "none" }} to={`/tags/${kebabCase(tag)}`} key={tag}>
-            <Tag>{tag}</Tag>
-          </Link>
-        ))}
-      </div>
-      <HiddenInput
-        type="text"
-        readOnly
-        ref={urlRef}
-      />
-      <SeriesContainer>
-        <SeriesLabel>Series of</SeriesLabel>
-        <Series to={`/series/${kebabCase(series)}/`}>
-          <SeriesIcon size={12} />
-          {series}
-        </Series>
-      </SeriesContainer>
+      {tags && tags.length > 0 && (
+        <Tags>
+          {tags.map((tag) => (
+            <Link
+              style={{ textDecoration: "none" }}
+              to={`/tags/${kebabCase(tag)}`}
+              key={tag}
+            >
+              <Tag>{tag}</Tag>
+            </Link>
+          ))}
+        </Tags>
+      )}
+      {series && (
+        <SeriesContainer>
+          <SeriesLabel>Series of</SeriesLabel>
+          <Series to={`/series/${kebabCase(series)}/`}>
+            <SeriesIcon size={12} />
+            {series}
+          </Series>
+        </SeriesContainer>
+      )}
+      <HiddenInput type="text" readOnly ref={urlRef} />
     </HeaderWrapper>
   );
 };
-
 
 const fadeInOut = keyframes`
   0% {
