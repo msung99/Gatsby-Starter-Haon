@@ -97,13 +97,13 @@ const SocialMenu = styled.div`
   border-radius: 8px;
 
   &:hover {
-    background-color: ${(props) => (props.active ?  props.theme.sideMenu : props.theme.sideMenuHover)};
+    background-color: ${(props) => (props.active ?  props.theme.menuBar.sideMenu : props.theme.menuBar.sideMenuHover)};
   }
 `
 
 const SocialText = styled.p`
   font-size: 17px;
-  color: ${props => props.theme.mainText};
+  color: ${props => props.theme.main.text};
   margin-left: 10px;
   margin-top: 5px;
 `
@@ -159,16 +159,16 @@ const SideMenu = styled.div`
   padding-right: 80px;
   padding: 10px;
   padding-right: 60px;
-  color: ${props => props.theme.mainText};
+  color: ${props => props.theme.main.text};
   font-size: 16px;
   display: flex;
   align-items: center;
   transition: background-color 0.2s ease-in-out;
   border-radius: 8px;
-  background-color: ${(props) => (props.active ? props.theme.sideMenu : "transparent")};
+  background-color: ${(props) => (props.active ? props.theme.menuBar.sideMenu : "transparent")};
 
   &:hover {
-    background-color: ${(props) => (props.active ?  props.theme.sideMenu : props.theme.sideMenuHover)};
+    background-color: ${(props) => (props.active ?  props.theme.menuBar.sideMenu : props.theme.menuBar.sideMenuHover)};
   }
 `;
 
@@ -181,7 +181,7 @@ const MenuText = styled.p`
 
 const Title = styled.div`
   font-size: 35px;
-  color: ${props => props.theme.mainText};
+  color: ${props => props.theme.main.text};
   margin-top: 30px;
   margin-bottom: 40px;
   font-family: "Oswald";

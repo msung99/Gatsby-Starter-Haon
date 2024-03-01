@@ -1,16 +1,27 @@
 
 export const LIGHT_THEME_COLORS = {
-  background: '#fff',
-  mainText: '#000',
-  menubarWrapper: 'linear-gradient(to right, #eef2f3, #FAFAFA)',
-  sideMenu: '#eef2f3',
-  sideMenuHover: '#eef2f3',
+  main: {
+    background: '#fff',
+    text: '#000',
+  },
+
+  menuBar: {
+    wrapper: 'linear-gradient(to right, #eef2f3, #FAFAFA)',
+    sideMenu: '#eef2f3',
+    sideMenuHover: '#eef2f3',
+  },
 };
 
 export const DARK_THEME_COLORS = {
-  background: '#1a1a1a',
-  mainText: '#e8e8e8',
-  menubarWrapper: 'linear-gradient(to bottom, #1e1e1e, #121212)',
-  sideMenu: '#1e1e1e',
-  sideMenuHover: '#282828',
+
+  main: {
+    background: '#1a1a1a',
+    text: '#e8e8e8',
+  },
+
+  menuBar: {
+    wrapper: 'linear-gradient(to bottom, #1e1e1e, #121212)',
+    sideMenu: '#1e1e1e',
+    sideMenuHover: '#282828',
+  },
 };

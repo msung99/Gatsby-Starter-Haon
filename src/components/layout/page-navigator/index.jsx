@@ -68,7 +68,7 @@ const SideMenuBarWrapper = styled.div`
   left: ${({ show }) => (show ? "0" : "-100%")};
   width: 300px;
   height: 100%;
-  background: ${props => props.theme.menubarWrapper};
+  background: ${props => props.theme.menuBar.wrapper};
   padding-top: 60px;
   animation: ${({ show }) => (show ? slideIn : slideOut)} 0.7s ease-in-out;
 `;

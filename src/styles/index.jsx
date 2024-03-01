@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     font-family: 'Noto Sans KR', sans-serif;
-    background: ${props => props.theme.background};
+    background: ${props => props.theme.main.background};
   }
 
   #___gatsby,
