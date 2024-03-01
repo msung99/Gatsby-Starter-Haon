@@ -10,8 +10,9 @@ const SeriesHeader = ({seriesName}) => {
 }
 
 const HeaderStyle = styled.div`
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   border-bottom: 1px solid #282828;
+  padding-bottom: 40px;
   display: flex;
   align-items: center;
   justify-content: center;

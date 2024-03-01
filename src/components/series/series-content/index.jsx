@@ -19,6 +19,7 @@ const Count = styled.h3`
   font-size: 20px;
   margin-bottom: 50px;
   font-weight: 800;
+  padding-top: 20px;
 `
 
 export default SeriesContent
