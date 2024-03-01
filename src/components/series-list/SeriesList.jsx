@@ -26,8 +26,8 @@ const SeriesList = ({ seriesList, totalCount }) => {
                 <SeriesStyle>
                   <TitleSection>{series.fieldValue}</TitleSection>
                   <DescriptionSection>
-                    <SeriesDate>Created at, {oldestDate.toDateString()}</SeriesDate>
-                    <SeriesDate>Last updated on, {mostRecentDate.toDateString()}</SeriesDate> 
+                    <SeriesDate>Created at . {oldestDate.toDateString()}</SeriesDate>
+                    <SeriesDate>Last updated on . {mostRecentDate.toDateString()}</SeriesDate> 
                     <PostCount>{series.totalCount} post{series.totalCount !== 1 ? 's' : ''} found.</PostCount>
                   </DescriptionSection>
                 </SeriesStyle>
@@ -71,15 +71,14 @@ const SeriesListContainer = styled.div`
 
 const SeriesDate = styled.div`
   margin: 3px 8px;
-  font-size: 14px;
-  color: #98a6ad; 
+  font-size: 12px;
+  color: #a1a6b0; 
 `;
 
 const PostCount = styled.div`
   margin: 12px 8px;
-  font-size: 13px;
-  font-weight: bold;
-  color: #f0f0f0; 
+  font-size: 12px;
+  color: #adb5be; 
 `;
 
 const SeriesStyle = styled(Link)`
@@ -91,7 +90,7 @@ const SeriesStyle = styled(Link)`
   border-radius: 20px;
   margin-bottom: 0;
   text-decoration: none;
-  color: #cdd4d9;
+  color: #fff;
   transition: background 0.5s ease-in-out;
   width: 360px;
   height: 230px;
@@ -101,7 +100,6 @@ const DescriptionSection = styled.div`
   background: linear-gradient(180deg, #1e1e1e, #292929);
   position: absolute;
   bottom: 0;
-  color: white;
   width: 100%;
   height: 90px;
   overflow: hidden;
@@ -116,6 +114,9 @@ const TitleSection = styled.h1`
   margin-bottom: 10px;
   margin-left: 20px;
   margin-right: 25px;
+  margin-top: 20px;
+  font-weight: 600;
+  line-height: 130%;
 `;
 
 
@@ -124,6 +125,7 @@ const Title = styled.h1`
   font-size: 50px;
   color: white;
   font-style: italic;
+  font-weight: 700;
   margin-bottom: 30px;
   padding-bottom: 30px;
   border-bottom: 1px solid #282828;
@@ -131,8 +133,10 @@ const Title = styled.h1`
 
 const Description = styled.h2`
   font-size: 20px;
-  color: white;
-  margin-left: 3px;
+  color: #fff;
+  font-weight: 550;
+  margin-top: 40px;
+  margin-bottom: 40px;
 `;
 
 export default SeriesList;

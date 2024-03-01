@@ -34,8 +34,12 @@ const SearchContainer = styled.div`
 
 const Title = styled.h1`
   color: #fff;
-  font-size: 40px;
+  font-size: 45px;
   font-style: italic;
+  font-weight: 700;
+  margin-bottom: 40px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #282828;
 `
 
 const Input = styled.input`
@@ -75,8 +79,9 @@ const Underline = styled.span`
 
 const ResultCount = styled.div`
   position: absolute;
-  top: 140px;
-  font-size: 22px;
+  top: 170px;
+  font-size: 20px;
+  font-weight: 500;
   margin-top: 30px;
   color: #fff;
   font-family: 'Helvetica Neue', sans-serif;

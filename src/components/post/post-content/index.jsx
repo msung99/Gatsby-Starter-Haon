@@ -25,6 +25,7 @@ const HtmlWrapper = styled.div`
     margin-top: 70px;
     margin-bottom: 40px;
     word-break: break-all;
+    font-weight: 700;
   }
 
   section > h2 {
@@ -33,6 +34,7 @@ const HtmlWrapper = styled.div`
     margin-top: 70px;
     margin-bottom: 40px;
     word-break: break-all;
+    font-weight: 700;
   }
 
   section > h3 {
@@ -41,6 +43,7 @@ const HtmlWrapper = styled.div`
     margin-top: 70px;
     margin-bottom: 40px;
     word-break: break-all;
+    font-weight: 700;
   }
 
   section > h4 {
@@ -49,6 +52,7 @@ const HtmlWrapper = styled.div`
     margin-top: 40px;
     margin-bottom: 40px;
     word-break: break-all;
+    font-weight: 700;
   }
 
   section > h5 {
@@ -57,6 +61,7 @@ const HtmlWrapper = styled.div`
     margin-top: 40px;
     margin-bottom: 40px;
     word-break: break-all;
+    font-weight: 700;
   }
 
   section > h6 {
@@ -64,11 +69,12 @@ const HtmlWrapper = styled.div`
     color: #e6e6e6;
     margin-top: 40px;
     margin-bottom: 40px;
+    font-weight: 700;
   }
 
   section > p {
     font-size: 17px;
-    line-height: 160%; 
+    line-height: 170%; 
     color: #e8e8e8;
     margin-bottom: 35px;
     word-break: break-all;
@@ -89,6 +95,7 @@ const HtmlWrapper = styled.div`
     margin-top: 40px;
     border-left: 6px solid #484848;
     font-size: 1.15rem;
+    line-height: 170%;
     color: #e6e6e6;
     word-break: break-all;
   }

@@ -15,6 +15,8 @@ const HeaderStyle = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: 600;
+  line-height: 300%;
 `
 
 const Title = styled.h1`

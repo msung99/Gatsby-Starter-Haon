@@ -18,9 +18,9 @@ function ThemeSwitch() {
         <DarkModeButtonWrapper>
             <DarkModeButton onClick={() => setIsDarkMode((isDark) => !isDark)}>
                 {isDarkMode ? (
-                    <DarkModeIcon as={MdDarkMode} fontSize="30" />
+                    <DarkModeIcon as={MdDarkMode} fontSize="40" />
                 ) : (
-                    <DarkModeIcon as={CiLight} fontSize="30" />
+                    <DarkModeIcon as={CiLight} fontSize="40" />
                 )}
             </DarkModeButton>
         </DarkModeButtonWrapper>

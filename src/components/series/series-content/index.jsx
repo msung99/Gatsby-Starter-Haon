@@ -16,8 +16,9 @@ const SeriesContent = ({totalCount, posts}) => {
 
 const Count = styled.h3`
   color: white;
-  font-size: 22px;
+  font-size: 20px;
   margin-bottom: 50px;
+  font-weight: 800;
 `
 
 export default SeriesContent

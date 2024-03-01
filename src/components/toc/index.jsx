@@ -36,7 +36,8 @@ const Toc = styled.div`
   max-height: calc(100vh - 220px);
   overflow: auto;
   padding-right: 15px;
-  border-left: 2px solid #808080;
+  border-left: 1px solid #808080;
+  line-height: 130%;
 
   @media (max-width: 1300px) {
     display: none;
@@ -49,12 +50,12 @@ const Toc = styled.div`
   }
 
   li {
-    margin-top: 4px;
+    margin-top: 8px;
     margin-bottom: 6px;
     margin-left: 15px;
 
     p {
-      margin: 8px;
+      margin: 10px;
     }
 
     a {

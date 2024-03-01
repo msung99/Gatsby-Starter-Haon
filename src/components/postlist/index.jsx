@@ -38,20 +38,10 @@ const PostList = ({ posts }) => {
                 )}
                 <PostDescription>
                   {description || truncate(body, 80)}
-                </PostDescription>
-                <PostMeta>
-                  {series && (
-                    <MetaWrapper>
-                      <FaStream style={{ marginRight: "8px" }} />
-                      {series}
-                    </MetaWrapper>
-                  )}
-                  {series && <Separator />}
-                  <MetaWrapper>
-                    <MdOutlineDateRange style={{ marginRight: "8px" }} />
-                    Created at {date}
-                  </MetaWrapper>
-                </PostMeta>
+                </PostDescription>  
+                <Date>
+                  {date}
+                </Date>
               </PostCard>
             </PostLink>
           );
@@ -78,7 +68,7 @@ const PostLink = styled(Link)`
 
 const PostCard = styled.div`
   border-bottom: 2px solid #282828;
-  margin-top: 40px;
+  margin-top: 1px;
   cursor: pointer;
   padding-bottom: 50px;
   transition: opacity 0.3s ease;
@@ -88,33 +78,41 @@ const PostCard = styled.div`
   }
 `;
 
+const Date = styled.div`
+  margin-top: 1px;
+  font-size: 14px;
+  color: #cdd4d9;
+`
+
 const PostTitle = styled.h1`
   color: white;
   font-size: 1.8rem;
+  margin-top: 20px;
   margin-bottom: 20px;
   word-break: break-all;
+  font-weight: 800;
+  line-height: 140%;
 `;
 
 const PostTags = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 10px;
 `;
 
 const PostTag = styled.span`
   color: #cdd4d9;
   opacity: 0.8;
   font-size: 15px;
-  margin-right: 25px;
+  margin-right: 15px;
   margin-bottom: 1.5px;
 `;
 
 const PostDescription = styled.p`
-  margin-top: 40px;
-  margin-bottom: 20px;
-  font-size: 16px;
-  color: #e9e9e9;
-  line-height: 160%;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-size: 15.5px;
+  color: #cdd4d9;
+  line-height: 170%;
 `;
 
 const PostMeta = styled.div`

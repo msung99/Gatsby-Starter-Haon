@@ -1,40 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import PageContent from "../page-content";
 import PageFooter from "../page-footer";
 import PageNavigator from "../page-navigator";
 import ThemeSwitch from "../../theme-switch";
-import GlobalStyle from "../../../styles/GloalStyle";
 import { getValueFromLocalStorage } from "../../../utils/localStorage";
 import { DARK_THEME_COLORS, LIGHT_THEME_COLORS } from "../../../constants/themeConstants";
-
-const PageLayoutStyle = styled.div`
-  @media(max-width: 768px) {
-    padding: 0 10px;
-  }
-`
-
+import GlobalStyle from "../../../styles";
 
 const PageLayout = ({ children }) => {
-  const theme = getValueFromLocalStorage('isDarkMode') ? DARK_THEME_COLORS : LIGHT_THEME_COLORS;
+  const [theme, setTheme] = useState(getValueFromLocalStorage('isDarkMode') ? DARK_THEME_COLORS : LIGHT_THEME_COLORS);
+
+  useEffect(() => {
+    setTheme(getValueFromLocalStorage('isDarkMode') ? DARK_THEME_COLORS : LIGHT_THEME_COLORS);
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
-      <Wrap><h1>{theme.background}</h1></Wrap>
-      <PageLayoutStyle>
-        <GlobalStyle/>
+      <GlobalStyle/>
+      <PageWrapper>
         <PageNavigator/>
-        <PageContent contents={children}/>
+        <PageContent contents={children} />
         <PageFooter/>
-        <ThemeSwitch/>
-      </PageLayoutStyle>
+      </PageWrapper>
+      <ThemeSwitch/>
     </ThemeProvider>
-  )
-}
+  );
+};
 
-const Wrap = styled.h1`
-  font-size: 100px;
-  color: black;
-`
+const PageWrapper = styled.div`
+  @media(max-width: 768px) {
+    padding: 0 20px;
+  }
+`;
 
-export default PageLayout
+export default PageLayout;

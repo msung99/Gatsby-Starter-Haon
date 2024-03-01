@@ -28,16 +28,18 @@ const TagTitle = styled.h1`
   font-size: 45px;
   color: #fff;
   font-style: italic;
-  margin-bottom: 40x;
+  margin-bottom: 40px;
   padding-bottom: 50px;
   border-bottom: 1px solid #282828;
+  font-weight: 700;
 `
 
 const Description = styled.h2`
   color: white;
   font-size: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   margin-left: 5px;
+  font-weight: 550;
 `
 
 const TagCountStyle = styled.span`
