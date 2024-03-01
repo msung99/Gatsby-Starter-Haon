@@ -16,8 +16,9 @@ const TagsContent = ({posts, totalCount}) => {
 
 const Title = styled.h1`
   color: white;
-  font-size: 22px;
+  font-size: 20px;
   margin-bottom: 50px;
+  font-weight: 700;
 `
 
 export default TagsContent

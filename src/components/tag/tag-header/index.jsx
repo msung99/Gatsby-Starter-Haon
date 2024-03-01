@@ -9,8 +9,8 @@ const TagsHeader = ({tagName, tags }) => {
       <TagsHeaderStyle>
         <Title>#{tagName}</Title>
           <div style={{ display: "flex", alignItems: "center", marginBottom: "10px"}}>
-              <span style={{marginBottom: "2px"}}>
-                  <FaTags className="icon" size="23" color="white"/>
+              <span style={{marginBottom: "15px"}}>
+                  <FaTags className="icon" size="25" color="white"/>
               </span>
               <RelatedDescription>Related Tags ({tags.length})</RelatedDescription>
           </div>
@@ -39,9 +39,10 @@ const Title = styled.h1`
   color: white;
   background-color: #3C3A39;
   display: inline-block;
-  padding: 5px;
+  padding: 10px;
   font-size: 30px;
-  margin-bottom: 10px;
+  font-weight: 700;
+  margin-bottom: 40px;
 `
 
 const RelatedDescription = styled.h2`
@@ -49,12 +50,7 @@ const RelatedDescription = styled.h2`
   font-size: 20px;
   margin-bottom: 20px;
   margin-left: 10px;
-`
-
-const Name = styled.span`
-  font-size: 20px;
-  text-underline-offset: 5px;
-  text-decoration: underline;
+  font-weight: 600;
 `
 
 const RelatedTag = styled.span`
@@ -62,12 +58,12 @@ const RelatedTag = styled.span`
   color: white;
   font-size: 14px; 
   margin-right: 25px; 
-  margin-bottom: 8px; /* Adjusted margin-bottom for better alignment */
-  padding: 8px 15px; /* Adjusted padding for better alignment */
+  margin-bottom: 8px; 
+  padding: 8px 15px;
   background-color: #3C3A39;
   display: inline-block;
-  line-height: 1; /* Adjusted line-height to 1 for better alignment */
-  vertical-align: middle; /* Adjusted vertical-align for better alignment */
+  line-height: 1; 
+  vertical-align: middle; 
   transition: background-color 0.3s ease-in-out;
 
   &::before {
