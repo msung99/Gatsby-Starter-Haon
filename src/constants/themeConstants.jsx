@@ -2,7 +2,7 @@
 export const LIGHT_THEME_COLORS = {
   background: '#fff',
   mainText: '#000',
-  menubarWrapper: 'linear-gradient(to bottom, #F5F5F5, #FAFAFA)',
+  menubarWrapper: 'linear-gradient(to right, #eef2f3, #FAFAFA)',
   sideMenu: '#eef2f3',
   sideMenuHover: '#eef2f3',
 };
