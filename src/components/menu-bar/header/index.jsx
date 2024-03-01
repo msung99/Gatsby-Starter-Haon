@@ -2,20 +2,22 @@ import { Link } from "gatsby";
 import React from "react"
 import styled from "styled-components";
 import { useLocation } from "@reach/router";
-import { IoIosSearch } from "react-icons/io";
-import { GoPeople } from "react-icons/go";
-import { GoComment } from "react-icons/go";
-import { MdOutlineDarkMode, MdOutlineBookmarks } from "react-icons/md";
-import { GiBlackBook } from "react-icons/gi";
+import { MdOutlineDarkMode } from "react-icons/md";
 import { siteMetadata } from "../../../../gatsby-config";
+import { IoSearch } from "react-icons/io5";
+import { FaBook } from "react-icons/fa";
+import { BsFillPeopleFill } from "react-icons/bs";
+import { FaCommentAlt } from "react-icons/fa";
+import { IoBookmarks } from "react-icons/io5";
+
 
 const menuItems = [
-    { to: '/search', icon: <IoIosSearch className="icon" size="25" />, text: 'Search' },
+    { to: '/search', icon: <IoSearch className="icon" size="25" />, text: 'Search' },
     { to: '/bright-mode', icon: <MdOutlineDarkMode className="icon" size="28" />, text: 'Dark/Light Mode' },
-    { to: '/tags', icon: <MdOutlineBookmarks className="icon" size="25" />, text: 'Tags' },
-    { to: '/series', icon: <GiBlackBook className="icon" size="25" />, text: 'Series' },
-    { to: '/about', icon: <GoPeople className="icon" size="25" />, text: 'About' },
-    { to: '/community', icon: <GoComment className="icon" size="25" />, text: 'Community' },
+    { to: '/tags', icon: <IoBookmarks className="icon" size="25" />, text: 'Tags' },
+    { to: '/series', icon: <FaBook className="icon" size="25" />, text: 'Series' },
+    { to: '/about', icon: <BsFillPeopleFill className="icon" size="25" />, text: 'About' },
+    { to: '/community', icon: <FaCommentAlt className="icon" size="23" />, text: 'Community' },
 ];
 
 
@@ -51,10 +53,9 @@ const MenuItem = ({ to, icon, text }) => {
 
 const Title = styled.header`
   font-size: 24px;
-  color: white;
+  color: ${props => props.theme.main.text};
   font-weight: bold;
   margin-left: 20px;
-  background-color: #1d1d1d;
   padding-top: 10px;
   padding-bottom: 10px;
 `;
@@ -64,9 +65,9 @@ const NavigatoWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2.5px solid #282828;
+  border-bottom: 2.5px solid  ${props => props.theme.menuBar.border};
   width: 100%;
-  background-color: #1d1d1d;
+  background-color: ${props => props.theme.menuBar.wrapper};
   z-index: 1000;
 `;
 
@@ -78,14 +79,9 @@ const MenuContainer = styled.div`
 
 const SideMenu = styled.span`
   margin-right: 12px; 
-  color: white;
+  color: ${props => props.theme.main.text};
   transition: background-color 0.2s ease-in-out;
   border-radius: 8px;
-  background-color: ${(props) => (props.active ? "#1e1e1e" : "transparent")};
-
-  &:hover {
-    background-color: ${(props) => (props.active ?  "#1e1e1e" : "#282828")};
-  }
 `;
 
 export default HeaderMenuBar;
