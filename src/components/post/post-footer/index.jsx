@@ -35,22 +35,22 @@ const More = styled.div`
   font-style: italic;
   font-weight: bold;
   margin-bottom: 30px;
+  margin-top: 30px;
 `
 
 const Description = styled.p`
-    font-size: 18px;
+    font-size: 13.5px;
     margin-bottom: 8px;
     margin-top: 0;
 `;
 
 const PostMoveButton = styled(Link)`
     color: white;
-    font-size: 15px;
     padding: 5px 40px;
     width: 35%;
     height: 60px;
     text-align: center;
-    border-radius: 15px;
+    border-radius: 6px;
     background-color: #3c3a39;
     text-align: center;
     overflow: hidden;
@@ -62,14 +62,14 @@ const PostMoveButton = styled(Link)`
     transition: background-color 0.3s ease, transform 0.2s ease;
 
     &:hover {
-        background-color: ${props => (props.hasContent ? "#555555" : "#3c3a39")};
-        transform: ${props => (props.hasContent ? "scale(1.03)" : "none")};
+        background-color: ${props => (props.hasContent ? "#555555" : "#555555")};
+        transform: ${props => (props.hasContent ? "scale(1.02)" : "none")};
     }
 
     ${props => !props.hasContent && `
         cursor: default;
         &:hover {
-            background-color: #3c3a39;
+            background-color: #555555;
             transform: none;
         }
     `}
@@ -80,6 +80,7 @@ const ButtonText = styled.div`
     white-space: nowrap;
     text-overflow: ellipsis;
     line-height: 20px;
+    font-size: 15px;
 `;
 
 export default PostFooter;

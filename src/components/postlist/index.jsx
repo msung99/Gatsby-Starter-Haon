@@ -87,7 +87,7 @@ const Date = styled.div`
 const PostTitle = styled.h1`
   color: white;
   font-size: 1.8rem;
-  margin-top: 20px;
+  margin-top: 40px;
   margin-bottom: 20px;
   word-break: break-all;
   font-weight: 800;

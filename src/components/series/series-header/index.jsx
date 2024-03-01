@@ -4,7 +4,7 @@ import styled from "styled-components";
 const SeriesHeader = ({seriesName}) => {
     return (
         <HeaderStyle>
-            <Name>{seriesName}.</Name>
+            <Name>{seriesName}</Name>
         </HeaderStyle>
     )
 }
