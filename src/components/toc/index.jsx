@@ -5,7 +5,7 @@ const TableOfContents = ({ content }) => {
   const [isSticky, setIsSticky] = useState(false);
 
   const handleScroll = () => {
-    setIsSticky(window.scrollY > 600);
+    setIsSticky(window.scrollY > 300);
   };
 
   useEffect(() => {
