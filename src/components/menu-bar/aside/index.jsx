@@ -1,22 +1,24 @@
 import React from "react";
 import styled, { useTheme } from "styled-components";
 import { useLocation } from "@reach/router";
-import { IoHomeOutline } from "react-icons/io5";
-import { IoIosSearch } from "react-icons/io";
-import { GoPeople } from "react-icons/go";
-import { GoComment } from "react-icons/go";
-import { MdOutlineDarkMode, MdOutlineBookmarks } from "react-icons/md";
+import { MdOutlineDarkMode } from "react-icons/md";
 import { MdOutlineLightMode } from "react-icons/md";
-import { GiBlackBook } from "react-icons/gi";
 import { Link } from "gatsby";
 import { siteMetadata } from "../../../../gatsby-config";
+import { IoBookmarks } from "react-icons/io5";
+import { FaBook } from "react-icons/fa";
+import { BsFillPeopleFill } from "react-icons/bs";
+import { IoHome } from "react-icons/io5";
+import { IoSearch } from "react-icons/io5";
+
+
 
 const menuItems = [
-  { to: '/', icon: <IoHomeOutline className="icon" size="33" />, text: 'Home' },
-  { to: '/search', icon: <IoIosSearch className="icon" size="33" />, text: 'Search' },
-  { to: '/tags', icon: <MdOutlineBookmarks className="icon" size="33" />, text: 'Tags' },
-  { to: '/series', icon: <GiBlackBook className="icon" size="33" />, text: 'Series' },
-  { to: '/about', icon: <GoPeople className="icon" size="33" />, text: 'About' },
+  { to: '/', icon: <IoHome className="icon" size="30" />, text: 'Home' },
+  { to: '/search', icon: <IoSearch className="icon" size="30" />, text: 'Search' },
+  { to: '/tags', icon: <IoBookmarks className="icon" size="30" />, text: 'Tags' },
+  { to: '/series', icon: <FaBook className="icon" size="30" />, text: 'Series' },
+  { to: '/about', icon: <BsFillPeopleFill className="icon" size="30" />, text: 'About' },
   // { to: '/community', icon: <GoComment className="icon" size="30" />, text: 'Community' },
 ];
 
@@ -95,13 +97,13 @@ const SocialMenu = styled.div`
   border-radius: 8px;
 
   &:hover {
-    background-color: ${(props) => (props.active ?  "#1e1e1e" : "#282828")};
+    background-color: ${(props) => (props.active ?  props.theme.sideMenu : props.theme.sideMenuHover)};
   }
 `
 
 const SocialText = styled.p`
   font-size: 17px;
-  color: white;
+  color: ${props => props.theme.mainText};
   margin-left: 10px;
   margin-top: 5px;
 `
@@ -157,16 +159,16 @@ const SideMenu = styled.div`
   padding-right: 80px;
   padding: 10px;
   padding-right: 60px;
-  color: white;
+  color: ${props => props.theme.mainText};
   font-size: 16px;
   display: flex;
   align-items: center;
   transition: background-color 0.2s ease-in-out;
   border-radius: 8px;
-  background-color: ${(props) => (props.active ? "#1e1e1e" : "transparent")};
+  background-color: ${(props) => (props.active ? props.theme.sideMenu : "transparent")};
 
   &:hover {
-    background-color: ${(props) => (props.active ?  "#1e1e1e" : "#282828")};
+    background-color: ${(props) => (props.active ?  props.theme.sideMenu : props.theme.sideMenuHover)};
   }
 `;
 
@@ -179,11 +181,11 @@ const MenuText = styled.p`
 
 const Title = styled.div`
   font-size: 35px;
-  color: white;
+  color: ${props => props.theme.mainText};
   margin-top: 30px;
   margin-bottom: 40px;
   font-family: "Oswald";
-  font-weight: 600;
+  font-weight: 800;
 `;
 
 export default AsideMenuBar;

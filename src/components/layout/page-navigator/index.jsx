@@ -68,10 +68,12 @@ const SideMenuBarWrapper = styled.div`
   left: ${({ show }) => (show ? "0" : "-100%")};
   width: 300px;
   height: 100%;
-  background: linear-gradient(to bottom, #1e1e1e, #121212);
+  background: ${props => props.theme.menubarWrapper};
   padding-top: 60px;
   animation: ${({ show }) => (show ? slideIn : slideOut)} 0.7s ease-in-out;
 `;
+
+
 
 
 export default PageNavigator;
