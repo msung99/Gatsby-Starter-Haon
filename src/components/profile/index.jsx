@@ -33,27 +33,32 @@ const Text = styled.div`
 `
 
 const Author = styled.div`
-  font-size: 30px;
-  color: white;
+  font-size: 25px;
+  color: ${props => props.theme.main.text};
   padding-bottom: 8px;
+  font-weight: 600;
 `
 
 const Description = styled.div`
   font-size: 16px;
-  color: #bababa;
+  color: ${props => props.theme.profile.description};
+  margin-top: 5px;
+  margin-bottom: 10px;
 `
 
 const KeyWordsStyle = styled.div`
-  margin-top: 20px;
+  margin-top: 30px;
+  margin-left: -3px;
 `
 
 const KeyWordStyle = styled.span`
-  font-size: 17px;
-  color: #fff;
+  font-size: 15px;
   margin-right: 13px;
   border-radius: 15px;
   padding: 3px 8px;
   background-color: #484848;
+  color: ${props => props.theme.main.text};
+  background-color: ${props => props.theme.profile.keyword};
 `
 
 const profileImageUrl =

@@ -7,28 +7,7 @@ tags:
   - Legacy
   - JDBC
   - Tag Example
-  - hi2
   - connection
-  - connection1
-  - connection2
-  - connection3
-  - connection4
-  - connection5
-  - connection6
-  - connection7
-  - connection8
-  - connection9
-  - connection-1
-  - connection-2
-  - connection-3
-  - connection-4
-  - connection-5
-  - connection-6
-  - connection-
-  - connection-
-  - connection-
-  - connection-
-  - connection-
 series: Computer Science 분석 과정 시리즈 리뉴얼판임
 thumbnail: post1.png
 ---

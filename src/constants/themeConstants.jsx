@@ -11,6 +11,11 @@ export const LIGHT_THEME_COLORS = {
     sideMenuHover: '#eef2f3',
     border: '#E2E2E2'
   },
+
+  profile: {
+    description: 'black',
+    keyword: '#f1f3f5',
+  },
 };
 
 export const DARK_THEME_COLORS = {
@@ -25,5 +30,10 @@ export const DARK_THEME_COLORS = {
     sideMenu: '#1e1e1e',
     sideMenuHover: '#282828',
     border: '#282828',
+  },
+
+  profile: {
+    description: '#bababa',
+    keyword: '#484848',
   },
 };

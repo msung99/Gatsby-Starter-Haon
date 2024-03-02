@@ -36,12 +36,12 @@ const PostList = ({ posts }) => {
                     ))}
                   </PostTags>
                 )}
-                <PostDescription>
-                  {description || truncate(body, 80)}
-                </PostDescription>  
                 <Date>
                   {date}
                 </Date>
+                <PostDescription>
+                  {description || truncate(body, 80)}
+                </PostDescription>  
               </PostCard>
             </PostLink>
           );
@@ -79,9 +79,10 @@ const PostCard = styled.div`
 `;
 
 const Date = styled.div`
-  margin-top: 1px;
+  margin-top: 25px;
   font-size: 14px;
   color: #cdd4d9;
+  opacity: 0.8;
 `
 
 const PostTitle = styled.h1`
@@ -103,12 +104,12 @@ const PostTag = styled.span`
   color: #cdd4d9;
   opacity: 0.8;
   font-size: 15px;
-  margin-right: 15px;
+  margin-right: 13px;
   margin-bottom: 1.5px;
 `;
 
 const PostDescription = styled.p`
-  margin-top: 30px;
+  margin-top: 10px;
   margin-bottom: 10px;
   font-size: 15.5px;
   color: #cdd4d9;

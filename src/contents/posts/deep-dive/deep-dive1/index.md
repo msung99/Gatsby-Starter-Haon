@@ -6,12 +6,7 @@ tags:
   - Dao
   - Legacy
   - JDBC
-  - Tag Example
-  - hi2
   - connection
-  - connection1
-  - connection2
-  - connection3
 series: Computer Science 분석 과정 시리즈 리뉴얼판임
 thumbnail: post1.png
 ---
