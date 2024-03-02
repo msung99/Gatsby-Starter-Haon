@@ -141,6 +141,10 @@ const basicUrl =
     overflow: hidden;
     border-radius: 50%;
     background-repeat: no-repeat;
+
+    @media(max-width: 768px) {
+      display: none;
+    }
   `;
   
   const Image = styled.div`
