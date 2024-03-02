@@ -1,6 +1,5 @@
 ---
 title: DTO 개념
-description: DTO(Data Transfer Object) 는 계층 간 데이터를 전송을 위해 도메인 모델 대신에 사용하는 객체입니다. Tecoble 기술블로그 에 따르면, DTO 는 순수하게 데이터를 저장하고, 데이터에 대한 getter 와 setter 만을 가져야한다고 합니다. 그 어떠한 비즈니스 로직을 가져서도 안되면, 오로지 저장, 검색등의 로직만...
 date: "2024-01-05"
 tags:
   - Dao
