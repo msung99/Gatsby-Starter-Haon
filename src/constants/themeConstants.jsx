@@ -28,7 +28,7 @@ export const LIGHT_THEME_COLORS = {
   postlist: {
     date: '#899097',
     text: 'black',
-    tag: '#899097',
+    tag: '#626262',
     border: '#E2E2E2'
   },
 };
