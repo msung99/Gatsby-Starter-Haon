@@ -101,7 +101,7 @@ const PostTitle = styled.h1`
   margin-bottom: 15px;
   word-break: break-all;
   font-weight: 800;
-  line-height: 130%;
+  line-height: 110%;
 `;
 
 const PostTags = styled.div`
