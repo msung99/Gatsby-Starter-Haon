@@ -14,7 +14,15 @@ export const LIGHT_THEME_COLORS = {
 
   profile: {
     description: 'black',
-    keyword: '#f1f3f5',
+    keyword: '#f3f3f3',
+  },
+
+  tag: {
+    simple: {
+      title: 'black',
+      text: '#212529',
+      count: '#878f98',
+    },
   },
 };
 
@@ -22,7 +30,7 @@ export const DARK_THEME_COLORS = {
 
   main: {
     background: '#1a1a1a',
-    text: '#e8e8e8',
+    text: 'black',
   },
 
   menuBar: {
@@ -35,5 +43,13 @@ export const DARK_THEME_COLORS = {
   profile: {
     description: '#bababa',
     keyword: '#484848',
+  },
+
+  tag: {
+    simple: {
+      title: 'gray',
+      text: '#cdd4d9',
+      count: 'gray',
+    },
   },
 };
