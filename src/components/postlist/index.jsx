@@ -88,7 +88,7 @@ const PostContent = styled.div`
 `;
 
 const Date = styled.div`
-  margin-top: 15px;
+  margin-top: 30px;
   font-size: 14px;
   color: ${props => props.theme.postlist.date};
   opacity: 0.8;
@@ -96,12 +96,12 @@ const Date = styled.div`
 
 const PostTitle = styled.h1`
   color: ${props => props.theme.main.text};
-  font-size: 1.8rem;
-  margin-top: 20px;
-  margin-bottom: 10px;
+  font-size: 1.9rem;
+  margin-top: 30px;
+  margin-bottom: 15px;
   word-break: break-all;
   font-weight: 800;
-  line-height: 140%;
+  line-height: 130%;
 `;
 
 const PostTags = styled.div`
@@ -114,12 +114,12 @@ const PostTag = styled.span`
   opacity: 0.8;
   font-size: 15px;
   margin-right: 13px;
-  margin-bottom: 1.5px;
+  margin-bottom: 8px;
 `;
 
 const PostDescription = styled.p`
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 70px;
   font-size: 15.5px;
   line-height: 170%;
   color: ${props => props.theme.postlist.text};
@@ -144,13 +144,13 @@ const basicUrl =
   `;
   
   const Image = styled.div`
-    background-image: url(${props => basicUrl}/${props => props.previewImage});
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    border-radius: 50%;
-  `;
+  background-image: url(${props => (props.previewImage ? `${basicUrl}/${props.previewImage}` : `${basicUrl}/default.png`)});
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+`;
   
 
 

@@ -39,6 +39,7 @@ export const pageQuery = graphql`
           date
           tags
           series
+          previewImage
         }
       }
       group(field: frontmatter___series) {
