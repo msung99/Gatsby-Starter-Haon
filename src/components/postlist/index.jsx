@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
 import kebabCase from "lodash.kebabcase";
-import { FaStream } from "react-icons/fa";
-import { MdOutlineDateRange } from "react-icons/md";
 
 
 const PostList = ({ posts }) => {
@@ -67,7 +65,8 @@ const PostLink = styled(Link)`
 `;
 
 const PostCard = styled.div`
-  border-bottom: 2px solid #282828;
+  border-bottom: 1px solid ${props => props.theme.postlist.border};
+  z-index: 1000;
   margin-top: 1px;
   cursor: pointer;
   padding-bottom: 50px;
@@ -81,12 +80,12 @@ const PostCard = styled.div`
 const Date = styled.div`
   margin-top: 25px;
   font-size: 14px;
-  color: #cdd4d9;
+  color: ${props => props.theme.postlist.date};
   opacity: 0.8;
 `
 
 const PostTitle = styled.h1`
-  color: white;
+  color: ${props => props.theme.main.text};
   font-size: 1.8rem;
   margin-top: 40px;
   margin-bottom: 20px;
@@ -101,7 +100,7 @@ const PostTags = styled.div`
 `;
 
 const PostTag = styled.span`
-  color: #cdd4d9;
+  color: ${props => props.theme.postlist.tag};
   opacity: 0.8;
   font-size: 15px;
   margin-right: 13px;
@@ -112,42 +111,8 @@ const PostDescription = styled.p`
   margin-top: 10px;
   margin-bottom: 10px;
   font-size: 15.5px;
-  color: #cdd4d9;
   line-height: 170%;
-`;
-
-const PostMeta = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const Separator = styled.div`
-  background-color: #282828;
-  margin-right: 15px;
-`;
-
-const MetaWrapper = styled.span`
-font-size: 15px;
-font-weight: bold;
-padding: 5px;
-background-color: #2c2c2c;
-border-radius: 6px;
-border: 1px solid #4a4a4a;
-display: inline-block;
-color: #fff;
-text-decoration: none;
-transition: background-color 0.3s ease-in-out;
-
-&:hover {
-  background-color: #555;
-}
-`;
-
-
-const PostDate = styled.p`
-  font-size: 14px;
-  color: #e9e9e9;
-  margin-top: 16px;
+  color: ${props => props.theme.postlist.text};
 `;
 
 const EmptySpace = styled.div`

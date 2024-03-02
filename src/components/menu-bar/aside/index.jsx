@@ -180,7 +180,7 @@ const MenuText = styled.p`
 `;
 
 const Title = styled.div`
-  font-size: 35px;
+  font-size: 32px;
   color: ${props => props.theme.main.text};
   margin-top: 30px;
   margin-bottom: 40px;

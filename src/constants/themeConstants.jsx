@@ -24,13 +24,20 @@ export const LIGHT_THEME_COLORS = {
       count: '#878f98',
     },
   },
+
+  postlist: {
+    date: '#899097',
+    text: 'black',
+    tag: '#899097',
+    border: '#E2E2E2'
+  },
 };
 
 export const DARK_THEME_COLORS = {
 
   main: {
     background: '#1a1a1a',
-    text: 'black',
+    text: 'white',
   },
 
   menuBar: {
@@ -51,5 +58,12 @@ export const DARK_THEME_COLORS = {
       text: '#cdd4d9',
       count: 'gray',
     },
+  },
+
+  postlist: {
+    text: '#cdd4d9',
+    date: '#cdd4d9',
+    tag: '#cdd4d9',
+    border: '#282828'
   },
 };
