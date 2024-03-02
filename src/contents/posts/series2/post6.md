@@ -9,6 +9,7 @@ tags:
   - Tag Example
   - wooteco
 series: MySQL 8.0 InnoDB
+previewImage: kafka.png
 ---
 
 # 가장 큰 타이틀이다.

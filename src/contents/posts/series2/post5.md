@@ -8,6 +8,7 @@ tags:
   - Tag Example
   - wooteco
 series: 시리즈2 모음집
+previewImage: kafka.png
 ---
 
 ## DTO

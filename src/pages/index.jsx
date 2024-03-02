@@ -49,6 +49,7 @@ export const pageQuery = graphql`
           date(formatString: "MMMM DD, YYYY")
           tags
           series
+          previewImage
         }
       }
       group(field: frontmatter___tags) {

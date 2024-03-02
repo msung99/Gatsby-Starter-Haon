@@ -11,6 +11,7 @@ tags:
   - grafana
   - prometheus
 series: 시리즈2 모음집
+previewImage: redis.png
 ---
 
 # 학습배경 h1 에 대해 학습한다.

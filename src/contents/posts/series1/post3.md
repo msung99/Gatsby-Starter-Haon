@@ -9,6 +9,7 @@ tags:
   - connection
   - interface
 series: My-Series3
+previewImage: kafka.png
 ---
 
 > 이것은 인용문이다.

@@ -1,6 +1,7 @@
 ---
 title: 설명, 시리즈, 테그 없음
 date: "2024-02-03"
+previewImage: new-redis.png
 ---
 
 > [JDBC 라이브러리 구현하기]() 를 진행해보면서, 학습한 내용을 정리했다.

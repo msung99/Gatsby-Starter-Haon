@@ -1,5 +1,5 @@
 ---
-title: TomcatServletWebServerFactory, DispatcherServlet 기반 스프링부트 애플리케이션 구현하기11
+title: Redis Pub/Sub 으로 메시지브로커를 구축해보았다.
 description: TomcatServletWebServerFactory, DispatherServlet 에 기반하여 애플리케이션 서버를 직접 구동해본다.
 date: "2024-01-02"
 tags:
@@ -8,7 +8,7 @@ tags:
   - JDBC
   - connection
 series: Computer Science 분석 과정 시리즈 리뉴얼판임
-thumbnail: post1.png
+previewImage: redis-old.png
 ---
 
 ```python
