@@ -1,17 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled, { useTheme } from "styled-components";
 import { useLocation } from "@reach/router";
-import { MdOutlineDarkMode } from "react-icons/md";
-import { MdOutlineLightMode } from "react-icons/md";
+import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 import { Link } from "gatsby";
 import { siteMetadata } from "../../../../gatsby-config";
 import { IoBookmarks } from "react-icons/io5";
 import { FaBook } from "react-icons/fa";
 import { BsFillPeopleFill } from "react-icons/bs";
-import { IoHome } from "react-icons/io5";
-import { IoSearch } from "react-icons/io5";
-
-
+import { IoHome, IoSearch } from "react-icons/io5";
+import ThemeSwitch from "../../theme-switch";
 
 const menuItems = [
   { to: '/', icon: <IoHome className="icon" size="30" />, text: 'Home' },
@@ -19,32 +16,25 @@ const menuItems = [
   { to: '/tags', icon: <IoBookmarks className="icon" size="30" />, text: 'Tags' },
   { to: '/series', icon: <FaBook className="icon" size="30" />, text: 'Series' },
   { to: '/about', icon: <BsFillPeopleFill className="icon" size="30" />, text: 'About' },
-  // { to: '/community', icon: <GoComment className="icon" size="30" />, text: 'Community' },
 ];
 
-const AsideMenuBar = ({toggleTheme}) => {
+const AsideMenuBar = ({ }) => {
   const location = useLocation();
-  const theme = useTheme();
 
   return (
     <SideMenuBarStyle>
       <Link to={"/"} style={{ textDecoration: 'none' }}>
         <Title>{siteMetadata.title}</Title>
       </Link>
+      <ThemeSwitch/>
       <div>
         {menuItems.map((item, index) => (
           <MenuItem key={index} {...item} active={location.pathname === item.to} />
         ))}
       </div>
-      <ToggleWrapper> 
-        <IconRail theme={theme.name}>
-          <MdOutlineDarkMode className="icon" onClick={toggleTheme} size="40"/> 
-          <MdOutlineLightMode className="icon" onClick={toggleTheme} size="40"/> 
-        </IconRail>
-      </ToggleWrapper>
       <Link to={"/community"} style={{ textDecoration: 'none' }}>
         <SocialMenu>
-          <SocialImage/>
+          <SocialImage />
           <SocialText>{siteMetadata.author} / Social</SocialText>
         </SocialMenu>
       </Link>
@@ -53,12 +43,14 @@ const AsideMenuBar = ({toggleTheme}) => {
 };
 
 const ToggleWrapper = styled.div`
-  width: 20px;
-  height: 24px;
-  margin-right: 15px;
-  overflow: hidden;
   box-sizing: border-box;
-`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  background-color: blue;
+  position: fixed;
+`;
 
 const IconRail = styled.div`
   position: relative;

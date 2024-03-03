@@ -28,12 +28,6 @@ function ThemeSwitch() {
 }
 
 const DarkModeButtonWrapper = styled.div`
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    bottom: 20px;
-    right: 20px;
 `;
 
 const DarkModeButton = styled.div`
