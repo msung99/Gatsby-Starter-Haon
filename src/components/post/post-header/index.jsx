@@ -183,7 +183,7 @@ const Tag = styled.span`
   margin-right: 25px;
   margin-bottom: 8px;
   padding: 8px 15px;
-  background-color: #3C3A39;
+  background-color: ${props => props.theme.tag.simple.background};
   display: inline-block;
   line-height: 1;
   vertical-align: middle;
@@ -196,7 +196,7 @@ const Tag = styled.span`
     right: -15px;
     border-width: 15.6px 0 15.6px 15.6px;
     border-style: solid;
-    border-color: transparent transparent transparent #3C3A39;
+    border-color: transparent transparent transparent ${props => props.theme.tag.simple.background};
     transition: border-color 0.3s ease-in-out;
   }
 
@@ -207,16 +207,16 @@ const Tag = styled.span`
     right: -3px;
     width: 6px;
     height: 6px;
-    background-color: white;
+    background-color: ${props => props.theme.tag.simple.circle};
     border-radius: 50%;
     transform: translateY(-50%);
   }
 
   &:hover {
-    background-color: #555;
+    background-color: ${props => props.theme.tag.simple.hover};
 
     &::before {
-      border-color: transparent transparent transparent #555;
+      border-color: transparent transparent transparent ${props => props.theme.tag.simple.hover};
     }
   }
 `;
@@ -228,20 +228,19 @@ const SeriesContainer = styled.div`
 `;
 
 const SeriesLabel = styled.span`
-  font-size: 18px;
+  font-size: 15px;
   margin-right: 10px;
   color: #8e8e8e;
 `;
 
 const Series = styled(Link)`
-  font-size: 15px;
+  font-size: 14px;
   font-weight: bold;
   padding: 5px;
-  background-color: #2c2c2c;
+  background-color: ${props => props.theme.post.series};
   border-radius: 6px;
-  border: 1px solid #4a4a4a;
   display: inline-block;
-  color: #fff;
+  color: ${props => props.theme.main.text};
   text-decoration: none;
   transition: background-color 0.3s ease-in-out;
 
