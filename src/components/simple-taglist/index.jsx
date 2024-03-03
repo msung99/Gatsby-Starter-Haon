@@ -35,7 +35,7 @@ const TagTitle = styled.div`
   font-size: 16px;
   margin-left: 7px;
   margin-bottom: 2px;
-  color: ${props => props.theme.tag.simple.title};
+  color: ${props => props.theme.tag.title};
   font-weight: bold;
 `;
 
@@ -53,7 +53,7 @@ const TagStyle = styled.div`
 const StyledLink = styled(Link)`
   text-decoration: none;
   transition: color 1s;
-  color: ${props => props.theme.tag.simple.text};
+  color: ${props => props.theme.tag.text};
 
   &:hover {
     color: #999;
@@ -61,7 +61,7 @@ const StyledLink = styled(Link)`
 `;
 
 const TagCountStyle = styled.span`
-  color: ${props => props.theme.tag.simple.count};
+  color: ${props => props.theme.tag.count};
   font-size: 13px;
   transition: color 1s;
 

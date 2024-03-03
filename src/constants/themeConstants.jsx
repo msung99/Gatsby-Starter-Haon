@@ -20,14 +20,12 @@ export const LIGHT_THEME_COLORS = {
   },
 
   tag: {
-    simple: {
-      title: 'black',
-      text: '#212529',
-      count: '#878f98',
-      background: '#f3f3f3',
-      circle: 'gray',
-      hover: '#ced4da',
-    },
+    title: 'black',
+    text: '#212529',
+    count: '#878f98',
+    background: '#f3f3f3',
+    circle: 'gray',
+    hover: '#ced4da',
   },
 
   postlist: {
@@ -94,15 +92,13 @@ export const DARK_THEME_COLORS = {
     keyword: '#484848',
   },
 
-  tag: {
-    simple: {
-      title: 'gray',
-      text: '#cdd4d9',
-      count: 'gray',
-      background: '#3C3A39',
-      circle: 'white',
-      hover: '#555',
-    },
+  tag: {    
+    title: 'gray',
+    text: '#cdd4d9',
+    count: 'gray',
+    background: '#3C3A39',
+    circle: 'white',
+    hover: '#555',
   },
 
   postlist: {

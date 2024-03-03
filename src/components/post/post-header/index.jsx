@@ -183,7 +183,7 @@ const Tag = styled.span`
   margin-right: 25px;
   margin-bottom: 8px;
   padding: 8px 15px;
-  background-color: ${props => props.theme.tag.simple.background};
+  background-color: ${props => props.theme.tag.background};
   display: inline-block;
   line-height: 1;
   vertical-align: middle;
@@ -196,7 +196,7 @@ const Tag = styled.span`
     right: -15px;
     border-width: 15.6px 0 15.6px 15.6px;
     border-style: solid;
-    border-color: transparent transparent transparent ${props => props.theme.tag.simple.background};
+    border-color: transparent transparent transparent ${props => props.theme.tag.background};
     transition: border-color 0.3s ease-in-out;
   }
 
@@ -207,16 +207,16 @@ const Tag = styled.span`
     right: -3px;
     width: 6px;
     height: 6px;
-    background-color: ${props => props.theme.tag.simple.circle};
+    background-color: ${props => props.theme.tag.circle};
     border-radius: 50%;
     transform: translateY(-50%);
   }
 
   &:hover {
-    background-color: ${props => props.theme.tag.simple.hover};
+    background-color: ${props => props.theme.tag.hover};
 
     &::before {
-      border-color: transparent transparent transparent ${props => props.theme.tag.simple.hover};
+      border-color: transparent transparent transparent ${props => props.theme.tag.hover};
     }
   }
 `;
