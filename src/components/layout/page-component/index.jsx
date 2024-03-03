@@ -35,7 +35,6 @@ const PageLayout = ({ children }) => {
         <PageContent contents={children} />
         <PageFooter/>
       </PageWrapper>
-      <ThemeSwitch/>
     </ThemeProvider>
   );
 };
