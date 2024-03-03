@@ -30,7 +30,7 @@ const TagTitle = styled.h1`
   font-style: italic;
   margin-bottom: 40px;
   padding-bottom: 50px;
-  border-bottom: 1px solid #282828;
+  border-bottom: 1px solid ${props => props.theme.main.border};
   font-weight: 700;
 `
 
@@ -56,7 +56,6 @@ const TagListStyle = styled.div`
   line-height: 17px; 
   display: flex;
   padding-bottom: 60px;
-  border-bottom: 1px solid #282828;
 `;
 
 const Tag = styled.span`
