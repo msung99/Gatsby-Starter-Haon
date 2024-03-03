@@ -31,7 +31,7 @@ const More = styled.div`
   font-size: 35px;
   border-top: 1px solid #484848;
   padding-top: 70px;
-  color: white;
+  color: ${props => props.theme.post.content.text};
   font-style: italic;
   font-weight: bold;
   margin-bottom: 30px;
@@ -45,13 +45,13 @@ const Description = styled.p`
 `;
 
 const PostMoveButton = styled(Link)`
-    color: white;
+    color: ${props => props.theme.post.content.text};
     padding: 5px 40px;
     width: 35%;
     height: 60px;
     text-align: center;
     border-radius: 6px;
-    background-color: #3c3a39;
+    background-color: ${props => props.theme.post.footer.button};
     text-align: center;
     overflow: hidden;
     cursor: ${props => (props.hasContent ? "pointer" : "default")};
@@ -61,19 +61,12 @@ const PostMoveButton = styled(Link)`
     text-decoration: none;
     transition: background-color 0.3s ease, transform 0.2s ease;
 
-    &:hover {
-        background-color: ${props => (props.hasContent ? "#555555" : "#555555")};
-        transform: ${props => (props.hasContent ? "scale(1.02)" : "none")};
+    &:hover {        
+        background-color: ${props => (props.hasContent ? props.theme.post.footer.hover : props.theme.post.footer.hover)};
+        transform: scale(${props => (props.hasContent ? 1.02 : 1)});
     }
-
-    ${props => !props.hasContent && `
-        cursor: default;
-        &:hover {
-            background-color: #555555;
-            transform: none;
-        }
-    `}
 `;
+
 
 const ButtonText = styled.div`
     overflow: hidden;

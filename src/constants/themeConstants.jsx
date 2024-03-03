@@ -57,6 +57,10 @@ export const LIGHT_THEME_COLORS = {
       a: 'dimgray',
       li: 'black',
     },
+    footer: {
+      button: '#f7f6f2',
+      hover: '#f1f0eb',
+    },
   },
 };
 
@@ -116,6 +120,10 @@ export const DARK_THEME_COLORS = {
       },
       a: '#c9c9ca',
       li: 'white',
+    },
+    footer: {
+      button: '#3c3a39',
+      hover: '#555555',
     },
   },
 };
