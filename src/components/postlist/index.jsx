@@ -66,6 +66,7 @@ const PostLink = styled(Link)`
   color: inherit;
   display: flex;
   align-items: center;
+  transition: color 0.3s ease, background 0.3s ease; /* 색상과 배경에 대한 트랜지션 효과 추가 */
 `;
 
 const PostCard = styled.div`
@@ -76,10 +77,11 @@ const PostCard = styled.div`
   cursor: pointer;
   padding: 20px;
   width: 100%;
-  transition: opacity 0.3s ease;
+  transition: opacity 1s ease, background 1s ease;
 
   &:hover {
     opacity: 0.8;
+    background: ${props => props.theme.postlist.hoverBackground}; 
   }
 `;
 
@@ -92,6 +94,7 @@ const Date = styled.div`
   font-size: 14px;
   color: ${props => props.theme.postlist.date};
   opacity: 0.8;
+  transition: color 1s ease; 
 `;
 
 const PostTitle = styled.h1`
@@ -102,6 +105,7 @@ const PostTitle = styled.h1`
   word-break: break-all;
   font-weight: 800;
   line-height: 110%;
+  transition: color 1s ease; 
 `;
 
 const PostTags = styled.div`
@@ -115,6 +119,7 @@ const PostTag = styled.span`
   font-size: 15px;
   margin-right: 13px;
   margin-bottom: 8px;
+  transition: color 1s ease; 
 `;
 
 const PostDescription = styled.p`
@@ -123,6 +128,7 @@ const PostDescription = styled.p`
   font-size: 15.5px;
   line-height: 170%;
   color: ${props => props.theme.postlist.text};
+  transition: color 1s ease; 
 `;
 
 const EmptySpace = styled.div`
@@ -134,28 +140,28 @@ const basicUrl =
     ? "http://localhost:8000"
     : siteMetadata.siteUrl;
 
-    const ImageWrapper = styled.div`
-    width: 150px;
-    height: 150px;
-    margin-left: 30px;
-    overflow: hidden;
-    border-radius: 50%;
-    background-repeat: no-repeat;
+const ImageWrapper = styled.div`
+  width: 150px;
+  height: 150px;
+  margin-left: 30px;
+  overflow: hidden;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  transition: background 1s ease; 
 
-    @media(max-width: 768px) {
-      display: none;
-    }
-  `;
+  @media(max-width: 768px) {
+    display: none;
+  }
+`;
   
-  const Image = styled.div`
+const Image = styled.div`
   background-image: url(${props => (props.previewImage ? `${basicUrl}/${props.previewImage}` : `${basicUrl}/default.png`)});
   width: 100%;
   height: 100%;
   background-size: cover;
   background-position: center;
   border-radius: 50%;
+  transition: background 1s ease;
 `;
-  
-
 
 export default PostList;

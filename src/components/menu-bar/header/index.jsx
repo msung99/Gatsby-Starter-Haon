@@ -23,7 +23,7 @@ const HeaderMenuBar = () => {
     const location = useLocation();
 
     return (
-        <NavigatoWrapper>
+        <NavigatorWrapper>
             <Link style={{ textDecoration: "none" }} to="/">
                 <Title>{siteMetadata.title}</Title>
             </Link>
@@ -36,7 +36,7 @@ const HeaderMenuBar = () => {
                     <MenuItem key={index} {...item} active={location.pathname === item.to} />
                 ))}
             </MenuContainer>
-        </NavigatoWrapper>
+        </NavigatorWrapper>
     )
 }
 
@@ -62,7 +62,7 @@ const Title = styled.header`
   padding-bottom: 10px;
 `;
 
-const NavigatoWrapper = styled.div`
+const NavigatorWrapper = styled.div`
   position: fixed;
   display: flex;
   justify-content: space-between;
