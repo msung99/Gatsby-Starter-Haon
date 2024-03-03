@@ -59,12 +59,12 @@ const Toc = styled.div`
     }
 
     a {
-      color: #a0a0a0;
+      color: ${props => props.theme.post.toc.a};
       text-decoration: none;
       cursor: pointer;
 
       &:hover {
-        color: #e8e8e8;
+        color: ${props => props.theme.post.toc.hover};
         transition: color 0.2s ease-in-out;
       }
     }

@@ -38,6 +38,10 @@ export const LIGHT_THEME_COLORS = {
 
   post: {
     series: '#f3f3f3',
+    toc: {
+      a: '#666',
+      hover: 'black',
+    },
     content: {
       text: 'black',
       blockquote: {
@@ -94,6 +98,10 @@ export const DARK_THEME_COLORS = {
 
   post: {
     series: '#3C3A39',
+    toc: {
+      a: '#a0a0a0',
+      hover: '#e8e8e8',
+    },
     content: {
       text: '#e8e8e8',
       blockquote: {
