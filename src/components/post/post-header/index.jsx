@@ -128,7 +128,7 @@ const PostTitle = styled.h1`
 `;
 
 const Description = styled.div`
-  font-size: 16px;
+  font-size: 15px;
   color: gray;
 `;
 
@@ -162,7 +162,7 @@ const Tags = styled.div``;
 const PostAuthor = styled.span`
   font-weight: 800;
   color: ${props => props.theme.main.text};
-  font-size: 18px;
+  font-size: 17px;
 `;
 
 const CopyStatus = styled.div`

@@ -38,6 +38,21 @@ export const LIGHT_THEME_COLORS = {
 
   post: {
     series: '#f3f3f3',
+    content: {
+      text: 'black',
+      blockquote: {
+        body: '#f7f6f2',
+        left: '#c0c0c0',
+        text: 'black',
+      },
+      hr: '#eef2f3',
+      language: {
+        bg: '#f1f0eb',
+        text: 'black',
+      },
+      a: 'dimgray',
+      li: 'black',
+    },
   },
 };
 
@@ -79,5 +94,20 @@ export const DARK_THEME_COLORS = {
 
   post: {
     series: '#3C3A39',
+    content: {
+      text: '#e8e8e8',
+      blockquote: {
+        body: '#212121',
+        left: '#606060',
+        text: '#e6e6e6',
+      },
+      hr: '#282828',
+      language: {
+        bg: '#606060',
+        text: '#e6e6e6',
+      },
+      a: '#c9c9ca',
+      li: 'white',
+    },
   },
 };
