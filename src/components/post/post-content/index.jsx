@@ -96,6 +96,7 @@ const HtmlWrapper = styled.div`
     background-color: ${props => props.theme.post.content.blockquote.body};
     line-height: 170%;
     color: ${props => props.theme.post.content.blockquote.text};
+    border-left: 6px solid ${props => props.theme.post.content.blockquote.left};
     word-break: break-all;
   }
 
