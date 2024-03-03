@@ -10,11 +10,24 @@ import styled from 'styled-components';
 
 function ThemeSwitch() {
     const [isDarkMode, setIsDarkMode] = useState(getValueFromLocalStorage('isDarkMode'));
+    const [hideText, setHideText] = useState(window.innerWidth <= 768);
 
     useEffect(() => {
         setValueToLocalStorage('isDarkMode', isDarkMode);
         document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
     }, [isDarkMode]);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setHideText(window.innerWidth <= 768);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     return (
         <DarkModeButtonWrapper>
@@ -35,39 +48,54 @@ function ThemeSwitch() {
     );
 }
 
-const DarkModeButtonWrapper = styled.div`
-`;
+const DarkModeButtonWrapper = styled.div``;
 
 const DarkModeButton = styled.div`
-  margin-top: 30px;
-  padding-right: 80px;
-  padding: 10px;
-  padding-right: 60px;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  transition: background-color 0.2s ease-in-out;
-  border-radius: 8px;
-  background-color: ${(props) => (props.active ? props.theme.menuBar.sideMenu : "transparent")};
+    margin-top: 30px;
+    padding-right: 80px;
+    padding: 10px;
+    padding-right: 60px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.2s ease-in-out;
+    border-radius: 8px;
+    background-color: ${(props) => (props.active ? props.theme.menuBar.sideMenu : "transparent")};
 
-  &:hover {
-    background-color: ${(props) => (props.active ?  props.theme.menuBar.sideMenu : props.theme.menuBar.sideMenuHover)};
+    &:hover {
+        background-color: ${(props) => (props.active ? props.theme.menuBar.sideMenu : props.theme.menuBar.sideMenuHover)};
+    }
+
+    @media (max-width: 768px) {
+        padding-right: 10px;
+        padding-left: 0;
+        margin-top: 0;
+    }
+
+    @media (max-width: 1300px) {
+        padding-right: 10px;
+        padding-left: 0;
+        margin-top: 0;
+    }
 `;
 
 const DarkModeIcon = styled.div`
-  color: ${props => props.theme.main.text};
+    color: ${props => props.theme.main.text};
 `;
 
 const ButtonWrapper = styled.div`
-  display: flex;
-  align-items: center;
-`
+`;
 
 const ThemeText = styled.p`
-  margin-left: 10px;
-  margin-right: 30px;
-  font-size: 17px;
-  color: ${props => props.theme.main.text};
+    margin-left: 10px;
+    margin-right: 30px;
+    font-size: 17px;
+    color: ${props => props.theme.main.text};
+
+    @media (max-width: 1300px) {
+        display: none;
+    }
 `;
+
 
 export default ThemeSwitch;

@@ -9,17 +9,15 @@ import { FaBook } from "react-icons/fa";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { FaCommentAlt } from "react-icons/fa";
 import { IoBookmarks } from "react-icons/io5";
-
+import ThemeSwitch from "../../theme-switch";
 
 const menuItems = [
-    { to: '/search', icon: <IoSearch className="icon" size="25" />, text: 'Search' },
-    { to: '/bright-mode', icon: <MdOutlineDarkMode className="icon" size="28" />, text: 'Dark/Light Mode' },
-    { to: '/tags', icon: <IoBookmarks className="icon" size="25" />, text: 'Tags' },
-    { to: '/series', icon: <FaBook className="icon" size="25" />, text: 'Series' },
-    { to: '/about', icon: <BsFillPeopleFill className="icon" size="25" />, text: 'About' },
+    { to: '/search', icon: <IoSearch className="icon" size="23" />, text: 'Search' },
+    { to: '/tags', icon: <IoBookmarks className="icon" size="23" />, text: 'Tags' },
+    { to: '/series', icon: <FaBook className="icon" size="23" />, text: 'Series' },
+    { to: '/about', icon: <BsFillPeopleFill className="icon" size="23" />, text: 'About' },
     { to: '/community', icon: <FaCommentAlt className="icon" size="23" />, text: 'Community' },
 ];
-
 
 const HeaderMenuBar = () => {
     const location = useLocation();
@@ -30,7 +28,11 @@ const HeaderMenuBar = () => {
                 <Title>{siteMetadata.title}</Title>
             </Link>
             <MenuContainer>
-                {menuItems.map((item, index) => (
+                {menuItems.slice(0, 1).map((item, index) => (
+                    <MenuItem key={index} {...item} active={location.pathname === item.to} />
+                ))}
+                <ThemeSwitch/>
+                {menuItems.slice(1).map((item, index) => (
                     <MenuItem key={index} {...item} active={location.pathname === item.to} />
                 ))}
             </MenuContainer>
@@ -55,7 +57,7 @@ const Title = styled.header`
   font-size: 24px;
   color: ${props => props.theme.main.text};
   font-weight: bold;
-  margin-left: 20px;
+  margin-left: 30px;
   padding-top: 10px;
   padding-bottom: 10px;
 `;
@@ -69,19 +71,21 @@ const NavigatoWrapper = styled.div`
   width: 100%;
   background-color: ${props => props.theme.menuBar.wrapper};
   z-index: 1000;
+  margin-top: 5px;
+  padding-bottom: 10px;
 `;
 
 const MenuContainer = styled.div`
   display: flex;
   margin-right: 40px;
-  max-width: 40%;
+  max-width: 42%;
+  align-items: center;
 `;
 
 const SideMenu = styled.span`
-  margin-right: 12px; 
+  margin-right: 13px; 
   color: ${props => props.theme.main.text};
   transition: background-color 0.2s ease-in-out;
-  border-radius: 8px;
 `;
 
 export default HeaderMenuBar;
