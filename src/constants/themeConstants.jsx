@@ -62,6 +62,7 @@ export const LIGHT_THEME_COLORS = {
       hover: '#f1f0eb',
     },
   },
+  utterances: 'github-light',
 };
 
 export const DARK_THEME_COLORS = {
@@ -126,4 +127,5 @@ export const DARK_THEME_COLORS = {
       hover: '#555555',
     },
   },
+  utterances: 'github-dark',
 };
