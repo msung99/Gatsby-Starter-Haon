@@ -3,6 +3,7 @@ export const LIGHT_THEME_COLORS = {
   main: {
     background: '#fff',
     text: '#000',
+    icon: '#868e97',
   },
 
   menuBar: {

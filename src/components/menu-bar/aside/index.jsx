@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
-import styled, { useTheme } from "styled-components";
+import React from "react";
+import styled from "styled-components";
 import { useLocation } from "@reach/router";
-import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 import { Link } from "gatsby";
 import { siteMetadata } from "../../../../gatsby-config";
 import { IoBookmarks } from "react-icons/io5";
@@ -18,7 +17,7 @@ const menuItems = [
   { to: '/about', icon: <BsFillPeopleFill className="icon" size="30" />, text: 'About' },
 ];
 
-const AsideMenuBar = ({ }) => {
+const AsideMenuBar = () => {
   const location = useLocation();
 
   return (
@@ -26,9 +25,12 @@ const AsideMenuBar = ({ }) => {
       <Link to={"/"} style={{ textDecoration: 'none' }}>
         <Title>{siteMetadata.title}</Title>
       </Link>
-      <ThemeSwitch/>
       <div>
-        {menuItems.map((item, index) => (
+        {menuItems.slice(0, 1).map((item, index) => (
+          <MenuItem key={index} {...item} active={location.pathname === item.to} />
+        ))}
+        <ThemeSwitch/>
+        {menuItems.slice(1).map((item, index) => (
           <MenuItem key={index} {...item} active={location.pathname === item.to} />
         ))}
       </div>
@@ -39,6 +41,22 @@ const AsideMenuBar = ({ }) => {
         </SocialMenu>
       </Link>
     </SideMenuBarStyle>
+  );
+};
+
+
+
+const MenuItem = ({ to, icon, text }) => {
+  const location = useLocation();
+  const isActive = to === '/' ? location.pathname === to : location.pathname.startsWith(to);
+
+  return (
+    <Link to={to} style={{ textDecoration: 'none' }}>
+      <SideMenu active={isActive}>
+        {icon}
+        <MenuText>{text}</MenuText>
+      </SideMenu>
+    </Link>
   );
 };
 
@@ -79,8 +97,7 @@ const SocialMenu = styled.div`
   position: fixed;
   display: flex;
   justify-content: center;
-  margin-top: 40px;
-
+  margin-top: 15px;
   padding-top: 10px;
   padding-right: 60px;
   padding-left: 5px;
@@ -116,21 +133,6 @@ const SocialImage = styled.div`
   background-position: center;
   border-radius: 50%;
 `;
-
-
-const MenuItem = ({ to, icon, text }) => {
-  const location = useLocation();
-  const isActive = to === '/' ? location.pathname === to : location.pathname.startsWith(to);
-
-  return (
-    <Link to={to} style={{ textDecoration: 'none' }}>
-      <SideMenu active={isActive}>
-        {icon}
-        <MenuText>{text}</MenuText>
-      </SideMenu>
-    </Link>
-  );
-};
 
 const SideMenuBarStyle = styled.div`
   position: fixed;
