@@ -98,7 +98,8 @@ export const DARK_THEME_COLORS = {
   postlist: {
     text: '#cdd4d9',
     date: '#cdd4d9',
-    border: '#282828'
+    border: '#282828',
+    tag: "#cdd4d9",
   },
 
   post: {
