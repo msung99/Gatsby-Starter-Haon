@@ -113,7 +113,7 @@ const fadeInOut = keyframes`
 `;
 
 const HeaderWrapper = styled.div`
-  color: #fff;
+  color: ${props => props.theme.main.text};
   margin-bottom: 80px;
   padding-bottom: 50px;
   border-bottom: 1px solid #626262;
@@ -145,7 +145,7 @@ const ShareLinkContainer = styled.div`
 `;
 
 const ShareLink = styled.div`
-  color: white;
+  color: ${props => props.theme.main.text};
   cursor: pointer;
   margin-right: 10px;
   display: flex;
@@ -161,11 +161,12 @@ const Tags = styled.div``;
 
 const PostAuthor = styled.span`
   font-weight: 800;
-  color: #fff;
+  color: ${props => props.theme.main.text};
+  font-size: 18px;
 `;
 
 const CopyStatus = styled.div`
-  color: #fff;
+  color: ${props => props.theme.main.text};
   font-size: 14px;
   background-color: gray;
   padding: 5px 10px;
@@ -177,7 +178,7 @@ const CopyStatus = styled.div`
 
 const Tag = styled.span`
   position: relative;
-  color: white;
+  color: ${props => props.theme.main.text};
   font-size: 14px;
   margin-right: 25px;
   margin-bottom: 8px;

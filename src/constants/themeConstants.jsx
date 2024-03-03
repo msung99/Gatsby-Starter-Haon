@@ -31,6 +31,10 @@ export const LIGHT_THEME_COLORS = {
     tag: '#626262',
     border: '#E2E2E2'
   },
+
+  post: {
+
+  },
 };
 
 export const DARK_THEME_COLORS = {
@@ -65,5 +69,9 @@ export const DARK_THEME_COLORS = {
     date: '#cdd4d9',
     tag: '#cdd4d9',
     border: '#282828'
+  },
+
+  post: {
+
   },
 };

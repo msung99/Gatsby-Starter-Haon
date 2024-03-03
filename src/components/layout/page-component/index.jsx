@@ -13,6 +13,18 @@ const PageLayout = ({ children }) => {
 
   useEffect(() => {
     setTheme(getValueFromLocalStorage('isDarkMode') ? DARK_THEME_COLORS : LIGHT_THEME_COLORS);
+
+    const handleThemeChange = () => {
+      setTheme(getValueFromLocalStorage('isDarkMode') ? DARK_THEME_COLORS : LIGHT_THEME_COLORS);
+    };
+
+    // Add event listener for theme change
+    window.addEventListener("theme", handleThemeChange);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("theme", handleThemeChange);
+    };
   }, []);
 
   return (

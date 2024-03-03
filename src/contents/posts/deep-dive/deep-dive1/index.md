@@ -8,7 +8,7 @@ tags:
   - JDBC
   - connection
 series: Computer Science 분석 과정 시리즈 리뉴얼판임
-previewImage: redis-old.png
+previewImage: new-redis.png
 ---
 
 ```python

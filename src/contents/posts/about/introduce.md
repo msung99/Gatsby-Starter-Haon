@@ -6,7 +6,6 @@ tags:
   - Introduce
   - Intro
 series: Introduce series
-previewImage: profile.png
 ---
 
 > [JDBC 라이브러리 구현하기]() 를 진행해보면서, 학습한 내용을 정리했다.
