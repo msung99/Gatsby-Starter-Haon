@@ -61,7 +61,7 @@ const StyledLink = styled(Link)`
 `;
 
 const TagCountStyle = styled.span`
-  color: gray;
+  color: ${props => props.theme.tag.simple.count};
   font-size: 13px;
   transition: color 1s;
 

@@ -56,8 +56,6 @@ const DarkModeButton = styled.div`
     padding: 10px;
     padding-right: 60px;
     font-size: 16px;
-    display: flex;
-    align-items: center;
     transition: background-color 0.2s ease-in-out;
     border-radius: 8px;
     background-color: ${(props) => (props.active ? props.theme.menuBar.sideMenu : "transparent")};
@@ -84,6 +82,8 @@ const DarkModeIcon = styled.div`
 `;
 
 const ButtonWrapper = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const ThemeText = styled.p`
