@@ -33,25 +33,24 @@ const SearchContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  color: #fff;
+  color: ${props => props.theme.main.text}; 
   font-size: 45px;
   font-style: italic;
   font-weight: 700;
   margin-bottom: 40px;
   padding-bottom: 30px;
-  border-bottom: 1px solid #282828;
+  border-bottom: 1px solid ${props => props.theme.main.border}; 
 `
 
 const Input = styled.input`
   font-size: 18px;
-  color: #fff;
+  color: ${props => props.theme.main.text};
   width: 95%;
   height: 60px;
   border: none;
-  border-bottom: solid #888888 2px;
+  border-bottom: solid ${props => props.theme.search.input.bottom} 2px;
   padding-left: 40px;
-  background-color: #333;
-  z-index: 5;
+  background-color: ${props => props.theme.search.input.bg};
   border-radius: 5px;
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23888" viewBox="0 0 24 24"><path d="M21 19l-5-5a9 9 0 1 0-1.4 1.4l5 5 1.4-1.4zM17 9a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"/></svg>');
   background-repeat: no-repeat;
@@ -71,8 +70,8 @@ const Underline = styled.span`
   position: absolute;
   left: 0;  
   width: ${({ isFocused }) => (isFocused ? '100.5%' : '0')};
-  height: 2px;
-  background-color: #fff;
+  height: 1.5px;
+  background-color: ${props => props.theme.search.underline};
   opacity: ${({ isFocused }) => (isFocused ? 1 : 0)};
   transition: width 1s ease, opacity 1s ease-in-out; 
 `;
@@ -81,14 +80,12 @@ const ResultCount = styled.div`
   position: absolute;
   top: 170px;
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 700;
   margin-top: 30px;
-  color: #fff;
-  font-family: 'Helvetica Neue', sans-serif;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  color: ${props => props.theme.main.text};
   opacity: ${({ count }) => (count === 0 ? 0 : 1)};
-  transition: opacity 1s ease-in-out, visibility 1s ease-in-out; /* Adjust the duration for appearance */
-  visibility: ${({ count }) => (count === 0 ? 'hidden' : 'visible')}; /* Hide when count is 0 */
+  transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+  visibility: ${({ count }) => (count === 0 ? 'hidden' : 'visible')}; 
 
   &:before {
     content: '${props => (props.count === 0 ? 'No matching posts were found.' : (props.count === 1 ? 'There is 1 post found.' : `There are ${props.count} posts found.`))}';

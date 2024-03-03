@@ -4,6 +4,7 @@ export const LIGHT_THEME_COLORS = {
     background: '#fff',
     text: '#000',
     icon: '#868e97',
+    border: '#E2E2E2'
   },
 
   menuBar: {
@@ -63,6 +64,14 @@ export const LIGHT_THEME_COLORS = {
     },
   },
   utterances: 'github-light',
+
+  search: {
+    input: {
+      bottom: '#A9A9A9',
+      bg: '#eef2f3',
+    },
+    underline: '#c3cad1',
+  },
 };
 
 export const DARK_THEME_COLORS = {
@@ -70,6 +79,7 @@ export const DARK_THEME_COLORS = {
   main: {
     background: '#1a1a1a',
     text: 'white',
+    border: '#282828'
   },
 
   menuBar: {
@@ -87,7 +97,7 @@ export const DARK_THEME_COLORS = {
   tag: {
     simple: {
       title: 'gray',
-      text: '#3C3A39',
+      text: '#cdd4d9',
       count: 'gray',
       background: '#3C3A39',
       circle: 'white',
@@ -129,4 +139,12 @@ export const DARK_THEME_COLORS = {
     },
   },
   utterances: 'github-dark',
+
+  search: {
+    input: {
+      bottom: '##888888',
+      bg: '#333',
+    },
+    underline: 'white',
+  },
 };
