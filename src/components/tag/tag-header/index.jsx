@@ -30,37 +30,37 @@ const TagsHeader = ({tagName, tags }) => {
 const TagsHeaderStyle = styled.div`
   margin-bottom: 50px;
   padding-bottom: 50px;
-  border-bottom: 1px solid #282828;
+  border-bottom: 1px solid  ${props => props.theme.main.border};
 `
 
 
 
 const Title = styled.h1`
-  color: white;
-  background-color: #3C3A39;
+  color: ${props => props.theme.main.text};
+  background-color: ${props => props.theme.tag.background};
   display: inline-block;
-  padding: 10px;
+  padding: 10px 10px 20px 10px;
   font-size: 30px;
   font-weight: 700;
   margin-bottom: 40px;
 `
 
 const RelatedDescription = styled.h2`
-  color: white;
+  color: ${props => props.theme.main.text};
   font-size: 20px;
   margin-bottom: 20px;
-  margin-left: 10px;
+  margin-left: -20px;
   font-weight: 600;
 `
 
 const RelatedTag = styled.span`
   position: relative;
-  color: white;
+  color: ${props => props.theme.main.text};
   font-size: 14px; 
   margin-right: 25px; 
   margin-bottom: 8px; 
   padding: 8px 15px;
-  background-color: #3C3A39;
+  background-color: ${props => props.theme.tag.background};
   display: inline-block;
   line-height: 1; 
   vertical-align: middle; 
@@ -73,7 +73,7 @@ const RelatedTag = styled.span`
     right: -15px;
     border-width: 15.6px 0 15.6px 15.6px; 
     border-style: solid;
-    border-color: transparent transparent transparent #3C3A39;
+    border-color: transparent transparent transparent ${props => props.theme.tag.background};
     transition: border-color 0.3s ease-in-out; 
   }
 
@@ -84,16 +84,16 @@ const RelatedTag = styled.span`
     right: -3px;
     width: 6px;
     height: 6px;
-    background-color: white;
+    background-color: ${props => props.theme.tag.circle};
     border-radius: 50%;
     transform: translateY(-50%);
   }
 
   &:hover {
-    background-color: #555;
+    background-color: ${props => props.theme.tag.hover};
 
     &::before {
-      border-color: transparent transparent transparent #555;
+      border-color: transparent transparent transparent ${props => props.theme.tag.hover};
     }
   }
 `;
