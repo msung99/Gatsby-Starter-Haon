@@ -32,10 +32,10 @@ const TagListStyle = styled.div`
 `;
 
 const TagTitle = styled.div`
-  font-size: 16px;
+  font-size: 15px;
   margin-left: 7px;
-  margin-bottom: 2px;
-  color: ${props => props.theme.tag.title};
+  margin-bottom: 3px;
+  color: ${props => props.theme.tag.text};
   font-weight: bold;
 `;
 

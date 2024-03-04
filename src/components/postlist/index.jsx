@@ -59,14 +59,20 @@ const truncate = (text, maxLength) => {
   return text;
 };
 
-const PostListContainer = styled.div``;
+const PostListContainer = styled.div`
+  h1 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: ${props => props.theme.main.text}; 
+  }
+`;
 
 const PostLink = styled(Link)`
   text-decoration: none;
   color: inherit;
   display: flex;
   align-items: center;
-  transition: color 0.3s ease, background 0.3s ease; /* 색상과 배경에 대한 트랜지션 효과 추가 */
+  transition: color 0.3s ease, background 0.3s ease; 
 `;
 
 const PostCard = styled.div`

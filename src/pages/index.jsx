@@ -4,6 +4,7 @@ import PageLayout from  "../components/layout/page-component"
 import PostList from "../components/postlist"
 import Profile from "../components/profile"
 import SimpleTagList from "../components/simple-taglist"
+import styled from "styled-components"
 
 const PostListTemplate = ({ data, location }) => {
   const description = data.site.siteMetadata.description
@@ -19,10 +20,19 @@ const PostListTemplate = ({ data, location }) => {
     <PageLayout>
       <Profile author={author} description={description} siteUrl={siteUrl} keywords={keywords}/>
       <SimpleTagList tags={tags} allCount={tagsCount}/>
+      <PostCount>All Posts ({posts.length})</PostCount>
       <PostList posts={posts}></PostList>
     </PageLayout>
   )
 }
+
+const PostCount = styled.div`
+  font-size: 15px;
+  color: ${props => props.theme.tag.text};
+  font-weight: bold;
+  margin-left: 10px;
+  padding-top: 30px;
+`
 
 export default PostListTemplate
 
