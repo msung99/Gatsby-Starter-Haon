@@ -8,7 +8,7 @@ export const LIGHT_THEME_COLORS = {
   },
 
   menuBar: {
-    wrapper: 'linear-gradient(to right, #eef2f3, #FAFAFA)',
+    wrapper: '#FAFAFA',
     sideMenu: '#eef2f3',
     sideMenuHover: '#eef2f3',
     border: '#E2E2E2'
@@ -93,7 +93,7 @@ export const DARK_THEME_COLORS = {
   },
 
   menuBar: {
-    wrapper: 'linear-gradient(to bottom, #1e1e1e, #121212)',
+    wrapper: '#1e1e1e',
     sideMenu: '#1e1e1e',
     sideMenuHover: '#282828',
     border: '#282828',

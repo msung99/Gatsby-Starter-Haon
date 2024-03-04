@@ -57,7 +57,7 @@ const Title = styled.header`
   font-size: 24px;
   color: ${props => props.theme.main.text};
   font-weight: bold;
-  margin-left: 30px;
+  margin-left: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
 `;
@@ -67,13 +67,14 @@ const NavigatorWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2.5px solid  ${props => props.theme.menuBar.border};
+  border-bottom: 2.5px solid ${props => props.theme.menuBar.border};
   width: 100%;
   background-color: ${props => props.theme.menuBar.wrapper};
   z-index: 1000;
-  margin-top: 5px;
-  padding-bottom: 10px;
 `;
+
+
+
 
 const MenuContainer = styled.div`
   display: flex;
