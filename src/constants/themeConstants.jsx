@@ -72,9 +72,7 @@ export const LIGHT_THEME_COLORS = {
     underline: '#c3cad1',
   },
 
-  about: {
-    emoji: '#444',
-  }
+  emoji: '#444',
 };
 
 export const DARK_THEME_COLORS = {
@@ -150,7 +148,5 @@ export const DARK_THEME_COLORS = {
     underline: 'white',
   },
 
-  about: {
-    emoji: '#E2E2E2',
-  }
+  emoji: '#E2E2E2',
 };

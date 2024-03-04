@@ -34,7 +34,7 @@ const CommunityTemplate = ({ data }) => {
       </SocialLinks>
       <Description>Leave a comment to connect with this author 👋</Description>
       <Line/>
-      <Utterances repo="msung99/Gatsby-Starter-Haon" theme="github-dark" />
+      <Utterances/>
     </PageLayout>
   );
 };
@@ -42,7 +42,7 @@ const CommunityTemplate = ({ data }) => {
 
 const Description = styled.p`
   font-size: 18px;
-  color: white;
+  color: ${props => props.theme.main.text};
   margin-left: 20px;
 `;
 
@@ -55,7 +55,7 @@ const SocialLinks = styled.div`
 
 const EmojiLink = styled.span`
   cursor: pointer;
-  color: #E2E2E2;
+  color: ${props => props.theme.emoji};
 `;
 
 const socialEmojis = {

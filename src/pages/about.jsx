@@ -48,7 +48,7 @@ const SocialLinks = styled.div`
 
 const EmojiLink = styled.span`
   cursor: pointer;
-  color: ${props => props.theme.about.emoji};
+  color: ${props => props.theme.emoji};
 `;
 
 const MarkdownContent = styled.div`
