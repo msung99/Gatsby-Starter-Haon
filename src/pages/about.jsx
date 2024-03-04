@@ -36,7 +36,7 @@ const AboutTemplate = ({ data, location}) => {
 
 const Line = styled.div`
   margin-bottom: 80px;
-  border-bottom: 2px solid #282828;
+  border-bottom: 1.5px solid ${props => props.theme.main.border};
 `
 
 const SocialLinks = styled.div`

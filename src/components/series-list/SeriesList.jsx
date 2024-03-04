@@ -85,9 +85,9 @@ const SeriesStyle = styled(Link)`
   display: flex;
   flex-direction: column;
   position: relative;
-  background: ${props => props.theme.serieslist.bg};
+  background-color: ${props => props.theme.serieslist.bg};
   padding: 0;
-  border-radius: 20px;
+  border-radius: 10px;
   margin-bottom: 0;
   text-decoration: none;
   color: white;
@@ -121,12 +121,11 @@ const TitleSection = styled.h1`
   line-height: 130%;
 `;
 
-
-
 const Title = styled.h1`
   font-size: 50px;
   font-style: italic;
   font-weight: 700;
+  color: ${props => props.theme.main.text};
   margin-bottom: 30px;
   padding-bottom: 30px;
   border-bottom: 2px solid ${props => props.theme.main.border};
@@ -138,6 +137,7 @@ const Description = styled.h2`
   font-weight: 550;
   margin-top: 40px;
   margin-bottom: 40px;
+  margin-left: -15px;
 `;
 
 export default SeriesList;
