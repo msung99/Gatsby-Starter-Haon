@@ -9,9 +9,7 @@ const TagsHeader = ({tagName, tags }) => {
       <TagsHeaderStyle>
         <Title>#{tagName}</Title>
           <div style={{ display: "flex", alignItems: "center", marginBottom: "10px"}}>
-              <span style={{marginBottom: "15px"}}>
-                  <FaTags className="icon" size="25" color="white"/>
-              </span>
+              <TagIcon/>
               <RelatedDescription>Related Tags ({tags.length})</RelatedDescription>
           </div>
          <div>
@@ -27,13 +25,17 @@ const TagsHeader = ({tagName, tags }) => {
     );
 };
 
+const TagIcon = styled(FaTags)`
+  font-size: 25px;
+  color: ${props => props.theme.main.text};
+  margin-bottom: 15px;
+`
+
 const TagsHeaderStyle = styled.div`
   margin-bottom: 50px;
   padding-bottom: 50px;
   border-bottom: 1px solid  ${props => props.theme.main.border};
 `
-
-
 
 const Title = styled.h1`
   color: ${props => props.theme.main.text};
@@ -49,7 +51,7 @@ const RelatedDescription = styled.h2`
   color: ${props => props.theme.main.text};
   font-size: 20px;
   margin-bottom: 20px;
-  margin-left: -20px;
+  margin-left: 10px;
   font-weight: 600;
 `
 
