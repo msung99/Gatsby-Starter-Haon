@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { siteMetadata } from '../../../gatsby-config';
+import { getValueFromLocalStorage } from '../../utils/localStorage';
 
 const Utterances = () => {
-  const themeContext = useContext(ThemeContext);
-
-const isDarkMode = getValueFromLocalStorage('isDarkMode');
+  
+  const isDarkMode = getValueFromLocalStorage('isDarkMode');
 
   return (
     <CommentWrapper>

@@ -54,7 +54,6 @@ const DarkModeButton = styled.div`
     margin-top: 30px;
     padding-right: 80px;
     padding: 10px;
-    padding-right: 60px;
     font-size: 16px;
     transition: background-color 0.2s ease-in-out;
     border-radius: 8px;
@@ -66,13 +65,13 @@ const DarkModeButton = styled.div`
 
     @media (max-width: 768px) {
         padding-right: 10px;
-        padding-left: 0;
+        margin-left: -15px;
         margin-top: 0;
     }
 
     @media (max-width: 1300px) {
         padding-right: 10px;
-        padding-left: 0;
+        margin-left: -15px;
         margin-top: 0;
     }
 `;
