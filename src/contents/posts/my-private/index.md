@@ -2,15 +2,8 @@
 title: 비공개 포스트
 date: "2024-03-01"
 tags:
-  - Dao
-  - Legacy
-  - JDBC
-  - Tag Example
-  - hi
-  - connection
-  - 블로그 분석
-  - 컴퓨터 공학
   - private-tag
+  - related-private
 series: Computer Science 분석 과정 시리즈 리뉴얼판
 isPrivate: true
 ---

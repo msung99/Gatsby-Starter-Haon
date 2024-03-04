@@ -1,15 +1,19 @@
+// TagsContent.jsx
 import React from "react";
 import PostList from "../../postlist";
 import styled from "styled-components";
 
-const TagsContent = ({posts, totalCount}) => {
-    const tagDescription = `There are ${totalCount} post${
-        totalCount === 1 ? "" : "s"} found.`
+const TagsContent = ({posts}) => {
+    const filteredPosts = posts.filter(post => !post.frontmatter.isPrivate);
+    const totalCount = filteredPosts.length;
+
+    const tagDescription = `There ${totalCount === 1 ? "is" : "are"} ${totalCount} post${
+        totalCount === 1 ? "" : "s"} found.`;
 
     return (
         <div>
             <Title>{tagDescription}</Title>
-            <PostList posts={posts}/>
+            <PostList posts={filteredPosts}/>
         </div>
     )
 }
@@ -21,4 +25,4 @@ const Title = styled.h1`
   margin-top: 30px;
 `
 
-export default TagsContent
+export default TagsContent;

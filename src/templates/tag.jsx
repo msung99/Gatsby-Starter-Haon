@@ -25,6 +25,7 @@ const TagListTemplate = ({ pageContext, data, location }) => {
           <Tags.Header
             tagName={currentTag}
             tags={tags}
+            posts={posts}
           />
           <TagsContent totalCount={totalCount} posts={posts}/>
         </Tags>
@@ -61,6 +62,7 @@ export const pageQuery = graphql`
           tags
           series  
           previewImage
+          isPrivate
         }
       }
     }

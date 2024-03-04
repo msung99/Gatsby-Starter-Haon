@@ -10,7 +10,6 @@ tags:
   - connection
   - 블로그 분석
   - 컴퓨터 공학
-  - private-tag
 series: Computer Science 분석 과정 시리즈 리뉴얼판
 ---
 
