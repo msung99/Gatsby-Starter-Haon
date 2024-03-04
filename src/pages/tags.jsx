@@ -6,9 +6,31 @@ import AllTagList from "../components/tags"
 import Seo from "../components/seo"
 
 const TagListTemplate = ({ data, location }) => {
-  const tags = data.allMarkdownRemark.group
-  const allCount = tags.length
-  const author = data.site.siteMetadata.author
+  const allPosts = data.allMarkdownRemark.nodes;
+  const tagsWithPrivatePosts = data.allMarkdownRemark.group.map(tag => {
+    const privatePosts = allPosts.filter(post => 
+      post.frontmatter && 
+      post.frontmatter.tags && 
+      post.frontmatter.tags.includes(tag.fieldValue) && 
+      post.frontmatter.isPrivate
+    );
+    const publicPosts = allPosts.filter(post => 
+      post.frontmatter && 
+      post.frontmatter.tags && 
+      post.frontmatter.tags.includes(tag.fieldValue) && 
+      !post.frontmatter.isPrivate
+    );
+
+    return {
+      ...tag,
+      privatePostsCount: privatePosts.length,
+      publicPostsCount: publicPosts.length
+    };
+  });
+
+  const tags = tagsWithPrivatePosts.filter(tag => tag.privatePostsCount === 0 || tag.publicPostsCount > 0);
+  const allCount = tags.length;
+  const author = data.site.siteMetadata.author;
   
   return (
     <PageLayout>
@@ -17,8 +39,9 @@ const TagListTemplate = ({ data, location }) => {
         <AllTagList tags={tags} allCount={allCount}></AllTagList>
       </TagListWrapper>
     </PageLayout>
-  )
+  );
 }
+
 
 const TagListWrapper = styled.div`
   @media(max-width: 768px) {
@@ -51,6 +74,7 @@ export const pageQuery = graphql`
           date
           tags
           previewImage
+          isPrivate
         }
       }
       group(field: frontmatter___tags) {

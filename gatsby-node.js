@@ -21,6 +21,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             tags
             series
             previewImage
+            isPrivate
           }
         }
       }

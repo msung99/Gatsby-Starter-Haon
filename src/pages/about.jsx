@@ -225,6 +225,7 @@ export const pageQuery = graphql`
         date
         tags
         series
+        isPrivate
       }
       html
     }

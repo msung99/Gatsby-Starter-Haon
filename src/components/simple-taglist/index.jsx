@@ -1,14 +1,29 @@
+// SimpleTagList.jsx
 import React from "react";
 import kebabCase from "lodash.kebabcase";
 import { Link } from "gatsby";
 import styled from "styled-components";
 
-const SimpleTagList = ({ tags, allCount }) => {
+const SimpleTagList = ({ tags, allCount, posts }) => {
+  // 만약 posts가 정의되어 있지 않으면 빈 배열을 할당
+  const filteredPosts = posts || [];
+  
+  const filteredTags = tags.filter(tag => {
+    const privatePosts = filteredPosts.filter(post => 
+      post.frontmatter && 
+      post.frontmatter.tags && 
+      post.frontmatter.tags.includes(tag.fieldValue) && 
+      post.frontmatter.isPrivate
+    );
+
+    return privatePosts.length === 0;
+  });
+
   return (
     <TagListStyle>
       <div>
-        <TagTitle>Tags ({allCount})</TagTitle>
-        {tags.map(tag => (
+        <TagTitle>Tags ({filteredTags.length})</TagTitle>
+        {filteredTags.map(tag => (
           <TagStyle key={kebabCase(tag.fieldValue)}>
             <span>
               <StyledLink to={`/tags/${kebabCase(tag.fieldValue)}/`}>
@@ -28,7 +43,7 @@ const TagListStyle = styled.div`
   display: flex;
   margin-left: 0px;
   padding-bottom: 40px;
-  border-bottom: 1.5px solid  ${props => props.theme.main.border};
+  border-bottom: 1.5px solid ${props => props.theme.main.border};
 `;
 
 const TagTitle = styled.div`

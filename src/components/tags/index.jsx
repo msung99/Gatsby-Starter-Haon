@@ -13,7 +13,7 @@ const AllTagList = ({ tags, allCount }) => {
             <span>
               <Link style={{ textDecoration: "none"}} to={`/tags/${kebabCase(tag.fieldValue)}/`}>
                 <Tag>
-                  {kebabCase(tag.fieldValue)} <TagCountStyle>({tag.totalCount})</TagCountStyle>
+                  {kebabCase(tag.fieldValue)} <TagCountStyle>({tag.totalCount - tag.privatePostsCount})</TagCountStyle>
                 </Tag>
               </Link>
             </span>
@@ -22,7 +22,6 @@ const AllTagList = ({ tags, allCount }) => {
     </TagListStyle>
   )
 }
-
 
 const TagTitle = styled.h1`
   font-size: 45px;
@@ -100,7 +99,5 @@ const Tag = styled.span`
     }
   }
 `;
-
-
 
 export default AllTagList;

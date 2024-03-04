@@ -44,6 +44,7 @@ export const pageQuery = graphql`
           tags
           series
           previewImage
+          isPrivate
         }
       }
       group(field: frontmatter___series) {

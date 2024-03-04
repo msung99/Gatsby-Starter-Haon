@@ -11,12 +11,15 @@ const PostList = ({ posts }) => {
     setPostCount(10);
   }, [posts]);
 
+  // isPrivate가 true인 항목 필터링
+  const filteredPosts = posts.filter(post => !post.frontmatter.isPrivate);
+
   return (
     <PostListContainer>
-      {posts.length === 0 ? (
+      {filteredPosts.length === 0 ? (
         <EmptySpace />
       ) : (
-        posts.slice(0, postCount).map((post, index) => {
+        filteredPosts.slice(0, postCount).map((post, index) => {
           const { title, description, date, tags, series, previewImage } = post.frontmatter;
           const slug = post.fields.slug;
           const body = post.excerpt || (post.rawMarkdownBody && truncate(post.rawMarkdownBody, 80));

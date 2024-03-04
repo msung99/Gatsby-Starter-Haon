@@ -8,13 +8,14 @@ import { siteMetadata } from "../../gatsby-config"
 
 const SearchTemplate = ({ data }) => {
     const posts = data.allMarkdownRemark.nodes
+    const filterPrivatePosts = posts.filter(post => !post.frontmatter.isPrivate);
     const title = siteMetadata.author;
     const description = siteMetadata.description;
 
     const [query, setQuery] = useState(null) // Initialize with null
 
     const filteredPosts = useCallback(
-      posts.filter(post => {
+      filterPrivatePosts.filter(post => {
         const { frontmatter, rawMarkdownBody } = post
         const { title } = frontmatter
         const lowerQuery = (query || '').toLocaleLowerCase() // Handle null query
@@ -51,6 +52,7 @@ export const pageQuery = graphql`
           tags
           series
           previewImage
+          isPrivate
         }
         rawMarkdownBody
       }

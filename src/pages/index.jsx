@@ -1,3 +1,4 @@
+// index.jsx
 import React from "react"
 import { graphql } from "gatsby"
 import PageLayout from  "../components/layout/page-component"
@@ -14,15 +15,23 @@ const PostListTemplate = ({ data, location }) => {
   const keywords = data.site.siteMetadata.keywords
 
   const posts = data.allMarkdownRemark.nodes
+  const filteredPosts = posts.filter(post => !post.frontmatter.isPrivate);
   const tags = data.allMarkdownRemark.group
-  const tagsCount = tags.length
-  
+
+  // 공개인 포스트의 태그와 비공개인 포스트의 태그를 구분하여 개수 계산
+  const publicTags = data.allMarkdownRemark.group
+    .filter(tag => tag.nodes.some(post => !post.frontmatter.isPrivate))
+    .map(tag => ({ ...tag, totalCount: tag.nodes.filter(post => !post.frontmatter.isPrivate).length }));
+
+  // 필터링된 태그의 개수
+  const filteredTagsCount = tags.length - publicTags.reduce((acc, tag) => acc + tag.totalCount, 0);
+
   return (
     <PageLayout>
       <Seo title={author} description={description}/>
       <Profile author={author} description={description} siteUrl={siteUrl} keywords={keywords}/>
-      <SimpleTagList tags={tags} allCount={tagsCount}/>
-      <PostCount>All Posts ({posts.length})</PostCount>
+      <SimpleTagList tags={publicTags} allCount={filteredTagsCount}/>
+      <PostCount>All Posts ({filteredPosts.length})</PostCount>
       <PostList posts={posts}></PostList>
     </PageLayout>
   )
@@ -62,12 +71,20 @@ export const pageQuery = graphql`
           tags
           series
           previewImage
+          isPrivate
         }
       }
       group(field: frontmatter___tags) {
         fieldValue
         totalCount
+        nodes {
+          frontmatter {
+            isPrivate
+          }
+        }
       }
     }
   }
 `
+
+// ... (이전 SimpleTagList 컴포넌트 코드 생략)
