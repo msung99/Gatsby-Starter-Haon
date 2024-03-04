@@ -3,16 +3,19 @@ import { Link, graphql } from "gatsby"
 import PageLayout from  "../components/layout/page-component"
 import styled from "styled-components"
 import AllTagList from "../components/tags"
+import Seo from "../components/seo"
 
 const TagListTemplate = ({ data, location }) => {
   const tags = data.allMarkdownRemark.group
   const allCount = tags.length
+  const author = data.site.siteMetadata.author
   
   return (
     <PageLayout>
-        <TagListWrapper>
-          <AllTagList tags={tags} allCount={allCount}></AllTagList>
-        </TagListWrapper>
+      <Seo title={author} description={description}/>
+      <TagListWrapper>
+        <AllTagList tags={tags} allCount={allCount}></AllTagList>
+      </TagListWrapper>
     </PageLayout>
   )
 }

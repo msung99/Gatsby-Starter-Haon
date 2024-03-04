@@ -19,6 +19,7 @@ const AboutTemplate = ({ data, location}) => {
 
   return (
     <PageLayout>
+      <Seo title={author} description={description}/>
       <Profile author={author} description={description} siteUrl={siteUrl} keywords = {keywords}/>
       <SocialLinks>
         {Object.entries(socialLinks).map(([key, value]) => (

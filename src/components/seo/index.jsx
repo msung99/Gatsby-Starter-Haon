@@ -9,13 +9,16 @@ import * as React from "react"
 import { Helmet } from "react-helmet"
 import { siteMetadata } from "../../../gatsby-config";
 
-const Seo = ({ title, description, url }) => {
+
+const Seo = ({ title, description }) => {
+  const url = siteMetadata.siteUrl;
+
   return (
     <Helmet
       meta={[
           { property: "og:title", content: {title} },
           { property: "og:url", content: {url} },
-          { property: "og:image", content: `${siteMetadata.siteUrl}/og-image.png`},
+          { property: "og:image", content: `${url}/og-image.png`},
           { name: "og:description", content: {description} },
           { property: "og:description", content: {description} },
         ]}

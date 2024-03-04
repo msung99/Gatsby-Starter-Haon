@@ -4,11 +4,12 @@ import Post from "../components/post/post-component";
 import PageLayout from "../components/layout/page-component";
 import PostContent from "../components/post/post-content";
 import Utterances from "../components/utterances";
+import Seo from "../components/seo";
 
 export default ({ data, location }) => {
   const { previous, next } = data;
   const post = data.markdownRemark;
-  const { title, date } = post.frontmatter;
+  const { title, date, description } = post.frontmatter;
   const author = data.site.siteMetadata.author;
   const toc = post.tableOfContents;
   const tags = post.frontmatter.tags || [];
@@ -16,6 +17,7 @@ export default ({ data, location }) => {
 
   return (
     <PageLayout>
+      <Seo title={title} description={description}/>
       <Post>
         <Post.Header
           title={title}
@@ -52,9 +54,11 @@ export const pageQuery = graphql`
       tableOfContents(maxDepth: 3)
       frontmatter {
         title
+        description
         date(formatString: "MMMM DD, YYYY")
         tags
         series
+        previewImage
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {

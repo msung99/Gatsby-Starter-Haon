@@ -2,9 +2,9 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import PageLayout from "../components/layout/page-component"
 import Tags from "../components/tag/tag-component"
-import PostList from "../components/postlist"
 import TagsContent from "../components/tag/tag-content"
 import styled from "styled-components"
+import ""
 
 const TagListTemplate = ({ pageContext, data, location }) => {
   const { tag } = pageContext;
@@ -17,6 +17,7 @@ const TagListTemplate = ({ pageContext, data, location }) => {
 
   return (
     <PageLayout>
+      <Seo title={currentTag} description={description}/>
       <TagWrapper>
         <Tags>
           <Tags.Header

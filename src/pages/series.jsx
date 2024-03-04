@@ -6,9 +6,11 @@ import SeriesList from "../components/series-list/SeriesList"
 const SeriesListTemplate = ({ data, location }) => {
     const seriesList = data.allMarkdownRemark.group
     const totalCount = seriesList.length
+    const author = data.site.siteMetadata.author
 
     return (
         <PageLayout>
+            <Seo title={author} description={description}/>
             <SeriesList seriesList={seriesList} totalCount={totalCount}/>
         </PageLayout>
     )

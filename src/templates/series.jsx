@@ -10,6 +10,7 @@ const SeriesTemplate = ({pageContext, data, location}) => {
 
     return (
         <PageLayout>
+            <Seo title={seriesName} description={description}/>
             <Series>
                 <Series.Header
                   seriesName={seriesName}

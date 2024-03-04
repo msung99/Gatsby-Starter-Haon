@@ -18,6 +18,7 @@ const PostListTemplate = ({ data, location }) => {
   
   return (
     <PageLayout>
+      <Seo title={author} description={description}/>
       <Profile author={author} description={description} siteUrl={siteUrl} keywords={keywords}/>
       <SimpleTagList tags={tags} allCount={tagsCount}/>
       <PostCount>All Posts ({posts.length})</PostCount>
