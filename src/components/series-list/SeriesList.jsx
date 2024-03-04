@@ -22,7 +22,7 @@ const SeriesList = ({ seriesList, totalCount }) => {
             }, new Date(0));
 
             return (
-              <Link style={{ textDecoration: "none", color: "#cdd4d9" }} to={`/series/${kebabCase(series.fieldValue)}/`} key={kebabCase(series.fieldValue)}>
+              <Link style={{ textDecoration: "none" }} to={`/series/${kebabCase(series.fieldValue)}/`} key={kebabCase(series.fieldValue)}>
                 <SeriesStyle>
                   <TitleSection>{series.fieldValue}</TitleSection>
                   <DescriptionSection>
@@ -112,6 +112,7 @@ const DescriptionSection = styled.div`
 
 const TitleSection = styled.h1`
   font-size: 21px;
+  color: white;
   margin-bottom: 10px;
   margin-left: 20px;
   margin-right: 25px;
@@ -124,7 +125,6 @@ const TitleSection = styled.h1`
 
 const Title = styled.h1`
   font-size: 50px;
-  color: ${props => props.theme.main.text};
   font-style: italic;
   font-weight: 700;
   margin-bottom: 30px;

@@ -89,7 +89,7 @@ const ButtonWrapper = styled.div`
 const ThemeText = styled.p`
     margin-left: 10px;
     margin-right: 30px;
-    font-size: 17px;
+    font-size: 15px;
     color: ${props => props.theme.main.text};
 
     @media (max-width: 1300px) {

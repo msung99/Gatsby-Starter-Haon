@@ -28,7 +28,7 @@ const TagListStyle = styled.div`
   display: flex;
   margin-left: 0px;
   padding-bottom: 40px;
-  border-bottom: 1px solid #282828;
+  border-bottom: 1.5px solid  ${props => props.theme.main.border};
 `;
 
 const TagTitle = styled.div`

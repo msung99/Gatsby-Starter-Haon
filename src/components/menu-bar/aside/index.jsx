@@ -111,10 +111,10 @@ const SocialMenu = styled.div`
 `
 
 const SocialText = styled.p`
-  font-size: 17px;
+  font-size: 16px;
   color: ${props => props.theme.main.text};
   margin-left: 10px;
-  margin-top: 5px;
+  margin-top: 10px;
 `
 
 const profileImageUrl =
@@ -170,13 +170,14 @@ const SideMenu = styled.div`
 const MenuText = styled.p`
   margin-left: 10px;
   margin-right: 30px;
-  font-size: 18px;
+  font-size: 16px;
 `;
 
 const Title = styled.div`
   font-size: 32px;
   color: ${props => props.theme.main.text};
   margin-top: 30px;
+  margin-left: 5px;
   margin-bottom: 40px;
   font-family: "Oswald";
   font-weight: 800;

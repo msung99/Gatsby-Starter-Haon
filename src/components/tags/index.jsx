@@ -36,7 +36,7 @@ const TagTitle = styled.h1`
 
 const Description = styled.h2`
   color: ${props => props.theme.main.text};
-  font-size: 20px;
+  font-size: 18px;
   margin-bottom: 40px;
   margin-left: 5px;
   font-weight: 550;
