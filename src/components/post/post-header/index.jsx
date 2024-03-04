@@ -166,9 +166,9 @@ const PostAuthor = styled.span`
 `;
 
 const CopyStatus = styled.div`
-  color: ${props => props.theme.main.text};
+  color: ${props => props.theme.post.copystatus.text};
   font-size: 14px;
-  background-color: gray;
+  background-color: ${props => props.theme.post.copystatus.bg};
   padding: 5px 10px;
   border-radius: 5px;
   margin-left: 5px;
