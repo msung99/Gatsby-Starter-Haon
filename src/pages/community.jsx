@@ -69,7 +69,7 @@ const socialEmojis = {
 
 const Line = styled.div`
   padding-bottom: 40px;
-  border-bottom: 2px solid #282828;
+  border-bottom: 1px solid ${props => props.theme.main.border};
 `
 
 export default CommunityTemplate;

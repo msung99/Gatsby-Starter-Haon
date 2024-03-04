@@ -245,7 +245,7 @@ const Series = styled(Link)`
   transition: background-color 0.3s ease-in-out;
 
   &:hover {
-    background-color: #555;
+    background-color: ${props => props.theme.tag.hover};
   }
 `;
 

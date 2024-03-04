@@ -32,7 +32,6 @@ const TagIcon = styled(FaTags)`
 `
 
 const TagsHeaderStyle = styled.div`
-  margin-bottom: 50px;
   padding-bottom: 50px;
   border-bottom: 1px solid  ${props => props.theme.main.border};
 `
