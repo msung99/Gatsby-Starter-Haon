@@ -1,5 +1,3 @@
-// ThemeSwitch.js
-
 import React, { useEffect, useState } from 'react';
 import { MdDarkMode } from "react-icons/md";
 import { MdSunny } from "react-icons/md";
@@ -10,7 +8,7 @@ import styled from 'styled-components';
 
 function ThemeSwitch() {
     const [isDarkMode, setIsDarkMode] = useState(getValueFromLocalStorage('isDarkMode'));
-    const [hideText, setHideText] = useState(window.innerWidth <= 768);
+    const [hideText, setHideText] = useState(typeof window !== "undefined" && window.innerWidth <= 768);
 
     useEffect(() => {
         setValueToLocalStorage('isDarkMode', isDarkMode);
@@ -19,7 +17,9 @@ function ThemeSwitch() {
 
     useEffect(() => {
         const handleResize = () => {
-            setHideText(window.innerWidth <= 768);
+            if (typeof window !== "undefined") {
+                setHideText(window.innerWidth <= 768);
+            }
         };
 
         window.addEventListener('resize', handleResize);
@@ -96,6 +96,5 @@ const ThemeText = styled.p`
         display: none;
     }
 `;
-
 
 export default ThemeSwitch;
