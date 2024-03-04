@@ -106,7 +106,6 @@ const DescriptionSection = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 0;
-  border-radius: 0 0 20px 20px;
 `;
 
 
