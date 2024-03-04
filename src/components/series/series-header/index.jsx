@@ -11,7 +11,7 @@ const SeriesHeader = ({seriesName}) => {
 
 const HeaderStyle = styled.div`
   margin-bottom: 30px;
-  border-bottom: 1px solid #282828;
+  border-bottom: 1px solid ${props => props.theme.main.border};
   padding-bottom: 40px;
   display: flex;
   align-items: center;
@@ -20,13 +20,9 @@ const HeaderStyle = styled.div`
   line-height: 300%;
 `
 
-const Title = styled.h1`
-  color: white;
-  font-size: 20px;
-`
 
 const Name = styled.h2`
-  color: white;
+  color: ${props => props.theme.main.text};
   font-size: 38px;
 `
 

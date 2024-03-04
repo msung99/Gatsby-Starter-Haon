@@ -15,7 +15,7 @@ const SeriesContent = ({totalCount, posts}) => {
 }
 
 const Count = styled.h3`
-  color: white;
+  color: ${props => props.theme.main.text};
   font-size: 20px;
   margin-bottom: 50px;
   font-weight: 800;
