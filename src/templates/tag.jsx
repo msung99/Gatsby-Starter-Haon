@@ -4,7 +4,7 @@ import PageLayout from "../components/layout/page-component"
 import Tags from "../components/tag/tag-component"
 import TagsContent from "../components/tag/tag-content"
 import styled from "styled-components"
-import ""
+import Seo from "../components/seo"
 
 const TagListTemplate = ({ pageContext, data, location }) => {
   const { tag } = pageContext;

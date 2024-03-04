@@ -12,7 +12,7 @@ const TagListTemplate = ({ data, location }) => {
   
   return (
     <PageLayout>
-      <Seo title={author} description={description}/>
+      <Seo title={author} description={tags}/>
       <TagListWrapper>
         <AllTagList tags={tags} allCount={allCount}></AllTagList>
       </TagListWrapper>

@@ -3,9 +3,13 @@ import { graphql } from "gatsby"
 import PageLayout from  "../components/layout/page-component"
 import PostList from "../components/postlist"
 import Search from "../components/search"
+import Seo from "../components/seo"
+import { siteMetadata } from "../../gatsby-config"
 
 const SearchTemplate = ({ data }) => {
     const posts = data.allMarkdownRemark.nodes
+    const title = siteMetadata.author;
+    const description = siteMetadata.description;
 
     const [query, setQuery] = useState(null) // Initialize with null
 

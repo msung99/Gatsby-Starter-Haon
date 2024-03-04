@@ -2,15 +2,19 @@ import React from "react"
 import { graphql } from "gatsby"
 import PageLayout from "../components/layout/page-component"
 import Series from "../components/series/series-component"
+import { siteMetadata } from "../../gatsby-config"
+import Seo from "../components/seo"
 
 const SeriesTemplate = ({pageContext, data, location}) => {
     const seriesName = pageContext.series
     const posts = data.allMarkdownRemark.nodes;
     const totalCount = posts.length
+    const author = siteMetadata.author;
+    const description = siteMetadata.description;
 
     return (
         <PageLayout>
-            <Seo title={seriesName} description={description}/>
+            <Seo title={author} description={description}/>
             <Series>
                 <Series.Header
                   seriesName={seriesName}

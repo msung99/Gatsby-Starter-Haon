@@ -12,6 +12,7 @@ import { FaLinkedin } from "react-icons/fa";
 import { SiVelog } from "react-icons/si";
 import { FaGithub } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
+import Seo from "../components/seo/index.jsx";
 
 
 const CommunityTemplate = ({ data }) => {

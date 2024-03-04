@@ -5,6 +5,7 @@ import PostList from "../components/postlist"
 import Profile from "../components/profile"
 import SimpleTagList from "../components/simple-taglist"
 import styled from "styled-components"
+import Seo from "../components/seo"
 
 const PostListTemplate = ({ data, location }) => {
   const description = data.site.siteMetadata.description

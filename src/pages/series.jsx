@@ -2,6 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import PageLayout from  "../components/layout/page-component"
 import SeriesList from "../components/series-list/SeriesList"
+import Seo from "../components/seo"
 
 const SeriesListTemplate = ({ data, location }) => {
     const seriesList = data.allMarkdownRemark.group

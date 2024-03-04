@@ -8,6 +8,7 @@ import { FaInstagram, FaFacebook, FaLinkedin, FaGithub } from "react-icons/fa";
 import { SiVelog } from "react-icons/si";
 import { MdOutlineEmail } from "react-icons/md";
 import Profile from "../components/profile/index.jsx";
+import Seo from "../components/seo/index.jsx";
 
 const AboutTemplate = ({ data, location}) => {
   const { frontmatter, html } = data.markdownRemark;
