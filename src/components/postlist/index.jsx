@@ -82,7 +82,6 @@ const PostCard = styled.div`
   display: flex;
   align-items: center;
   border-bottom: 1px solid ${props => props.theme.postlist.border};
-  z-index: 1000;
   cursor: pointer;
   padding: 20px;
   width: 100%;
