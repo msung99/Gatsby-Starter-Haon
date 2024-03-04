@@ -2,8 +2,8 @@ import React from "react"
 import { graphql } from "gatsby"
 import PageLayout from "../components/layout/page-component"
 import Series from "../components/series/series-component"
-import { siteMetadata } from "../../gatsby-config"
 import Seo from "../components/seo"
+import { siteMetadata } from "../../gatsby-config"
 
 const SeriesTemplate = ({pageContext, data, location}) => {
     const seriesName = pageContext.series

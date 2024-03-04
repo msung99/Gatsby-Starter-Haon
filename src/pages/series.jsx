@@ -8,6 +8,7 @@ const SeriesListTemplate = ({ data, location }) => {
     const seriesList = data.allMarkdownRemark.group
     const totalCount = seriesList.length
     const author = data.site.siteMetadata.author
+    const description = data.site.siteMetadata.description
 
     return (
         <PageLayout>
