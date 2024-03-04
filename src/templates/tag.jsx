@@ -5,6 +5,7 @@ import Tags from "../components/tag/tag-component"
 import TagsContent from "../components/tag/tag-content"
 import styled from "styled-components"
 import Seo from "../components/seo"
+import { siteMetadata } from "../../gatsby-config"
 
 const TagListTemplate = ({ pageContext, data, location }) => {
   const { tag } = pageContext;
@@ -14,6 +15,7 @@ const TagListTemplate = ({ pageContext, data, location }) => {
   const tags = Array.from(
     new Set(posts.flatMap(post => post.frontmatter.tags))
   ).filter(tag => tag !== currentTag); // Collect all tags excluding the current tag
+  const description = siteMetadata.author;
 
   return (
     <PageLayout>
