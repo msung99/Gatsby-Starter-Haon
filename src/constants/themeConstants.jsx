@@ -61,6 +61,7 @@ export const LIGHT_THEME_COLORS = {
       hover: '#f1f0eb',
     },
   },
+
   utterances: 'github-light',
 
   search: {
@@ -70,6 +71,10 @@ export const LIGHT_THEME_COLORS = {
     },
     underline: '#c3cad1',
   },
+
+  about: {
+    emoji: '#444',
+  }
 };
 
 export const DARK_THEME_COLORS = {
@@ -134,6 +139,7 @@ export const DARK_THEME_COLORS = {
       hover: '#555555',
     },
   },
+
   utterances: 'github-dark',
 
   search: {
@@ -143,4 +149,8 @@ export const DARK_THEME_COLORS = {
     },
     underline: 'white',
   },
+
+  about: {
+    emoji: '#E2E2E2',
+  }
 };

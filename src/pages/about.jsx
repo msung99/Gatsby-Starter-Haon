@@ -29,7 +29,7 @@ const AboutTemplate = ({ data, location}) => {
       </SocialLinks>
       <Line/>
       <MarkdownContent dangerouslySetInnerHTML={{ __html: html || '' }} />
-      <Utterances repo="msung99/Gatsby-Starter-Haon" theme="github-dark" />
+      <Utterances/>
     </PageLayout>
   );
 };
@@ -48,93 +48,139 @@ const SocialLinks = styled.div`
 
 const EmojiLink = styled.span`
   cursor: pointer;
-  color: #E2E2E2;
+  color: ${props => props.theme.about.emoji};
 `;
 
 const MarkdownContent = styled.div`
  h1 {
   font-size: 2rem;
-  color: #e8e8e8;
-  margin-top: 20px;
+  color: ${props => props.theme.post.content.text};
+  margin-top: 70px;
   margin-bottom: 40px;
+  word-break: break-all;
+  font-weight: 700;
 }
 
-h2 {
+ h2 {
   font-size: 1.7rem;
-  color: #e8e8e8;
-  margin-top: 20px;
+  color: ${props => props.theme.post.content.text};
+  margin-top: 70px;
   margin-bottom: 40px;
+  word-break: break-all;
+  font-weight: 700;
 }
 
-h3 {
+ h3 {
   font-size: 1.4rem;
-  color: #e8e8e8;
-  margin-top: 20px;
+  color: ${props => props.theme.post.content.text};
+  margin-top: 70px;
   margin-bottom: 40px;
+  word-break: break-all;
+  font-weight: 700;
 }
 
-h4 {
+ h4 {
   font-size: 1.1rem;
-  color: #e6e6e6;
-  margin-top: 20px;
+  color: ${props => props.theme.post.content.text};
+  margin-top: 40px;
   margin-bottom: 40px;
+  word-break: break-all;
+  font-weight: 700;
 }
 
-p {
-  font-size: 17px;
-  line-height: 160%; 
-  color: #e8e8e8;
-  margin-bottom: 45px;
+ h5 {
+  font-size: 0.9rem;
+  color: ${props => props.theme.post.content.text};
+  margin-top: 40px;
+  margin-bottom: 40px;
+  word-break: break-all;
+  font-weight: 700;
 }
+
+ h6 {
+  font-size: 0.7rem;
+  color: ${props => props.theme.post.content.text};
+  margin-top: 40px;
+  margin-bottom: 40px;
+  font-weight: 700;
+}
+
+ p {
+  font-size: 16px;
+  line-height: 180%; 
+  color: ${props => props.theme.post.content.text};
+  margin-bottom: 35px;
+  word-break: break-all;
+
+  span {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-size: 100px;
+  }
+}
+
 
 blockquote {
-  margin-left: 0px;
-  margin-right: 0px;
-  padding-left: 20px;
+  padding-left: 18px;
   padding-right: 20px;
-  margin-bottom: 30px; 
-  margin-top: 40px;
-  border-left: 6px solid #484848;
-  font-size: 1.15rem;
-  color: #e6e6e6;
+  padding-top: 25px;
+  padding-bottom: 1px;
+  margin-bottom: 50px; 
+  margin-top: 50px;
+  background-color: ${props => props.theme.post.content.blockquote.body};
+  line-height: 170%;
+  color: ${props => props.theme.post.content.blockquote.text};
+  border-left: 6px solid ${props => props.theme.post.content.blockquote.left};
+  word-break: break-all;
 }
 
 hr {
-  height: 1px;
+  height: 2px;
   border: 0;
-  color: white;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  background-color: ${props => props.theme.post.content.hr};
+  margin-top: 50px;
+  margin-bottom: 50px;
+  word-break: break-all;
 }
 
 a {
-  color: #c9c9ca;
+  color: ${props => props.theme.post.content.a};
+  word-break: break-all;
 }
 
 img {
   width: 100%;
   height: 100%;
   object-fit: fill;
-  margin-bottom: 30px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+ul {
+  line-height: 180%; 
+  word-break: break-all;
 }
 
 li {
-  line-height: 180%; 
-  color: #e6e6e6;
+  color: ${props => props.theme.post.content.li};
+  list-style-type: disc;
+  margin-left: 20px;
 }
 
 .gatsby-highlight {
   font-size: 14px;
-  margin-bottom: 60px;
+  margin-bottom: 80px;
+  word-break: break-all;
 }
 
 .language-text {
-  background-color: #606060;
+  background-color: ${props => props.theme.post.content.language.bg};
   padding: -10px;
   font-size: 15px;
-  color: #e6e6e6;
+  color: ${props => props.theme.post.content.language.text};
   width: 100%;
   height: 100%;
+  word-break: break-all;
 }
 }
 `
