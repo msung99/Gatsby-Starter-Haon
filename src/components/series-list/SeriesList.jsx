@@ -72,7 +72,7 @@ const SeriesListContainer = styled.div`
 const SeriesDate = styled.div`
   margin: 3px 8px;
   font-size: 12px;
-  color: #a1a6b0; 
+  color: ${props => props.theme.serieslist.date}; 
 `;
 
 const PostCount = styled.div`
@@ -85,19 +85,20 @@ const SeriesStyle = styled(Link)`
   display: flex;
   flex-direction: column;
   position: relative;
-  background: linear-gradient(135deg, #1a1a1a, #222222);
+  background: ${props => props.theme.serieslist.bg};
   padding: 0;
   border-radius: 20px;
   margin-bottom: 0;
   text-decoration: none;
-  color: #fff;
+  color: white;
+  font-style: bolder;
   transition: background 0.5s ease-in-out;
   width: 360px;
   height: 230px;
 `;
 
 const DescriptionSection = styled.div`
-  background: linear-gradient(180deg, #1e1e1e, #292929);
+  background: ${props => props.theme.serieslist.descriptionBg};
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -123,17 +124,17 @@ const TitleSection = styled.h1`
 
 const Title = styled.h1`
   font-size: 50px;
-  color: white;
+  color: ${props => props.theme.main.text};
   font-style: italic;
   font-weight: 700;
   margin-bottom: 30px;
   padding-bottom: 30px;
-  border-bottom: 1px solid #282828;
+  border-bottom: 2px solid ${props => props.theme.main.border};
 `;
 
 const Description = styled.h2`
   font-size: 20px;
-  color: #fff;
+  color: ${props => props.theme.main.text};
   font-weight: 550;
   margin-top: 40px;
   margin-bottom: 40px;
