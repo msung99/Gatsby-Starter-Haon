@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { ThemeContext } from 'styled-components';
 import { siteMetadata } from '../../../gatsby-config';
 
 const Utterances = () => {
   const themeContext = useContext(ThemeContext);
-  const isDarkMode = themeContext.mode === 'dark';
+
+const isDarkMode = getValueFromLocalStorage('isDarkMode');
 
   return (
     <CommentWrapper>
