@@ -78,7 +78,7 @@ export const LIGHT_THEME_COLORS = {
 
   emoji: '#444',
   serieslist: {
-    bg: '#f8f9fb',
+    bg: '#f1f3f5',
     descriptionBg: '#fff',
     title: '#444',
     date: '#888',
