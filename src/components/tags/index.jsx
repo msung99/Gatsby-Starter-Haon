@@ -55,6 +55,11 @@ const TagListStyle = styled.div`
   line-height: 17px; 
   display: flex;
   padding-bottom: 60px;
+
+  @media(max-width: 768px) {
+    margin-left: -25px;
+    margin-right: -25px;
+}
 `;
 
 const Tag = styled.span`

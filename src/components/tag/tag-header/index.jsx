@@ -41,6 +41,11 @@ const TagIcon = styled(FaTags)`
 const TagsHeaderStyle = styled.div`
     padding-bottom: 50px;
     border-bottom: 1px solid  ${props => props.theme.main.border};
+
+    @media(max-width: 768px) {
+        margin-left: -25px;
+        margin-right: -25px;
+    }
 `;
 
 const Title = styled.h1`

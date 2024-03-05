@@ -29,6 +29,10 @@ const Title = styled.h1`
   font-size: 17px;
   font-weight: 700;
   margin-top: 30px;
+
+  @media(max-width: 768px) {
+    margin-left: 10px;
+}
 `
 
 export default TagsContent;
