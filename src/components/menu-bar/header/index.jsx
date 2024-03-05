@@ -18,7 +18,7 @@ const menuItems = [
     { to: '/about', icon: <BsFillPeopleFill className="icon" size="23" />, text: 'About' },
     { to: '/community', icon: <FaCommentAlt className="icon" size="23" />, text: 'Community' },
 ];
-
+ 
 const HeaderMenuBar = () => {
     const location = useLocation();
 
@@ -57,7 +57,7 @@ const Title = styled.header`
   font-size: 24px;
   color: ${props => props.theme.main.text};
   font-weight: bold;
-  margin-left: 10px;
+  margin-left: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
 `;
@@ -71,6 +71,10 @@ const NavigatorWrapper = styled.div`
   width: 100%;
   background-color: ${props => props.theme.menuBar.wrapper};
   z-index: 1000;
+
+  @media(max-width: 768px) {
+    left: 0px;
+  }
 `;
 
 
