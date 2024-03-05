@@ -80,7 +80,7 @@ const DarkModeIcon = styled.div`
     color: ${props => props.theme.main.text};
 
     @media (max-width: 1300px) {
-        font-size: 29px;
+        font-size: 28px;
     }
 `;
 
