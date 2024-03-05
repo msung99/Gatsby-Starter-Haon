@@ -46,7 +46,7 @@ const PageWrapper = styled.div`
 
   height: auto;
   min-height: 100%;
-  padding-bottom: 60px;
+  margin-bottom: 70px;
 `;
 
 export default PageLayout;

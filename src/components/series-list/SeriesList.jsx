@@ -136,7 +136,10 @@ const Description = styled.h2`
   font-weight: 550;
   margin-top: 40px;
   margin-bottom: 40px;
-  margin-left: -15px;
+
+  @media(max-width: 768px) {
+    margin-left: 10px;
+  }
 `;
 
 export default SeriesList;
