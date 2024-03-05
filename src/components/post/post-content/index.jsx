@@ -134,7 +134,7 @@ const HtmlWrapper = styled.div`
   }
 
   .gatsby-highlight {
-    font-size: 14px;
+    font-size: 13px;
     margin-bottom: 80px;
     word-break: break-all;
   }
