@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { MdDarkMode } from "react-icons/md";
 import { MdSunny } from "react-icons/md";
-import { FaSun } from "react-icons/fa";
-
 import { getValueFromLocalStorage, setValueToLocalStorage } from '../../utils/localStorage';
 import styled from 'styled-components';
 
@@ -62,13 +60,13 @@ const DarkModeButton = styled.div`
     }
 
     @media (max-width: 768px) {
-        padding-right: 10px;
+        margin-right: -3px;
         margin-left: -15px;
         margin-top: 0;
     }
 
     @media (max-width: 1300px) {
-        padding-right: 10px;
+        margin-right: -3px;
         margin-left: -15px;
         margin-top: 0;
 
