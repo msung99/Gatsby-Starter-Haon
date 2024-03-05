@@ -3,9 +3,11 @@ import styled from "styled-components";
 
 const PageFooterStyle = styled.footer` 
   margin-top: 20px;
-  padding: 10px 0;
   text-align: center;
   color: gray;
+  height: 60px;
+  position : relative;
+  transform : translateY(-100%);
 `
 
 const PageFooter = () => {

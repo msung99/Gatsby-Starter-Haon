@@ -33,8 +33,8 @@ const PageLayout = ({ children }) => {
       <PageWrapper>
         <PageNavigator/>
         <PageContent contents={children} />
-        <PageFooter/>
       </PageWrapper>
+      <PageFooter/>
     </ThemeProvider>
   );
 };
@@ -43,6 +43,10 @@ const PageWrapper = styled.div`
   @media(max-width: 768px) {
     padding: 0 10px;
   }
+
+  height: auto;
+  min-height: 100%;
+  padding-bottom: 60px;
 `;
 
 export default PageLayout;
