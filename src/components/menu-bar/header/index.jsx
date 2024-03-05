@@ -82,7 +82,7 @@ const NavigatorWrapper = styled.div`
 
 const MenuContainer = styled.div`
   display: flex;
-  margin-right: 40px;
+  margin-right: 20px;
   max-width: 42%;
   align-items: center;
 `;
