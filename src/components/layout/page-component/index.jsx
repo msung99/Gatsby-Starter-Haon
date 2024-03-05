@@ -41,7 +41,7 @@ const PageLayout = ({ children }) => {
 
 const PageWrapper = styled.div`
   @media(max-width: 768px) {
-    padding: 0 20px;
+    padding: 0 10px;
   }
 `;
 
