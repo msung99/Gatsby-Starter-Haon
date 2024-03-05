@@ -33,13 +33,18 @@ function ThemeSwitch() {
         <DarkModeButtonWrapper>
             <DarkModeButton onClick={() => setIsDarkMode((isDark) => !isDark)}>
                 <ButtonWrapper>
-                    <DarkModeIcon as={isDarkMode ? MdDarkMode : MdSunny} fontSize="32" isSmallScreen={window.innerWidth <= 1300} />
+                    <DarkModeIcon
+                        as={isDarkMode ? MdDarkMode : MdSunny}
+                        fontSize="32"
+                        isSmallScreen={typeof window !== "undefined" && window.innerWidth <= 1300}
+                    />
                     {!hideText && <ThemeText>{isDarkMode ? 'Dark' : 'Light'}</ThemeText>}
                 </ButtonWrapper>
             </DarkModeButton>
         </DarkModeButtonWrapper>
     );
 }
+
 
 const DarkModeButtonWrapper = styled.div``;
 
