@@ -131,12 +131,20 @@ const HtmlWrapper = styled.div`
     color: ${props => props.theme.post.content.li};
     list-style-type: disc;
     margin-left: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
   }
 
   .gatsby-highlight {
-    font-size: 13px;
+    font-size: 13.5px;
     margin-bottom: 80px;
     word-break: break-all;
+
+    .language-text {
+      background-color: ${props => props.theme.post.content.blockquote.body};
+      font-size: 13.5px;
+      color: ${props => props.theme.post.content.blockquote.text};
+    }
   }
   
   .language-text {
