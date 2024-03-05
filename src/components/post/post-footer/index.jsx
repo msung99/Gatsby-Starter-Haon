@@ -48,6 +48,11 @@ const PostMoveButton = styled(Link)`
     color: ${props => props.theme.post.content.text};
     padding: 5px 40px;
     width: 35%;
+
+    @media(max-width: 768px) {
+      width: 30%;
+    }
+
     height: 60px;
     text-align: center;
     border-radius: 6px;
