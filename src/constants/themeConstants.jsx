@@ -78,8 +78,9 @@ export const LIGHT_THEME_COLORS = {
 
   emoji: '#444',
   serieslist: {
-    bg: '#d2d2cb',
-    descriptionBg: '#fafafa',
+    bg: '#f8f9fb',
+    descriptionBg: '#fff',
+    title: '#444',
     date: '#888',
   },
 };
@@ -166,5 +167,6 @@ export const DARK_THEME_COLORS = {
     bg: '#222222',
     descriptionBg: 'linear-gradient(180deg, #1e1e1e, #292929)',
     date: '#a1a6b0',
+    title: 'white',
   },
 };

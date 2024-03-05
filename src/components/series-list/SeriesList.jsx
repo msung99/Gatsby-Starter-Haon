@@ -87,14 +87,14 @@ const SeriesStyle = styled(Link)`
   position: relative;
   background-color: ${props => props.theme.serieslist.bg};
   padding: 0;
-  border-radius: 10px;
+  border-radius: 6px;
   margin-bottom: 0;
   text-decoration: none;
-  color: white;
   font-style: bolder;
   transition: background 0.5s ease-in-out;
   width: 360px;
   height: 230px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
 `;
 
 const DescriptionSection = styled.div`
@@ -110,8 +110,8 @@ const DescriptionSection = styled.div`
 
 
 const TitleSection = styled.h1`
-  font-size: 21px;
-  color: white;
+  font-size: 20px;
+  color: ${props => props.theme.serieslist.title};
   margin-bottom: 10px;
   margin-left: 20px;
   margin-right: 25px;
