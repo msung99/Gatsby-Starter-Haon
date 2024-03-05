@@ -32,17 +32,10 @@ function ThemeSwitch() {
     return (
         <DarkModeButtonWrapper>
             <DarkModeButton onClick={() => setIsDarkMode((isDark) => !isDark)}>
-                {isDarkMode ? (
-                    <ButtonWrapper>
-                        <DarkModeIcon as={MdDarkMode} fontSize="32" />
-                        <ThemeText>Dark</ThemeText>
-                    </ButtonWrapper>
-                ) : (
-                    <ButtonWrapper>
-                        <DarkModeIcon as={MdSunny} fontSize="32" />
-                        <ThemeText>Light</ThemeText>
-                    </ButtonWrapper>
-                )}
+                <ButtonWrapper>
+                    <DarkModeIcon as={isDarkMode ? MdDarkMode : MdSunny} fontSize="32" isSmallScreen={window.innerWidth <= 1300} />
+                    {!hideText && <ThemeText>{isDarkMode ? 'Dark' : 'Light'}</ThemeText>}
+                </ButtonWrapper>
             </DarkModeButton>
         </DarkModeButtonWrapper>
     );
@@ -80,14 +73,17 @@ const DarkModeButton = styled.div`
     }
 `;
 
-
 const DarkModeIcon = styled.div`
     color: ${props => props.theme.main.text};
+
+    @media (max-width: 1300px) {
+        font-size: 29px;
+    }
 `;
 
 const ButtonWrapper = styled.div`
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 `;
 
 const ThemeText = styled.p`
