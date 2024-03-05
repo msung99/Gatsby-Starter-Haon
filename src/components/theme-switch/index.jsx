@@ -73,8 +73,13 @@ const DarkModeButton = styled.div`
         padding-right: 10px;
         margin-left: -15px;
         margin-top: 0;
+
+        &:hover {
+            background-color: ${(props) => (props.active ? props.theme.menuBar.sideMenu : "transparent")};
+        }
     }
 `;
+
 
 const DarkModeIcon = styled.div`
     color: ${props => props.theme.main.text};
