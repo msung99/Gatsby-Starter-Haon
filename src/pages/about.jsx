@@ -61,6 +61,7 @@ const MarkdownContent = styled.div`
   margin-bottom: 40px;
   word-break: break-all;
   font-weight: 700;
+  line-height: 130%;
 }
 
  h2 {
@@ -70,6 +71,7 @@ const MarkdownContent = styled.div`
   margin-bottom: 40px;
   word-break: break-all;
   font-weight: 700;
+  line-height: 130%;
 }
 
  h3 {
@@ -79,6 +81,7 @@ const MarkdownContent = styled.div`
   margin-bottom: 40px;
   word-break: break-all;
   font-weight: 700;
+  line-height: 130%;
 }
 
  h4 {
@@ -88,6 +91,7 @@ const MarkdownContent = styled.div`
   margin-bottom: 40px;
   word-break: break-all;
   font-weight: 700;
+  line-height: 110%;
 }
 
  h5 {
@@ -167,23 +171,33 @@ li {
   color: ${props => props.theme.post.content.li};
   list-style-type: disc;
   margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
+
+
 
 .gatsby-highlight {
-  font-size: 14px;
+  font-size: 13.5px;
   margin-bottom: 80px;
   word-break: break-all;
+
+  .language-text {
+    background-color: ${props => props.theme.post.content.blockquote.body};
+    font-size: 13.5px;
+    color: ${props => props.theme.post.content.blockquote.text};
+  }
 }
 
-.language-text {
-  background-color: ${props => props.theme.post.content.language.bg};
-  padding: -10px;
-  font-size: 15px;
-  color: ${props => props.theme.post.content.language.text};
-  width: 100%;
-  height: 100%;
-  word-break: break-all;
-}
+  .language-text {
+    background-color: ${props => props.theme.post.content.language.bg};
+    padding: -10px;
+    font-size: 15px;
+    color: ${props => props.theme.post.content.language.text};
+    width: 100%;
+    height: 100%;
+    word-break: break-all;
+  }
 }
 `
 

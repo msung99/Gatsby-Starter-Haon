@@ -5,7 +5,7 @@ const PageFooterStyle = styled.footer`
   margin-top: 20px;
   text-align: center;
   color: gray;
-  height: 0px;
+  height: 30px;
   position : relative;
   transform : translateY(-100%);
 `

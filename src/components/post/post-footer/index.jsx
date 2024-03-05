@@ -50,7 +50,7 @@ const PostMoveButton = styled(Link)`
     width: 35%;
 
     @media(max-width: 768px) {
-      width: 30%;
+      width: 28%;
     }
 
     height: 60px;

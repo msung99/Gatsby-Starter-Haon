@@ -135,8 +135,8 @@ const HtmlWrapper = styled.div`
     color: ${props => props.theme.post.content.li};
     list-style-type: disc;
     margin-left: 20px;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 
   .gatsby-highlight {
