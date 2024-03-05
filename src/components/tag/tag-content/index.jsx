@@ -11,12 +11,18 @@ const TagsContent = ({posts}) => {
         totalCount === 1 ? "" : "s"} found.`;
 
     return (
-        <div>
+        <ContentWrapper>
             <Title>{tagDescription}</Title>
             <PostList posts={filteredPosts}/>
-        </div>
+        </ContentWrapper>
     )
 }
+
+const ContentWrapper = styled.div`
+  @media(max-width: 768px) {
+      margin: 0 -30px;
+  }
+`
 
 const Title = styled.h1`
   color: ${props => props.theme.main.text};
