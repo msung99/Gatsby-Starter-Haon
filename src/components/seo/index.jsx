@@ -11,6 +11,8 @@ import { Helmet } from "react-helmet";
 
 
 const Seo = ({ title, description }) => {
+  const seoImage = `${siteMetadata.siteUrl}/og-image.png`
+
   return (
       <Helmet>
         <title>{title}</title>
@@ -18,7 +20,7 @@ const Seo = ({ title, description }) => {
         <meta property="og:title" content={title}/>
         <meta property="og:site_name" content={siteMetadata.title} />
         <meta property="og:url" content={siteMetadata.siteUrl}/>
-        <meta property="og:image" content={`${siteMetadata.siteUrl}/og-image.png`}/>
+        <meta property="og:image" content={seoImage}/>
         <meta property="og:description" content={description}/>
       </Helmet>
   )
