@@ -11,19 +11,21 @@ import { siteMetadata } from "../../../gatsby-config";
 
 
 const Seo = ({ title, description }) => {
-  const url = siteMetadata.siteUrl;
+  const url =
+  typeof window !== "undefined" &&
+  window.location.host === "localhost:8000"
+    ? "http://localhost:8000"
+    : siteMetadata.siteUrl;
 
   return (
-    <Helmet
-      meta={[
-          { property: "og:title", content: {title} },
-          { property: "og:url", content: {url} },
-          { property: "og:image", content: `${url}/og-image.png`},
-          { name: "og:description", content: {description} },
-          { property: "og:description", content: {description} },
-        ]}
-    />
+    <Helmet>
+      <title>{title}</title>
+      <meta property="og:url" content={url}/>
+      <meta property="og:title" content={title}/>
+      <meta property="og:image" content={`${url}/og-image.png`}/>
+      <meta property="og:url" content={url}/>
+      <meta property="og:description" content={description}/>
+    </Helmet>
   )
 }
-
 export default Seo
