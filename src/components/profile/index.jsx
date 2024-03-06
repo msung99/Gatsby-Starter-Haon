@@ -36,7 +36,8 @@ const ProfileStyle = styled.div`
 `;
 
 const Text = styled.div`
-  margin-left: 30px;
+  margin-left: 25px;
+  width: 60%;
 `;
 
 const Author = styled.div`
