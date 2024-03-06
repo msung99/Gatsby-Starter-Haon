@@ -18,7 +18,6 @@ const Seo = ({ title, description }) => {
     : siteMetadata.siteUrl;
 
   return (
-    <div>
       <Helmet>
         <title>{title}</title>
         <meta property="og:url" content={url}/>
@@ -27,7 +26,6 @@ const Seo = ({ title, description }) => {
         <meta property="og:url" content={url}/>
         <meta property="og:description" content={description}/>
       </Helmet>
-    </div>
   )
 }
 export default Seo
