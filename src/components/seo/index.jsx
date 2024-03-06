@@ -16,9 +16,10 @@ const Seo = ({ title, description, url}) => {
   return (
       <Helmet>
         <title>{title}</title>
-        <meta property="og:type" content="website" />
         <meta property="og:title" content={title}/>
-        <meta property="og:site_name" content={siteMetadata.title}/>
+        <meta property="og:site_title" content={title}/>
+        <meta property="og:author" content={siteMetadata.author}/> 
+        <meta property="og:type" content="website"/> 
         <meta property="og:image" content={seoImage}/>
         <meta property="og:description" content={description}/>
       </Helmet>

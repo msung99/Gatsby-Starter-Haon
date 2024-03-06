@@ -5,10 +5,12 @@ import PageLayout from "../components/layout/page-component";
 import PostContent from "../components/post/post-content";
 import Utterances from "../components/utterances";
 import Seo from "../components/seo";
+import { siteMetadata } from "../../gatsby-config";
 
 export default ({ data, location }) => {
   const { previous, next } = data;
   const post = data.markdownRemark;
+  const { slug } = post.fields
   const { title, date, description } = post.frontmatter;
   const author = data.site.siteMetadata.author;
   const toc = post.tableOfContents;
@@ -17,7 +19,7 @@ export default ({ data, location }) => {
 
   return (
     <PageLayout>
-      <Seo title={title} description={description}/>
+      <Seo title={title} description={description} url={}/>
       <Post>
         <Post.Header
           title={title}
@@ -59,6 +61,9 @@ export const pageQuery = graphql`
         tags
         series
         previewImage
+      }
+      fields {
+        slug
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {
