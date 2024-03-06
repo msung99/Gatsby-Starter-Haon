@@ -7,7 +7,7 @@ import PostPagination from "../pagination";
 
 const PostList = ({ posts }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(5);
+  const [postsPerPage] = useState(1);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -70,7 +70,6 @@ const PostList = ({ posts }) => {
     </PostListContainer>
   );
 };
-
 
 const truncate = (text, maxLength) => {
   if (text.length > maxLength) {
