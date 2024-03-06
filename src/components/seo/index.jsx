@@ -10,7 +10,7 @@ import { siteMetadata } from "../../../gatsby-config";
 import { Helmet } from "react-helmet";
 
 
-const Seo = ({ title, description, url}) => {
+const Seo = ({ title, description}) => {
   const seoImage = `${siteMetadata.siteUrl}/og-image.png`
 
   return (
