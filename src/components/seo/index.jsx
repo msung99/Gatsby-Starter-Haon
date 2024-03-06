@@ -6,24 +6,18 @@
  */
 
 import * as React from "react"
-import { Helmet } from "react-helmet"
 import { siteMetadata } from "../../../gatsby-config";
-import {ogImage} from "../../../static/og-image.png"
+import { Helmet } from "react-helmet-async";
 
 const Seo = ({ title, description }) => {
-  const url =
-  typeof window !== "undefined" &&
-  window.location.host === "localhost:8000"
-    ? "http://localhost:8000"
-    : siteMetadata.siteUrl;
-
   return (
       <Helmet>
         <title>{title}</title>
-        <meta property="og:url" content={url}/>
+        <meta property="og:type" content="website" />
         <meta property="og:title" content={title}/>
-        <meta property="og:image" content={ogImage}/>
-        <meta property="og:url" content={url}/>
+        <meta property="og:site_name" content={siteMetadata.title} />
+        <meta property="og:url" content={siteMetadata.siteUrl}/>
+        <meta property="og:image" content={`${siteMetadata.siteUrl}/og-image.png`}/>
         <meta property="og:description" content={description}/>
       </Helmet>
   )
