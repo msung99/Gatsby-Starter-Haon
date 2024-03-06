@@ -7,7 +7,8 @@
 
 import * as React from "react"
 import { siteMetadata } from "../../../gatsby-config";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "react-helmet";
+
 
 const Seo = ({ title, description }) => {
   return (
