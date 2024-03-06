@@ -23,9 +23,9 @@ export const LIGHT_THEME_COLORS = {
     title: 'black',
     text: '#212529',
     count: '#878f98',
-    background: '#f3f3f3',
+    background: '#f7f6f2',
     circle: 'gray',
-    hover: '#ced4da',
+    hover: '#dcd9c6',
   },
 
   postlist: {

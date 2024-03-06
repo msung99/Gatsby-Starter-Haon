@@ -88,6 +88,15 @@ const HtmlWrapper = styled.div`
       margin-bottom: 40px;
       font-size: 100px;
     }
+    
+    strong {
+      font-weight: bold;
+    }
+  }
+
+  .gatsby-resp-image-wrapper {
+    margin-top: -20px;
+    margin-bottom: -20px;
   }
 
   blockquote {
@@ -122,8 +131,8 @@ const HtmlWrapper = styled.div`
     width: 100%;
     height: 100%;
     object-fit: fill;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin-top: 30px;
+    margin-bottom: 30px;
   }
 
   ul {
