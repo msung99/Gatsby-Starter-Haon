@@ -12,17 +12,44 @@ import { Helmet } from "react-helmet";
 
 const Seo = ({ title, description}) => {
   const seoImage = `${siteMetadata.siteUrl}/og-image.png`
+  const metaDescription = description || siteMetadata.description;
 
   return (
-      <Helmet>
-        <title>{title}</title>
-        <meta property="og:title" content={title}/>
-        <meta property="og:site_title" content={title}/>
-        <meta property="og:author" content={siteMetadata.author}/> 
-        <meta property="og:type" content="website"/> 
-        <meta property="og:image" content={seoImage}/>
-        <meta property="og:description" content={description}/>
-      </Helmet>
+    <Helmet
+      htmlAttributes={{ lang: "en" }}
+      title={title}
+      defaultTitle={siteMetadata.title}
+      meta={[
+        {
+          property: "og:title",
+          content: title,
+        },
+        {
+          property: "og:site_title",
+          content: title,
+        },
+        {
+          name: "description",
+          content: metaDescription,
+        },
+        {
+          property: "og:description",
+          content: metaDescription,
+        },
+        {
+          property: "og:author",
+          content: siteMetadata.author.name,
+        },
+        {
+          property: "og:image",
+          content: seoImage,
+        },
+        {
+          property: "og:type",
+          content: "website",
+        },
+      ]}
+    />
   )
 }
 export default Seo
