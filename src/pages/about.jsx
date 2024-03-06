@@ -232,7 +232,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    markdownRemark(fields: { slug: { eq: "/about/introduce/" } }) {
+    markdownRemark(fields: { slug: { eq: "/default/about/" } }) {
       frontmatter {
         title
         description
