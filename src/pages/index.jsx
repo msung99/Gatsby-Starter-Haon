@@ -86,5 +86,3 @@ export const pageQuery = graphql`
     }
   }
 `
-
-// ... (이전 SimpleTagList 컴포넌트 코드 생략)

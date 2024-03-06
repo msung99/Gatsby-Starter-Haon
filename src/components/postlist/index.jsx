@@ -3,57 +3,74 @@ import { Link } from "gatsby";
 import styled from "styled-components";
 import kebabCase from "lodash.kebabcase";
 import { siteMetadata } from "../../../gatsby-config";
+import PostPagination from "../pagination";
 
 const PostList = ({ posts }) => {
-  const [postCount, setPostCount] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(5);
 
   useEffect(() => {
-    setPostCount(10);
+    setCurrentPage(1);
   }, [posts]);
 
   // isPrivate가 true인 항목 필터링
   const filteredPosts = posts.filter(post => !post.frontmatter.isPrivate);
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = pageNumber => setCurrentPage(pageNumber);
 
   return (
     <PostListContainer>
       {filteredPosts.length === 0 ? (
         <EmptySpace />
       ) : (
-        filteredPosts.slice(0, postCount).map((post, index) => {
-          const { title, description, date, tags, series, previewImage } = post.frontmatter;
-          const slug = post.fields.slug;
-          const body = post.excerpt || (post.rawMarkdownBody && truncate(post.rawMarkdownBody, 80));
+        <>
+          {currentPosts.map((post, index) => {
+            const { title, description, date, tags, series, previewImage } = post.frontmatter;
+            const slug = post.fields.slug;
+            const body = post.excerpt || (post.rawMarkdownBody && truncate(post.rawMarkdownBody, 80));
 
-          return (
-            <PostLink to={slug} key={index}>
-              <PostCard>
-                <PostContent>
-                  <PostTitle>{title || slug}</PostTitle>
-                  {tags && (
-                    <PostTags>
-                      {tags.map((tag) => (
-                        <PostTag key={kebabCase(tag)}>
-                          #{tag}
-                        </PostTag>
-                      ))}
-                    </PostTags>
-                  )}
-                  <Date>{date}</Date>
-                  <PostDescription>
-                    {description || truncate(body, 80)}
-                  </PostDescription>  
-                </PostContent>
-                <ImageWrapper>
-                  <Image previewImage={previewImage} />
-                </ImageWrapper>
-              </PostCard>
-            </PostLink>
-          );
-        })
+            return (
+              <PostLink to={slug} key={index}>
+                <PostCard>
+                  <PostContent>
+                    <PostTitle>{title || slug}</PostTitle>
+                    {tags && (
+                      <PostTags>
+                        {tags.map((tag) => (
+                          <PostTag key={kebabCase(tag)}>
+                            #{tag}
+                          </PostTag>
+                        ))}
+                      </PostTags>
+                    )}
+                    <Date>{date}</Date>
+                    <PostDescription>
+                      {description || truncate(body, 80)}
+                    </PostDescription>  
+                  </PostContent>
+                  <ImageWrapper>
+                    <Image previewImage={previewImage} />
+                  </ImageWrapper>
+                </PostCard>
+              </PostLink>
+            );
+          })}
+          <PostPagination
+            totalPosts={filteredPosts.length}
+            postsPerPage={postsPerPage}
+            paginate={paginate}
+            currentPage={currentPage}
+          />
+        </>
       )}
     </PostListContainer>
   );
 };
+
 
 const truncate = (text, maxLength) => {
   if (text.length > maxLength) {
