@@ -6,6 +6,7 @@ tags:
   - Introduce
   - About
 series: how to use this template?
+previewImage: how.png
 ---
 
 ## Gatsby 테마로 GitHub Blog 만들기

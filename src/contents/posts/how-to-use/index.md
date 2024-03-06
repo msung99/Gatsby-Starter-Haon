@@ -7,6 +7,7 @@ tags:
   - About
   - settings
 series: how to use this template?
+previewImage: "setting.png"
 ---
 
 ## 1. 테마 설치하기 👋
