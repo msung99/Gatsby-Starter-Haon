@@ -78,3 +78,16 @@ series: how to use this template?
 ![](toc.png)
 
 포스트 우측 상단을 보면 목차 기능이 존재하는 것을 볼 수 있습니다. 목차에 생성되는 텍스트는 h1, h2, h3 에 타이틀에 기반해 있습니다.
+
+---
+
+## 6. 기능 요약
+
+포스트 기능을 정리해보자면 다음과 같습니다.
+
+- `Markdown`
+- `Tags`
+- `Series`
+- `Share` (공유하기 기능 : 포스트 링크 복사 / Facebook 공유 / Twitter 공유)
+- `private mode` (포스트 공개 / 비공개)
+- `Toc`
