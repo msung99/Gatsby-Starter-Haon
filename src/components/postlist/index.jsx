@@ -137,6 +137,7 @@ const PostDescription = styled.p`
   line-height: 170%;
   color: ${props => props.theme.postlist.text};
   transition: color 1s ease; 
+  word-break: break-all;
 `;
 
 const EmptySpace = styled.div`
