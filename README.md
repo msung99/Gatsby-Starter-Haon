@@ -1,99 +1,104 @@
-<!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
-<p align="center">
-  <a href="https://www.gatsbyjs.com">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby's default starter
-</h1>
+## 1. 테마 설치하기 👋
 
-Kick off your project with this default boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
+여럿 유명한 블로그 플랫폼들을 사용하면서 제가 만들어보고 싶었던, 불편했던 점들을 보완하고자 직접 블로그를 제작했습니다.
+이 테마가 저처럼 블로그를 직접 커스터마이징하여 운영하고자 하시는 분들에게 도움이 되었으면 합니다.
 
-_Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.com/docs/gatsby-starters/)._
+> 현 블로그 테마는 **[Hudi](https://github.com/devHudi/gatsby-starter-hoodie.git)** 님의 Gatsby Blog 테마를 기반으로 제작했습니다 🙂
 
-## 🚀 Quick start
+아래 과정을 따라서 블로그 테마를 직접 만들어보세요!
 
-1.  **Create a Gatsby site.**
+```
+npx gatsby your-blog-name https://github.com/msung99/Gatsby-Starter-Haon.git
+```
 
-    Use the Gatsby CLI ([install instructions](https://www.gatsbyjs.com/docs/tutorial/getting-started/part-0/#gatsby-cli)) to create a new site, specifying the default starter.
+---
 
-    ```shell
-    # create a new Gatsby site using the default starter
-    gatsby new my-default-starter https://github.com/gatsbyjs/gatsby-starter-default
-    ```
+## 2. Gatsby 로컬 서버 구동하기
 
-1.  **Start developing.**
+본인의 로컬에 테마를 내려받았다면, 아래의 과정에 따라 게츠비 로컬 서버를 구동해주세요.
 
-    Navigate into your new site’s directory and start it up.
+```
+cd your-blog-name
+npm install  // install node.js
+gatsby develop // or "npm start"
+```
 
-    ```shell
-    cd my-default-starter/
-    gatsby develop
-    ```
+위 명령어가 문제 없이 실행됐다면 http://localhost:8000 에서 초기 블로그 상태를 확인할 수 있습니다!
 
-1.  **Open the source code and start editing!**
+---
 
-    Your site is now running at `http://localhost:8000`!
+## 3. 블로그 정보 입력하기
 
-    Note: You'll also see a second link: `http://localhost:8000/___graphql`. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby Tutorial](https://www.gatsbyjs.com/docs/tutorial/getting-started/part-4/#use-graphiql-to-explore-the-data-layer-and-write-graphql-queries).
+본인의 메타 정보를 직접 기입하여 커스터마이징 할 수 있습니다. `gatsby-config.js` 로 이동하면 아래와 같은 초기 상태를 확인할 수 있습니다.
 
-    Open the `my-default-starter` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
+```js
+module.exports = {
+  siteMetadata: {
+    title: `haon.blog`,
+    description: `Hello! This is a tech blog theme using Gatsby 🤩`,
+    author: `Haon`,
+    siteUrl: `https://main--sage-malasada-49a59a.netlify.app`,
+    keywords: [`server`, `backend`, `gatsby`],
+    repo: "msung99/Gatsby-Starter-Haon",
+    socialLinks: {
+      github: "https://github.com/",
+      instagram: "https://www.instagram.com/",
+      facebook: "https://www.facebook.com/",
+      linkedin: "https://www.linkedin.com/",
+      velog: "https://velog.io/",
+      email: `https://naver.com`,
+    },
+  },
+  plugins: [
+    // ... (생략)
+  ],
+}
+```
 
-## 🚀 Quick start (Netlify)
+아래의 과정에 따라 `siteMetadata` 를 수정하세요.
 
-Deploy this starter with one click on [Netlify](https://app.netlify.com/signup):
+### 3-1. 기본 프로필 설정
+
+본인의 기본 프로필을 입력하세요.
+
+```
+title: ``, // haon.blog
+description: ``, // Hello! This is a tech blog theme using Gatsby 🤩
+author: ``, // Haon
+siteUrl: ``, // https://main--sage-malasada-49a59a.netlify.app
+keywords: [ ], // [`server`, `backend`, `gatsby`]
+```
+
+### 3-2. utterances (댓글) 설정
+
+현 템플릿은 Issue 생성 기반 댓글 방식에 기반하고 있습니다. 원활한 댓글 기능 활성화를 위해 본인의 깃허브 레포지토리 정보를 기입하세요.
+
+```
+repo: "your-github-name/repository-name"  //  "msung99/Gatsby-Starter-Haon",
+```
+
+### 3-3. 소설 계졍 연동
+
+마지막으로 소설 계정을 연동할 수 있습니다. 소셜 이모티콘을 클릭하면 해당 URL 로 넘어가는 기능을 위해 필요합니다.
+아래 소설 계정중 원하는 필드를 선택적으로 커스터마이징하여 사용하세요.
+
+```
+socialLinks: {
+  github: ""  // "https://github.com/",
+  instagram: ""  // "https://www.instagram.com/",
+  facebook: ""  // "https://www.facebook.com/",
+  linkedin: ""  // "https://www.linkedin.com/",
+  velog: ""  // "https://velog.io/",'
+  email: ""  // `https://haon@naver.com`,
+},
+```
+
+---
+
+## 4. 블로그 배포하기
+
+`Github Page` 또는 `Netlify` 중 원하시는 배포 환경에 따라 빠르게 블로그를 만드실 수 있습니다. 여기선 Netify 에 대해 간단히만 언급하겠습니다.
+
+아래 버튼을 활용하면 `Gatsby-Haon-Blog` 테마를 사용하고 있는 본인 깃허브 레포지토리를 Netlify 를 연동하여 배포를 진행할 수 있습니다.
 
 [<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
-
-## 🧐 What's inside?
-
-A quick look at the top-level files and directories you'll see in a typical Gatsby project.
-
-    .
-    ├── node_modules
-    ├── src
-    ├── .gitignore
-    ├── gatsby-browser.js
-    ├── gatsby-config.js
-    ├── gatsby-node.js
-    ├── gatsby-ssr.js
-    ├── LICENSE
-    ├── package.json
-    └── README.md
-
-1.  **`/node_modules`**: This directory contains all of the modules of code that your project depends on (npm packages) are automatically installed.
-
-1.  **`/src`**: This directory will contain all of the code related to what you will see on the front-end of your site (what you see in the browser) such as your site header or a page template. `src` is a convention for “source code”.
-
-1.  **`.gitignore`**: This file tells git which files it should not track / not maintain a version history for.
-
-1.  **`gatsby-browser.js`**: This file is where Gatsby expects to find any usage of the [Gatsby browser APIs](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-browser/) (if any). These allow customization/extension of default Gatsby settings affecting the browser.
-
-1.  **`gatsby-config.js`**: This is the main configuration file for a Gatsby site. This is where you can specify information about your site (metadata) like the site title and description, which Gatsby plugins you’d like to include, etc. (Check out the [config docs](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/) for more detail).
-
-1.  **`gatsby-node.js`**: This file is where Gatsby expects to find any usage of the [Gatsby Node APIs](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/) (if any). These allow customization/extension of default Gatsby settings affecting pieces of the site build process.
-
-1.  **`gatsby-ssr.js`**: This file is where Gatsby expects to find any usage of the [Gatsby server-side rendering APIs](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-ssr/) (if any). These allow customization of default Gatsby settings affecting server-side rendering.
-
-1.  **`LICENSE`**: This Gatsby starter is licensed under the 0BSD license. This means that you can see this file as a placeholder and replace it with your own license.
-
-1.  **`package.json`**: A manifest file for Node.js projects, which includes things like metadata (the project’s name, author, etc). This manifest is how npm knows which packages to install for your project.
-
-1.  **`README.md`**: A text file containing useful reference information about your project.
-
-## 🎓 Learning Gatsby
-
-Looking for more guidance? Full documentation for Gatsby lives [on the website](https://www.gatsbyjs.com/). Here are some places to start:
-
-- **For most developers, we recommend starting with our [in-depth tutorial for creating a site with Gatsby](https://www.gatsbyjs.com/docs/tutorial/getting-started/).** It starts with zero assumptions about your level of ability and walks through every step of the process.
-
-- **To dive straight into code samples, head [to our documentation](https://www.gatsbyjs.com/docs/).** In particular, check out the _Guides_, _API Reference_, and _Advanced Tutorials_ sections in the sidebar.
-
-## 💫 Deploy
-
-[Build, Deploy, and Host On Netlify](https://netlify.com)
-
-The fastest way to combine your favorite tools and APIs to build the fastest sites, stores, and apps for the web. And also the best place to build, deploy, and host your Gatsby sites.
-
-<!-- AUTO-GENERATED-CONTENT:END -->
