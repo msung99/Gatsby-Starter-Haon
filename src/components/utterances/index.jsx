@@ -1,11 +1,22 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { siteMetadata } from '../../../gatsby-config';
 import { getValueFromLocalStorage } from '../../utils/localStorage';
 
 const Utterances = () => {
-  
-  const isDarkMode = getValueFromLocalStorage('isDarkMode');
+  const [isDarkMode, setIsDarkMode] = useState(getValueFromLocalStorage('isDarkMode'));
+
+  useEffect(() => {
+    const handleThemeChange = () => {
+      setIsDarkMode(getValueFromLocalStorage('isDarkMode'));
+    };
+
+    window.addEventListener('theme', handleThemeChange);
+
+    return () => {
+      window.removeEventListener('theme', handleThemeChange);
+    };
+  }, []);
 
   return (
     <CommentWrapper>
