@@ -88,10 +88,10 @@ const HtmlWrapper = styled.div`
       margin-bottom: 40px;
       font-size: 100px;
     }
-    
-    strong {
-      font-weight: bold;
-    }
+  }
+
+  strong {
+    font-weight: bold;
   }
 
   .gatsby-resp-image-wrapper {
@@ -150,7 +150,7 @@ const HtmlWrapper = styled.div`
 
   .gatsby-highlight {
     font-size: 13.5px;
-    margin-bottom: 80px;
+    margin-bottom: 50px;
     word-break: break-all;
 
     .language-text {

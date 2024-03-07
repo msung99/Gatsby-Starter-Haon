@@ -32,7 +32,8 @@ export const LIGHT_THEME_COLORS = {
     date: '#899097',
     text: 'black',
     tag: '#626262',
-    border: '#f3f3f3'
+    border: '#f3f3f3',
+    pagnigation: '#f1f3f5',
   },
 
   post: {
@@ -40,7 +41,7 @@ export const LIGHT_THEME_COLORS = {
       bg: '#eef2f3',
       text: 'black',
     },
-    series: '#f3f3f3',
+    series: '#f7f6f2',
     toc: {
       a: '#666',
       hover: 'black',
@@ -119,6 +120,7 @@ export const DARK_THEME_COLORS = {
     date: '#cdd4d9',
     border: '#282828',
     tag: "#cdd4d9",
+    pagnigation: '#484848',
   },
 
   post: {

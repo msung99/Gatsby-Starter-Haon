@@ -15,13 +15,10 @@ const PageButton = styled.button`
   padding: 8px 12px;
   cursor: pointer;
   border: none;
-  background: ${props => (props.active ? props.theme.postlist.hoverBackground : "transparent")};
+  background: ${props => (props.active ? props.theme.postlist.pagnigation : "transparent")};
   color: ${props => props.theme.main.text};
+  border-radius: 10px;
   transition: background 0.3s ease, color 0.3s ease;
-
-  &:hover {
-    background: ${props => props.theme.postlist.hoverBackground};
-  }
 `;
 
 const IconWrapper = styled.span`

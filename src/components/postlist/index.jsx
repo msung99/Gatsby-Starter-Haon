@@ -7,7 +7,7 @@ import PostPagination from "../pagination";
 
 const PostList = ({ posts }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(1);
+  const [postsPerPage] = useState(5);
 
   useEffect(() => {
     setCurrentPage(1);
