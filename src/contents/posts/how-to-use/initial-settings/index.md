@@ -12,15 +12,10 @@ previewImage: "setting.png"
 
 ## 1. 테마 설치하기 👋
 
-여럿 유명한 블로그 플랫폼들을 사용하면서 제가 만들어보고 싶었던, 불편했던 점들을 보완하고자 직접 블로그를 제작했습니다.
-이 테마가 저처럼 블로그를 직접 커스터마이징하여 운영하고자 하시는 분들에게 도움이 되었으면 합니다.
-
-> 현 블로그 테마는 **[Hudi](https://github.com/devHudi/gatsby-starter-hoodie.git)** 님의 Gatsby Blog 테마를 기반으로 제작했습니다 🙂
-
 아래 과정을 따라서 블로그 테마를 직접 만들어보세요!
 
 ```
-npx gatsby your-blog-name https://github.com/msung99/Gatsby-Starter-Haon.git
+gatsby new your-blog-name https://github.com/msung99/Gatsby-Starter-Haon.git
 ```
 
 ---
@@ -49,7 +44,7 @@ module.exports = {
     title: `haon.blog`,
     description: `Hello! This is a tech blog theme using Gatsby 🤩`,
     author: `Haon`,
-    siteUrl: `https://main--sage-malasada-49a59a.netlify.app`,
+    siteUrl: `https://gatsby-starter-haon.netlify.app/`,
     keywords: [`server`, `backend`, `gatsby`],
     repo: "msung99/Gatsby-Starter-Haon",
     socialLinks: {
@@ -77,7 +72,7 @@ module.exports = {
 title: ``, // haon.blog
 description: ``, // Hello! This is a tech blog theme using Gatsby 🤩
 author: ``, // Haon
-siteUrl: ``, // https://main--sage-malasada-49a59a.netlify.app
+siteUrl: ``, // https://gatsby-starter-haon.netlify.app/
 keywords: [ ], // [`server`, `backend`, `gatsby`]
 ```
 
@@ -113,10 +108,20 @@ socialLinks: {
 
 아래 버튼을 활용하면 `Gatsby-Haon-Blog` 테마를 사용하고 있는 본인 깃허브 레포지토리를 Netlify 를 연동하여 배포를 진행할 수 있습니다.
 
-[<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
+<a href="https://app.netlify.com/start/deploy?repository=https://github.com/msung99/Gatsby-Starter-Haon.git" target="_blank"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify"></a>
 
 ---
 
-## 마치며
+## Isuee, PR 등록
 
-다음은 포스트 작성법에 대해 알아보겠습니다.
+Gatsby-Starter-Haon 을 사용하다가 소통하고 싶은 내용이 생긴다면
+[Issue 등록하기](https://github.com/msung99/Gatsby-Starter-Haon/issues/1) 에다 자유롭게 코멘트를 남겨주세요.
+
+- 제안사항 (Suggestions)
+- Q&A
+- 버그 발견 및 코드 개선 (Bug / Code Refactoring)
+- 신규기능 (New Features / Functions)
+
+코멘트를 남겨주셔도 좋고, 별도로 Issue Template 양식에 맞추어 이슈를 마음껏 등록하셔도 좋습니다.
+
+무엇이든 좋습니다. 양질의 소프트웨어 향상, 테마 발전을 위해서 많은 분들의 의견을 기다리고 있습니다 👍
