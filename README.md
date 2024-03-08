@@ -2,7 +2,7 @@
 
 ![](./static/readme/theme.png)
 
-여럿 유명한 블로그 플랫폼들을 사용하면서 제가 만들어보고 싶었던, 불편했던 점들을 보완하고자 직접 블로그를 제작했습니다. 테마를 만드는데 있어 [Hudi](https://github.com/devHudi/gatsby-starter-hoodie) 님에게 가장 큰 영감을 받았음을 밝힙니다.
+여럿 유명한 블로그 플랫폼들을 사용하면서 제가 만들어보고 싶었던, 불편했던 점들을 보완하고자 직접 블로그를 제작했습니다. 테마를 만드는데 있어 [Hudi](https://github.com/devHudi/gatsby-starter-hoodie) 님의 블로그로부터 큰 영감을 받았습니다.
 이 테마가 저처럼 블로그를 직접 커스터마이징하여 운영하고자 하시는 분들에게 도움이 되었으면 합니다.
 
 ![](./static/readme/preview.png)
@@ -53,12 +53,12 @@ module.exports = {
     keywords: [`server`, `backend`, `gatsby`],
     repo: "msung99/Gatsby-Starter-Haon",
     socialLinks: {
-      github: "https://github.com/",
-      instagram: "https://www.instagram.com/",
+      github: "https://github.com/msung99",
+      instagram: "https://www.instagram.com/iminseong920",
       facebook: "https://www.facebook.com/",
       linkedin: "https://www.linkedin.com/",
-      velog: "https://velog.io/",
-      email: `https://naver.com`,
+      velog: "https://velog.io/@msung99",
+      email: `https://msung6924@naver.com`,
     },
   },
   plugins: [
@@ -96,12 +96,12 @@ repo: "your-github-name/repository-name"  //  "msung99/Gatsby-Starter-Haon",
 
 ```
 socialLinks: {
-  github: ""  // "https://github.com/",
-  instagram: ""  // "https://www.instagram.com/",
+  github: ""  // "https://github.com/msung99",
+  instagram: ""  // "https://www.instagram.com/iminseong920",
   facebook: ""  // "https://www.facebook.com/",
   linkedin: ""  // "https://www.linkedin.com/",
-  velog: ""  // "https://velog.io/",'
-  email: ""  // `https://haon@naver.com`,
+  velog: ""  // "https://velog.io/@msung99",'
+  email: ""  // `https://msung6924@naver.com`,
 },
 ```
 
@@ -111,7 +111,9 @@ socialLinks: {
 
 `Github Page` 또는 `Netlify` 중 원하시는 배포 환경에 따라 빠르게 블로그를 만드실 수 있습니다. 여기선 Netify 에 대해 간단히만 언급하겠습니다.
 
-아래 버튼을 활용하면 `Gatsby-Haon-Blog` 테마를 사용하고 있는 본인 깃허브 레포지토리를 Netlify 에 연동하여 배포를 진행할 수 있습니다.
+아래 버튼을 활용하면 `Gatsby-Haon-Blog` 테마를 사용하고 있는 본인 깃허브 레포지토리를 Netlify 를 연동하여 배포를 진행할 수 있습니다.
+
+이때 깃허브 레포지토리가 필요할 수 있습니다. 앞서 0번에서 미리 생성한 레포지토리와 연동해주시면 됩니다.
 
 <a href="https://app.netlify.com/start/deploy?repository=https://github.com/msung99/Gatsby-Starter-Haon.git" target="_blank"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify"></a>
 
@@ -120,7 +122,7 @@ socialLinks: {
 ## Isuee, PR 등록
 
 Gatsby-Starter-Haon 을 사용하다가 소통하고 싶은 내용이 생긴다면
-[Issue 등록하기](https://github.com/msung99/Gatsby-Starter-Haon/issues/1) 에다 자유롭게 코멘트를 남겨주세요.
+[Social 페이지](https://gatsby-starter-haon.netlify.app/community/) 또는 [Issue 등록하기](https://github.com/msung99/Gatsby-Starter-Haon/issues/1) 에다 자유롭게 코멘트를 남겨주세요.
 
 - 제안사항 (Suggestions)
 - Q&A

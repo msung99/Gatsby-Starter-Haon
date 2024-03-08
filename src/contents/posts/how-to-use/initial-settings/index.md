@@ -10,7 +10,7 @@ series: how to use this template?
 previewImage: "setting.png"
 ---
 
-## 0. 깃허브 레포지토리 생성하기 🚀
+## 0. 깃허브 레포지토리 생성하기
 
 테마를 설치하기에 앞서 Gatsby Theme 를 본인의 Github Repository 가 필요합니다. 레포지토리를 하나 생성해주세요.
 
@@ -54,12 +54,12 @@ module.exports = {
     keywords: [`server`, `backend`, `gatsby`],
     repo: "msung99/Gatsby-Starter-Haon",
     socialLinks: {
-      github: "https://github.com/",
-      instagram: "https://www.instagram.com/",
+      github: "https://github.com/msung99",
+      instagram: "https://www.instagram.com/iminseong920",
       facebook: "https://www.facebook.com/",
       linkedin: "https://www.linkedin.com/",
-      velog: "https://velog.io/",
-      email: `https://naver.com`,
+      velog: "https://velog.io/@msung99",
+      email: `https://msung6924@naver.com`,
     },
   },
   plugins: [
@@ -97,12 +97,12 @@ repo: "your-github-name/repository-name"  //  "msung99/Gatsby-Starter-Haon",
 
 ```
 socialLinks: {
-  github: ""  // "https://github.com/",
-  instagram: ""  // "https://www.instagram.com/",
+  github: ""  // "https://github.com/msung99",
+  instagram: ""  // "https://www.instagram.com/iminseong920",
   facebook: ""  // "https://www.facebook.com/",
   linkedin: ""  // "https://www.linkedin.com/",
-  velog: ""  // "https://velog.io/",'
-  email: ""  // `https://haon@naver.com`,
+  velog: ""  // "https://velog.io/@msung99",'
+  email: ""  // `https://msung6924@naver.com`,
 },
 ```
 
@@ -114,6 +114,8 @@ socialLinks: {
 
 아래 버튼을 활용하면 `Gatsby-Haon-Blog` 테마를 사용하고 있는 본인 깃허브 레포지토리를 Netlify 를 연동하여 배포를 진행할 수 있습니다.
 
+이때 깃허브 레포지토리가 필요할 수 있습니다. 앞서 0번에서 미리 생성한 레포지토리와 연동해주시면 됩니다.
+
 <a href="https://app.netlify.com/start/deploy?repository=https://github.com/msung99/Gatsby-Starter-Haon.git" target="_blank"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify"></a>
 
 ---
@@ -121,7 +123,7 @@ socialLinks: {
 ## Isuee, PR 등록
 
 Gatsby-Starter-Haon 을 사용하다가 소통하고 싶은 내용이 생긴다면
-[Issue 등록하기](https://github.com/msung99/Gatsby-Starter-Haon/issues/1) 에다 자유롭게 코멘트를 남겨주세요.
+[Social 페이지](https://gatsby-starter-haon.netlify.app/community/) 또는 [Issue 등록하기](https://github.com/msung99/Gatsby-Starter-Haon/issues/1) 에다 자유롭게 코멘트를 남겨주세요.
 
 - 제안사항 (Suggestions)
 - Q&A

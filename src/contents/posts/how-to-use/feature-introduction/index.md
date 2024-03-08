@@ -41,3 +41,6 @@ Gatsby Starter Haon 은 [Hudi](https://github.com/devHudi/gatsby-starter-hoodie)
 ## 마치며
 
 만약 Gatsby Starter Haon 을 사용하다 문제가 발생한다면 Issue 를 등록해주세요. 빠른 피드백은 더 나은 소프트웨어 품질 향상에 큰 도움이 됩니다 😆
+
+Gatsby-Starter-Haon 을 사용하다가 소통하고 싶은 내용이 생긴다면
+[Social 페이지](https://gatsby-starter-haon.netlify.app/community/) 또는 [Issue 등록하기](https://github.com/msung99/Gatsby-Starter-Haon/issues/1) 에다 자유롭게 코멘트를 남겨주길 바랍니다.
