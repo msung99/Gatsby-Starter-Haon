@@ -10,6 +10,12 @@ series: how to use this template?
 previewImage: "setting.png"
 ---
 
+## 0. 깃허브 레포지토리 생성하기 🚀
+
+테마를 설치하기에 앞서 Gatsby Theme 를 본인의 Github Repository 가 필요합니다. 레포지토리를 하나 생성해주세요.
+
+---
+
 ## 1. 테마 설치하기 👋
 
 아래 과정을 따라서 블로그 테마를 직접 만들어보세요!

@@ -9,6 +9,12 @@
 
 ---
 
+## 0. 깃허브 레포지토리 생성하기
+
+테마를 설치하기에 앞서 Gatsby Theme 를 본인의 Github Repository 가 필요합니다. 레포지토리를 하나 생성해주세요.
+
+---
+
 ## 1. 테마 설치하기 👋
 
 아래 과정을 따라서 블로그 테마를 직접 만들어보세요!
@@ -105,7 +111,7 @@ socialLinks: {
 
 `Github Page` 또는 `Netlify` 중 원하시는 배포 환경에 따라 빠르게 블로그를 만드실 수 있습니다. 여기선 Netify 에 대해 간단히만 언급하겠습니다.
 
-아래 버튼을 활용하면 `Gatsby-Haon-Blog` 테마를 사용하고 있는 본인 깃허브 레포지토리를 Netlify 를 연동하여 배포를 진행할 수 있습니다.
+아래 버튼을 활용하면 `Gatsby-Haon-Blog` 테마를 사용하고 있는 본인 깃허브 레포지토리를 Netlify 에 연동하여 배포를 진행할 수 있습니다.
 
 <a href="https://app.netlify.com/start/deploy?repository=https://github.com/msung99/Gatsby-Starter-Haon.git" target="_blank"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify"></a>
 
