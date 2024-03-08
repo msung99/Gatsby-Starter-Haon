@@ -1,3 +1,12 @@
+---
+name: Bug report
+about: Create a report to help us improve
+title: ''
+labels: ''
+assignees: ''
+
+---
+
 ### 어떤 버그인가요? (What kind of bug is this?)
 
 > 어떤 버그인지 설명해주세요!  (Please explain what kind of bug it is!)
