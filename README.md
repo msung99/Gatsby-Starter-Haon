@@ -2,7 +2,7 @@
 
 ![](./static/readme/theme.png)
 
-여럿 유명한 블로그 플랫폼들을 사용하면서 제가 만들어보고 싶었던, 불편했던 점들을 보완하고자 직접 블로그를 제작했습니다. 테마를 만드는데 있어 [Hudi](https://github.com/devHudi/gatsby-starter-hoodie) 님에게 큰 영감을 받았음을 밝힙니다.
+여럿 유명한 블로그 플랫폼들을 사용하면서 제가 만들어보고 싶었던, 불편했던 점들을 보완하고자 직접 블로그를 제작했습니다. 테마를 만드는데 있어 [Hudi](https://github.com/devHudi/gatsby-starter-hoodie) 님에게 가장 큰 영감을 받았음을 밝힙니다.
 이 테마가 저처럼 블로그를 직접 커스터마이징하여 운영하고자 하시는 분들에게 도움이 되었으면 합니다.
 
 ![](./static/readme/preview.png)
