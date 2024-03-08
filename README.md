@@ -1,14 +1,20 @@
-## 1. 테마 설치하기 👋
+# Gatsby Starter Haon
+
+![](./static/readme/theme.png)
 
 여럿 유명한 블로그 플랫폼들을 사용하면서 제가 만들어보고 싶었던, 불편했던 점들을 보완하고자 직접 블로그를 제작했습니다.
 이 테마가 저처럼 블로그를 직접 커스터마이징하여 운영하고자 하시는 분들에게 도움이 되었으면 합니다.
 
-> 현 블로그 테마는 **[Hudi](https://github.com/devHudi/gatsby-starter-hoodie.git)** 님의 Gatsby Blog 테마를 기반으로 제작했습니다 🙂
+![](./static/readme/preview.png)
+
+---
+
+## 1. 테마 설치하기 👋
 
 아래 과정을 따라서 블로그 테마를 직접 만들어보세요!
 
 ```
-npx gatsby your-blog-name https://github.com/msung99/Gatsby-Starter-Haon.git
+gatsby new your-blog-name https://github.com/msung99/Gatsby-Starter-Haon.git
 ```
 
 ---
@@ -37,7 +43,7 @@ module.exports = {
     title: `haon.blog`,
     description: `Hello! This is a tech blog theme using Gatsby 🤩`,
     author: `Haon`,
-    siteUrl: `https://main--sage-malasada-49a59a.netlify.app`,
+    siteUrl: `https://gatsby-starter-haon.netlify.app/`,
     keywords: [`server`, `backend`, `gatsby`],
     repo: "msung99/Gatsby-Starter-Haon",
     socialLinks: {

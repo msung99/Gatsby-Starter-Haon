@@ -12,9 +12,9 @@ module.exports = {
     title: `haon.blog`,
     description: `Hello! This is a tech blog theme using Gatsby 🤩`,
     author: `Haon`,
-    siteUrl: `https://main--sage-malasada-49a59a.netlify.app`,
+    siteUrl: `https://gatsby-starter-haon.netlify.app`,
     keywords: [`server`, `backend`, `gatsby`], 
-    repo: 'msung99/comm',
+    repo: 'msung99/Gatsby-Starter-Haon',
     socialLinks: { 
       github: 'https://github.com/',
       instagram: 'https://www.instagram.com/', 
