@@ -35,6 +35,7 @@ export default ({ data, location }) => {
 };
 
 
+
 export const pageQuery = graphql`
   query BlogPostBySlug(
     $id: String!
@@ -59,22 +60,31 @@ export const pageQuery = graphql`
         tags
         series
         previewImage
+        isPrivate
       }
     }
-    previous: markdownRemark(id: { eq: $previousPostId }) {
+    previous: markdownRemark(
+      id: { eq: $previousPostId }
+      frontmatter: { isPrivate: { ne: true } }
+    ) {
       fields {
         slug
       }
       frontmatter {
         title
+        isPrivate
       }
     }
-    next: markdownRemark(id: { eq: $nextPostId }) {
+    next: markdownRemark(
+      id: { eq: $nextPostId }
+      frontmatter: { isPrivate: { ne: true } }
+    ) {
       fields {
         slug
       }
       frontmatter {
         title
+        isPrivate
       }
     }
   }
