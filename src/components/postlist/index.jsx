@@ -47,6 +47,9 @@ const PostList = ({ posts }) => {
                         ))}
                       </PostTags>
                     )}
+                    <ImageMobileWrapper>
+                      <Image previewImage={previewImage} />
+                    </ImageMobileWrapper>
                     <Date>{date}</Date>
                     <PostDescription>
                       {description || truncate(body, 80)}
@@ -175,6 +178,23 @@ const ImageWrapper = styled.div`
   transition: background 1s ease; 
 
   @media(max-width: 768px) {
+    display: none;
+  }
+`;
+
+const ImageMobileWrapper = styled.div`
+  padding-top: 60px;
+  padding-bottom: 60px;
+  width: 200px;
+  height: 200px;
+  margin-left: 30px;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  transition: background 1s ease; 
+  display: flex;
+  margin: 0 auto; 
+
+  @media(min-width: 768px) {
     display: none;
   }
 `;
