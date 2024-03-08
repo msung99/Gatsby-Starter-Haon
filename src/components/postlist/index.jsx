@@ -185,8 +185,8 @@ const ImageWrapper = styled.div`
 const ImageMobileWrapper = styled.div`
   padding-top: 60px;
   padding-bottom: 60px;
-  width: 200px;
-  height: 200px;
+  width: 160px;
+  height: 160px;
   margin-left: 30px;
   overflow: hidden;
   background-repeat: no-repeat;
