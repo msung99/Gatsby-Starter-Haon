@@ -13,6 +13,7 @@ const PostListTemplate = ({ data, location }) => {
   const author = data.site.siteMetadata.author
   const siteUrl = data.site.siteMetadata.siteUrl
   const keywords = data.site.siteMetadata.keywords
+  const title = data.site.siteMetadata.title;
 
   const posts = data.allMarkdownRemark.nodes
   const filteredPosts = posts.filter(post => !post.frontmatter.isPrivate);
@@ -28,7 +29,7 @@ const PostListTemplate = ({ data, location }) => {
 
   return (
     <PageLayout>
-      <Seo title={author} description={description}/>
+      <Seo title={title} description={description}/>
       <Profile author={author} description={description} siteUrl={siteUrl} keywords={keywords}/>
       <SimpleTagList tags={publicTags} allCount={filteredTagsCount}/>
       <PostCount>All Posts ({filteredPosts.length})</PostCount>

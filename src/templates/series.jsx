@@ -9,12 +9,11 @@ const SeriesTemplate = ({pageContext, data, location}) => {
     const seriesName = pageContext.series
     const posts = data.allMarkdownRemark.nodes;
     const totalCount = posts.length
-    const author = siteMetadata.author;
     const description = siteMetadata.description;
 
     return (
         <PageLayout>
-            <Seo title={author} description={description}/>
+            <Seo title={seriesName} description={description}/>
             <Series>
                 <Series.Header
                   seriesName={seriesName}

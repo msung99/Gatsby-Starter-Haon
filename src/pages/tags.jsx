@@ -4,8 +4,11 @@ import PageLayout from  "../components/layout/page-component"
 import styled from "styled-components"
 import AllTagList from "../components/tags"
 import Seo from "../components/seo"
+import { siteMetadata } from "../../gatsby-config"
 
 const TagListTemplate = ({ data, location }) => {
+  const title = siteMetadata.title;
+
   const allPosts = data.allMarkdownRemark.nodes;
   const tagsWithPrivatePosts = data.allMarkdownRemark.group.map(tag => {
     const privatePosts = allPosts.filter(post => 
@@ -34,7 +37,7 @@ const TagListTemplate = ({ data, location }) => {
   
   return (
     <PageLayout>
-      <Seo title={author} description={tags}/>
+      <Seo title={title} description={tags}/>
       <TagListWrapper>
         <AllTagList tags={tags} allCount={allCount}></AllTagList>
       </TagListWrapper>

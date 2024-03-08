@@ -12,7 +12,7 @@ const SeriesListTemplate = ({ data, location }) => {
 
     return (
         <PageLayout>
-            <Seo title={author} description={description}/>
+            <Seo title={data.site.siteMetadata.title} description={description}/>
             <SeriesList seriesList={seriesList} totalCount={totalCount}/>
         </PageLayout>
     )

@@ -20,13 +20,14 @@ const AboutTemplate = ({ data, location}) => {
   const author = data.site.siteMetadata.author
   const siteUrl = data.site.siteMetadata.siteUrl
   const keywords = data.site.siteMetadata.keywords
+  const title = data.site.siteMetadata.title
 
   const post = data.markdownRemark;
   const toc = post.tableOfContents;
 
   return (
     <PageLayout>
-      <Seo title={author} description={description}/>
+      <Seo title={title} description={description}/>
       <Profile author={author} description={description} siteUrl={siteUrl} keywords = {keywords}/>
       <SocialLinks>
         {Object.entries(socialLinks).map(([key, value]) => (

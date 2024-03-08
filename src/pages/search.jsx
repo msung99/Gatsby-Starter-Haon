@@ -28,7 +28,7 @@ const SearchTemplate = ({ data }) => {
 
     return (
         <PageLayout>
-          <Seo title={title} description={description}/>
+          <Seo title={siteMetadata.title} description={description}/>
           <Search onChange={e => setQuery(e.target.value)} placeholder="Enter your search keyword" count={query ? filteredPosts.length : 0}/>  
           {query && filteredPosts.length > 0 && <PostList posts={filteredPosts}/>}
         </PageLayout>

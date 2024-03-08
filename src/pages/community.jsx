@@ -16,7 +16,7 @@ import Seo from "../components/seo/index.jsx";
 
 
 const CommunityTemplate = ({ data }) => {
-  const title = data.site.siteMetadata?.title || `Title`;
+  const title = data.site.siteMetadata.title;
   const description = data.site.siteMetadata.description;
   const author = data.site.siteMetadata.author;
   const siteUrl = data.site.siteMetadata.siteUrl;
@@ -25,7 +25,7 @@ const CommunityTemplate = ({ data }) => {
 
   return (
     <PageLayout>
-      <Seo title={author} description={description}/>
+      <Seo title={title} description={description}/>
       <Profile author={author} description={description} siteUrl={siteUrl} keywords={keywords} />
       <SocialLinks>
         {Object.entries(socialLinks).map(([key, value]) => (
