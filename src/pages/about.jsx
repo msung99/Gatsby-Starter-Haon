@@ -9,13 +9,12 @@ import { SiVelog } from "react-icons/si";
 import { MdOutlineEmail } from "react-icons/md";
 import Profile from "../components/profile/index.jsx";
 import Seo from "../components/seo/index.jsx";
-import PostContent from "../components/post/post-content/index.jsx";
 import { ContentWrapper, HtmlWrapper } from "../components/post/post-content/post-style/index.jsx";
 import TableOfContents from "../components/toc/index.jsx";
+import { siteMetadata } from "../../gatsby-config.js";
 
 const AboutTemplate = ({ data, location}) => {
   const { frontmatter, html } = data.markdownRemark;
-  const socialLinks = data.site.siteMetadata.socialLinks;
   const description = data.site.siteMetadata.description
   const author = data.site.siteMetadata.author
   const siteUrl = data.site.siteMetadata.siteUrl
@@ -25,14 +24,18 @@ const AboutTemplate = ({ data, location}) => {
   const post = data.markdownRemark;
   const toc = post.tableOfContents;
 
+  const socialLinks = siteMetadata.socialLinks;
+
   return (
     <PageLayout>
       <Seo title={title} description={description}/>
-      <Profile author={author} description={description} siteUrl={siteUrl} keywords = {keywords}/>
+      <Profile author={author} description={description} siteUrl={siteUrl} keywords={keywords}/>
       <SocialLinks>
-        {Object.entries(socialLinks).map(([key, value]) => (
-          <Link key={key} to={value}>
-            <EmojiLink>{socialEmojis[key]}</EmojiLink>
+        {Object.entries(socialLinks).map(([key, link]) => (
+          <Link key={key} to={link}>
+            <EmojiLink>
+              {socialEmojis[key] && socialEmojis[key]}
+            </EmojiLink>
           </Link>
         ))}
       </SocialLinks>
@@ -76,7 +79,6 @@ const socialEmojis = {
 
 export default AboutTemplate;
 
-
 export const pageQuery = graphql`
   query {
     site {
@@ -86,14 +88,6 @@ export const pageQuery = graphql`
         author
         siteUrl
         keywords
-        socialLinks {
-          github
-          instagram
-          facebook
-          linkedin
-          velog
-          email
-        }
       }
     }
     markdownRemark(fields: { slug: { eq: "/default/about/" } }) {

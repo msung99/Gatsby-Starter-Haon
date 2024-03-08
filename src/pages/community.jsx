@@ -4,7 +4,6 @@ import PageLayout from "../components/layout/page-component";
 import Profile from "../components/profile";
 import Utterances from "../components/utterances/index.jsx";
 import styled from "styled-components";
-import { GoComment } from "react-icons/go";
 import { Link } from "gatsby";
 import { FaInstagram } from "react-icons/fa6";
 import { FaFacebook } from "react-icons/fa";
@@ -13,7 +12,7 @@ import { SiVelog } from "react-icons/si";
 import { FaGithub } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 import Seo from "../components/seo/index.jsx";
-
+import { siteMetadata } from "../../gatsby-config.js";
 
 const CommunityTemplate = ({ data }) => {
   const title = data.site.siteMetadata.title;
@@ -21,16 +20,19 @@ const CommunityTemplate = ({ data }) => {
   const author = data.site.siteMetadata.author;
   const siteUrl = data.site.siteMetadata.siteUrl;
   const keywords = data.site.siteMetadata.keywords;
-  const socialLinks = data.site.siteMetadata.socialLinks;
+
+  const socialLinks = siteMetadata.socialLinks;
 
   return (
     <PageLayout>
       <Seo title={title} description={description}/>
       <Profile author={author} description={description} siteUrl={siteUrl} keywords={keywords} />
       <SocialLinks>
-        {Object.entries(socialLinks).map(([key, value]) => (
-          <Link key={key} to={value}>
-            <EmojiLink>{socialEmojis[key]}</EmojiLink>
+        {Object.entries(socialLinks).map(([key, link]) => (
+          <Link key={key} to={link}>
+            <EmojiLink>
+              {socialEmojis[key] && socialEmojis[key]}
+            </EmojiLink>
           </Link>
         ))}
       </SocialLinks>
@@ -85,14 +87,6 @@ export const pageQuery = graphql`
         author
         siteUrl
         keywords
-        socialLinks {
-          github
-          instagram
-          facebook
-          linkedin
-          velog
-          email
-        }
       }
     }
   }
