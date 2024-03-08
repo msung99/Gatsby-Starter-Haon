@@ -7,4 +7,4 @@ assignees: ''
 
 ---
 
-> What are you curious about?
+## What are you curious about?
