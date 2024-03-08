@@ -32,8 +32,10 @@ const AboutTemplate = ({ data, location}) => {
       <Profile author={author} description={description} siteUrl={siteUrl} keywords={keywords}/>
       <SocialLinks>
         {Object.entries(socialLinks).map(([key, link]) => (
-          <Link key={key} link={link}>
-            {socialEmojis[key] && socialEmojis[key]}
+          <Link key={key} to={link}>
+            <EmojiLink>
+              {socialEmojis[key] && socialEmojis[key]}
+            </EmojiLink>
           </Link>
         ))}
       </SocialLinks>
