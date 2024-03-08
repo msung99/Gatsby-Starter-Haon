@@ -16,11 +16,12 @@ module.exports = {
     keywords: [`server`, `backend`, `gatsby`], 
     repo: 'haon/Gatsby-Starter-Haon',
     socialLinks: { 
-      instagram: 'https://www.instagram.com/', 
+      github: 'https://github.com/msung99', 
+      instagram: 'https://www.instagram.com/iminseong920/', 
       facebook: 'https://www.facebook.com/', 
       linkedin: 'https://www.linkedin.com/',
-      velog: 'https://velog.io/',
-      email: `https://naver.com`
+      velog: 'https://velog.io/@msung99',
+      email: 'https://msung6924@naver.com',
   },
   },
   plugins: [
