@@ -13,9 +13,8 @@ assignees: ''
 
 ---
 
-### 어떤 상황에서 발생한 버그인가요? (Under what circumstances did the bug occur?)
+### 버그가 어떻게 해결되어야 하나요? (How should the bug be resolved?)
 
-> 
 
 ---
 
