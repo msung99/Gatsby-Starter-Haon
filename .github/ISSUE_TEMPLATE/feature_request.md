@@ -1,20 +1,12 @@
----
-name: Feature request
-about: Suggest an idea for this project
-title: ''
-labels: ''
-assignees: ''
+### 어떤 기능인가요? (What feature is it?)
 
----
+> 추가하려는 기능에 대해 설명해주세요! (Please describe the features you would like to add!)
 
-## 어떤 기능인가요?
+### 작업 상세 내용 (Details)
 
-> 추가하려는 기능에 대해 간결하게 설명해주세요
+- [ ] feature1
+- [ ] feature2
+- [ ] feature3
 
-## 작업 상세 내용
+## 참고할만한 자료(선택) (Reference materials - Options)
 
-- [ ] TODO
-- [ ] TODO
-- [ ] TODO
-
-## 참고할만한 자료(선택)
