@@ -14,7 +14,7 @@ module.exports = {
     author: `Haon`,
     siteUrl: `https://gatsby-starter-haon.netlify.app`,
     keywords: [`server`, `backend`, `gatsby`], 
-    repo: 'haon/Gatsby-Starter-Haon',
+    repo: 'msung99/Gatsby-Starter-Haon',
     socialLinks: { 
       github: 'https://github.com/msung99', 
       instagram: 'https://www.instagram.com/iminseong920/', 
