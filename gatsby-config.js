@@ -25,6 +25,12 @@ module.exports = {
   },
   },
   plugins: [
+    {
+      resolve: "gatsby-plugin-gtag",
+      options: {
+        trackingIds: ["G-CD9E7GB2ED"],
+      },
+    },
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-transformer-remark`,
@@ -54,12 +60,6 @@ module.exports = {
       options: {
         name: `content`,
         path: `${__dirname}/src/contents/posts`,
-      },
-    },
-    {
-      resolve: "gatsby-plugin-google-gtag",
-      options: {
-        trackingIds: ["G-CD9E7GB2ED"],
       },
     },
     {
