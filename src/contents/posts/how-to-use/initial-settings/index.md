@@ -1,7 +1,7 @@
 ---
 title: Gatsby Initial Settings ⚙️
 description: 현 템플릿을 사용하기 위해 어떻게 초기 설정을 해야할까요?
-date: "2024-03-01"
+date: "2024-03-06"
 tags:
   - Introduce
   - About
