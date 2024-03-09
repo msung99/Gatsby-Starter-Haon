@@ -10,7 +10,7 @@ previewImage: how.png
 
 ## Gatsby Starter Haon 의 특징
 
-Gatsby Starter Haon 은 [Hudi](https://github.com/devHudi/gatsby-starter-hoodie) 님의 블로그 테마에 큰 영감을 받아 만들어진 테마입니다. 크게 아래와 같은 기능들을 제공하고 있습니다.
+Gatsby Starter Haon 은 크게 아래와 같은 기능들을 제공하고 있습니다.
 
 ### Main Menu 📌
 

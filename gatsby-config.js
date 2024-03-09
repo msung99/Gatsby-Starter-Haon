@@ -25,6 +25,12 @@ module.exports = {
   },
   },
   plugins: [
+    {
+      resolve: "gatsby-plugin-gtag",
+      options: {
+        trackingIds: ["G-CD9E7GB2ED"],
+      },
+    },
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-transformer-remark`,
