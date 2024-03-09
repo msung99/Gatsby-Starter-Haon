@@ -1,7 +1,7 @@
 ---
 name: Other Issues (Etc)
 about: Please register other issues.
-title: "[Etc] etc1"
+title: 'etc: etc1'
 labels: etc
 assignees: ''
 
