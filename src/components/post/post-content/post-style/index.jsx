@@ -64,6 +64,46 @@ export const HtmlWrapper = styled.div`
     font-weight: 700;
   }
 
+  table {
+    border-collapse: collapse;
+    font-size: 14.5px;
+    color: ${props => props.theme.main.text};
+    border: 0.5px solid ${props => props.theme.main.text};
+
+    thead {
+      tr {
+        th {
+          background-color: ${props => props.theme.tag.hover};
+          padding-bottom: 20px;
+          padding-top: 10px;
+          padding-left: 10px;
+          border-bottom: 0.1px solid ${props => props.theme.main.text};
+        }
+      }
+    }
+  }
+
+  td:nth-child(odd) {
+    background-color: ${props => props.theme.tag.background};
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    border-bottom: 0.5px solid ${props => props.theme.main.text};
+    border-right: 0.1px solid  ${props => props.theme.main.text};
+  }
+
+  td:nth-child(even) {
+    background-color: ${props => props.theme.tag.background};
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    border-bottom: 0.1px solid ${props => props.theme.main.text};
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+
   section > p {
     font-size: 16px;
     line-height: 180%; 
