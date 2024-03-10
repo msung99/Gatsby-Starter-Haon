@@ -1,11 +1,12 @@
-// SimpleTagList.jsx
-import React from "react";
+import React, { useState } from "react";
 import kebabCase from "lodash.kebabcase";
 import { Link } from "gatsby";
 import styled from "styled-components";
 
 const SimpleTagList = ({ tags, allCount, posts }) => {
-  // 만약 posts가 정의되어 있지 않으면 빈 배열을 할당
+  const [showAllTags, setShowAllTags] = useState(false);
+  const maxVisibleTags = 40;
+
   const filteredPosts = posts || [];
   
   const filteredTags = tags.filter(tag => {
@@ -19,15 +20,22 @@ const SimpleTagList = ({ tags, allCount, posts }) => {
     return privatePosts.length === 0;
   });
 
+  const visibleTags = showAllTags ? filteredTags : filteredTags.slice(0, maxVisibleTags);
+
   return (
     <TagListStyle>
       <div>
         <TagTitle>Tags ({filteredTags.length})</TagTitle>
-        {filteredTags.map(tag => (
+        {filteredTags.length > maxVisibleTags && (
+          <ShowMoreButton onClick={() => setShowAllTags(!showAllTags)}>
+            {showAllTags ? 'Less' : 'More'}
+          </ShowMoreButton>
+        )}
+        {visibleTags.map(tag => (
           <TagStyle key={kebabCase(tag.fieldValue)}>
             <span>
               <StyledLink to={`/tags/${kebabCase(tag.fieldValue)}/`}>
-                {kebabCase(tag.fieldValue)} <TagCountStyle>({tag.totalCount})</TagCountStyle>
+                {(tag.fieldValue)} <TagCountStyle>({tag.totalCount})</TagCountStyle>
               </StyledLink>
             </span>
           </TagStyle>
@@ -44,10 +52,11 @@ const TagListStyle = styled.div`
   margin-left: 0px;
   padding-bottom: 40px;
   border-bottom: 1.5px solid ${props => props.theme.main.border};
+  position: relative;
 `;
 
 const TagTitle = styled.div`
-  font-size: 15px;
+  font-size: 14px;
   margin-left: 7px;
   margin-bottom: 3px;
   color: ${props => props.theme.tag.text};
@@ -57,7 +66,7 @@ const TagTitle = styled.div`
 const TagStyle = styled.div`
   float: left;
   padding-left: 10px;
-  font-size: 16px;
+  font-size: 13.5px;
   transition: color 1s;
 
   &:hover {
@@ -84,5 +93,25 @@ const TagCountStyle = styled.span`
     color: #999;
   }
 `;
+
+const ShowMoreButton = styled.button`
+  background-color: ${props => props.theme.tag.background};
+  border: none;
+  cursor: pointer;
+  color: ${props => props.theme.main.text};
+  font-size: 12.5px;
+  padding: 3px 6px;
+  border-radius: 5px;
+  margin-top: 10px;
+  position: absolute; 
+  bottom: 8px;
+  left: 5px;
+  transition: background-color 0.5s;
+
+  &:hover {
+    background-color: ${props => props.theme.tag.hover};
+  }
+`;
+
 
 export default SimpleTagList;
