@@ -13,7 +13,7 @@ const AllTagList = ({ tags, allCount }) => {
             <span>
               <Link style={{ textDecoration: "none"}} to={`/tags/${kebabCase(tag.fieldValue)}/`}>
                 <Tag>
-                  {kebabCase(tag.fieldValue)} <TagCountStyle>({tag.totalCount - tag.privatePostsCount})</TagCountStyle>
+                  {(tag.fieldValue)} <TagCountStyle>({tag.totalCount - tag.privatePostsCount})</TagCountStyle>
                 </Tag>
               </Link>
             </span>
