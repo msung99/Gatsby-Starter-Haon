@@ -1,4 +1,3 @@
-// post-pagination.jsx
 import React from "react";
 import styled from "styled-components";
 import { FaArrowCircleLeft, FaArrowCircleRight } from "react-icons/fa";
@@ -36,6 +35,7 @@ const StyledFaArrowCircleRight = styled(FaArrowCircleRight)`
 
 const Ellipsis = styled.span`
   margin: 0 5px;
+  color: ${props => props.theme.main.text};
 `;
 
 const PostPagination = ({ totalPosts, postsPerPage, paginate, currentPage }) => {
