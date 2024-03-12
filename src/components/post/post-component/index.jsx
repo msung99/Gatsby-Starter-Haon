@@ -4,7 +4,7 @@ import PostHeader from "../post-header"
 import PostContent from "../post-content"
 import PostFooter from "../post-footer"
 
-const Post = styled.section`
+const Post = styled.article`
 ` 
 
 Post.Header = PostHeader
