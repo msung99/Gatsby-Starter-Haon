@@ -78,6 +78,7 @@ export const HtmlWrapper = styled.div`
           padding-top: 10px;
           padding-left: 10px;
           border-bottom: 0.1px solid ${props => props.theme.main.text};
+          border-left: 0.1px solid ${props => props.theme.main.text};
         }
       }
     }
@@ -88,6 +89,7 @@ export const HtmlWrapper = styled.div`
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 10px;
+    padding-right: 20px;
     border-bottom: 0.5px solid ${props => props.theme.main.text};
     border-right: 0.1px solid  ${props => props.theme.main.text};
   }
@@ -97,6 +99,7 @@ export const HtmlWrapper = styled.div`
     padding-top: 15px;
     padding-bottom: 15px;
     padding-left: 15px;
+    padding-right: 20px;
     border-bottom: 0.1px solid ${props => props.theme.main.text};
   }
 
