@@ -1,4 +1,3 @@
-// index.jsx
 import React from "react"
 import { graphql } from "gatsby"
 import PageLayout from  "../components/layout/page-component"
@@ -7,6 +6,7 @@ import Profile from "../components/profile"
 import SimpleTagList from "../components/simple-taglist"
 import styled from "styled-components"
 import Seo from "../components/seo"
+import { siteMetadata } from "../../gatsby-config.js";
 
 const PostListTemplate = ({ data, location }) => {
   const description = data.site.siteMetadata.description
@@ -14,6 +14,8 @@ const PostListTemplate = ({ data, location }) => {
   const siteUrl = data.site.siteMetadata.siteUrl
   const keywords = data.site.siteMetadata.keywords
   const title = data.site.siteMetadata.title;
+
+  const socialLinks = siteMetadata.socialLinks;
 
   const posts = data.allMarkdownRemark.nodes
   const filteredPosts = posts.filter(post => !post.frontmatter.isPrivate);
@@ -30,7 +32,8 @@ const PostListTemplate = ({ data, location }) => {
   return (
     <PageLayout>
       <Seo title={title} description={description}/>
-      <Profile author={author} description={description} siteUrl={siteUrl} keywords={keywords}/>
+      <Profile author={author} description={description} siteUrl={siteUrl} keywords={keywords} socialLinks={socialLinks}/>
+      <Line/>
       <SimpleTagList tags={publicTags} allCount={filteredTagsCount}/>
       <PostCount>All Posts ({filteredPosts.length})</PostCount>
       <PostList posts={posts}></PostList>
@@ -44,6 +47,10 @@ const PostCount = styled.div`
   font-weight: bold;
   margin-left: 10px;
   padding-top: 30px;
+`
+
+const Line = styled.div`
+  margin-bottom: 10px;
 `
 
 export default PostListTemplate
