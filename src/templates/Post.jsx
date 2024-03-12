@@ -15,9 +15,11 @@ export default ({ data, location }) => {
   const tags = post.frontmatter.tags || [];
   const series = post.frontmatter.series;
 
+  const exercpt = post.excerpt;
+
   return (
     <PageLayout>
-      <Seo title={title} description={description}/>
+      <Seo title={title} description={description || exercpt}/>
       <Post>
         <Post.Header
           title={title}
