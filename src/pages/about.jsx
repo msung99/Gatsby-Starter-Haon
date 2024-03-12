@@ -29,16 +29,7 @@ const AboutTemplate = ({ data, location}) => {
   return (
     <PageLayout>
       <Seo title={title} description={description}/>
-      <Profile author={author} description={description} siteUrl={siteUrl} keywords={keywords}/>
-      <SocialLinks>
-        {Object.entries(socialLinks).map(([key, link]) => (
-          <Link key={key} to={link}>
-            <EmojiLink>
-              {socialEmojis[key] && socialEmojis[key]}
-            </EmojiLink>
-          </Link>
-        ))}
-      </SocialLinks>
+      <Profile author={author} description={description} siteUrl={siteUrl} keywords={keywords} socialLinks={socialLinks}/>
       <Line/>
       <ContentWrapper>
         <TableOfContents content={toc}/>
@@ -55,27 +46,6 @@ const Line = styled.div`
   margin-bottom: 80px;
   border-bottom: 1.5px solid ${props => props.theme.main.border};
 `
-
-const SocialLinks = styled.div`
-  display: flex;
-  gap: 14px;
-  margin-left: 20px;
-  margin-bottom: 30px;
-`;
-
-const EmojiLink = styled.span`
-  cursor: pointer;
-  color: ${props => props.theme.emoji};
-`;
-
-const socialEmojis = {
-  github: <FaGithub className="icon" size="30" />,
-  instagram: <FaInstagram className="icon" size="30"/>,
-  facebook: <FaFacebook className="icon" size="30"/>,
-  linkedin: <FaLinkedin className="icon" size="30"/>,
-  velog: <SiVelog className="icon" size="30"/>,
-  email: <MdOutlineEmail className="icon" size="30"/>
-};
 
 export default AboutTemplate;
 

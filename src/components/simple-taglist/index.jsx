@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const SimpleTagList = ({ tags, allCount, posts }) => {
   const [showAllTags, setShowAllTags] = useState(false);
-  const maxVisibleTags = 40;
+  const maxVisibleTags = 20;
 
   const filteredPosts = posts || [];
   

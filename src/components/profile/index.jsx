@@ -2,25 +2,29 @@ import kebabCase from "lodash.kebabcase";
 import React from "react";
 import styled from "styled-components";
 import { siteMetadata } from "../../../gatsby-config";
+import SocialLinks from "../social-link";
 
-const Profile = ({ author, description, siteUrl, keywords }) => {
+const Profile = ({ author, description, siteUrl, keywords, socialLinks}) => {
   const truncatedDescription = truncateText(description, 50);
 
   return (
-    <ProfileStyle>
-      <Image siteUrl={siteUrl} />
-      <Text>
-        <Author>{author}</Author>
-        <Description>{truncatedDescription}</Description>
-        <KeyWordsStyle>
-          {keywords.map((keyword) => (
-            <KeyWordStyle key={kebabCase(keyword)}>
-              {kebabCase(keyword)}
-            </KeyWordStyle>
-          ))}
-        </KeyWordsStyle>
-      </Text>
-    </ProfileStyle>
+    <div>
+      <ProfileStyle>
+        <Image siteUrl={siteUrl} />
+        <Text>
+          <Author>{author}</Author>
+          <Description>{truncatedDescription}</Description>
+          <KeyWordsStyle>
+            {keywords.map((keyword) => (
+              <KeyWordStyle key={kebabCase(keyword)}>
+                {kebabCase(keyword)}
+              </KeyWordStyle>
+            ))}
+          </KeyWordsStyle>
+        </Text>
+      </ProfileStyle>
+      <SocialLinks socialLinks={socialLinks}/>
+    </div>
   );
 };
 
