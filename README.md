@@ -7,9 +7,23 @@
 
 ![](./static/readme/preview.png)
 
+>  💡 테마를 만드는데 있어 [Hudi](https://github.com/devHudi/gatsby-starter-hoodie) 님의 블로그로부터 큰 영감을 받았습니다.
+
 ---
 
->  💡 테마를 만드는데 있어 [Hudi](https://github.com/devHudi/gatsby-starter-hoodie) 님의 블로그로부터 큰 영감을 받았습니다.
+## Features 🚀
+
+- Markdown
+- SEO
+- Responsive Web
+- Dark/Light Mode
+- Private Mode
+- Tag 
+- Series
+- Search
+- Utterance (Comment Widget)
+
+---
 
 ## 0. 깃허브 레포지토리 생성하기
 
