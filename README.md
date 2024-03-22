@@ -11,7 +11,7 @@
 
 ---
 
-## Features
+## Features 🚀
 
 - Markdown
 - SEO
