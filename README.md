@@ -2,6 +2,8 @@
 
 > 💡 All the code in this repository and the blog theme are **open source.** Therefore, feel free to clone and use it as you wish! 🙂
 
+- Blog Theme Preview Service Link: https://gatsby-starter-haon.netlify.app/
+
 ![](./static/readme/theme.png)
 
 While using various popular blogging platforms, I wanted to address and improve the inconveniences I encountered. Therefore, I created this blog theme. I hope this theme will be helpful for those who want to customize and operate their own blogs like I do. Feel free to customize and use the Gatsby Haon Theme! 👋
