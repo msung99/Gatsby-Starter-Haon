@@ -1,4 +1,6 @@
-# Gatsby Starter Haon
+# <div align="center">Gatsby Starter Haon (Blog Theme - Open Source) 🚀</div>
+
+> 💡 All the code in this repository and the blog theme are **open source.** Therefore, feel free to clone and use it as you wish 
 
 ![](./static/readme/theme.png)
 
