@@ -1,4 +1,7 @@
-# Gatsby Starter Haon
+# <div align="center">Gatsby Starter Haon 🚀 (Blog Theme - Open Source) </div>
+
+
+> 💡 Blog Theme Preview Service Link: https://gatsby-starter-haon.netlify.app/
 
 ![](./static/readme/theme.png)
 
