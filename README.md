@@ -39,7 +39,7 @@ Before installing the theme, you need a GitHub repository for your Gatsby Theme.
 Follow the steps below to create your own blog theme!
 
 ```
-gatsby new your-blog-name https://github.com/msung99/Gatsby-Starter-Haon.git
+npx gatsby new your-blog-name https://github.com/msung99/Gatsby-Starter-Haon.git
 ```
 
 ---
