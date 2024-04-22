@@ -1,6 +1,7 @@
 # <div align="center">Gatsby Starter Haon (Blog Theme - Open Source) 🚀</div>
 
 > 💡 All the code in this repository and the blog theme are **open source.** Therefore, feel free to clone and use it as you wish! 🙂
+> - (현 블로그 테마는 오픈소스입니다. 자유롭게 clone 받아 커스터마이징하여 블로그를 꾸며보세요 🙂)
 
 - Blog Theme Preview Service Link: https://gatsby-starter-haon.netlify.app/
 
