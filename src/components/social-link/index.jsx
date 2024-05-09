@@ -20,12 +20,12 @@ const StyledRssIcon = styled(BsFillRssFill)`
 `;
 
 const socialEmojis = {
-  github: <FaGithub className="icon" size="28" />,
-  instagram: <FaInstagram className="icon" size="28" />,
-  facebook: <FaFacebook className="icon" size="28" />,
-  linkedin: <FaLinkedin className="icon" size="28" />,
-  velog: <SiVelog className="icon" size="28" />,
-  email: <MdOutlineEmail className="icon" size="28" />,
+  github: <FaGithub className="icon" size="26" />,
+  instagram: <FaInstagram className="icon" size="26" />,
+  facebook: <FaFacebook className="icon" size="26" />,
+  linkedin: <FaLinkedin className="icon" size="26" />,
+  velog: <SiVelog className="icon" size="26" />,
+  email: <MdOutlineEmail className="icon" size="26" />,
 };
 
 const StyledSocialLinks = styled.div`
@@ -40,7 +40,7 @@ const SocialLinks = ({ socialLinks }) => {
     <StyledSocialLinks>
       <RssLink>
         <Link to="/rss.xml">
-          <StyledRssIcon className="icon" size="28" />
+          <StyledRssIcon className="icon" size="26" />
         </Link>
       </RssLink>
       {Object.entries(socialLinks).map(([key, link]) => (
