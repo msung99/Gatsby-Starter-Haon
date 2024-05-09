@@ -44,11 +44,19 @@ const SocialLinks = ({ socialLinks }) => {
         </Link>
       </RssLink>
       {Object.entries(socialLinks).map(([key, link]) => (
-        <Link key={key} to={link}>
-          <EmojiLink>
-            {socialEmojis[key] && socialEmojis[key]}
-          </EmojiLink>
-        </Link>
+        key === 'email' ? (
+          <a key={key} href={`mailto:${link}`}>
+            <EmojiLink>
+              {socialEmojis[key]}
+            </EmojiLink>
+          </a>
+        ) : (
+          <Link key={key} to={link}>
+            <EmojiLink>
+              {socialEmojis[key]}
+            </EmojiLink>
+          </Link>
+        )
       ))}
     </StyledSocialLinks>
   );

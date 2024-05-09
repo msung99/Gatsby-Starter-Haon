@@ -21,7 +21,7 @@ module.exports = {
       facebook: 'https://www.facebook.com/', 
       linkedin: 'https://www.linkedin.com/',
       velog: 'https://velog.io/@msung99',
-      email: 'https://msung6924@naver.com',
+      email: 'msung6924@naver.com',
   },
   },
   plugins: [
