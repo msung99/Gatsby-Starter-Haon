@@ -194,7 +194,7 @@ export const HtmlWrapper = styled.div`
   .language-text {
     background-color: ${props => props.theme.post.content.language.bg};
     padding: -10px;
-    font-size: 15px;
+    font-size: 14.5px;
     color: ${props => props.theme.post.content.language.text};
     width: 100%;
     height: 100%;

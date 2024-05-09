@@ -142,7 +142,7 @@ export const DARK_THEME_COLORS = {
       },
       hr: '#282828',
       language: {
-        bg: '#606060',
+        bg: '#3C3A39',
         text: '#e6e6e6',
       },
       a: '#c9c9ca',
