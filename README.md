@@ -4,7 +4,9 @@
 >
 > - (현 블로그 테마는 오픈소스입니다. 자유롭게 clone 받아 커스터마이징하여 블로그를 꾸며보세요 🙂)
 
-- Blog Theme Preview Service Link: https://gatsby-starter-haon.netlify.app/
+> 💡 Blog Theme Live Demo: https://gatsby-starter-haon.netlify.app/
+
+국문(한국어 원서) 는 [Gatsby 블로그 초기 설정 ⚙️ 가이드라인](https://gatsby-starter-haon.netlify.app/how-to-use/initial-settings-kr/) 부터 확인 가능합니다.
 
 ![](./static/readme/theme.png)
 
@@ -12,7 +14,7 @@ I hope this theme will be helpful for those who want to customize and operate yo
 
 ![](./static/readme/preview.png)
 
-> 💡 I drew great inspiration for creating this theme from [Hudi](https://github.com/devHudi/gatsby-starter-hoodie)'s blog.
+> 💡 I drew great inspiration for creating this theme from [Hudi's blog](https://github.com/devHudi/gatsby-starter-hoodie).
 
 ---
 
