@@ -1,7 +1,7 @@
 ---
-title: Gatsby Initial Settings ⚙️
+title: Gatsby 블로그 초기 설정 ⚙️
 description: 현 템플릿을 사용하기 위해 어떻게 초기 설정을 해야할까요?
-date: "2024-03-06"
+date: "2024-03-03"
 tags:
   - Introduce
   - About
@@ -21,7 +21,7 @@ previewImage: "setting.png"
 아래 과정을 따라서 블로그 테마를 직접 만들어보세요!
 
 ```
-gatsby new your-blog-name https://github.com/msung99/Gatsby-Starter-Haon.git
+npx gatsby new your-blog-name https://github.com/msung99/Gatsby-Starter-Haon.git
 ```
 
 ---
@@ -42,29 +42,25 @@ gatsby develop // or "npm start"
 
 ## 3. 블로그 정보 입력하기
 
-본인의 메타 정보를 직접 기입하여 커스터마이징 할 수 있습니다. `gatsby-config.js` 로 이동하면 아래와 같은 초기 상태를 확인할 수 있습니다.
+본인의 메타 정보를 직접 기입하여 커스터마이징 할 수 있습니다. `meta-config.js` 로 이동하면 아래와 같은 초기 상태를 확인할 수 있습니다.
 
 ```js
 module.exports = {
-  siteMetadata: {
-    title: `haon.blog`,
-    description: `Hello! This is a tech blog theme using Gatsby 🤩`,
-    author: `Haon`,
-    siteUrl: `https://gatsby-starter-haon.netlify.app/`,
-    keywords: [`server`, `backend`, `gatsby`],
-    repo: "msung99/Gatsby-Starter-Haon",
-    socialLinks: {
-      github: "https://github.com/msung99",
-      instagram: "https://www.instagram.com/iminseong920",
-      facebook: "https://www.facebook.com/",
-      linkedin: "https://www.linkedin.com/",
-      velog: "https://velog.io/@msung99",
-      email: `https://msung6924@naver.com`,
-    },
+  title: `haon.theme`,
+  description: `Hello! This is a tech blog theme using Gatsby 🤩`,
+  author: `Haon`,
+  siteUrl: `https://gatsby-starter-haon.netlify.app`,
+  keywords: [`server`, `backend`, `gatsby`],
+  repo: "msung99/Gatsby-Starter-Haon",
+  gtag: "G-CD9E7GB2ED", // with. Google Analytics
+  socialLinks: {
+    github: "https://github.com/msung99",
+    instagram: "https://www.instagram.com/iminseong920/",
+    facebook: "https://www.facebook.com/",
+    linkedin: "https://www.linkedin.com/",
+    velog: "https://velog.io/@msung99",
+    email: "msung6924@naver.com",
   },
-  plugins: [
-    // ... (생략)
-  ],
 }
 ```
 
@@ -90,7 +86,17 @@ keywords: [ ], // [`server`, `backend`, `gatsby`]
 repo: "your-github-name/repository-name"  //  "msung99/Gatsby-Starter-Haon",
 ```
 
-### 3-3. 소설 계졍 연동
+### 3-3. (선택) Google 애널리틱스 연동
+
+개설한 블로그 접속자를 파악하는 방법으로 `Google 애널리틱스` 기능을 사용할 수 있습니다. `gatsby-starter-haon` 은 손쉽게 구글 애널리틱스와 본인의 블로그 사이트를 연동하여 접속자 수를 파악할 수 있도록 합니다.
+
+[Goole Analytics 공식 문서](https://developers.google.com/analytics/learn?hl=ko) 를 참고하여 애널릭틱스 기능에 대해 살펴보고, `tracking id` 를 발급받으세요. 그리고 발급받은 tracking id 를 아래와 같이 기입하세요.
+
+```
+gtag: "G-CD9E7GB2ED" // your google analytics tracking id
+```
+
+### 3-4. 소설 계졍 연동
 
 마지막으로 소설 계정을 연동할 수 있습니다. 소셜 이모티콘을 클릭하면 해당 URL 로 넘어가는 기능을 위해 필요합니다.
 아래 소설 계정중 원하는 필드를 선택적으로 커스터마이징하여 사용하세요.
@@ -110,13 +116,15 @@ socialLinks: {
 
 ## 4. 블로그 배포하기
 
-`Github Page` 또는 `Netlify` 중 원하시는 배포 환경에 따라 빠르게 블로그를 만드실 수 있습니다. 여기선 Netify 에 대해 간단히만 언급하겠습니다.
+`Github Page` 또는 `Netlify` 중 원하시는 배포 환경에 따라 빠르게 블로그를 만드실 수 있습니다.
 
-아래 버튼을 활용하면 `Gatsby-Haon-Blog` 테마를 사용하고 있는 본인 깃허브 레포지토리를 Netlify 를 연동하여 배포를 진행할 수 있습니다.
+`Gatsby-Haon-Blog` 테마를 사용하고 있는 본인 깃허브 레포지토리를 Netlify 를 연동하여 배포를 진행할 수 있습니다. 이 과정은 크게 어렵지 않으니 생략합니다.
 
-이때 깃허브 레포지토리가 필요할 수 있습니다. 앞서 0번에서 미리 생성한 레포지토리와 연동해주시면 됩니다.
+---
 
-<a href="https://app.netlify.com/start/deploy?repository=https://github.com/msung99/Gatsby-Starter-Haon.git" target="_blank"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify"></a>
+## 5. 기타 유의사항
+
+`gatsby-starter-haon` 은 최소한의 디폴트 포스트가 필요합니다. `default` 패키지 내에 존재하는 2개의 포스트는 삭제하지 않아야 원활히 동작합니다.
 
 ---
 
