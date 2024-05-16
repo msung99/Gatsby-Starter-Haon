@@ -122,6 +122,12 @@ socialLinks: {
 
 ---
 
+## 5. 기타 유의사항
+
+`gatsby-starter-haon` 은 최소한의 디폴트 포스트가 필요합니다. `default` 패키지 내에 존재하는 2개의 포스트는 삭제하지 않아야 원활히 동작합니다.
+
+---
+
 ## Isuee, PR 등록
 
 Gatsby-Starter-Haon 을 사용하다가 소통하고 싶은 내용이 생긴다면
