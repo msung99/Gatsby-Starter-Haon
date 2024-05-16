@@ -1,7 +1,7 @@
 ---
 title: Introduce About Writer
 description: Gatsby Haon Theme 의 저자에 대해 소개합니다.
-date: "2024-03-05"
+date: "2024-01-01"
 tags:
   - Introduce
   - About

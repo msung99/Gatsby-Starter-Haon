@@ -1,7 +1,7 @@
 ---
 title: Gatsby 블로그 초기 설정 ⚙️
 description: 현 템플릿을 사용하기 위해 어떻게 초기 설정을 해야할까요?
-date: "2024-03-06"
+date: "2024-03-03"
 tags:
   - Introduce
   - About

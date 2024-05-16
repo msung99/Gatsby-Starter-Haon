@@ -1,11 +1,11 @@
 ---
 title: How to Write Markdown Posts? ✍️
-date: "2024-03-08"
+date: "2024-03-07"
 tags:
   - Introduce
   - About
 series: how to use this template?
-previewImage: how.png
+previewImage: writing.png
 ---
 
 ## 1. Markdown Based
