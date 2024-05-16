@@ -50,12 +50,12 @@ series: how to use this template?
 포스트에 이미지를 추가시, 아래와 같은 형식으로 이미지를 첨부할 수 있습니다. 이미지는 동일한 폴더 내에 (즉, 현재 markdown 파일과 동일한 폴더 안에) 위치해야 한다는 점을 유의해주세요.
 
 ```
-![](이미지 이름)
+![](./이미지 이름)
 ```
 
 아래는 `image1.png` 라는 이름의 이미지를 첨부한 예시입니다.
 
-![](image1.png)
+![](./image1.png)
 
 ---
 
@@ -69,7 +69,7 @@ series: how to use this template?
 
 `writing.png` 이라는 미리보기 이미지를 static 폴더내 위치했다면, 포스트는 다음과 같이 조회됩니다.
 
-![](result.png)
+![](./result.png)
 
 멋진 미리보기를 마음껏 꾸며보세요!
 
@@ -82,7 +82,7 @@ series: how to use this template?
 
 ## 5. Toc (목차)
 
-![](toc.png)
+![](./toc.png)
 
 포스트 우측 상단을 보면 목차 기능이 존재하는 것을 볼 수 있습니다. 목차에 생성되는 텍스트는 h1, h2, h3 에 타이틀에 기반해 있습니다.
 
