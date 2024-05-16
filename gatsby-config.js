@@ -120,8 +120,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: "https://haon.blog",
-        sitemap: "https://haon.blog/sitemap.xml",
+        host: siteUrl,
+        sitemap: `${siteUrl}/sitemap.xml`,
         policy: [{userAgent: '*', allow: '/'}]
       }
     }
