@@ -179,7 +179,7 @@ const Title = styled.div`
   margin-top: 30px;
   margin-left: 5px;
   margin-bottom: 40px;
-  font-family: "Oswald";
+  font-family: "Source Code Pro", sans-serif;
   font-weight: 800;
 `;
 
