@@ -1,5 +1,5 @@
 const metaConfig = require("./meta-config")
-const {title, description, author, siteUrl, keywords, repo, socialLinks} = metaConfig
+const {title, description, author, siteUrl, keywords, repo, socialLinks, gtag} = metaConfig
 
 module.exports = {
   siteMetadata: {
@@ -9,7 +9,8 @@ module.exports = {
     siteUrl,
     keywords,
     repo,
-    socialLinks
+    socialLinks,
+    gtag
   },
   plugins: [
     {
@@ -69,7 +70,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-gtag",
       options: {
-        trackingId: ["G-CD9E7GB2ED"],
+        trackingId: [gtag],
       },
     },
     `gatsby-plugin-sharp`,
