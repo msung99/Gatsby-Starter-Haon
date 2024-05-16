@@ -1,13 +1,14 @@
 # <div align="center">Gatsby Starter Haon (Blog Theme - Open Source) 🚀</div>
 
 > 💡 All the code in this repository and the blog theme are **open source.** Therefore, feel free to clone and use it as you wish! 🙂
+>
 > - (현 블로그 테마는 오픈소스입니다. 자유롭게 clone 받아 커스터마이징하여 블로그를 꾸며보세요 🙂)
 
 - Blog Theme Preview Service Link: https://gatsby-starter-haon.netlify.app/
 
 ![](./static/readme/theme.png)
 
-While using various popular blogging platforms, I wanted to address and improve the inconveniences I encountered. Therefore, I created this blog theme. I hope this theme will be helpful for those who want to customize and operate their own blogs like I do. Feel free to customize and use the Gatsby Haon Theme! 👋
+I hope this theme will be helpful for those who want to customize and operate your blogs. Feel free to customize and use the Gatsby Haon Theme! 👋
 
 ![](./static/readme/preview.png)
 
@@ -26,6 +27,7 @@ While using various popular blogging platforms, I wanted to address and improve 
 - Search
 - Private Mode
 - Utterance (Comment widget)
+- GA (Google Analytics)
 
 ---
 
@@ -147,6 +149,6 @@ If you're using Gatsby-Starter-Haon and have something you want to communicate:
 - Bug Discovery and Code Improvement
 - New Features / Functions
 
-Feel free to leave comments or register issues according to the Issue Template. 
+Feel free to leave comments or register issues according to the Issue Template.
 
 We welcome any feedback. We're looking forward to many people's opinions for quality software improvement and theme development. 👍
