@@ -112,8 +112,7 @@ const SocialMenu = styled.div`
   justify-content: center;
   margin-top: 15px;
   padding-top: 10px;
-  padding-right: 60px;
-  padding-left: 5px;
+  padding-right: 40px;
   padding-bottom: 10px;
   transition: background-color 0.2s ease-in-out;
   border-radius: 8px;
@@ -124,10 +123,11 @@ const SocialMenu = styled.div`
 `;
 
 const SocialText = styled.p`
-  font-size: 16px;
+  font-size: 15px;
   color: ${props => props.theme.main.text};
-  margin-left: 10px;
+  margin-left: 7px;
   margin-top: 10px;
+  line-height: 125%;
 `;
 
 const profileImageUrl =
