@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
-import { Link } from "gatsby";
 import AsideMenuBar from "../../menu-bar/aside";
 import HeaderMenuBar from "../../menu-bar/header";
 
@@ -22,40 +21,49 @@ const slideOut = keyframes`
   }
 `;
 
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
-
 const PageNavigator = () => {
   const [showHaonBlog, setShowHaonBlog] = useState(true);
+  const [showSideMenu, setShowSideMenu] = useState(true);
+  const [lastScrollTop, setLastScrollTop] = useState(0);
 
   useEffect(() => {
     const handleResize = () => {
       setShowHaonBlog(window.innerWidth < 1300);
     };
 
+    const handleScroll = () => {
+      const st = window.pageYOffset || document.documentElement.scrollTop;
+      if (st > lastScrollTop) {
+        // Scroll down
+        setShowSideMenu(false);
+      } else {
+        // Scroll up
+        setShowSideMenu(true);
+      }
+      setLastScrollTop(st <= 0 ? 0 : st);
+    };
+
     // Set initial state based on window width
     handleResize();
 
-    // Add event listener for window resize
+    // Add event listeners
     window.addEventListener("resize", handleResize);
+    window.addEventListener("scroll", handleScroll);
 
-    // Remove event listener on component unmount
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+    // Remove event listeners on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollTop]);
 
   return (
     <>
       {showHaonBlog ? (
-        <HeaderMenuBar/>
+        <HeaderMenuBar />
       ) : (
-        <SideMenuBarWrapper show={!showHaonBlog}>
-          <AsideMenuBar/>
+        <SideMenuBarWrapper show={showSideMenu}>
+          <AsideMenuBar />
         </SideMenuBarWrapper>
       )}
     </>
@@ -65,15 +73,14 @@ const PageNavigator = () => {
 const SideMenuBarWrapper = styled.div`
   position: fixed;
   top: 0;
-  left: ${({ show }) => (show ? "0" : "-100%")};
+  left: 0;
   width: 300px;
   height: 100%;
   background: ${props => props.theme.menuBar.wrapper};
   padding-top: 60px;
-  animation: ${({ show }) => (show ? slideIn : slideOut)} 0.7s ease-in-out;
+  transform: translateX(${({ show }) => (show ? "0" : "-100%")});
+  transition: transform 0.7s ease-in-out;
+  z-index: 10;
 `;
-
-
-
 
 export default PageNavigator;

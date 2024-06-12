@@ -5,21 +5,34 @@ import PageLayout from "../components/layout/page-component";
 import PostContent from "../components/post/post-content";
 import Utterances from "../components/utterances";
 import Seo from "../components/seo";
+import styled from "styled-components";
 
 export default ({ data, location }) => {
   const { previous, next } = data;
   const post = data.markdownRemark;
-  const { title, date, description } = post.frontmatter;
+  const { title, date, description, isPrivate } = post.frontmatter;
   const author = data.site.siteMetadata.author;
   const toc = post.tableOfContents;
   const tags = post.frontmatter.tags || [];
   const series = post.frontmatter.series;
 
-  const exercpt = post.excerpt;
+  const excerpt = post.excerpt;
+
+  if (isPrivate) {
+    return (
+      <PageLayout>
+        <Seo title="Private Post" description="This post is private." />
+        <PrivatePostMessage>
+          <p>🚀 Oops... This Post is Private.</p>
+          <p>You do not have permission to view this post 😂</p>
+        </PrivatePostMessage>
+      </PageLayout>
+    );
+  }
 
   return (
     <PageLayout>
-      <Seo title={title} description={description || exercpt}/>
+      <Seo title={title} description={description || excerpt}/>
       <Post>
         <Post.Header
           title={title}
@@ -36,6 +49,14 @@ export default ({ data, location }) => {
   );
 };
 
+const PrivatePostMessage = styled.div`
+  padding: 20px;
+  color: ${props => props.theme.main.text};
+  text-align: center;
+  margin: 20px;
+  border-radius: 5px;
+  line-height: 150%;
+`;
 
 
 export const pageQuery = graphql`

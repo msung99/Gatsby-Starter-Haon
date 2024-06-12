@@ -79,11 +79,7 @@ module.exports = {
       options: {
         plugins: [
           {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 700,
-              maxHeight: 400,
-            },
+            resolve: `gatsby-remark-images`
           },
           {
             resolve: 'gatsby-remark-prismjs',
@@ -93,7 +89,7 @@ module.exports = {
           },
           {
             resolve: `gatsby-remark-autolink-headers`
-          }
+          },
         ],
       },
     },
