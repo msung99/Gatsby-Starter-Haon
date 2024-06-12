@@ -29,7 +29,7 @@ const AsideMenuBar = () => {
         {menuItems.slice(0, 1).map((item, index) => (
           <MenuItem key={index} {...item} active={location.pathname === item.to} />
         ))}
-        <ThemeSwitch/>
+        <ThemeSwitch />
         {menuItems.slice(1).map((item, index) => (
           <MenuItem key={index} {...item} active={location.pathname === item.to} />
         ))}
@@ -43,8 +43,6 @@ const AsideMenuBar = () => {
     </SideMenuBarStyle>
   );
 };
-
-
 
 const MenuItem = ({ to, icon, text }) => {
   const location = useLocation();
@@ -60,80 +58,6 @@ const MenuItem = ({ to, icon, text }) => {
   );
 };
 
-const ToggleWrapper = styled.div`
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: white;
-  background-color: blue;
-  position: fixed;
-`;
-
-const IconRail = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 40px;
-  top: ${props => (props.theme === "light" ? "-19px" : "0px")};
-  transition: top 0.4s;
-
-  & > svg {
-    transition: opacity 0.25s;
-  }
-
-  & > svg:first-child {
-    opacity: ${props => (props.theme === "light" ? 0 : 1)};
-  }
-
-  & > svg:last-child {
-    opacity: ${props => (props.theme === "dark" ? 0 : 1)};
-  }
-`
-
-
-const SocialMenu = styled.div`
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  margin-top: 15px;
-  padding-top: 10px;
-  padding-right: 60px;
-  padding-left: 5px;
-  padding-bottom: 10px;
-  transition: background-color 0.2s ease-in-out;
-  border-radius: 8px;
-
-  &:hover {
-    background-color: ${(props) => (props.active ?  props.theme.menuBar.sideMenu : props.theme.menuBar.sideMenuHover)};
-  }
-`
-
-const SocialText = styled.p`
-  font-size: 16px;
-  color: ${props => props.theme.main.text};
-  margin-left: 10px;
-  margin-top: 10px;
-`
-
-const profileImageUrl =
-  typeof window !== "undefined" && window.location.host === "localhost:8000"
-    ? "http://localhost:8000"
-    : siteMetadata.siteUrl
-
-
-const SocialImage = styled.div`
-  background-image: url(${profileImageUrl}/profile.png);
-  width: 38px;
-  height: 38px;
-  border: 1px solid transparent;
-  border-color: white;
-  background-size: cover;
-  background-position: center;
-  border-radius: 50%;
-`;
-
 const SideMenuBarStyle = styled.div`
   position: fixed;
   left: 0;
@@ -141,8 +65,11 @@ const SideMenuBarStyle = styled.div`
   max-width: 210px;
   margin-left: 30px;
   padding-right: 10px;
+  background: ${props => props.theme.menuBar.wrapper};
+  color: ${props => props.theme.main.text};
+  z-index: 10;
 
-  @media(max-width: 1300px) {
+  @media (max-width: 1300px) {
     display: none;
   }
 `;
@@ -150,9 +77,7 @@ const SideMenuBarStyle = styled.div`
 const SideMenu = styled.div`
   margin-top: 30px;
   margin-bottom: 30px;
-  padding-right: 80px;
   padding: 10px;
-  padding-right: 60px;
   color: ${props => props.theme.main.text};
   font-size: 16px;
   display: flex;
@@ -162,10 +87,9 @@ const SideMenu = styled.div`
   background-color: ${(props) => (props.active ? props.theme.menuBar.sideMenu : "transparent")};
 
   &:hover {
-    background-color: ${(props) => (props.active ?  props.theme.menuBar.sideMenu : props.theme.menuBar.sideMenuHover)};
+    background-color: ${(props) => (props.active ? props.theme.menuBar.sideMenu : props.theme.menuBar.sideMenuHover)};
   }
 `;
-
 
 const MenuText = styled.p`
   margin-left: 10px;
@@ -181,6 +105,45 @@ const Title = styled.div`
   margin-bottom: 40px;
   font-family: "Source Code Pro", sans-serif;
   font-weight: 800;
+`;
+
+const SocialMenu = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  padding-top: 10px;
+  padding-right: 60px;
+  padding-left: 5px;
+  padding-bottom: 10px;
+  transition: background-color 0.2s ease-in-out;
+  border-radius: 8px;
+
+  &:hover {
+    background-color: ${(props) => (props.active ? props.theme.menuBar.sideMenu : props.theme.menuBar.sideMenuHover)};
+  }
+`;
+
+const SocialText = styled.p`
+  font-size: 16px;
+  color: ${props => props.theme.main.text};
+  margin-left: 10px;
+  margin-top: 10px;
+`;
+
+const profileImageUrl =
+  typeof window !== "undefined" && window.location.host === "localhost:8000"
+    ? "http://localhost:8000"
+    : siteMetadata.siteUrl;
+
+const SocialImage = styled.div`
+  background-image: url(${profileImageUrl}/profile.png);
+  width: 38px;
+  height: 38px;
+  border: 1px solid transparent;
+  border-color: white;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
 `;
 
 export default AsideMenuBar;
