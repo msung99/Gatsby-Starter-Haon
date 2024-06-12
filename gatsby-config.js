@@ -90,12 +90,6 @@ module.exports = {
           {
             resolve: `gatsby-remark-autolink-headers`
           },
-          {
-            resolve: `gatsby-remark-copy-linked-files`,
-            options: {
-              destinationDir: `path/to/dir`,
-            },
-          }
         ],
       },
     },
