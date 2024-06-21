@@ -48,7 +48,8 @@ export const LIGHT_THEME_COLORS = {
     },
     content: {
       highlight: {
-        bg: '#F7F9FA'
+        bg: '#F7F9FA',
+        text: '#f7f6f2',
       },
       text: 'black',
       blockquote: {
@@ -90,7 +91,6 @@ export const LIGHT_THEME_COLORS = {
 };
 
 export const DARK_THEME_COLORS = {
-
   main: {
     background: '#1a1a1a',
     text: 'white',
@@ -138,7 +138,8 @@ export const DARK_THEME_COLORS = {
     },
     content: {
       highlight: {
-        bg: '#202020'
+        bg: '#202020',
+        text: '#2d2d2d',
       },
       text: '#e8e8e8',
       blockquote: {
