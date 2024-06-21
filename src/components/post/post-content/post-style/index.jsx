@@ -178,27 +178,16 @@ export const HtmlWrapper = styled.div`
     margin-top: 10px;
     margin-bottom: 10px;
   }
-
-  .gatsby-highlight {
-    font-size: 13.5px;
-    margin-bottom: 50px;
-    word-break: break-all;
-
-    .language-text {
-      background-color: ${props => props.theme.post.content.blockquote.body};
-      font-size: 13.5px;
-      color: ${props => props.theme.post.content.blockquote.text};
-    }
-  }
   
   .language-text {
     background-color: ${props => props.theme.post.content.language.bg};
     padding: -10px;
-    font-size: 14.5px;
+    font-size: 13.5px;
     color: ${props => props.theme.post.content.language.text};
-    width: 100%;
-    height: 100%;
     word-break: break-all;
   }
 }
 `
+
+
+

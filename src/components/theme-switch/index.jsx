@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { MdDarkMode } from "react-icons/md";
-import { MdSunny } from "react-icons/md";
+import { MdDarkMode, MdSunny } from "react-icons/md";
 import { getValueFromLocalStorage, setValueToLocalStorage } from '../../utils/localStorage';
 import styled from 'styled-components';
 
@@ -11,6 +10,11 @@ function ThemeSwitch() {
     useEffect(() => {
         setValueToLocalStorage('isDarkMode', isDarkMode);
         document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+        
+        // 테마 변경 이벤트 발생
+        const themeChangeEvent = new Event('themeChange');
+        window.dispatchEvent(themeChangeEvent);
+        
     }, [isDarkMode]);
 
     useEffect(() => {
@@ -42,7 +46,6 @@ function ThemeSwitch() {
         </DarkModeButtonWrapper>
     );
 }
-
 
 const DarkModeButtonWrapper = styled.div``;
 

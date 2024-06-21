@@ -55,7 +55,7 @@ export const LIGHT_THEME_COLORS = {
       },
       hr: '#eef2f3',
       language: {
-        bg: '#f1f0eb',
+        bg: '#F7F9FA',
         text: 'black',
       },
       a: 'dimgray',
@@ -142,7 +142,7 @@ export const DARK_THEME_COLORS = {
       },
       hr: '#282828',
       language: {
-        bg: '#3C3A39',
+        bg: '#202020',
         text: '#e6e6e6',
       },
       a: '#c9c9ca',
