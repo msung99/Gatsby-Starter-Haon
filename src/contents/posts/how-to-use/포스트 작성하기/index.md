@@ -21,27 +21,6 @@ previewImage: "writing.png"
 
 마크다운 파일을 생성했다면, 해당 포스트에 대한 메타정보를 필수로 기입해야 합니다. 기입 정보는 아래와 같습니다.
 
-```java
-public String getLines(){
-  StringBuilder stringBuilder = new StringBuilder();
-  repeatPrint(stringBuilder);
-  return stringBuilder.toString();
-}
-
-private void repeatRows(StringBuilder stringBuilder){
-  for(int i=0; i<10; i++){
-    repeatRow(stringBuilder);
-    stringBuilder.append("two");
-  }
-}
-
-private void repeatRow(StringBuilder stringBuilder){
-  for(int i=0; i<5; i++){
-    stringBuilder.append("one");
-  }
-}
-```
-
 ```
 ---
 title: 포스트 작성법, 작성시 세부 기능들
@@ -80,11 +59,38 @@ series: how to use this template?
 
 ---
 
-## 4. 포스트 미리보기 이미지 (썸네일)
+## 4. 코드 하이라이트 지원
+
+포스트에 코드 블럭을 생성 가능합니다. 아래는 JAVA 언어를 기반으로 작성된 코드 블럭입니다.
+
+```java
+public String getLines(){
+  StringBuilder stringBuilder = new StringBuilder();
+  repeatPrint(stringBuilder);
+  return stringBuilder.toString();
+}
+
+private void repeatRows(StringBuilder stringBuilder){
+  for(int i=0; i<10; i++){
+    repeatRow(stringBuilder);
+    stringBuilder.append("two");
+  }
+}
+
+private void repeatRow(StringBuilder stringBuilder){
+  for(int i=0; i<5; i++){
+    stringBuilder.append("one");
+  }
+}
+```
+
+---
+
+## 5. 포스트 미리보기 이미지 (썸네일)
 
 포스트 미리보기 기능도 존재합니다. 썸네일이라고 봐도 좋겠습니다.
 
-### 4-1. 미리보기 추가
+### 5-1. 미리보기 추가
 
 미리보기 이미지를 첨부하는 경로는 앞서 살펴본 이미지 추가 경로와 조금 다릅니다. 포스트 내부에 이미지를 추가할 땐 마크다운 파일과 동일한 폴더 내에 위치시키면 되지만, 미리보기 썸네일 이미지는 `static` 이라는 폴더내에 이미지를 추가해줘야 합니다.
 
@@ -94,14 +100,14 @@ series: how to use this template?
 
 멋진 미리보기를 마음껏 꾸며보세요!
 
-### 4-2. 디폴트 미리보기 이미지 (default.png)
+### 5-2. 디폴트 미리보기 이미지 (default.png)
 
 미리보기 이미지를 추가하지 않았다면, 기본적으로 `default.png` 이미지를 미리보기로 표기하고 있습니다. `default.png`
 는 static 파일 내에 존재합니다. 만약 커스터마이징을 원한다면 자유롭게 `default.png` 이미지를 수정하세요.
 
 ---
 
-## 5. Toc (목차)
+## 6. Toc (목차)
 
 ![](./toc.png)
 
@@ -109,7 +115,7 @@ series: how to use this template?
 
 ---
 
-## 6. 기능 요약
+## 7. 기능 요약
 
 포스트 기능을 정리해보자면 다음과 같습니다.
 

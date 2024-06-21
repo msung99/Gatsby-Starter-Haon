@@ -58,11 +58,38 @@ Here is an example of adding an image named `image1.png`.
 
 ---
 
-## 4. Post Preview Image (Thumbnail)
+## 4. Supports Code Highlight
+
+You can create code blocks in posts. Below is a code block written in the Java programming language.
+
+```java
+public String getLines(){
+  StringBuilder stringBuilder = new StringBuilder();
+  repeatPrint(stringBuilder);
+  return stringBuilder.toString();
+}
+
+private void repeatRows(StringBuilder stringBuilder){
+  for(int i=0; i<10; i++){
+    repeatRow(stringBuilder);
+    stringBuilder.append("two");
+  }
+}
+
+private void repeatRow(StringBuilder stringBuilder){
+  for(int i=0; i<5; i++){
+    stringBuilder.append("one");
+  }
+}
+```
+
+---
+
+## 5. Post Preview Image (Thumbnail)
 
 The post preview feature is also available, similar to thumbnails.
 
-### 4-1. Adding a Preview Image
+### 5-1. Adding a Preview Image
 
 The path for adding a preview image is slightly different from the path for adding an image within the post. While the image for the post should be in the same folder as the Markdown file, the preview thumbnail image should be added in the `static` folder.
 
@@ -72,13 +99,13 @@ If you have placed a preview image named `writing.png` in the static folder, the
 
 Feel free to customize your preview!
 
-### 4-2. Default Preview Image (default.png)
+### 5-2. Default Preview Image (default.png)
 
 If no preview image is added, the default image `default.png` will be displayed as the preview. `default.png` is located in the static folder. If you want to customize it, feel free to modify the `default.png` image.
 
 ---
 
-## 5. Toc (Table of Contents)
+## 6. Toc (Table of Contents)
 
 ![](./toc.png)
 
@@ -86,7 +113,7 @@ You can see the table of contents feature in the upper right corner of the post.
 
 ---
 
-## 6. Feature Summary
+## 7. Feature Summary
 
 To summarize the post features:
 
