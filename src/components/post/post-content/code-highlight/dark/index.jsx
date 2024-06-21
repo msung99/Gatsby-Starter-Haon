@@ -9,7 +9,7 @@ const Theme = css`
    */
   & code[class*="language-"],
   & pre[class*="language-"] {
-    background-color: #222222;
+    background-color: #202020;
   }
 
   .token.comment,

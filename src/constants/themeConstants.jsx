@@ -47,19 +47,6 @@ export const LIGHT_THEME_COLORS = {
       hover: 'black',
     },
     content: {
-      highlight: {
-        background: '#f7f6f3',
-        set1: 'color: hsl(230, 4%, 64%)',
-        set2: 'color: hsl(230, 8%, 24%)',
-        set3: 'color: hsl(35, 99%, 36%)',
-        set4: '',
-        set5: '',
-        set6: '',
-        set7: '',
-        set8: '',
-        set9: '',
-        set10: ''
-      },
       text: 'black',
       blockquote: {
         body: '#f7f6f2',
@@ -68,7 +55,7 @@ export const LIGHT_THEME_COLORS = {
       },
       hr: '#eef2f3',
       language: {
-        bg: '#f1f0eb',
+        bg: '#F7F9FA',
         text: 'black',
       },
       a: 'dimgray',
@@ -147,19 +134,6 @@ export const DARK_THEME_COLORS = {
       hover: '#e8e8e8',
     },
     content: {
-      highlight: {
-        background: '#222222',
-        set1: '#999',
-        set2: '#ccc',
-        set3: '#e2777a',
-        set4: '#6196cc',
-        set5: '#f08d49',
-        set6: '#f8c555',
-        set7: '#cc99cd',
-        set8: '#7ec699',
-        set9: '#67cdcc',
-        set10: 'green'
-      },
       text: '#e8e8e8',
       blockquote: {
         body: '#212121',
@@ -168,7 +142,7 @@ export const DARK_THEME_COLORS = {
       },
       hr: '#282828',
       language: {
-        bg: '#3C3A39',
+        bg: '#202020',
         text: '#e6e6e6',
       },
       a: '#c9c9ca',

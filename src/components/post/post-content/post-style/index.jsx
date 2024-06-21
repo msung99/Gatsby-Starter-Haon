@@ -182,10 +182,8 @@ export const HtmlWrapper = styled.div`
   .language-text {
     background-color: ${props => props.theme.post.content.language.bg};
     padding: -10px;
-    font-size: 14.5px;
+    font-size: 13.5px;
     color: ${props => props.theme.post.content.language.text};
-    width: 100%;
-    height: 100%;
     word-break: break-all;
   }
 }

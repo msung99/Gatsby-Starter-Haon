@@ -34,7 +34,7 @@ const Theme = css`
 
   code[class*="language-"],
   pre[class*="language-"] {
-    background-color: #f7f6f3;
+    background-color: #F7F9FA;
     color: hsl(230, 8%, 24%);
   }
 
