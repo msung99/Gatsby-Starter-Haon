@@ -179,8 +179,15 @@ export const HtmlWrapper = styled.div`
     margin-bottom: 10px;
   }
 
+  code.language-text {
+    background-color: ${props => props.theme.post.content.highlight.text};
+    color: ${props => props.theme.main.text};
+    font-size: 14.5px;
+  }
+
   .gatsby-highlight > pre > .language-text {
     background-color: ${props => props.theme.post.content.highlight.bg};
+    color: blue;
     padding: -10px;
     font-size: 13.5px;
     color: ${props => props.theme.post.content.language.text};
