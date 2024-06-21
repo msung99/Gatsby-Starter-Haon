@@ -47,6 +47,9 @@ export const LIGHT_THEME_COLORS = {
       hover: 'black',
     },
     content: {
+      highlight: {
+        bg: '#F7F9FA'
+      },
       text: 'black',
       blockquote: {
         body: '#f7f6f2',
@@ -55,7 +58,7 @@ export const LIGHT_THEME_COLORS = {
       },
       hr: '#eef2f3',
       language: {
-        bg: '#F7F9FA',
+        bg: '#f7f6f2',
         text: 'black',
       },
       a: 'dimgray',
@@ -134,6 +137,9 @@ export const DARK_THEME_COLORS = {
       hover: '#e8e8e8',
     },
     content: {
+      highlight: {
+        bg: '#202020'
+      },
       text: '#e8e8e8',
       blockquote: {
         body: '#212121',
