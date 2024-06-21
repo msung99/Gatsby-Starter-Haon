@@ -21,6 +21,27 @@ previewImage: "writing.png"
 
 마크다운 파일을 생성했다면, 해당 포스트에 대한 메타정보를 필수로 기입해야 합니다. 기입 정보는 아래와 같습니다.
 
+```java
+public String getLines(){
+  StringBuilder stringBuilder = new StringBuilder();
+  repeatPrint(stringBuilder);
+  return stringBuilder.toString();
+}
+
+private void repeatRows(StringBuilder stringBuilder){
+  for(int i=0; i<10; i++){
+    repeatRow(stringBuilder);
+    stringBuilder.append("two");
+  }
+}
+
+private void repeatRow(StringBuilder stringBuilder){
+  for(int i=0; i<5; i++){
+    stringBuilder.append("one");
+  }
+}
+```
+
 ```
 ---
 title: 포스트 작성법, 작성시 세부 기능들
