@@ -1,18 +1,17 @@
-# <div align="center">Gatsby Starter Haon (Blog Theme - Open Source) 🚀</div>
+# <div align="center">Gatsby Starter Haon (Tech Blog Theme - Open Source) 🚀</div>
 
-> 💡 All the code in this repository and the blog theme are **open source.** Therefore, feel free to clone and use it as you wish! 🙂
->
-> - (현 블로그 테마는 오픈소스입니다. 자유롭게 clone 받아 커스터마이징하여 블로그를 꾸며보세요 🙂)
+> - 💡 All the code in this repository and the blog theme are **open source.** Therefore, feel free to clone and use it as you wish! 🙂
+> - 💡 현 블로그 테마는 오픈소스입니다. 자유롭게 clone 받아 커스터마이징하여 블로그를 꾸며보세요 🙂
 
 
 - Blog Theme Live Demo: https://gatsby-starter-haon.netlify.app/
 - 국문(한국어 원서) 은 [Gatsby 블로그 초기 설정 ⚙️ 가이드라인](https://gatsby-starter-haon.netlify.app/how-to-use/initial-settings-kr/) 에서 부터 확인 가능합니다.
 
-![](./static/readme/theme.png)
+## <div align="center">Gatsby Starter Haon</div>
+
+![image](https://github.com/msung99/Gatsby-Starter-Haon/assets/88240193/66f6807d-9fd7-42a6-981b-f700cb52a180)
 
 I hope this theme will be helpful for those who want to customize and operate your blogs. Feel free to customize and use the Gatsby Haon Theme! 👋 I drew great inspiration for creating this theme from [Hudi's blog](https://github.com/devHudi/gatsby-starter-hoodie).
-
-![](./static/readme/preview.png)
 
 ---
 
@@ -31,15 +30,16 @@ I hope this theme will be helpful for those who want to customize and operate yo
 
 ---
 
+
 ## 0. Create a GitHub Repository
 
-Before installing the theme, you need a GitHub repository for your Gatsby Theme. Please create one.
+Before installing the theme, you need a GitHub Repository for the Gatsby Theme. Please create a repository.
 
 ---
 
-## 1. Installing the Theme 👋
+## 1. Install the Theme 👋
 
-Follow the steps below to create your own blog theme!
+Follow the steps below to create your blog with the theme!
 
 ```
 npx gatsby new your-blog-name https://github.com/msung99/Gatsby-Starter-Haon.git
@@ -47,9 +47,9 @@ npx gatsby new your-blog-name https://github.com/msung99/Gatsby-Starter-Haon.git
 
 ---
 
-## 2. Running Gatsby Local Server
+## 2. Run Gatsby Local Server
 
-Once you have downloaded the theme to your local machine, follow the steps below to run the Gatsby local server.
+After downloading the theme to your local machine, follow the steps below to run the Gatsby local server.
 
 ```
 cd your-blog-name
@@ -57,43 +57,39 @@ npm install  // install node.js
 gatsby develop // or "npm start"
 ```
 
-If the above commands run without any issues, you can check the initial state of your blog at http://localhost:8000!
+If the command runs without issues, you can check the initial blog state at http://localhost:8000!
 
 ---
 
-## 3. Entering Blog Information
+## 3. Enter Blog Information
 
-You can directly input your meta information to customize the theme. If you navigate to `gatsby-config.js`, you will see the initial state as follows:
+You can customize your blog by entering your meta information. Move to `meta-config.js` to see the initial state as follows.
 
 ```js
 module.exports = {
-  siteMetadata: {
-    title: `haon.blog`,
-    description: `Hello! This is a tech blog theme using Gatsby 🤩`,
-    author: `Haon`,
-    siteUrl: `https://gatsby-starter-haon.netlify.app/`,
-    keywords: [`server`, `backend`, `gatsby`],
-    repo: "msung99/Gatsby-Starter-Haon",
-    socialLinks: {
-      github: "https://github.com/msung99",
-      instagram: "https://www.instagram.com/iminseong920",
-      facebook: "https://www.facebook.com/",
-      linkedin: "https://www.linkedin.com/",
-      velog: "https://velog.io/@msung99",
-      email: `https://msung6924@naver.com`,
-    },
+  title: `haon.theme`,
+  description: `Hello! This is a tech blog theme using Gatsby 🤩`,
+  author: `Haon`,
+  siteUrl: `https://gatsby-starter-haon.netlify.app`,
+  keywords: [`server`, `backend`, `gatsby`],
+  repo: "msung99/Gatsby-Starter-Haon",
+  gtag: "G-CD9E7GB2ED", // with Google Analytics
+  socialLinks: {
+    github: "https://github.com/msung99",
+    instagram: "https://www.instagram.com/iminseong920/",
+    facebook: "https://www.facebook.com/",
+    linkedin: "https://www.linkedin.com/",
+    velog: "https://velog.io/@msung99",
+    email: "msung6924@naver.com",
   },
-  plugins: [
-    // ... (omitted)
-  ],
 }
 ```
 
-Modify the `siteMetadata` as follows:
+Follow the steps below to modify `siteMetadata`.
 
 ### 3-1. Basic Profile Settings
 
-Input your basic profile information.
+Enter your basic profile information.
 
 ```
 title: ``, // haon.blog
@@ -103,17 +99,27 @@ siteUrl: ``, // https://gatsby-starter-haon.netlify.app/
 keywords: [ ], // [`server`, `backend`, `gatsby`]
 ```
 
-### 3-2. Utterances (Comments) Configuration
+### 3-2. Set Up utterances (Comments)
 
-This template is based on the issue creation-based comment system. Input your GitHub repository information for smooth comment functionality activation.
+This template uses issue-based comments. Enter your GitHub repository information for the comment function to work smoothly.
 
 ```
 repo: "your-github-name/repository-name"  //  "msung99/Gatsby-Starter-Haon",
 ```
 
-### 3-3. Social Links Integration
+### 3-3. (Optional) Integrate Google Analytics
 
-Lastly, you can integrate your social media accounts. This is required for the feature where clicking on social icons navigates to the respective URLs. Customize the desired fields from the below social accounts:
+You can use the `Google Analytics` feature to track visitors to your blog. `gatsby-starter-haon` makes it easy to integrate Google Analytics with your blog site to track visitors.
+
+Refer to the [Google Analytics official documentation](https://developers.google.com/analytics/learn?hl=en) to learn about the Analytics feature and get a tracking id. Then enter the tracking id as follows.
+
+```
+gtag: "G-CD9E7GB2ED" // your google analytics tracking id
+```
+
+### 3-4. Link Social Accounts
+
+Finally, you can link your social accounts. This is necessary for the social icons to redirect to the corresponding URLs. Customize the desired fields from the social accounts below.
 
 ```
 socialLinks: {
@@ -128,27 +134,30 @@ socialLinks: {
 
 ---
 
-## 4. Deploying the Blog
+## 4. Deploy the Blog
 
-You can quickly create your blog on `Github Page` or `Netlify`, depending on your preferred deployment environment. Here, I'll briefly mention Netlify.
+You can quickly create a blog with either `Github Pages` or `Netlify`, depending on your preferred deployment environment.
 
-By utilizing the button below, you can integrate your GitHub repository with Netlify to deploy your blog. You may need your GitHub repository for this process, which you should have created earlier.
+You can link the GitHub repository using the `Gatsby-Haon-Blog` theme with Netlify for deployment. This process is not very difficult and is thus omitted.
 
-<a href="https://app.netlify.com/start/deploy?repository=https://github.com/msung99/Gatsby-Starter-Haon.git" target="_blank"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify"></a>
+---
+
+## 5. Other Precautions
+
+`gatsby-starter-haon` requires a minimum of default posts. Do not delete the two posts existing in the `default` package to ensure smooth operation.
 
 ---
 
 ## Issue, PR Registration
 
-If you're using Gatsby-Starter-Haon and have something you want to communicate:
-
-[Social Page](https://gatsby-starter-haon.netlify.app/community/) or [Register Issue](https://github.com/msung99/Gatsby-Starter-Haon/issues/1) and feel free to leave comments.
+If you have any topics you want to communicate while using Gatsby-Starter-Haon,
+feel free to leave a comment on the [Social page](https://gatsby-starter-haon.netlify.app/community/) or [Register an Issue](https://github.com/msung99/Gatsby-Starter-Haon/issues/1).
 
 - Suggestions
 - Q&A
-- Bug Discovery and Code Improvement
+- Bug discovery and code improvement
 - New Features / Functions
 
-Feel free to leave comments or register issues according to the Issue Template.
+You can leave comments or register issues freely using the Issue Template form.
 
-We welcome any feedback. We're looking forward to many people's opinions for quality software improvement and theme development. 👍
+Anything is welcome. We look forward to the opinions of many people for the enhancement of high-quality software and theme development 👍
