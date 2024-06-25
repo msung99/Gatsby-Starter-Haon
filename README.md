@@ -9,7 +9,7 @@
 
 ## <div align="center">Gatsby Starter Haon</div>
 
-![image](https://github.com/msung99/Gatsby-Starter-Haon/assets/88240193/66f6807d-9fd7-42a6-981b-f700cb52a180)
+![image](https://github.com/msung99/Gatsby-Starter-Haon/assets/88240193/d97f702e-fe5c-4d46-8f12-6b148504caa8)
 
 I hope this theme will be helpful for those who want to customize and operate your blogs. Feel free to customize and use the Gatsby Haon Theme! 👋 I drew great inspiration for creating this theme from [Hudi's blog](https://github.com/devHudi/gatsby-starter-hoodie).
 
