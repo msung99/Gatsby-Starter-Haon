@@ -10,6 +10,8 @@ series: how to use this template?
 previewImage: "setting.png"
 ---
 
+> 💡 node.js and gatsby-cli must be installed on your computer.
+
 ## 0. Create a GitHub Repository
 
 Before installing the theme, you need a GitHub Repository for the Gatsby Theme. Please create a repository.

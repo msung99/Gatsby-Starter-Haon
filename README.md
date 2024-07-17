@@ -30,6 +30,7 @@ I hope this theme will be helpful for those who want to customize and operate yo
 
 ---
 
+> 💡 node.js and gatsby-cli must be installed on your computer.
 
 ## 0. Create a GitHub Repository
 
