@@ -10,6 +10,8 @@ series: how to use this template?
 previewImage: "setting.png"
 ---
 
+> 💡 컴퓨터에 node.js 와 gatsby-cli 가 설치되어 있어야합니다.
+
 ## 0. 깃허브 레포지토리 생성하기
 
 테마를 설치하기에 앞서 Gatsby Theme 를 본인의 Github Repository 가 필요합니다. 레포지토리를 하나 생성해주세요.
