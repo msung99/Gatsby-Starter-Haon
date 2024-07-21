@@ -8,7 +8,7 @@ export const ContentWrapper = styled.div`
 
 export const HtmlWrapper = styled.div`
   section > h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: ${props => props.theme.post.content.text};
     margin-top: 70px;
     margin-bottom: 40px;
@@ -18,7 +18,7 @@ export const HtmlWrapper = styled.div`
   }
 
   section > h2 {
-    font-size: 1.7rem;
+    font-size: 1.45rem;
     color: ${props => props.theme.post.content.text};
     margin-top: 70px;
     margin-bottom: 40px;
@@ -28,7 +28,7 @@ export const HtmlWrapper = styled.div`
   }
 
   section > h3 {
-    font-size: 1.4rem;
+    font-size: 1.25rem;
     color: ${props => props.theme.post.content.text};
     margin-top: 70px;
     margin-bottom: 40px;
@@ -38,7 +38,7 @@ export const HtmlWrapper = styled.div`
   }
 
   section > h4 {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     color: ${props => props.theme.post.content.text};
     margin-top: 40px;
     margin-bottom: 40px;
