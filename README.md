@@ -30,9 +30,10 @@ I hope this theme will be helpful for those who want to customize and operate yo
 
 ---
 
-> 💡 node.js and gatsby-cli must be installed on your computer.
 
-## 0. Create a GitHub Repository
+## 0. Create a GitHub Repository & Install Node.js, Gatsby-cli
+
+> 💡 node.js and gatsby-cli must be installed on your computer.
 
 Before installing the theme, you need a GitHub Repository for the Gatsby Theme. Please create a repository.
 
@@ -57,6 +58,14 @@ cd your-blog-name
 npm install  // install node.js
 gatsby develop // or "npm start"
 ```
+
+If the above command does not work properly due to dependency conflicts, please execute the following command and try again
+
+```
+npm i --legacy-peer-deps
+```
+
+
 
 If the command runs without issues, you can check the initial blog state at http://localhost:8000!
 

@@ -10,9 +10,9 @@ series: how to use this template?
 previewImage: "setting.png"
 ---
 
-> 💡 node.js and gatsby-cli must be installed on your computer.
+## 0. Create a GitHub Repository & Install Node.js, Gatsby-cli
 
-## 0. Create a GitHub Repository
+> 💡 node.js and gatsby-cli must be installed on your computer.
 
 Before installing the theme, you need a GitHub Repository for the Gatsby Theme. Please create a repository.
 
@@ -36,6 +36,12 @@ After downloading the theme to your local machine, follow the steps below to run
 cd your-blog-name
 npm install  // install node.js
 gatsby develop // or "npm start"
+```
+
+If the above command does not work properly due to dependency conflicts, please execute the following command and try again.
+
+```
+npm i --legacy-peer-deps
 ```
 
 If the command runs without issues, you can check the initial blog state at http://localhost:8000!

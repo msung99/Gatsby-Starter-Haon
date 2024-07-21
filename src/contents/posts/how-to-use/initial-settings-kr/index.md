@@ -10,11 +10,13 @@ series: how to use this template?
 previewImage: "setting.png"
 ---
 
+
+## 0. 깃허브 레포지토리 생성 & Node.js, Gatsby-cli 설치
+
 > 💡 컴퓨터에 node.js 와 gatsby-cli 가 설치되어 있어야합니다.
 
-## 0. 깃허브 레포지토리 생성하기
-
 테마를 설치하기에 앞서 Gatsby Theme 를 본인의 Github Repository 가 필요합니다. 레포지토리를 하나 생성해주세요.
+
 
 ---
 
@@ -36,6 +38,12 @@ npx gatsby new your-blog-name https://github.com/msung99/Gatsby-Starter-Haon.git
 cd your-blog-name
 npm install  // install node.js
 gatsby develop // or "npm start"
+```
+
+만약 위 명령어가 의존성 충돌 문제로 인해 원활히 작동되지 않는다면, 아래 명령어를 실행 후 다시 시도해주세요.
+
+```
+npm i --legacy-peer-deps
 ```
 
 위 명령어가 문제 없이 실행됐다면 http://localhost:8000 에서 초기 블로그 상태를 확인할 수 있습니다!
