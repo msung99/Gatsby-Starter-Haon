@@ -59,7 +59,7 @@ npm install  // install node.js
 gatsby develop // or "npm start"
 ```
 
-If the above command does not work properly due to dependency conflicts, please execute the following command and try again
+If the above command does not work properly due to dependency conflicts, please execute the following command and try again.
 
 ```
 npm i --legacy-peer-deps
