@@ -97,7 +97,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `content`,
-        path: `${__dirname}/src/contents/posts`,
+        path: `${__dirname}/contents/posts`,
       },
     },
     {
@@ -112,15 +112,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-styled-components`,
-    `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-advanced-sitemap`,
-    {
-      resolve: 'gatsby-plugin-robots-txt',
-      options: {
-        host: siteUrl,
-        sitemap: `${siteUrl}/sitemap.xml`,
-        policy: [{userAgent: '*', allow: '/'}]
-      }
-    }
+    `gatsby-plugin-react-helmet`
   ],
 }
