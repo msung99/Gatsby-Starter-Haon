@@ -11,9 +11,9 @@ previewImage: "writing.png"
 
 ## 1. MarkDown 기반
 
-이 템플릿은 Markdown 작성법을 기반으로 합니다. 글 작성을 위해 `/src/contents/posts` 아래 디렉토리에 포스트를 생성하고 마크다운 형식으로 작성해야 합니다.
+이 템플릿은 Markdown 작성법을 기반으로 합니다. 글 작성을 위해 `/contents/posts` 아래 디렉토리에 포스트를 생성하고 마크다운 형식으로 작성해야 합니다.
 
-예를들어 `/src/contents/posts` 아래 디렉토리에 `how-to-use` 라는 디렉토리(폴더)를 생성하고 `index.md` 파일에 포스트를 작성하면 됩니다. 이 예시의 경우 포스트의 URL 이 `http(s)://your-domain/how-to-use` 로 지정됩니다.
+예를들어 `/contents/posts` 아래 디렉토리에 `how-to-use` 라는 디렉토리(폴더)를 생성하고 `index.md` 파일에 포스트를 작성하면 됩니다. 이 예시의 경우 포스트의 URL 이 `http(s)://your-domain/how-to-use` 로 지정됩니다.
 
 ---
 
