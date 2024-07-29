@@ -16,6 +16,7 @@
     "gatsby-plugin-react-helmet": "^6.13.1",
     "gatsby-plugin-robots-txt": "^1.8.0",
     "gatsby-plugin-sharp": "^5.13.1",
+    "gatsby-plugin-sitemap": "^6.13.1",
     "gatsby-plugin-styled-components": "^6.13.1",
     "gatsby-remark-autolink-headers": "^6.13.1",
     "gatsby-remark-images": "^7.13.1",
