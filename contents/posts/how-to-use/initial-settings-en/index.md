@@ -38,12 +38,6 @@ npm install  // install node.js
 gatsby develop // or "npm start"
 ```
 
-If the above command does not work properly due to dependency conflicts, please execute the following command and try again.
-
-```
-npm i --legacy-peer-deps
-```
-
 If the command runs without issues, you can check the initial blog state at http://localhost:8000!
 
 ---

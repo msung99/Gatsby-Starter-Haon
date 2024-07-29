@@ -40,12 +40,6 @@ npm install  // install node.js
 gatsby develop // or "npm start"
 ```
 
-만약 위 명령어가 의존성 충돌 문제로 인해 원활히 작동되지 않는다면, 아래 명령어를 실행 후 다시 시도해주세요.
-
-```
-npm i --legacy-peer-deps
-```
-
 위 명령어가 문제 없이 실행됐다면 http://localhost:8000 에서 초기 블로그 상태를 확인할 수 있습니다!
 
 ---
