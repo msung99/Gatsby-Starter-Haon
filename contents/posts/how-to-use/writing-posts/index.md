@@ -10,9 +10,9 @@ previewImage: writing.png
 
 ## 1. Markdown Based
 
-This template is based on Markdown. To write a post, create a directory under `/src/contents/posts` and write the post in Markdown format.
+This template is based on Markdown. To write a post, create a directory under `/contents/posts` and write the post in Markdown format.
 
-For example, create a directory called `how-to-use` under `/src/contents/posts` and write the post in an `index.md` file. In this case, the URL of the post will be `http(s)://your-domain/how-to-use`.
+For example, create a directory called `how-to-use` under `/contents/posts` and write the post in an `index.md` file. In this case, the URL of the post will be `http(s)://your-domain/how-to-use`.
 
 ---
 
