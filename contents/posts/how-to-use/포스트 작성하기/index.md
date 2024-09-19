@@ -1,5 +1,6 @@
 ---
 title: 마크다운 포스트 작성법, 작성시 세부 기능들 ✍️
+writer: devHaon
 description: 현 템플릿을 어떻게 사용하는지 알아봅시다.
 date: "2024-03-04"
 tags:

@@ -1,5 +1,6 @@
 ---
 title: Gatsby Initial Settings ⚙️
+writer: devHaon
 description: How do initialize the current template to use it?
 date: "2024-03-06"
 tags:

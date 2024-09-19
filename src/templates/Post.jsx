@@ -10,13 +10,16 @@ import styled from "styled-components";
 export default ({ data, location }) => {
   const { previous, next } = data;
   const post = data.markdownRemark;
-  const { title, date, description, isPrivate } = post.frontmatter;
+  const { title, date, description, writer, isPrivate } = post.frontmatter; // Add writer
   const author = data.site.siteMetadata.author;
   const toc = post.tableOfContents;
   const tags = post.frontmatter.tags || [];
   const series = post.frontmatter.series;
 
   const excerpt = post.excerpt;
+
+  // Determine whether to use writer or fallback to author
+  const displayAuthor = writer || author;
 
   if (isPrivate) {
     return (
@@ -37,7 +40,7 @@ export default ({ data, location }) => {
         <Post.Header
           title={title}
           date={date}
-          author={author}
+          author={displayAuthor} 
           tags={tags}
           series={series}
         />
@@ -48,6 +51,7 @@ export default ({ data, location }) => {
     </PageLayout>
   );
 };
+
 
 const PrivatePostMessage = styled.div`
   padding: 20px;
@@ -84,6 +88,7 @@ export const pageQuery = graphql`
         series
         previewImage
         isPrivate
+        writer
       }
     }
     previous: markdownRemark(
