@@ -1,5 +1,6 @@
 ---
 title: Node.js and Gatsby-Cli Installation Guide 🌈
+writer: devHaon
 description: Before using the blog theme, let's install Gatsby CLI and Node.js on your computer.
 date: "2024-03-06"
 tags:

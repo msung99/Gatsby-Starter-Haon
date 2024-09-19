@@ -1,5 +1,6 @@
 ---
 title: Node.js, Gatsby-Cli 설치 가이드라인 🌈 
+writer: devHaon
 description: 블로그 테마를 사용하기전, 컴퓨터에 Gatsby Cli 와 Node.js 를 설치해봅시다.
 date: "2024-03-02"
 tags:
