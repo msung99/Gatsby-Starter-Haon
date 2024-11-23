@@ -192,6 +192,15 @@ export const HtmlWrapper = styled.div`
     color: ${props => props.theme.post.content.language.text};
     word-break: break-all;
   }
+
+
+  .katex {
+    font-size: 22px;
+    line-height: 180%; 
+    color: ${props => props.theme.post.content.text};
+    margin-bottom: 35px;
+    word-break: break-all;
+  }
 }
 `
 
