@@ -15,6 +15,23 @@ This template is based on Markdown. To write a post, create a directory under `/
 
 For example, create a directory called `how-to-use` under `/contents/posts` and write the post in an `index.md` file. In this case, the URL of the post will be `http(s)://your-domain/how-to-use`.
 
+#### 인라인 모드
+
+$$
+S_n = \frac{n(2a + (n-1)d)}{2}
+$$
+
+$a^2 + b^2 = c^2$
+
+
+$$E = m c^{2}$$
+
+#### 블럭 모드
+
+$$
+\int_{0}^{\infty} f(x) dx
+$$
+
 ---
 
 ## 2. Meta Information
