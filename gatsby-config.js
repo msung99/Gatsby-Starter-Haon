@@ -121,6 +121,13 @@ module.exports = {
         sitemap: `${siteUrl}/sitemap.xml`,
         policy: [{userAgent: '*', allow: '/'}]
       }
-    }
+    },
+    {
+      resolve: 'gatsby-plugin-mdx',
+      options: {
+        remarkPlugins: [ require('remark-math')],
+        rehypePlugins: [require('rehype-katex')],
+      },
+    },
   ],
 }
