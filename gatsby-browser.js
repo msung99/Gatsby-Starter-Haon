@@ -7,3 +7,4 @@
 // You can delete this file if you're not using it
 import "fontsource-noto-sans-kr";
 import "fontsource-noto-sans-kr/700.css";
+import 'katex/dist/katex.min.css';

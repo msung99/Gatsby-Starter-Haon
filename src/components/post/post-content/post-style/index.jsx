@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const ContentWrapper = styled.div`
   position: relative;
 `;  
@@ -191,6 +190,15 @@ export const HtmlWrapper = styled.div`
     padding: -10px;
     font-size: 13.5px;
     color: ${props => props.theme.post.content.language.text};
+    word-break: break-all;
+  }
+
+
+  .katex {
+    font-size: 22px;
+    line-height: 180%; 
+    color: ${props => props.theme.post.content.text};
+    margin-bottom: 35px;
     word-break: break-all;
   }
 }

@@ -85,13 +85,35 @@ private void repeatRow(StringBuilder stringBuilder){
 }
 ```
 
+## 5. Katex 문법 지원
+
+또한, 수학 공식을 웹 사이트에서 편리하게 표현할 수 있도록 katex 문법을 지원합니다.
+
+#### Example1
+
+$$
+S_n = \frac{n(2a + (n-1)d)}{2}
+$$
+
+#### Example2
+
+$$
+a ^ 2 + b^2 = c^2
+$$
+
+#### Example3
+
+$$
+\int_{0}^{\infty} f(x) dx
+$$
+
 ---
 
-## 5. 포스트 미리보기 이미지 (썸네일)
+## 6. 포스트 미리보기 이미지 (썸네일)
 
 포스트 미리보기 기능도 존재합니다. 썸네일이라고 봐도 좋겠습니다.
 
-### 5-1. 미리보기 추가
+### 6-1. 미리보기 추가
 
 미리보기 이미지를 첨부하는 경로는 앞서 살펴본 이미지 추가 경로와 조금 다릅니다. 포스트 내부에 이미지를 추가할 땐 마크다운 파일과 동일한 폴더 내에 위치시키면 되지만, 미리보기 썸네일 이미지는 `static` 이라는 폴더내에 이미지를 추가해줘야 합니다.
 
@@ -101,14 +123,14 @@ private void repeatRow(StringBuilder stringBuilder){
 
 멋진 미리보기를 마음껏 꾸며보세요!
 
-### 5-2. 디폴트 미리보기 이미지 (default.png)
+### 6-2. 디폴트 미리보기 이미지 (default.png)
 
 미리보기 이미지를 추가하지 않았다면, 기본적으로 `default.png` 이미지를 미리보기로 표기하고 있습니다. `default.png`
 는 static 파일 내에 존재합니다. 만약 커스터마이징을 원한다면 자유롭게 `default.png` 이미지를 수정하세요.
 
 ---
 
-## 6. Toc (목차)
+## 7. Toc (목차)
 
 ![](./toc.png)
 
@@ -116,7 +138,7 @@ private void repeatRow(StringBuilder stringBuilder){
 
 ---
 
-## 7. 기능 요약
+## 8. 기능 요약
 
 포스트 기능을 정리해보자면 다음과 같습니다.
 

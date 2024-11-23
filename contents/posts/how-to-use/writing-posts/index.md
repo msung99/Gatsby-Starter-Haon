@@ -84,13 +84,35 @@ private void repeatRow(StringBuilder stringBuilder){
 }
 ```
 
+## 5. Katex Grammer
+
+Also, Supports katex grammar to conveniently express mathematical formulas on websites.
+
+#### Example1
+
+$$
+S_n = \frac{n(2a + (n-1)d)}{2}
+$$
+
+#### Example2
+
+$$
+a ^ 2 + b^2 = c^2
+$$
+
+#### Example3
+
+$$
+\int_{0}^{\infty} f(x) dx
+$$
+
 ---
 
-## 5. Post Preview Image (Thumbnail)
+## 6. Post Preview Image (Thumbnail)
 
 The post preview feature is also available, similar to thumbnails.
 
-### 5-1. Adding a Preview Image
+### 6-1. Adding a Preview Image
 
 The path for adding a preview image is slightly different from the path for adding an image within the post. While the image for the post should be in the same folder as the Markdown file, the preview thumbnail image should be added in the `static` folder.
 
@@ -100,13 +122,13 @@ If you have placed a preview image named `writing.png` in the static folder, the
 
 Feel free to customize your preview!
 
-### 5-2. Default Preview Image (default.png)
+### 6-2. Default Preview Image (default.png)
 
 If no preview image is added, the default image `default.png` will be displayed as the preview. `default.png` is located in the static folder. If you want to customize it, feel free to modify the `default.png` image.
 
 ---
 
-## 6. Toc (Table of Contents)
+## 7. Toc (Table of Contents)
 
 ![](./toc.png)
 
